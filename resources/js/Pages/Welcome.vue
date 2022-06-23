@@ -1,5 +1,10 @@
 <script setup>
 
+import Header from '@/Components/Home/Header'
+import Carousel from '@/Components/Home/Carousel'
+import Footer from '@/Components/Home/Footer'
+import Main from '@/Components/Home/Main'
+
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
@@ -8,8 +13,12 @@ defineProps({
 
 <template>
     <div>
-        <h1>hola ulises</h1>
+        <Header/>
+        <Carousel/>
+        <Main/>
+        <Footer/>
     </div>
+
 </template>
 
 <style scoped>
