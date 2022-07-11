@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\SectorController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +20,22 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
-});
+// Route::resource('company', CompanyController::class);
+// Route::resource('user', UserController::class);
+
+//Home
+Route::get('/' , [HomeController::class, 'index'])->name('/');
+Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/company/register', [HomeController::class, 'companyRegister'])->name('company.register');
+Route::get('/user/register', [HomeController::class, 'userRegister'])->name('user.register');
+
+//State and Towns
+Route::get('/list-states', [StateController::class, 'fetchStates'])->name('list-states');
+Route::get('/list-towns/{id}', [StateController::class, 'fetchTowns'])->name('list-towns');
+Route::get('/list-sectors', [SectorController::class, 'fetchSectors'])->name('list-sectors');
+
+//Company
+Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
 
 Route::middleware([
     'auth:sanctum',

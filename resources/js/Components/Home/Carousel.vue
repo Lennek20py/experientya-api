@@ -1,59 +1,36 @@
 <template>
-    <div>
-        <!--Carousel Wrapper-->
-        <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-2" data-slide-to="1"></li>
-            <li data-target="#carousel-example-2" data-slide-to="2"></li>
-        </ol>
-        <!--/.Indicators-->
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-            <div class="view">
-                <img class="d-block w-100" src="../../../img/bg_2.jpg"
-                alt="First slide">
-                <div class="mask rgba-teal-strong"></div>
-            </div>
-            <div class="carousel-caption">
+    <main class="relative bg-white">
+        <img
+            class="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-25 sm:opacity-100"
+            src="../../../img/bg_2.jpg"
+            alt="Couple on a bed with a dog"
+        />
 
-            </div>
-            </div>
-            <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-                <img class="d-block w-100" src="../../../img/bg_3.jpg"
-                alt="Second slide">
-                <div class="mask rgba-teal-strong"></div>
-            </div>
-            <div class="carousel-caption">
-            </div>
-            </div>
-            <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-                <img class="d-block w-100" src="../../../img/bg_3.jpg"
-                alt="Third slide">
-                <div class="mask rgba-teal-strong"></div>
-            </div>
-            <div class="carousel-caption">
+        <div class="hidden sm:block sm:inset-0 sm:absolute sm:bg-gradient-to-r sm:from-white sm:to-transparent"></div>
+
+        <div class="relative max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
+            <div class="max-w-xl text-center sm:text-left">
+            <h1 class="text-3xl font-extrabold sm:text-5xl">
+                Let us find your
+                <strong class="font-extrabold text-teal-500 sm:block">
+                Forever Home.
+                </strong>
+            </h1>
+
+            <p class="max-w-lg mt-4 sm:leading-relaxed sm:text-xl">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus numquam ea!
+            </p>
+
+            <div class="flex flex-wrap gap-4 mt-8 text-center">
+                <a class="block w-full px-12 py-3 text-sm font-medium text-white rounded shadow bg-teal-500 sm:w-auto active:bg-teal-500 hover:bg-teal-500 focus:outline-none focus:ring">
+                Get Started
+                </a>
+
+                <a class="block w-full px-12 py-3 text-sm font-medium bg-white rounded shadow text-teal-600 sm:w-auto hover:text-teal-700 active:text-teal-500 focus:outline-none focus:ring">
+                Learn More
+                </a>
             </div>
             </div>
         </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--/.Controls-->
-        </div>
-        <!--/.Carousel Wrapper-->
-    </div>
+    </main>
 </template>

@@ -34,10 +34,10 @@
                 </div>
             </div>
         </section>
-        <section class="-mt-16">
+        <section class="-mt-10">
             <div class="max-w-7xl mx-auto text-center pb-12 px-4 sm:px-6 lg:px-8">
             <!-- Replace with your content -->
-            <button type="button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="button" class="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-6 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
@@ -117,12 +117,12 @@
                 </div>
             </div>
         </section>
-        <section class="py-12 bg-yellow-400">
+        <section class="py-12 bg-teal-500">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:flex sm:inline-block lg:justify-between">
                     <div>
-                        <h3 class="text-black text-2xl">Try our free trial course</h3>
-                        <p class="text-base text-gray-700">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+                        <h3 class="text-white text-2xl">Try our free trial course</h3>
+                        <p class="text-base text-gray-100">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
                     </div>
                     <div>
                         <button class="text-lg text-white px-5 py-3 bg-blue-500 rounded-full">Join now!</button>
