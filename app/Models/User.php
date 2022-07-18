@@ -24,9 +24,22 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'user_first_name',
+        'user_last_name',
+        'CURP',
         'email',
         'password',
+        'password_confirmation',
+        // 'user_profile_photo_path',
+        'user_country_id',
+        'user_state_id',
+        'user_city_id',
+        'user_address',
+        'user_social_networks',
+        'company_postal_code',
+        'user_phone_number',
+        'email_alternative',
+        'user_date_of_birth'
     ];
 
     /**
@@ -56,6 +69,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
+        'profile_photo_path',
     ];
+    
+    public function setPasswordAttribute($value){
+        if(!empty($value)){
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
 }

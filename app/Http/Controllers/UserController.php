@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,9 +34,30 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $image = $request->file('profile_photo_path')->store('profile', 'public');
+
+        Company::create([
+            'user_first_name' => $request->user_first_name,
+            'user_last_name' => $request->user_last_name,
+            'CURP' => $request->CURP,
+            'email' => $request->email,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+            'user_profile_photo_path' => $request->user_profile_photo_path,
+            'user_country_id' => $request->user_country_id,
+            'user_state_id' => $request->user_state_id,
+            'user_city_id' => $request->user_city_id,
+            'user_address' => $request->user_address,
+            'user_social_networks' => $request->user_social_networks,
+            'user_postal_code' => $request->user_postal_code,
+            'user_phone_number' => $request->user_phone_number,
+            'email_alternative' => $request->email_alternative,
+            'user_date_of_birth' => $request->user_date_of_birth
+        ]);
+
+        return redirect()->route('welcome');
     }
 
     /**
