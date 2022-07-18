@@ -15,6 +15,7 @@ class Company extends Model
         'company_name',
         'email',
         'password',
+        'profile_photo_path',
         'company_phone_number',
         'company_address',
         'company_postal_code',

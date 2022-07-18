@@ -59,6 +59,7 @@ class CompanyController extends Controller
         ]);
 
         return redirect()->route('welcome');
+        // return ['result' => 'OK'. " " . $image];
     }
 
     /**

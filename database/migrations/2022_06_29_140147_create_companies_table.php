@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('company_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('profile_photo_path');
             $table->string('company_phone_number');
             $table->text('company_address');
             $table->string('company_postal_code');
