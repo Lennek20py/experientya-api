@@ -39,10 +39,13 @@
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     <Link :href="route('user.register')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span>Candidato {{count}}</span>
+                        <span>Candidato</span>
                     </Link>
                     <Link :href="route('company.register')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-teal-500 shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
                         <span>Empresa</span>
+                    </Link>
+                    <Link :href="route('login')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full border-teal-600 text-teal-600 bg-white-100 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-700">
+                        <span>Entrar</span>
                     </Link>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:space-x-8">

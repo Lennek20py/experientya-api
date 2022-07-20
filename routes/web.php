@@ -36,6 +36,7 @@ Route::get('/list-sectors', [SectorController::class, 'fetchSectors'])->name('li
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
+Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
 
 Route::middleware([
     'auth:sanctum',
@@ -46,3 +47,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+

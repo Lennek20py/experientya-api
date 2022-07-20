@@ -24,6 +24,8 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
+            } else if (Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember')) ) {
+                return redirect(RouteServiceProvider::COMPANY_HOME);
             }
         }
 
