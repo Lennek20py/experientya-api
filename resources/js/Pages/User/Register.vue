@@ -219,7 +219,7 @@
                         <div class="mt-6">
                             <!-- ESTADOS Y CIUDADES -->
                             <div class="space-y-1"></div>
-                            <form class="space-y-6">
+                            <form @submit.prevent="submit" class="space-y-6">
                                 <div class="-mx-3 mb-2 flex flex-wrap">
                                     <div class="mb-6 w-full px-3 md:mb-0 md:w-1/3">
                                         <label class="mb-2 block" for="country">
@@ -233,7 +233,7 @@
                                                 <!-- <option v-for="country in countries" :key="country.id" :value="country.id">
                                                     {{ country.name }}
                                                 </option> -->
-                                                
+
                                             </select>
                                         </div>
                                     </div>
@@ -308,10 +308,11 @@
                                             <input
                                                 id="user_postal_code"
                                                 name="user_postal_code"
-                                                type="number"
+                                                type="text"
                                                 min="0"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                 maxlength="7"
-                                                autocomplete="user_postal_code"
+                                                autocomplete="postal_code"
                                                 required
                                                 class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                                                 v-model="user.user_postal_code"/>
@@ -528,9 +529,11 @@ export default defineComponent({
             this.user.errors.confirmation = "Revise los campos requeridos antes de continuar."
             this.bind = true;
         }
-        
-       
     },  
+    submit(){
+            this.user.submit('post', route('user.store'));
+            console.log(this.user);
+        },
   },
   created() {
     this.getStates();
