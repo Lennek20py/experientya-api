@@ -54,7 +54,8 @@ class UserController extends Controller
             'user_postal_code' => $request->user_postal_code,
             'user_phone_number' => $request->user_phone_number,
             'email_alternative' => $request->email_alternative,
-            'user_date_of_birth' => $request->user_date_of_birth
+            'user_date_of_birth' => $request->user_date_of_birth,
+            'terms' => $request->terms
         ]);
 
         return redirect()->route('welcome');

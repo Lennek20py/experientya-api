@@ -27,10 +27,11 @@ class StoreUserRequest extends FormRequest
             'user_first_name' => 'required',
             'user_last_name' => 'required',
             'CURP' => 'required',
-            'email' => 'required',
+            'email' => 'required|email:filter',
             'password' => 'required|required_with:password_confirmation|same:password_confirmation|min:6',
             'password_confirmation' => 'required|required_with:password|same:password|min:6',
-            'user_profile_photo_path' => 'required',
+            'profile_photo_path' => 'required',
+            'terms' => 'required',
             'user_country_id' => 'required',
             'user_state_id' => 'required',
             'user_city_id' => 'required',
@@ -39,8 +40,7 @@ class StoreUserRequest extends FormRequest
             'user_postal_code' => 'required',
             'user_phone_number' => 'required',
             'email_alternative' => 'required',
-            'user_date_of_birth' => 'required'
-
+            'user_date_of_birth' => 'required',
         ];
     }
 
@@ -53,7 +53,8 @@ class StoreUserRequest extends FormRequest
             'email' => 'email del candidato',
             'password' => 'contraseña',
             'password_confirmation' => 'repetir la contraseña',
-            'user_profile_photo_path' => 'foto de perfil',
+            'profile_photo_path' => 'foto de perfil',
+            'terms'  => 'Términos y condiciones',
             'user_country_id' => 'país',
             'user_state_id' => 'estado',
             'user_city_id' => 'ciudad o municipio',
@@ -62,7 +63,7 @@ class StoreUserRequest extends FormRequest
             'user_postal_code' => 'código postal del candidato',
             'user_phone_number' => 'telefono del candidato',
             'email_alternative' => 'email alternativo del candidato',
-            'user_date_of_birth' => 'fecha de nacimiento del candidato'
+            'user_date_of_birth' => 'fecha de nacimiento del candidato',
             
         ];
     }
@@ -78,7 +79,8 @@ class StoreUserRequest extends FormRequest
             'password.same' => 'Las contraseñas deben coincidir',
             'password_confirmation.required' => 'Debe ingresar una contraseña',
             'password_confirmation.same' => 'Las contraseñas deben coincidir',
-            'user_profile_photo_path.required' => 'Debe insertar una foto de perfil',
+            'profile_photo_path.required' => 'Debe insertar una foto de perfil',
+            'terms.required'  => 'Debe aceptar los términos y condiciones',
             'user_country_id.required' => 'Debe ingresar el país del candidato',
             'user_state_id.required' => 'Debe ingresar el estado del candidato',
             'user_city_id.required' => 'Debe ingresar la ciudad o municipio del candidato',
@@ -87,7 +89,7 @@ class StoreUserRequest extends FormRequest
             'user_postal_code.required' => 'Debe ingresar el código postal del candidato',
             'user_phone_number.required' => 'Debe ingresar el teléfono del candidato',
             'email_alternative.required' => 'Debe ingresar un Email alternativo del candidato',
-            'user_date_of_birth.required' => 'Debe ing resar la fecha de nacimiento del candidato'
+            'user_date_of_birth.required' => 'Debe ing resar la fecha de nacimiento del candidato',
             
         ];
     }
