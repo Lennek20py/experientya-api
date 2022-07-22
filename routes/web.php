@@ -38,6 +38,9 @@ Route::get('/list-sectors', [SectorController::class, 'fetchSectors'])->name('li
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
 Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
 
+//User / Candidate Basic Info
+Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
