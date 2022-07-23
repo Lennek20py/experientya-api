@@ -21514,7 +21514,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         'state_id': '',
         'town_id': '',
         'sector_id': '',
-        'profile_photo_path': ''
+        'profile_photo_path': '',
+        'terms': '',
+        'newsletter': ''
       })
     };
   },
@@ -21564,6 +21566,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    onFileSelected: function onFileSelected(event) {
+      this.form.profile_photo_path = event.target.files[0];
+      console.log(event.target.files[0]);
     },
     submit: function submit() {
       this.form.submit('post', route('company.store'));
@@ -26296,7 +26302,7 @@ var _hoisted_7 = {
   "class": "pt-8"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><h2 class=\"mt-6 text-3xl font-extrabold text-gray-900\">Registra tu empresa</h2></div><div><!-- {{ states }} --><!-- {{ towns }} --><!-- {{ form }} --><!-- {{ sectors }} --><div class=\"mt-6 relative\"><div class=\"absolute inset-0 flex items-center\" aria-hidden=\"true\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"relative flex justify-center text-sm\"></div></div></div>", 2);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><h2 class=\"mt-6 text-3xl font-extrabold text-gray-900\">Registra tu empresa</h2></div><div><div class=\"mt-6\"><div><label class=\"mx-auto text-gray-400 text-sm\"><span class=\"block after:ml-0.5 after:text-red-500 after:content-[&#39;*&#39;]\">Es fácil y rápido. Los campos requeridos son marcados con un asterisco</span></label><div class=\"relative mt-1\"><div class=\"absolute inset-0 flex items-center\" aria-hidden=\"true\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"relative flex justify-center text-sm\"></div></div></div></div></div>", 2);
 
 var _hoisted_10 = {
   "class": "mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6"
@@ -26307,7 +26313,7 @@ var _hoisted_11 = {
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "first-name",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Nombre de la empresa ", -1
 /* HOISTED */
 );
@@ -26321,7 +26327,7 @@ var _hoisted_14 = {
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "email",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Email ", -1
 /* HOISTED */
 );
@@ -26335,7 +26341,7 @@ var _hoisted_17 = {
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Contraseña ", -1
 /* HOISTED */
 );
@@ -26349,7 +26355,7 @@ var _hoisted_20 = {
 
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password_confirmation",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Repita su contraseña ", -1
 /* HOISTED */
 );
@@ -26363,7 +26369,7 @@ var _hoisted_23 = {
 
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "state",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Estado ", -1
 /* HOISTED */
 );
@@ -26385,7 +26391,7 @@ var _hoisted_28 = {
 
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "town",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Ciudad o Municipio ", -1
 /* HOISTED */
 );
@@ -26407,7 +26413,7 @@ var _hoisted_33 = {
 
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "company_address",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Dirección ", -1
 /* HOISTED */
 );
@@ -26421,7 +26427,7 @@ var _hoisted_36 = {
 
 var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "company_phone_number",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Número telefónico ", -1
 /* HOISTED */
 );
@@ -26435,7 +26441,7 @@ var _hoisted_39 = {
 
 var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "company_postal_code",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Código Postal ", -1
 /* HOISTED */
 );
@@ -26449,7 +26455,7 @@ var _hoisted_42 = {
 
 var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "RFC",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " RFC ", -1
 /* HOISTED */
 );
@@ -26463,7 +26469,7 @@ var _hoisted_45 = {
 
 var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "company_address",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Dirección Fiscal ", -1
 /* HOISTED */
 );
@@ -26477,7 +26483,7 @@ var _hoisted_48 = {
 
 var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "responsible_first_name",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Nombre responsable ", -1
 /* HOISTED */
 );
@@ -26491,7 +26497,7 @@ var _hoisted_51 = {
 
 var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "responsible_last_name",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Apellido(s) ", -1
 /* HOISTED */
 );
@@ -26505,7 +26511,7 @@ var _hoisted_54 = {
 
 var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "responsible_phone_number",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Número de celular ", -1
 /* HOISTED */
 );
@@ -26519,7 +26525,7 @@ var _hoisted_57 = {
 
 var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "description",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Descripción de la empresa ", -1
 /* HOISTED */
 );
@@ -26533,7 +26539,7 @@ var _hoisted_60 = {
 
 var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "sector",
-  "class": "block text-sm font-medium text-gray-700"
+  "class": "block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"
 }, " Sector o rubro ", -1
 /* HOISTED */
 );
@@ -26554,21 +26560,58 @@ var _hoisted_65 = {
 };
 
 var _hoisted_66 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "password_confirmation",
+  "for": "profile_photo_path",
   "class": "block text-sm font-medium text-gray-700"
-}, " Foto de pérfil ", -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "block text-sm font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']"
+}, "Foto de perfil")], -1
 /* HOISTED */
 );
 
 var _hoisted_67 = {
-  "class": "mt-1"
+  "class": "flex items-center justify-center mt-1.5"
 };
-var _hoisted_68 = ["value"];
+var _hoisted_68 = {
+  "class": "sm:col-span-6"
+};
 var _hoisted_69 = {
+  "class": "block text-gray-500"
+};
+
+var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "text-xs font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Acepto el "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "http://",
+  target: "_blank",
+  rel: "noopener noreferrer",
+  "class": "text-blue-600 underline underline-offset-4"
+}, "aviso legal"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" y la "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "http://",
+  target: "_blank",
+  rel: "noopener noreferrer",
+  "class": "text-blue-600 underline underline-offset-4"
+}, "política de privacidad"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ")], -1
+/* HOISTED */
+);
+
+var _hoisted_71 = {
+  "class": "sm:col-span-6"
+};
+var _hoisted_72 = {
+  "class": "block text-gray-500"
+};
+
+var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "text-xs font-medium text-slate-700 after:ml-0.5"
+}, "Acepto recibir comunicados de mi interés relacionados con EXPERIENTYA.", -1
+/* HOISTED */
+);
+
+var _hoisted_74 = {
   "class": "pt-5"
 };
 
-var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Registrarse ");
+var _hoisted_75 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Registrarse ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
@@ -26580,7 +26623,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[17] || (_cache[17] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[19] || (_cache[19] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return _ctx.submit && _ctx.submit.apply(_ctx, arguments);
     }, ["prevent"])),
     "class": "space-y-8 divide-y divide-gray-200"
@@ -26820,31 +26863,50 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     message: _ctx.form.errors.sector_id
   }, null, 8
   /* PROPS */
-  , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [_hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    id: "password_confirmation",
-    onInput: _cache[16] || (_cache[16] = function ($event) {
-      return _ctx.form.profile_photo_path = $event.target.files[0];
-    }),
+  , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [_hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"shrink-0\">                        <img                          class=\"h-16 w-16 object-cover rounded-full\"                          src=\"https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80\"                          alt=\"Current profile photo\"                        />                          </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
-    "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+    id: "profile_photo_path",
+    name: "profile_photo_path",
+    "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-blue-600",
+    onChange: _cache[16] || (_cache[16] = function () {
+      return _ctx.onFileSelected && _ctx.onFileSelected.apply(_ctx, arguments);
+    })
   }, null, 32
   /* HYDRATE_EVENTS */
-  ), _ctx.form.progress ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("progress", {
-    key: 0,
-    value: _ctx.form.progress.percentage,
-    max: "100"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.form.progress.percentage) + "% ", 9
-  /* TEXT, PROPS */
-  , _hoisted_68)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
     message: _ctx.form.errors.profile_photo_path
   }, null, 8
   /* PROPS */
-  , ["message"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
+  , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "mr-2 leading-tight",
+    type: "checkbox",
+    "onUpdate:modelValue": _cache[17] || (_cache[17] = function ($event) {
+      return _ctx.form.terms = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.terms]]), _hoisted_70]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+    message: _ctx.form.errors.terms
+  }, null, 8
+  /* PROPS */
+  , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "mr-2 leading-tight",
+    type: "checkbox",
+    "onUpdate:modelValue": _cache[18] || (_cache[18] = function ($event) {
+      return _ctx.form.newsletter = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.newsletter]]), _hoisted_73]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+    message: _ctx.form.errors.newsletter
+  }, null, 8
+  /* PROPS */
+  , ["message"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
     disabled: _ctx.form.processing,
     "class": "w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_70];
+      return [_hoisted_75];
     }),
     _: 1
     /* STABLE */
