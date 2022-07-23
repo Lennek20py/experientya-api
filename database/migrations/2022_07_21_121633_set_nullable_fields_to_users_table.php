@@ -15,6 +15,8 @@ class SetNullableFieldsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('user_social_networks')->nullable()->change();
+            $table->foreignId('user_country_id')->nullable()->change();
+            // user_country_id
         });
     }
 
@@ -26,7 +28,8 @@ class SetNullableFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('user_social_networks')->change();
+            $table->foreignId('user_country_id')->change();
         });
     }
 }
