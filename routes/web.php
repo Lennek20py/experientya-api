@@ -51,3 +51,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware(['auth:company', 'verified'])->group(function () {
+    Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
+    Route::get('/company/profile', [CompanyController::class, 'profile'])->name('company.profile');
+});
+
+

@@ -7,7 +7,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <!-- Replace with your content -->
                 <div class="py-4">
-                    here
+                    {{ $page.props.auth.company }}
                 </div>
             <!-- /End replace -->
             </div>
@@ -26,11 +26,11 @@
             Link,
             AdminLayout
         },
-        data: function () {
-            return {
-                mobile_menu: 0
+        methods: {
+            logout() {
+                this.$inertia.post(route('admin.logout'));
             }
-        }
+        },
     })
 
 </script>

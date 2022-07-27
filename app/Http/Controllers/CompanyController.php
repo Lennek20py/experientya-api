@@ -106,4 +106,9 @@ class CompanyController extends Controller
     {
         //
     }
+
+    public function profile ()
+    {
+        return Inertia::render('Company/Profile');
+    }
 }
