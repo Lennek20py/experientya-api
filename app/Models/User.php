@@ -30,7 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'password_confirmation',
-        // 'profile_photo_path',
+        'profile_photo_path',
         'user_country_id',
         'user_state_id',
         'user_city_id',
