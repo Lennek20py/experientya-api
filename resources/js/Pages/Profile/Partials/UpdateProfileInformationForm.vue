@@ -12,11 +12,14 @@ import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
 const props = defineProps({
     user: Object,
+    
 });
+
+const APPURL = "http://localhost:8000/";
 
 const form = useForm({
     _method: 'PUT',
-    name: props.user.name,
+    name: props.user.user_first_name,
     email: props.user.email,
     photo: null,
 });
@@ -101,7 +104,7 @@ const clearPhotoFileInput = () => {
 
                 <!-- Current Profile Photo -->
                 <div v-show="! photoPreview" class="mt-2">
-                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
+                    <img :src="APPURL+user.profile_photo_path.replace('profile/', 'storage/profile/')" :alt="user.user_first_name" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -111,6 +114,7 @@ const clearPhotoFileInput = () => {
                         :style="'background-image: url(\'' + photoPreview + '\');'"
                     />
                 </div>
+                <!-- <img src="http://localhost:8000/storage/profile/1YZ76iz2FkizKDuJZ5mX0V0fq2S4NGiYbSLE0vFQ.jpg" alt="" srcset=""> -->
 
                 <JetSecondaryButton class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
                     Select A New Photo
