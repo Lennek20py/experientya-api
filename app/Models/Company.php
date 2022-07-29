@@ -50,9 +50,18 @@ class Company extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'profile_photo_link'
+    ];
+
     public function setPasswordAttribute($valor){
         if(!empty($valor)){
             $this->attributes['password'] = bcrypt($valor);
         }
+    }
+
+    public function getProfilePhotoLinkAttribute()
+    {
+        return asset('storage/'.$this->attributes['profile_photo_path']);
     }
 }

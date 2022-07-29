@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-full">
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-    <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
+    <div v-if="mobile_menu" class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
         <!--
         Off-canvas menu backdrop, show/hide based on off-canvas menu state.
 
@@ -37,7 +37,7 @@
                 To: "opacity-0"
             -->
             <div class="absolute top-0 right-0 -mr-12 pt-2">
-            <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <button @click="mobile_menu = !mobile_menu" type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                 <span class="sr-only">Close sidebar</span>
                 <!-- Heroicon name: outline/x -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="flex-shrink-0 flex items-center px-4">
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-purple-500-mark-gray-700-text.svg" alt="Workflow">
+            <img class="h-8 w-auto" src="../../img/logoMini.png" alt="Workflow">
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
             <nav class="px-2">
@@ -155,7 +155,7 @@
         <nav class="px-3 mt-6">
             <div class="space-y-1">
             <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
-            <a href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md" aria-current="page">
+            <Link :href="route('company.index')" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md" aria-current="page">
                 <!--
                 Heroicon name: outline/home
 
@@ -165,7 +165,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
                 Home
-            </a>
+            </Link>
 
             <a href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                 <!-- Heroicon name: outline/view-list -->
@@ -209,7 +209,7 @@
     <!-- Main column -->
     <div class="lg:pl-64 flex flex-col flex-1">
         <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
-        <button type="button" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
+        <button @click="mobile_menu = !mobile_menu" type="button" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
             <span class="sr-only">Open sidebar</span>
             <!-- Heroicon name: outline/menu-alt-2 -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -243,15 +243,15 @@
             <!-- Profile dropdown -->
             <div class="ml-3 relative">
                 <div>
-                <button @click="mobile_menu = !mobile_menu" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button @click="menu = !menu" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="sr-only">Open user menu</span>
                     <img class="h-8 w-8 rounded-full" :src="$page.props.auth.company.profile_photo_path" alt="">
                 </button>
                 </div>
-                <div v-if="mobile_menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                <Link :href="route('company.profile')" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Opciones</Link>
+                <div v-if="menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <Link :href="route('company.settings')" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Opciones</Link>
 
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Salir</a>
+                <a href="#" @click="logout()" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Salir</a>
                 </div>
             </div>
             </div>
@@ -276,7 +276,13 @@
         },
         data: function () {
             return {
-                mobile_menu: 0
+                mobile_menu: 0,
+                menu: 0
+            }
+        },
+        methods: {
+            logout() {
+                this.$inertia.post(route('logout'));
             }
         }
     })

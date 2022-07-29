@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -107,8 +108,17 @@ class CompanyController extends Controller
         //
     }
 
-    public function profile ()
+    public function settings ()
     {
-        return Inertia::render('Company/Profile');
+        $user_info = Company::select('companies.*','states.name as state_name', 'towns.name as town_name', 'sectors.name as sector_name')
+                        ->join('states', 'companies.state_id', '=', 'states.id')
+                        ->join('towns', 'companies.state_id', '=', 'towns.id')
+                        ->join('sectors', 'companies.sector_id', '=', 'sectors.id')
+                        ->where('companies.id', Auth::id())
+                        ->first();
+
+        return Inertia::render('Company/Settings',[
+            'userInfo' => $user_info
+        ]);
     }
 }

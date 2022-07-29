@@ -53,7 +53,7 @@ Route::middleware([
 
 Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
-    Route::get('/company/profile', [CompanyController::class, 'profile'])->name('company.profile');
+    Route::get('/company/settings', [CompanyController::class, 'settings'])->name('company.settings');
 });
 
 
