@@ -228,12 +228,11 @@
                                         <div class="mt-1">
                                             <select v-model="user.user_country_id" id="state" class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
                                                 <option value>
-                                                    Seleccione un país
+                                                    México
                                                 </option>
                                                 <!-- <option v-for="country in countries" :key="country.id" :value="country.id">
                                                     {{ country.name }}
                                                 </option> -->
-
                                             </select>
                                         </div>
                                     </div>
@@ -284,23 +283,10 @@
                                         />
                                     </div>
                                 </div>
+                                <!-- <div class="-mx-3 mb-6 flex flex-wrap">
+                                </div> -->
                                 <div class="-mx-3 mb-6 flex flex-wrap">
-                                    <div class="mb-6 w-full px-3 md:mb-0 md:w-1/2">
-                                        <label class="mb-2 block" for="social_networks">
-                                            <span class="block text-sm font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']">Redes Sociales</span>
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="social_networks"
-                                                name="social_networks"
-                                                type="text"
-                                                autocomplete="social_networks"
-                                                disabled
-                                                class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 bg-gray-300 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                                                v-model="user.user_social_networks"/>
-                                        </div>
-                                    </div>
-                                    <div class="w-full px-3 md:w-1/2">
+                                    <div class="w-full px-3 md:w-1/3">
                                         <label class="mb-2 block" for="user_postal_code">
                                             <span class="block text-sm font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']">Código Postal</span>
                                         </label>
@@ -318,9 +304,7 @@
                                                 v-model="user.user_postal_code"/>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="-mx-3 mb-6 flex flex-wrap">
-                                    <div class="mb-6 w-full px-3 md:mb-0 md:w-1/2">
+                                    <div class="mb-6 w-full px-3 md:mb-0 md:w-1/3">
                                         <label class="mb-2 block" for="user_phone_number">
                                             <span class="block text-sm font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']">Teléfono 1</span>
                                         </label>
@@ -339,7 +323,7 @@
                                                 v-model="user.user_phone_number"/>
                                         </div>
                                     </div>
-                                    <div class="w-full px-3 md:w-1/2">
+                                    <div class="w-full px-3 md:w-1/3">
                                         <label class="mb-2 block" for="user_second_phone_number">
                                             <span class="block text-sm font-medium text-slate-700">Teléfono 2</span>
                                         </label>

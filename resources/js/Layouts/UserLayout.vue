@@ -31,7 +31,8 @@ const logout = () => {
 </script>
 
 <template>
-    <div>
+   <Transition>
+     <div>
         <Head :title="title" />
 
         <JetBanner />
@@ -56,13 +57,13 @@ const logout = () => {
                         <div class="flex">
                               <!-- Navigation Links -->
                             <div class="hidden items-center space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <JetNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <JetNavLink :href="route('user.micv')" :active="route().current('user.micv')">
                                     MI CV
                                 </JetNavLink>
-                                <JetNavLink :href="route('dashboard')" :active="route().current('user.register')">
+                                <JetNavLink :href="route('user.vacants')" :active="route().current('user.vacants')">
                                     Vacantes
                                 </JetNavLink>
-                                <JetNavLink :href="route('dashboard')" :active="route().current('user.register')">
+                                <JetNavLink :href="route('user.messages')" :active="route().current('user.messages')">
                                     Mensajes
                                 </JetNavLink>
                             </div>
@@ -153,8 +154,7 @@ const logout = () => {
                                                     class="ml-2 -mr-0.5 h-4 w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
+                                                    fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                 </svg>
                                             </button>
@@ -220,9 +220,18 @@ const logout = () => {
 
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
+                    <div class="pt-2 border-t-2 pb-3 space-y-1">
                         <JetResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </JetResponsiveNavLink>
+                        <JetResponsiveNavLink :href="route('user.micv')" :active="route().current('user.micv')">
+                            Mi CV
+                        </JetResponsiveNavLink>
+                        <JetResponsiveNavLink :href="route('user.vacants')" :active="route().current('user.vacants')">
+                            Vacantes
+                        </JetResponsiveNavLink>
+                        <JetResponsiveNavLink :href="route('user.messages')" :active="route().current('user.messages')">
+                            Mensajes
                         </JetResponsiveNavLink>
                     </div>
 
@@ -230,7 +239,7 @@ const logout = () => {
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 mr-3">
-                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')" :alt="$page.props.user.name">
                             </div>
 
                             <div>
@@ -321,4 +330,16 @@ const logout = () => {
             </main>
         </div>
     </div>
+   </Transition>
 </template>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
