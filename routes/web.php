@@ -24,7 +24,7 @@ use App\Http\Controllers\CompanyController;
 // Route::resource('user', UserController::class);
 
 //Home
-Route::get('/' , [HomeController::class, 'index'])->name('/');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/company/register', [HomeController::class, 'companyRegister'])->name('company.register');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('user.register');
@@ -46,6 +46,15 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/micv', function () {
+        return Inertia::render('User/MiCV');
+    })->name('user.micv');
+    Route::get('/vacants', function () {
+        return Inertia::render('User/Vacant');
+    })->name('user.vacants');
+    Route::get('/messages', function () {
+        return Inertia::render('User/Messages');
+    })->name('user.messages');
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
@@ -55,5 +64,3 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/company/profile', [CompanyController::class, 'profile'])->name('company.profile');
 });
-
-
