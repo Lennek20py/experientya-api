@@ -37,7 +37,7 @@ const logout = () => {
 
         <JetBanner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-white">
             <!-- <UserHeader /> -->
 
             <nav class="bg-white border-b border-gray-100">

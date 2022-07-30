@@ -409,7 +409,7 @@ import JetButton from '@/Jetstream/Button'
 
 export default defineComponent({
     components: { Header, Footer, JetInputError, JetButton },
-  data: function () {
+    data: function () {
     return {
       country_id: "",
       state_id: "",
