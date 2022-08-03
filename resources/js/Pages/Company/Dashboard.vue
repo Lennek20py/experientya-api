@@ -30,7 +30,7 @@
             logout() {
                 this.$inertia.post(route('admin.logout'));
             }
-        },
+        }
     })
 
 </script>
