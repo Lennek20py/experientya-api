@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,12 @@ Route::middleware([
 });
 
 Route::middleware(['auth:company', 'verified'])->group(function () {
+    // Profile
     Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/company/settings', [CompanyController::class, 'settings'])->name('company.settings');
     Route::put('/company/update/{company}', [CompanyController::class, 'update'])->name('company.update');
+
+    // Offer
+    Route::get('/company/offer', [OfferController::class, 'index'])->name('offer.index');
+    Route::get('/company/newOffer', [OfferController::class, 'create'])->name('offer.create');
 });

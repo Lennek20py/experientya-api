@@ -85,9 +85,6 @@
         <div class="space-y-1">
             <h3 class="text-lg leading-6 font-medium text-gray-900">Cuenta</h3>
             <p class="max-w-2xl text-sm text-gray-500">Administre cómo se muestra la información en su cuenta.</p>
-            {{ userInfo }}
-            <br>
-            {{ form }}
         </div>
         <div class="mt-6">
             <dl class="divide-y divide-gray-200">
