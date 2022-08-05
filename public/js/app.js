@@ -31193,10 +31193,10 @@ var _hoisted_2 = {
   "class": "flex items-start justify-start gap-4"
 };
 var _hoisted_3 = {
-  "class": "flex flex-col align-center gap-4 w-full"
+  "class": "flex flex-col align-center gap-4 w-full align-center"
 };
 var _hoisted_4 = {
-  "class": "flex flex-row align-center justify-center gap-4 mt-3 mr-4"
+  "class": "flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0"
 };
 var _hoisted_5 = {
   "class": "gap-4 mr-4"
@@ -31219,11 +31219,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"grid grid-cols-4 gap-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Progress"], {
-        "class": ""
+        "class": "hidden md:block"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["WorkPreferences"], {
-        "class": "shadow-lg shadow-gray-300"
+        "class": "order-last shadow-lg shadow-gray-300 lg:order-first"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BasicInfo"], {
-        "class": "shadow-lg shadow-gray-300"
+        "class": "order first items-center shadow-lg shadow-gray-300 lg:order-first"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Study"], {
         "class": ""
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Certifications"], {
@@ -32060,7 +32060,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-[35rem] h-[412px] w-4xl bg-white rounded-lg border border-gray-200 shadow-m"
+  "class": "w-full h-auto bg-white rounded-lg border border-gray-200 shadow-m lg:w-3/5 xl:w-[35rem] xl:w-4xl"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -32070,24 +32070,24 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "text-3xl mx-auto font-bold md:text-gray-900 text-center sm:text-red-500 py-2"
+  "class": "text-3xl mx-auto font-bold md:text-gray-900 text-center lg:text-4xl py-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Información Básica")], -1
 /* HOISTED */
 );
 
 var _hoisted_4 = {
-  "class": "flex flex-col items-center pb-10 pt-10 mx-10 md:mx-7"
+  "class": "flex flex-col items-center pb-10 pt-7 mx-10 md:mx-7"
 };
 var _hoisted_5 = ["src"];
 var _hoisted_6 = {
-  "class": "mb-1 text-xl font-semibold text-gray-900 md:text-lg text-center"
+  "class": "mb-1 text-xl font-semibold text-gray-900 lg:text-xl text-center"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<span class=\"text-lg font-medium text-gray-500 md:text-base\">Misantla, Veracruz</span><div class=\"flex mt-4 space-x-3 lg:mt-6 items-center\"><a href=\"#\" class=\"inline-flex items-center py-2 text-sm font-medium text-center text-gray-600 bg-white rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-20\"><svg class=\"w-6 h-6 items-center text-gray-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z\"></path></svg> Previsualizar CV</a></div>", 2);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<span class=\"text-lg font-medium text-gray-500 lg:text-xl\">Misantla, Veracruz</span><div class=\"flex mt-4 space-x-3 lg:mt-6 items-center\"><a href=\"#\" class=\"inline-flex items-center py-2 text-sm font-medium text-center text-gray-600 bg-white rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-20\"><svg class=\"w-6 h-6 items-center text-gray-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z\"></path></svg> Previsualizar CV</a></div>", 2);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "mb-3 w-32 h-32 rounded-full shadow-lg",
+    "class": "mb-3 w-32 h-32 rounded-full shadow-lg md:w-36 md:h-36",
     src: _ctx.$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/'),
     alt: "Bonnie image"
   }, null, 8
@@ -32204,11 +32204,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "max-w-72",
+  "class": "max-w-72 h-fit",
   "aria-label": "Sidebar"
 };
 var _hoisted_2 = {
-  "class": "w-72 py-4 px-3 h-screen bg-gray-100 rounded"
+  "class": "w-auto py-4 px-3 h-screen bg-gray-100 rounded lg:w-auto 2xl:w-64"
 };
 var _hoisted_3 = {
   "class": "space-y-2"
@@ -32301,29 +32301,25 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-8 py-2 max-h-[412px]"
 };
-var _hoisted_2 = {
-  "class": "text-3xl mx-auto font-bold text-gray-900 text-start py-2 flex flex-wrap justify-between"
-};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Educación:", -1
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "text-3xl mx-auto font-bold text-gray-900 text-start py-2 flex flex-wrap justify-between"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Educación:")], -1
 /* HOISTED */
 );
 
-var _hoisted_4 = {
-  "class": "flex flex-wrap justify-center"
-};
-var _hoisted_5 = {
+var _hoisted_3 = {
   key: 0,
   "class": "flex content-end justify-around flex-col my-4"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "w-full text-sm font-light text-gray-500 mx-auto px-"
 }, "Aún no se encuentran registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.", -1
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-6 h-6",
   fill: "none",
   stroke: "currentColor",
@@ -32338,40 +32334,42 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar");
 
-var _hoisted_9 = [_hoisted_7, _hoisted_8];
-var _hoisted_10 = {
+var _hoisted_7 = [_hoisted_5, _hoisted_6];
+var _hoisted_8 = {
   key: 1,
   "class": "mb-4"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-around items-center align-center grow\"><div class=\"flex grow ml-1\"><div class=\"mt-3 grow\"><label for=\"\">Grado cursado</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex grow ml-4\"><div class=\"mt-3 grow\"><label for=\"\">Estatus</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div><div class=\"flex flex-row justify-around items-start grow\"><div class=\"flex grow ml-1 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Centro de educación</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select><p id=\"helper-text-explanation\" class=\"text-xs text-gray-500\">¿No aparece tu centro de educación en la lista? <a href=\"#\" class=\"text-red-500 hover:underline font-bold\">regístralo aquí!</a>.</p></div></div><div class=\"flex grow ml-4 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Título de la carrera</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div><div class=\"flex flex-row justify-around items-center align-center grow\"><div class=\"flex grow ml-1 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Mes de inicio</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex grow ml-4 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Año de inicio</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div>", 3);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-around items-center align-center grow\"><div class=\"flex grow ml-1\"><div class=\"mt-3 grow\"><label for=\"\">Grado cursado</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex grow ml-4\"><div class=\"mt-3 grow\"><label for=\"\">Estatus</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div><div class=\"flex flex-row justify-around items-start grow\"><div class=\"flex grow ml-1 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Centro de educación</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select><p id=\"helper-text-explanation\" class=\"text-xs text-gray-500\">¿No aparece tu centro de educación en la lista? <a href=\"#\" class=\"text-red-500 hover:underline font-bold\">regístralo aquí!</a>.</p></div></div><div class=\"flex grow ml-4 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Título de la carrera</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div><div class=\"flex flex-row justify-around items-center align-center grow\"><div class=\"flex grow ml-1 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Mes de inicio</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex grow ml-4 basis-1/2\"><div class=\"mt-3 grow\"><label for=\"\">Año de inicio</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div></div>", 3);
 
-var _hoisted_14 = [_hoisted_11];
+var _hoisted_12 = {
+  "class": "flex flex-wrap justify-center items-center lg:justify-end py-3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 0,
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, !$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return _this.formBind = false;
-    }),
-    "class": "rounded-lg bg-blue-500 text-gray-50 text-lg text-center mx-2 font-semibold px-5"
-  }, "Guardar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-    key: 1,
-    href: "#",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return _this.formBind = false;
-    }),
-    "class": "flex items-center text-red-500 text-lg font-semibold text-center m-2"
-  }, "Cancelar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), !$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
       return _this.formBind = true;
     }),
     "class": "flex items-center text-red-500 text-lg font-semibold text-start pt-6"
-  }, _hoisted_9)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, _hoisted_14))]);
+  }, _hoisted_7)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return _this.formBind = false;
+    }),
+    "class": "rounded-lg bg-blue-500 text-gray-50 text-lg text-center lg:mx-2 font-semibold px-5 w-full lg:w-auto"
+  }, "Guardar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 1,
+    href: "#",
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return _this.formBind = false;
+    }),
+    "class": "flex items-center text-red-500 text-base font-semibold text-center m-2 lg:text-lg"
+  }, "Cancelar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))]);
 }
 
 /***/ }),
@@ -32390,31 +32388,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-8 py-2 max-h-[412px] min-h-[204px]"
-};
-var _hoisted_2 = {
-  "class": "text-3xl mx-auto font-bold text-gray-900 text-start py-2 flex flex-wrap justify-between"
+  "class": "w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px]"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Preferencias Laborales:", -1
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "text-2xl mx-auto font-bold text-gray-900 py-2 flex flex-wrap text-center items-center justify-center lg:justify-between lg:text-start lg:text-2xl 2xl:text-3xl"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Preferencias Laborales")], -1
 /* HOISTED */
 );
 
-var _hoisted_4 = {
-  "class": "flex flex-wrap justify-center"
-};
-var _hoisted_5 = {
+var _hoisted_3 = {
   key: 0,
   "class": "flex content-end justify-around flex-col"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "w-full text-sm font-light text-gray-500 mx-auto px-"
 }, "Aún no se encuentran registros acerca de las preferencias laborales, por favor ingrese los datos nuevos en el link a continuación.", -1
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-6 h-6",
   fill: "none",
   stroke: "currentColor",
@@ -32429,110 +32423,115 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar");
 
-var _hoisted_9 = [_hoisted_7, _hoisted_8];
-var _hoisted_10 = {
+var _hoisted_7 = [_hoisted_5, _hoisted_6];
+var _hoisted_8 = {
   key: 1
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-around\"><div class=\"basis-1/2 grow\"><div class=\"pt-1 text-2xl mx-auto font-bold text-gray-800 text-start\"><h3>Me interesa: </h3></div><div class=\"my-2 md:flex md:items-center py-1\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-base font-medium text-slate-700\"> Trabajo. </span></label></div><div class=\"my-2 md:flex md:items-center py-1\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-base font-medium text-slate-700\"> Residencia / Práctica profesional. </span></label></div><div class=\"my-2 md:flex md:items-center py-1\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-base font-medium text-slate-700\"> Educación dual. </span></label></div></div><div class=\"basis-1/2 grow pb-3\"><div class=\"pt-1 text-2xl mx-auto font-bold text-gray-800 text-start\"><h3>Área de interés: </h3></div><div class=\"flex py-2 flex-wrap items-center justify-between\"><div class=\"mt-1 grow\"><label for=\"\">Área</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div><div class=\"mt-1 grow ml-2\"><label for=\"\">Campo general</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex space-y-2\"><div class=\"mt-1 grow\"><label for=\"\">Campo específico</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm\"><option value=\"1\">Seleccione un algo</option></select></div></div><!-- &lt;div class=&quot;my-2 md:flex md:items-center&quot;&gt;\r\n                &lt;label class=&quot;block text-gray-500&quot;&gt;\r\n                    &lt;input class=&quot;mr-2 leading-tight&quot; type=&quot;checkbox&quot; /&gt;\r\n                        &lt;span class=&quot;text-lg font-medium text-slate-700&quot;&gt;\r\n                            Trabajo.\r\n                        &lt;/span&gt;\r\n                    &lt;/label&gt;\r\n                &lt;/div&gt; --></div></div>", 1);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-col justify-start lg:flex-row 2xl:justify-around\"><div class=\"lg:basis-1/2 grow\"><div class=\"pt-1 text-base mx-auto font-bold text-gray-800 text-start lg:text-xl 2xl:text-2xl\"><h3>Me interesa: </h3></div><div class=\"my-1 md:flex md:items-center lg:py-1 lg:my-2\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-xs font-medium text-slate-700 lg:text-sm 2xl:text-base\"> Trabajo. </span></label></div><div class=\"my-1 md:flex md:items-center lg:py-1 lg:my-2\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-xs font-medium text-slate-700 lg:text-sm 2xl:text-base\"> Residencia / Práctica profesional. </span></label></div><div class=\"my-1 md:flex md:items-center lg:py-1 lg:my-2\"><label class=\"block text-gray-500\"><input class=\"mr-2 leading-tight\" type=\"checkbox\"><span class=\"text-xs font-medium text-slate-700 lg:text-sm 2xl:text-base\"> Educación dual. </span></label></div></div><div class=\"lg:basis-1/2 grow lg:pb-3 lg:px-2\"><div class=\"pt-1 text-base mx-auto font-bold text-gray-800 text-start lg:text-xl 2xl:text-2xl\"><h3>Área de interés: </h3></div><div class=\"flex py-0 flex-wrap items-center justify-start gap-2 lg:gap-1 lg:flex-nowrap lg:justify-between 2xl:gap-2 2xl:py-2\"><div class=\"2xl:mt-1 grow\"><label for=\"\" class=\"text-xs text-gray-800 lg:text-sm 2xl:text-base\">Área</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base\"><option value=\"1\">Seleccione un algo</option></select></div><div class=\"2xl:mt-1 grow\"><label for=\"\" class=\"text-xs text-gray-800 lg:text-sm 2xl:text-base\">Campo general</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base\"><option value=\"1\">Seleccione un algo</option></select></div></div><div class=\"flex space-y-2\"><div class=\"2xl:mt-1 grow\"><label for=\"\" class=\"text-xs text-gray-800 lg:text-sm 2xl:text-base\">Campo específico</label><select name=\"area\" id=\"area\" class=\"mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base\"><option value=\"1\">Seleccione un algo</option></select></div></div></div></div>", 1);
 
-var _hoisted_12 = {
-  "class": "flex flex-row justify-around"
+var _hoisted_10 = {
+  "class": "flex flex-col lg:flex-row justify-start lg:justify-around"
 };
-var _hoisted_13 = {
-  "class": "basis-1/2 grow"
+var _hoisted_11 = {
+  "class": "lg:basis-1/2 grow"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "pt-1 text-2xl mx-auto font-bold text-gray-800 text-start"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Localización de la vacante: ")], -1
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "pt-1 text-base mx-auto font-bold text-gray-800 text-start lg:text-xl 2xl:text-2xl"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Localización de vacante:")], -1
 /* HOISTED */
 );
 
-var _hoisted_15 = {
-  "class": "flex py-2 flex-wrap items-center"
+var _hoisted_13 = {
+  "class": "flex py-2 flex-wrap justify-start gap-2 lg:justify-between lg:flex-nowrap"
 };
-var _hoisted_16 = {
-  "class": "mt-1 mr-2"
+var _hoisted_14 = {
+  "class": "mt-1 w-full"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": ""
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "",
+  "class": "text-xs text-gray-800 lg:text-sm 2xl:text-base"
 }, "Estado", -1
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_16 = {
   "class": "mt-1"
 };
-var _hoisted_19 = {
+var _hoisted_17 = {
   required: "",
   id: "state",
-  "class": "mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm md:text-sm"
+  "class": "mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: ""
 }, "Seleccione un estado", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = {
-  "class": "mt-1 mx-2"
+var _hoisted_19 = {
+  "class": "mt-1 w-full"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": ""
-}, "Campo general", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "",
+  "class": "text-xs text-gray-800 lg:text-sm 2xl:text-base"
+}, "Ciudad", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_21 = {
   "class": "mt-1"
 };
-var _hoisted_24 = {
+var _hoisted_22 = {
   id: "town",
   required: "",
-  "class": "mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm md:text-sm"
+  "class": "mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: ""
 }, "Seleccione una ciudad", -1
 /* HOISTED */
 );
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"basis-1/2 grow\"><div class=\"pt-1 text-2xl mx-auto font-bold text-gray-800 text-center\"><h3>¿Cambiarías de lugar de residencia?</h3></div><div class=\"flex flex-wrap justify-around justify-items-start my-8\"><div class=\"flex items-center\"><input id=\"default-radio-1\" type=\"radio\" value=\"\" name=\"default-radio\" class=\"w-4 h-4 text-blue-600 bg-gray-50 border-gray-300 focus:ring-blue-500\"><label for=\"default-radio-1\" class=\"ml-2 text-xl font-medium text-gray-900\">Si</label></div><div class=\"flex items-center\"><input checked=\"\" id=\"default-radio-2\" type=\"radio\" value=\"\" name=\"default-radio\" class=\"w-4 h-4 text-blue-600 bg-gray-50 border-gray-300 focus:ring-blue-500\"><label for=\"default-radio-2\" class=\"ml-2 text-xl font-medium text-gray-900\">No</label></div></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"lg:basis-1/2 grow flex flex-col justify-center content-between\"><div class=\"pt-1 text-base font-bold mx-auto text-gray-800 text-center lg:text-xl 2xl:text-2xl\"><h3>¿Cambiarías de lugar de residencia?</h3></div><div class=\"flex flex-wrap justify-around justify-items-start my-8 lg:my-5 2xl:my--6\"><div class=\"flex items-center justify-around\"><input id=\"default-radio-1\" type=\"radio\" value=\"\" name=\"default-radio\" class=\"w-4 h-4 text-blue-600 bg-gray-50 border-gray-300 focus:ring-blue-500\"><label for=\"default-radio-1\" class=\"ml-2 text-sm font-medium text-gray-900 2xl:text-xl\">Si</label></div><div class=\"flex items-center\"><input checked=\"\" id=\"default-radio-2\" type=\"radio\" value=\"\" name=\"default-radio\" class=\"w-4 h-4 text-blue-600 bg-gray-50 border-gray-300 focus:ring-blue-500\"><label for=\"default-radio-2\" class=\"ml-2 text-sm font-medium text-gray-900 2xl:text-xl\">No</label></div></div></div>", 1);
 
+var _hoisted_25 = {
+  "class": "flex flex-wrap justify-center items-center lg:justify-end"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 0,
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, !$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return _this.formBind = false;
-    }),
-    "class": "rounded-lg bg-blue-500 text-gray-50 text-lg text-center mx-2 font-semibold px-5"
-  }, "Guardar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-    key: 1,
-    href: "#",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return _this.formBind = false;
-    }),
-    "class": "flex items-center text-red-500 text-lg font-semibold text-center m-2"
-  }, "Cancelar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), !$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
       return _this.formBind = true;
     }),
     "class": "flex items-center text-red-500 text-lg font-semibold text-start pt-6"
-  }, _hoisted_9)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1
+  }, _hoisted_7)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1
   /* TEXT */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1
   /* TEXT */
-  )])])])])]), _hoisted_26])]))]);
+  )])])])])]), _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [$data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return _this.formBind = false;
+    }),
+    "class": "rounded-lg bg-blue-500 text-gray-50 text-lg text-center lg:mx-2 font-semibold px-5 w-full lg:w-auto"
+  }, "Guardar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.formBind ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 1,
+    href: "#",
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return _this.formBind = false;
+    }),
+    "class": "flex items-center text-red-500 text-base font-semibold text-center m-2 lg:text-lg"
+  }, "Cancelar")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))]);
 }
 
 /***/ }),

@@ -2,10 +2,6 @@
 <div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-8 py-2 max-h-[412px]">
     <div class="text-3xl mx-auto font-bold text-gray-900 text-start py-2 flex flex-wrap justify-between">
         <h3>Educación:</h3>
-        <div class="flex flex-wrap justify-center">
-            <button v-if="formBind" @click="this.formBind = false" class="rounded-lg bg-blue-500 text-gray-50 text-lg text-center mx-2 font-semibold px-5">Guardar</button>
-            <a href="#" @click="this.formBind = false" class="flex items-center text-red-500 text-lg font-semibold text-center m-2" v-if="formBind">Cancelar</a>
-        </div>
     </div>
     <div v-if="!formBind" class="flex content-end justify-around flex-col my-4">
         <span class="w-full text-sm font-light text-gray-500 mx-auto px-">Aún no se encuentran registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
@@ -68,6 +64,10 @@
                     </div>
                 </div>
             </div>
+            <div class="flex flex-wrap justify-center items-center lg:justify-end py-3">
+            <button v-if="formBind" @click="this.formBind = false" class="rounded-lg bg-blue-500 text-gray-50 text-lg text-center lg:mx-2 font-semibold px-5 w-full lg:w-auto">Guardar</button>
+            <a href="#" @click="this.formBind = false" class="flex items-center text-red-500 text-base font-semibold text-center m-2 lg:text-lg" v-if="formBind">Cancelar</a>
+        </div>
     </div>
 </div>
 </template>
