@@ -8,7 +8,7 @@
                     <div class="px-4 py-5 sm:px-6">
                     <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900">Nueva Vacante</h2>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">----> {{ form }}</p>
+                    <!-- <p class="mt-1 max-w-2xl text-sm text-gray-500">{{ form }}</p> -->
                     </div>
                     <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
                         <div class="grid grid-cols-6 gap-6">
