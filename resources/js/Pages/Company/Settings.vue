@@ -13,18 +13,18 @@
                                 <!-- Tabs -->
                                 <div class="lg:hidden">
                                     <label for="selected-tab" class="sr-only">Select a tab</label>
-                                    <select id="selected-tab" name="selected-tab" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md">
-                                    <option selected>General</option>
+                                    <select v-model="selected" id="selected-tab" name="selected-tab" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                                        <option>General</option>
 
-                                    <option>Contraseña</option>
+                                        <option>Contraseña</option>
 
-                                    <!-- <option>Notifications</option> -->
+                                        <!-- <option>Notifications</option> -->
 
-                                    <option>Plan</option>
+                                        <option>Plan</option>
 
-                                    <!-- <option>Billing</option> -->
+                                        <!-- <option>Billing</option> -->
 
-                                    <!-- <option>Team Members</option> -->
+                                        <!-- <option>Team Members</option> -->
                                     </select>
                                 </div>
                                 <div class="hidden lg:block">
@@ -83,7 +83,19 @@
         },
         data() {
             return {
-                option: 0
+                option: 0,
+                selected: 'General'
+            }
+        },
+        watch: {
+            'selected': function(value) {
+                if (value === 'General') {
+                    this.option = 0
+                } else if (value === 'Contraseña') {
+                    this.option = 1
+                } else if (value === 'Plan') {
+                    this.option = 2
+                }
             }
         }
     })
