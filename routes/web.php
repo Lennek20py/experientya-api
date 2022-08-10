@@ -9,6 +9,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\WorkPreferencesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +35,21 @@ Route::get('/user/register', [HomeController::class, 'userRegister'])->name('use
 Route::get('/list-states', [StateController::class, 'fetchStates'])->name('list-states');
 Route::get('/list-towns/{id}', [StateController::class, 'fetchTowns'])->name('list-towns');
 Route::get('/list-sectors', [SectorController::class, 'fetchSectors'])->name('list-sectors');
+Route::get('/town/{id}', [StateController::class, 'fecthTown'])->name('town');
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
 Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
 
-//User / Candidate Basic Info
+//User
+// / Candidate Basic Info
 Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
+// /Work Preferences
+Route::get('/user/wp', [WorkPreferencesController::class, 'index'])->name('workPreferences.show');
+Route::post('/user/wp', [WorkPreferencesController::class, 'store'])->name('workPreferences.store');
+
+
+
 
 Route::middleware([
     'auth:sanctum',
