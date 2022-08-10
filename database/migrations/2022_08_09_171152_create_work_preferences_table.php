@@ -16,10 +16,10 @@ class CreateWorkPreferencesTable extends Migration
         Schema::create('work_preferences', function (Blueprint $table) {
             $table->id();
             $table->string('desired_job')->nullable();
-            $table->string('type_contract');
-            $table->boolean('work')->nullable();
-            $table->boolean('practices')->nullable();
-            $table->boolean('dual_education')->nullable();
+            $table->string('type_contract')->nullable();
+            $table->string('work')->nullable();
+            $table->string('practices')->nullable();
+            $table->string('dual_education')->nullable();
             $table->float('desired_salary')->nullable();
             $table->string('hours')->nullable();
             $table->string('avaible_date')->nullable();

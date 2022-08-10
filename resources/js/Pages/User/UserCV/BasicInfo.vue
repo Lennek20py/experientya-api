@@ -23,19 +23,16 @@ import axios from 'axios';
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/UserLayout.vue";
 export default {
-    props: {
-        user: Object,
-    },
+    props: ['userProp'],
     components: { AppLayout },
     data: function() {
         return {
             state: {},
-            user: this.$inertia.form({}),
         }
     },
     methods: {
         async getTownInfo() {
-            await axios.get("town/2196")
+            await axios.get("town/"+this.userProp.user_city_id)
             .then((response) => {
                 this.state = response.data;
             }).catch((error) => {

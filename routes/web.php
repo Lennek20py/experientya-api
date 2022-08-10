@@ -30,6 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/company/register', [HomeController::class, 'companyRegister'])->name('company.register');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('user.register');
+Route::get('/user/micv', [HomeController::class, 'miCV'])->name('user.micv');
 
 //State and Towns
 Route::get('/list-states', [StateController::class, 'fetchStates'])->name('list-states');
@@ -45,8 +46,10 @@ Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('com
 // / Candidate Basic Info
 Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
 // /Work Preferences
-Route::get('/user/wp', [WorkPreferencesController::class, 'index'])->name('workPreferences.show');
-Route::post('/user/wp', [WorkPreferencesController::class, 'store'])->name('workPreferences.store');
+Route::get('/user/wp', [WorkPreferencesController::class, 'index'])->name('workPreferences.index');
+// Route::post('/user/wp', [WorkPreferencesController::class, 'store'])->name('workPreferences.store');
+Route::get('/user/wp/{id}', [WorkPreferencesController::class, 'search'])->name('workPreferences.search');
+Route::post('/user/wp/{id}', [WorkPreferencesController::class, 'update'])->name('workPreferences.update');
 
 
 
