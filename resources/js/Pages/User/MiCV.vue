@@ -6,8 +6,8 @@
          <Progress class="hidden md:block"></Progress>
          <div class="flex flex-col align-center gap-4 w-full align-center pb-3">
           <div class="flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0">
-            <WorkPreferences class="order-last shadow-lg shadow-gray-300 lg:order-first"></WorkPreferences>
-            <BasicInfo class="order first items-center shadow-lg shadow-gray-300 lg:order-first"></BasicInfo>
+            <WorkPreferences :userProp="user"  class="order-last shadow-lg shadow-gray-300 lg:order-first"></WorkPreferences>
+            <BasicInfo :userProp="user" class="order first items-center shadow-lg shadow-gray-300 lg:order-first"></BasicInfo>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
             <Study class=""></Study>
@@ -35,4 +35,9 @@ import BasicInfo from "@/Pages/User/UserCV/BasicInfo.vue";
 import WorkPreferences from "@/Pages/User/UserCV/WorkPreferences.vue";
 import Study from "@/Pages/User/UserCV/StudyHistory.vue";
 import Certifications from "@/Pages/User/UserCV/Certifications.vue";
+
+const props = defineProps({
+  user: Object
+})
+
 </script>

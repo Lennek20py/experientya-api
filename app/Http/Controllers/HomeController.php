@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return Inertia::render('WelcomeToPlatform');
     }
+
+    public function miCV()
+    {
+        return Inertia::render('User/MiCV');
+    }
 }

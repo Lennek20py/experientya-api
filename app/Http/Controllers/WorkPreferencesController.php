@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Workpreferences;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class WorkPreferencesController extends Controller
 {
@@ -16,6 +17,13 @@ class WorkPreferencesController extends Controller
     {
         $data = Workpreferences::All();
         return $data;
+    }
+
+    public function search($id)
+    {
+        $data = Workpreferences::where('user_id', $id)->get();
+
+        return response()->json($data);
     }
 
     /**
@@ -49,8 +57,8 @@ class WorkPreferencesController extends Controller
         'preferred_state' => $request->preferred_state,
         'preferred_city' => $request->preferred_city,
         'preferred_country' => $request->preferred_country,
-        'specific_profile' => $request->specific_profile,
-        'general_profile' => $request->general_profile,
+        'specific_profile' => $request->specific_area,
+        'general_profile' => $request->general_area,
         'area' => $request->area,
         'change_city' => $request->change_city,
         ]);
@@ -75,6 +83,7 @@ class WorkPreferencesController extends Controller
         // $data->save();
 
         return $create;	
+
     }
 
     /**
@@ -85,7 +94,7 @@ class WorkPreferencesController extends Controller
      */
     public function show(WorkPreferences $WorkPreferences)
     {
-       
+    //    $data = Workpreferences::find();
     }
 
     /**
@@ -106,9 +115,39 @@ class WorkPreferencesController extends Controller
      * @param  \App\Models\WorkPreferences  $WorkPreferences
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkPreferences $WorkPreferences)
+    public function update(Request $request, WorkPreferences $WorkPreferences, $id)
     {
-        //
+    //     // $data = Workpreferences::findOrFail($id);
+
+    //    $data = Workpreferences::whereId($id)->update($request->all());
+
+    //    return $data;
+
+    $data = Workpreferences::updateOrCreate(
+        [
+            'user_id' => $id
+        ],
+        [
+            'desired_job' => $request->desired_job,
+            'type_contract' => $request->type_contract,
+            'work' => $request->work,
+            'practices'=> $request->practices,
+            'dual_education' => $request->dual_education,
+            'desired_salary' => $request->desired_salary,
+            'hours' => $request->hours,
+            'avaible_date' => $request->avaible_date,
+            'preferred_state' => $request->preferred_state,
+            'preferred_city' => $request->preferred_city,
+            'preferred_country' => $request->preferred_country,
+            'specific_profile' => $request->specific_area,
+            'general_profile' => $request->general_area,
+            'area' => $request->area,
+            'change_city' => $request->change_city,
+        ]);
+
+        // return Redirect::route('');
+        return redirect()->route('user.micv')->with('message', 'Datos insertados correctamente');
+
     }
 
     /**
