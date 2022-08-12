@@ -250,10 +250,9 @@
                 </div>
             </div>
             </div>
-            <main class="flex-1 pb-8">
+
             <!-- Page header -->
-                <slot></slot>
-            </main>
+            <slot></slot>
         </div>
     </div>
 </template>
