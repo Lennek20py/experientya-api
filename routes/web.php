@@ -43,7 +43,9 @@ Route::get('/town/{id}', [StateController::class, 'fecthTown'])->name('town');
 // ANUIES Areas, general and speecific areas.
 Route::get('/anuies-areas', [AnuiesController::class, 'fetchAreas'])->name('anuies-areas');
 Route::get('/anuies-generals/{id}', [AnuiesController::class, 'fetchGenerals'])->name('anuies-generals');
+Route::get('/anuies-generals', [AnuiesController::class, 'fetchGeneralsAll'])->name('anuies-generals.all');
 Route::get('/anuies-specifics/{id}', [AnuiesController::class, 'fetchSpecifics'])->name('anuies-specifics');
+Route::get('/anuies-specifics', [AnuiesController::class, 'fetchSpecificsAll'])->name('anuies-specifics.all');
 
 // Study Degree table routes CRUD
 Route::get('/study-degree', [StudyDegreeController::class, 'index'])->name('list-degrees');

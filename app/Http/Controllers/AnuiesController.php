@@ -23,9 +23,23 @@ class AnuiesController extends Controller
         return response()->json($generals);
     }
 
+    public function fetchGeneralsAll()
+    {
+        $generals = AnuiesGeneral::all();
+
+        return response()->json($generals);
+    }
+
     public function fetchSpecifics($id)
     {
         $specific = AnuiesSpecific::where('general_id', $id)->get();
+
+        return response()->json($specific);
+    }
+
+    public function fetchSpecificsAll()
+    {
+        $specific = AnuiesSpecific::all();
 
         return response()->json($specific);
     }
