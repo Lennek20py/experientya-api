@@ -1,7 +1,7 @@
 <template>
 <Transition>
         
-<div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px]">
+<div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
     <div class="text-2xl mx-auto font-bold text-gray-900 py-2 flex flex-wrap text-center items-center justify-center lg:justify-between lg:text-start lg:text-2xl 2xl:text-3xl">
         <h3>Preferencias Laborales</h3>
         
@@ -43,28 +43,25 @@
                     </label>
                 </div>
         	</div>
-            <div class="lg:basis-1/2 grow lg:pb-3 lg:px-2">
+            <div class="lg:basis-1/2 shrink lg:pb-3 lg:px-2">
                 <div class="pt-1 text-base mx-auto font-bold text-gray-800 text-start lg:text-xl 2xl:text-2xl"><h3>Área de interés: </h3></div>
                 <div class="flex py-0 flex-wrap items-center justify-start gap-2 lg:gap-1 lg:flex-nowrap lg:justify-between 2xl:gap-2 2xl:py-2">
-                    <div class="2xl:mt-1 grow">
+                    <div class="2xl:mt-1 shrink">
                         <label for="" class="text-xs text-gray-800 lg:text-sm 2xl:text-base">Área</label>
-                        <select :disabled="this.ifExists && !this.formBind" v-model="this.workPreferences.area" required name="area" id="area" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                        <select :disabled="this.ifExists && !this.formBind" @change="fetchGenerals" v-model="this.workPreferences.area" required name="area" id="area" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione</option>
-                            <option value="Administración y negocios">Administración y negocios</option>
-                            <option value="Ingeniería, manufactura y construcción">Ingeniería, manufactura y construcción</option>
-                            <option value="Tecnologías de la información y la comunicación">Tecnologías de la información y la comunicación</option>
+                                <option v-for="area in areas" :key="area.id" :value="area.id">
+                                    {{ area.name }}
+                                </option>
                         </select>
                     </div>
-                    <div class="2xl:mt-1 grow">
+                    <div class="2xl:mt-1 shrink">
                         <label for="" class="text-xs text-gray-800 lg:text-sm 2xl:text-base">Campo general</label>
-                        <select :disabled="this.ifExists && !this.formBind" v-model="this.workPreferences.general_area" required name="general_area" id="general_area" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                        <select :disabled="this.ifExists && !this.formBind" @change="fetchSpecifics" v-model="this.workPreferences.general_area" required name="general_area" id="general_area" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione</option>
-                            <option value="Administración y gestión">Administración y gestión</option>
-                            <option value="Negocios y contabilidad">Negocios y contabilidad</option>
-                            <option value="Arquitectura y construcción">Arquitectura y construcción</option>
-                            <option value="Ingeniería mecánica, eléctrica, electrónica, química y profesiones afines">Ingeniería mecánica, eléctrica, electrónica, química y profesiones afines</option>
-                            <option value="Implementación de las tecnologías de la información y la comunicación">Implementación de las tecnologías de la información y la comunicación</option>
-                            <option value="Innovación en tecnologías de la información y la comunicación">Innovación en tecnologías de la información y la comunicación</option>
+                                <option v-for="general in generals" :key="general.id" :value="general.id">
+                                    {{ general.name }}
+                                </option>
                         </select>
                     </div>
                 </div>
@@ -73,12 +70,9 @@
                         <label for="" class="text-xs text-gray-800 lg:text-sm 2xl:text-base">Campo específico</label>
                         <select :disabled="this.ifExists && !this.formBind" v-model="this.workPreferences.specific_area" required name="specific_area" id="specific_area" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione</option>
-                            <option value="Administración de empresas">Administración de empresas</option>
-                            <option value="Administración pública">Administración pública</option>
-                            <option value="Electrónica, automatización y aplicaciones de la mecánica-eléctrica">Electrónica, automatización y aplicaciones de la mecánica-eléctrica</option>
-                            <option value="Ingeniería industrial">Ingeniería industrial</option>
-                            <option value="Telecomunicaciones">Telecomunicaciones</option>
-                            <option value="Desarrollo de software">Desarrollo de software</option>
+                                 <option v-for="specific in specifics" :key="specific.id" :value="specific.id">
+                                    {{ specific.name }}
+                                </option>
                         </select>
                     </div>
                 </div>
@@ -135,7 +129,7 @@
             <div v-if="!formBind && ifExists" class="flex flex-wrap justify-center items-center lg:justify-end">
                 <a href="#" @click="this.formBind = true" class="rounded-lg bg-blue-500 text-gray-50 text-lg text-center lg:mx-2 font-semibold px-4 py-1 tracking-widest w-full lg:w-auto">Editar</a>
             </div>
-            <Notification />
+            <Notification :message="$page.props.flash.message" class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2" />
             <!-- <div v-if="$page.props.flash.message" class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2">
             <Notification /></div> -->
         </form>
@@ -148,6 +142,7 @@
 
 import JetButton from '@/Jetstream/Button'
 import Notification from '@/CustomComponents/Notification.vue'
+import axios from 'axios';
 export default {
     components: {JetButton, Notification},
     props: ['userProp'],
@@ -157,6 +152,9 @@ export default {
             ifExists: false,
             states: [],
             towns: [], 
+            areas: [],
+            generals: [],
+            specifics: [],
             workPreferencesLocal: [],
             workPreferences: this.$inertia.form( {
                 work: "",
@@ -171,17 +169,6 @@ export default {
                 change_city: "",
                 type_contract: "type",
             }),
-            // workPreferences: {
-            //     work: true,
-            //     practices: true,
-            //     dual_education: false,
-            //     preferred_state: "Veracruz de la llave",
-            //     preferred_city: "Misantla",
-            //     area: "Informatica",
-            //     general_area: "Programación",
-            //     specific_area: "Desarrollo web",
-            //     move_city: "Yes",
-            // },
         }
     },
     methods: {
@@ -193,6 +180,30 @@ export default {
             })
             .catch((error) => {
                 console.log(error);
+            });
+        },
+        async getAreas() {
+            await axios
+            .get("/anuies-areas")
+            .then((response) => {
+                this.areas = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+
+        async fetchGenerals() {
+            await axios.get("/anuies-generals/" + this.workPreferences.area)
+            .then((response) =>{
+                this.generals = response.data;
+            });
+        },
+
+        async fetchSpecifics() {
+            await axios.get("/anuies-specifics/" + this.workPreferences.general_area)
+            .then((response) =>{
+                this.specifics = response.data;
             });
         },
 
@@ -210,6 +221,8 @@ export default {
                 this.workPreferences.change_city = response.data[0].change_city;
                 console.log(response.data[0]);
                 this.ifExists = true;
+                this.fetchGenerals();
+                this.fetchSpecifics();
             }).catch((error) => {
                 console.log(error+' alas');
                 this.ifExists = false;
@@ -227,13 +240,29 @@ export default {
     created(){
          this.getStates();
          this.getWorkPreferences();
+         this.getAreas();
+         
     },
     watch: {
         "workPreferences.preferred_state": function (value) {
             axios.get("/list-towns/" + value).then((response) => {
                 this.towns = response.data;
             });
-        }
+        },
+
+        // "workPreferences.area": function(value) {
+        //     axios.get("/anuies-generals/" + value).then((response) => {
+        //         this.generals = response.data;
+        //         console.log(response.data);
+        //     });
+        // },
+
+        // "workPreferences.general_area": function(value) {
+        //     axios.get("/anuies-specifics/" + value).then((response) => {
+        //         this.generals = response.data;
+        //         console.log(response.data);
+        //     });
+        // }
     }
 };
 </script>

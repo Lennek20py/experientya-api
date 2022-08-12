@@ -10,7 +10,7 @@
             <BasicInfo :userProp="user" class="order first items-center shadow-lg shadow-gray-300 lg:order-first"></BasicInfo>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Study class=""></Study>
+            <Study :userProp="user" class=""></Study>
           </div>
           <div class="gap-4 mr-4">
             <Certifications class=""></Certifications>

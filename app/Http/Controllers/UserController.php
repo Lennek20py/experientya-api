@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Cv;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -44,7 +45,7 @@ class UserController extends Controller
     {
         $image = $request->file('profile_photo_path')->store('profile', 'public');
 
-        User::create([
+        $user = User::create([
             'user_first_name' => $request->user_first_name,
             'user_last_name' => $request->user_last_name,
             'CURP' => $request->CURP,
@@ -62,6 +63,10 @@ class UserController extends Controller
             // 'user_country_id' => $request->user_country_id,
             // 'terms' => $request->terms
             // 'password_confirmation' => $request->password_confirmation,
+        ]);
+
+        Cv::create([
+            'user_id' => $user->id,
         ]);
 
         return redirect()->route('welcome');
