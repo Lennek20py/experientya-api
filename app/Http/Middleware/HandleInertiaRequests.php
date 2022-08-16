@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => function () use ($request) {
                 return [
                     'company' => $request->user() ? [
+                        'id' => $request->user()->id,
                         'company_name' => $request->user()->company_name,
                         'email' => $request->user()->email,
                         'company_phone_number' => $request->user()->company_phone_number,
@@ -63,6 +64,9 @@ class HandleInertiaRequests extends Middleware
             },
             'flash2' => [
                 'message' => session('message'),
+            ],
+            'success' => [
+                'message' => fn () => $request->session()->get('message')
             ]
         ]);
     }

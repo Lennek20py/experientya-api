@@ -1,6 +1,9 @@
 <template>
     <admin-layout>
         <main class="flex-1 pb-8 bg-gray-100">
+            <div class="absolute top-8 right-10 z-10">
+                <SuccessAlert :message="$page.props.success.message"/>
+            </div>
             <div class="py-6 max-h-full">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <!-- Replace with your content -->
@@ -31,13 +34,15 @@
 <script>
     import AdminLayout from '@/Layouts/CompanyLayout'
     import { Link } from '@inertiajs/inertia-vue3'
+    import SuccessAlert from '@/Components/Alerts/SuccessAlert'
 
     import { defineComponent } from 'vue'
 
     export default defineComponent({
         components: {
             AdminLayout,
-            Link
+            Link,
+            SuccessAlert
         }
     })
 </script>
