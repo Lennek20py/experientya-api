@@ -105,6 +105,7 @@ class StudyDegreeController extends Controller
             'cv_id' => $request->cv_id,
             'school_name' => $request->school_name,
             'study_level' => $request->study_level,
+            'study_tittle' => $request->study_tittle,
             'study_specialty' => $request->study_specialty,
             'study_certificate' => $request->study_certificate,
             'study_status' => $request->study_status,
@@ -118,7 +119,8 @@ class StudyDegreeController extends Controller
 
         ]);
 
-        return response()->json($data);
+        return redirect()->route('user.micv')->with('message', 'Datos actualizados correctamente');
+        // return response()->json($data);
     }
 
     /**
@@ -130,7 +132,7 @@ class StudyDegreeController extends Controller
     public function destroy($id)
     {
         $data = StudyDegree::findOrFail($id)->delete();
-
-        return response()->json($data);
+        return redirect()->route('user.micv')->with('message', 'Datos eliminados correctamente');
+        // return response()->json($data);
     }
 }

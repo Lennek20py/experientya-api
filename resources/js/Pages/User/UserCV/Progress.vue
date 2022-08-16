@@ -1,6 +1,6 @@
 <template>
 
-<aside class="max-w-72 h-fit" aria-label="Sidebar">
+<aside class="max-w-72 min-h-screen flex flex-col" aria-label="Sidebar">
    <div class="w-auto py-4 px-3 h-screen bg-gray-100 rounded lg:w-auto 2xl:w-64">
     <!-- PROGRESS CIRCLE  -->
      <div class="space-y-2">
