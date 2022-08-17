@@ -2,16 +2,38 @@
 <!-- TITULO DE TARJETA -->
 <div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
     <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
-        <h3>Certificaciones</h3>
+        <h3>Idiomas</h3>
     </div>
     <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
     <div v-if="!formBind && !ifExist" class="flex content-end justify-around flex-col my-4">
-        <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
+        <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran registros acerca de los idiomas, por favor ingrese los datos nuevos en el link a continuación.</span>
         <a @click="this.formBind = true" class="flex items-center text-red-500 text-lg font-semibold text-start pt-6 cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Agregar</a>
     </div>
     <!-- VISTA PARA CREAR UN NUEVO REGISTRO / MODIFICAR REGISTRO -->
     <div class=" mb-4" v-else-if="formBind">
         <div class="flex flex-col justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:flex-row lg:pb-4">
+            <div class="grow w-full lg:basis-1/2">
+                <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Idioma</label>
+                <select required name="school_name" v-model="this.languages.language" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                    <option value>Seleccione un algo</option>
+                    <option value="Inglés">Inglés</option>
+                    <option value="Alemán">Alemán</option>
+                    <option value="Italiano">Italiano</option>
+                    <option value="Japonés">Japonés</option>
+                </select>
+            </div>
+            <div class="grow w-full lg:basis-1/2">
+                <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nivel</label>
+                <select required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                    <option value>Seleccione un algo</option>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                </select>
+            </div>
+        </div>
+        <div v-if="this.languages.language == 'Inglés'" class="flex flex-col justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:flex-row lg:pb-4">
             <div class="grow w-full lg:basis-1/2">
                 <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nombre del certificado</label>
                 <select required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
@@ -50,11 +72,13 @@
     
     <div class="2xl:mb-4" v-else-if="!formBind && ifExist">
         <div class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
-            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Cisco Certified Professional Network Professional (CCNP)</h3>
-            <div class="flex flex-col w-full justify-center items-center lg:flex lg:flex-row lg:justify-between">
-                <div class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
+            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Inglés</h3>
+            <p class="text-xs text-gray-500">Nivel: B1</p>
+            <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
+             
+             <div class="flex flex-nowrap justify-center items-center py-2 cursor-pointer transition">
                     <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-red-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">CiscoCertificate_AnayaDiazHugoRafael.pdf</div>
+                    <div class="text-sm text-gray-600 text-center w-auto leading-none align-middle">TOEFLCertificate_AnayaDiazHugoRafael.pdf</div>
                 </div>
                 <div class="flex w-min text-center justify-center flex-row text-sm text-gray-500 font-semibold rounded-xl bg-gray-100 px-2 py-1 mb-2 items-center select-none group-hover:visible group-hover:delay-100 group-hover:in-ease-out active:bg-gray-200 active:text-gray-600 lg:in-ease-out lg:invisible ">
                     <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
@@ -63,7 +87,8 @@
            </div>
         </div>
         <div class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
-            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Profesional de gestión de proyectos (PMP)</h3>
+            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Alemán</h3>
+            <p class="text-xs text-gray-500">Nivel: A1</p>
             <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
                 <div class="flex flex-nowrap justify-center items-center py-2 transition">
                     <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-400 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -93,6 +118,10 @@ export default {
             ifExist: true,
             formBind: false,
             newData: false,
+            englishBind: false,
+            languages: this.$inertia.form( {
+                language: ""
+            }),
         }
     },
     methods: {

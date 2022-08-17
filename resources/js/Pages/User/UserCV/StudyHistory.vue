@@ -1,6 +1,6 @@
 <template>
 <!-- TITULO DE TARJETA -->
-<div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
+<div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
     <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
         <h3>Educación</h3>
     </div>
@@ -224,7 +224,7 @@ export default {
             state: "1",
             studyDegrees: [],
             studyDegree: this.$inertia.form( {
-                cv_id: 1,
+                cv_id: "",
                 school_name: "",
                 study_level: "",
                 study_tittle: "",
@@ -238,20 +238,27 @@ export default {
                 study_state: "",
                 study_country: "",
                 id: "",
-
-            })
-            
+            }),
         }
     },
     methods: {
         async getStudyDegree() {
-            // await axios.get().then((response) =>{
-            //     console.log(response);
-            // })
+            await axios.get(route('cv-search', this.userProp.id))
+            .then((response) => {
+                this.studyDegree.cv_id = response.data[0].id;
+                // this.studyDegree.cv_id = response.data[0].user_id;
+                // console.log(response.data[0]);
+                // console.log(this.studyDegree.id);
+            }).catch((error) => {
+                console.log(error);
+            });
 
-            await axios.get(route('study-degrees.show', 1))
+            // console.log("El cv_id esaaaa ", this.studyDegree.cv_id)
+
+            await axios.get(route('study-degrees.show', this.studyDegree.cv_id))
             .then((response) => {
                 this.studyDegrees = response.data;
+                console.log(this.studyDegrees)
                 if (response.data.length == 0){ 
                 this.ifExists = false
                 this.newStudyBind = true;

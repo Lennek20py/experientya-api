@@ -3,17 +3,21 @@
     <div class="min-h-screen">
       <Notification :message="$page.props.flash.message" class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2" />
         <div class="flex items-start justify-start gap-4">
-          <Progress class="hidden md:block"></Progress>
+          <Progress class="hidden md:block "></Progress>
+          <!-- <Progress class="hidden md:block md:fixed md:top-20 md:left-0"></Progress> -->
           <div class="flex flex-col align-center gap-4 w-full align-center pb-3">
             <div class="flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0">
               <WorkPreferences :userProp="user"  class="order-last shadow-lg shadow-gray-300 lg:order-first"></WorkPreferences>
               <BasicInfo :userProp="user" class="order first items-center shadow-lg shadow-gray-300 lg:order-first"></BasicInfo>
             </div>
             <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-              <Study :userProp="user" class=""></Study>
+              <Study :userProp="user" class="shadow-lg shadow-gray-300"></Study>
             </div>
-            <div class="gap-4 mr-4">
-              <Certifications class=""></Certifications>
+            <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
+              <Certifications :userProp="user" class="shadow-lg shadow-gray-300"></Certifications>
+            </div>
+            <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
+              <Languages :userProp="user" class="shadow-lg shadow-gray-300"></Languages>
             </div>
           </div>
         </div>
@@ -34,7 +38,8 @@ import BasicInfo from "@/Pages/User/UserCV/BasicInfo.vue";
 import WorkPreferences from "@/Pages/User/UserCV/WorkPreferences.vue";
 import Study from "@/Pages/User/UserCV/StudyHistory.vue";
 import Certifications from "@/Pages/User/UserCV/Certifications.vue";
-import Notification from '@/CustomComponents/Notification.vue'
+import Notification from '@/CustomComponents/Notification.vue';
+import Languages from '@/Pages/User/UserCV/Languages.vue';
 
 const props = defineProps({
   user: Object

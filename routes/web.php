@@ -55,7 +55,6 @@ Route::put('/study-degree/{id}', [StudyDegreeController::class, 'update'])->name
 Route::delete('/study-degree/{id}', [StudyDegreeController::class, 'destroy'])->name('study-degree.delete');
 Route::get('/cv-search/{id}', [StudyDegreeController::class, 'cvSearch'])->name('cv-search');
 
-
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
 Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
