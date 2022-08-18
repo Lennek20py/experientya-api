@@ -26,15 +26,16 @@
                 <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nivel</label>
                 <select required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     <option value>Seleccione un algo</option>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="B1">B1</option>
-                    <option value="B2">B2</option>
+                    <option value="No Hablado">No Hablado</option>
+                    <option value="Básico">Básico</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzado">Avanzado</option>
+                    <option value="Nativo">Nativo</option>
                 </select>
             </div>
         </div>
-        <div v-if="this.languages.language == 'Inglés'" class="flex flex-col justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:flex-row lg:pb-4">
-            <div class="grow w-full lg:basis-1/2">
+        <div v-if="!this.languages.language == ''" class="flex flex-col pt-2 justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:pt-0 lg:flex-row lg:pb-4">
+            <!-- <div class="grow w-full lg:basis-1/2">
                 <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nombre del certificado</label>
                 <select required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     <option value>Seleccione un algo</option>
@@ -44,8 +45,8 @@
                     <option value="Instituto Tecnológico Superior de Misantla (ITSM)">Instituto Tecnológico Superior de Misantla (ITSM)</option>
                 </select>
                 <p id="helper-text-explanation" class=" text-[10px] text-justify lg:text-xs text-gray-500">¿No aparece tu centro de educación en la lista? <a href="#" class="text-red-500 hover:underline font-bold">regístralo aquí!</a>.</p>
-            </div>
-            <div class="flex grow w-full lg:basis-1/2 2xl:ml-4">
+            </div> -->
+            <div class="flex grow w-full">
             <div class="grow">
                 <label for="profile_photo_path" class="block text-sm font-medium text-gray-700">
                     <span class="block text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Adjuntar certificado</span>
@@ -56,6 +57,7 @@
             </div>
             </div>
         </div>
+
         <!-- BOTONES DE GUARDAR Y CANCELAR -->
             <div class="flex mt-3 w-full flex-col justify-between items-center lg:flex-row 2xl:py-3">
                 <div class="flex flex-wrap justify-center w-full order-first lg:order-last lg:w-auto lg:justify-end ">
@@ -73,7 +75,7 @@
     <div class="2xl:mb-4" v-else-if="!formBind && ifExist">
         <div class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
             <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Inglés</h3>
-            <p class="text-xs text-gray-500">Nivel: B1</p>
+            <p class="text-xs text-gray-500">Nivel: Avanzado</p>
             <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
              
              <div class="flex flex-nowrap justify-center items-center py-2 cursor-pointer transition">
@@ -88,7 +90,7 @@
         </div>
         <div class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
             <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">Alemán</h3>
-            <p class="text-xs text-gray-500">Nivel: A1</p>
+            <p class="text-xs text-gray-500">Nivel: Básico</p>
             <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
                 <div class="flex flex-nowrap justify-center items-center py-2 transition">
                     <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-400 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>

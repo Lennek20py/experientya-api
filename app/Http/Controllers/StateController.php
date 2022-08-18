@@ -14,6 +14,7 @@ class StateController extends Controller
         $states = State::all();
 
         return response()->json($states);
+        // return csrf_token();
     }
 
     public function fetchTowns($id)
