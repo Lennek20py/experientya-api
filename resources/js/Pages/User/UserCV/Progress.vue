@@ -1,7 +1,7 @@
 <template>
 
-<aside class="max-w-72 min-h-screen flex flex-col" aria-label="Sidebar">
-   <div class="w-auto py-4 px-3 h-screen bg-gray-100 rounded lg:w-auto 2xl:w-64">
+<aside class="max-w-72 min-h-screen h-full max-h-[200vh] flex flex-col" aria-label="Sidebar">
+   <div class="w-auto py-4 h-full max-h-[200vh] px-3 min-h-screen bg-gray-100 rounded lg:w-auto 2xl:w-64">
     <!-- PROGRESS CIRCLE  -->
      <div class="space-y-2">
         <h2 class="text-center text-gray-900 font-extrabold text-2xl "> Perfil </h2>

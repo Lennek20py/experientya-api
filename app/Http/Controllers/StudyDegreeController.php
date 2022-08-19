@@ -22,7 +22,7 @@ class StudyDegreeController extends Controller
 
     public function cvSearch($id)
     {
-        $cv = Cv::find($id)->get();
+        $cv = Cv::where('user_id', $id)->get();
         return response()->json($cv);
     }
 

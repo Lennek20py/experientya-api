@@ -264,7 +264,7 @@ export default {
                 this.workPreferences.general_area = response.data[0].general_profile;
                 this.workPreferences.specific_area = response.data[0].specific_profile;
                 this.workPreferences.change_city = response.data[0].change_city;
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 this.ifExists = true;
                 this.fetchGenerals();
                 this.fetchSpecifics();
@@ -328,7 +328,7 @@ export default {
             });
         },
         async getTownInfo() {
-            console.log(this.workPreferences.preferred_city + "La wea fome");
+            // console.log(this.workPreferences.preferred_city + "La wea fome");
             await axios.get("town/"+ this.workPreferences.preferred_city)
             .then((response) => {
                 this.state = response.data;
@@ -338,7 +338,7 @@ export default {
         },
 
         message() {
-            console.log(this.userProp.id);
+            // console.log(this.userProp.id);
         },
         submit() {
             this.workPreferences.post(route('workPreferences.update', this.userProp.id), { preserveScroll: true});

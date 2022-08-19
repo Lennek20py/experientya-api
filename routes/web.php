@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnuiesController;
+use App\Http\Controllers\CertificationsController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -55,6 +56,12 @@ Route::put('/study-degree/{id}', [StudyDegreeController::class, 'update'])->name
 Route::delete('/study-degree/{id}', [StudyDegreeController::class, 'destroy'])->name('study-degree.delete');
 Route::get('/cv-search/{id}', [StudyDegreeController::class, 'cvSearch'])->name('cv-search');
 
+// Certifications table routes CRUD
+Route::get('/certifications', [CertificationsController::class, 'index'])->name('list-certifications');
+Route::get('/certifications/{id}', [CertificationsController::class, 'show'])->name('certifications.show');
+Route::post('/certifications', [CertificationsController::class, 'store'])->name('certifications.store');
+Route::put('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
+Route::delete('/certifications/{id}', [CertificationsController::class, 'destroy'])->name('certifications.delete');
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
