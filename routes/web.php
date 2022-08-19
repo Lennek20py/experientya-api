@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\WorkPreferencesController;
@@ -60,8 +61,15 @@ Route::get('/cv-search/{id}', [StudyDegreeController::class, 'cvSearch'])->name(
 Route::get('/certifications', [CertificationsController::class, 'index'])->name('list-certifications');
 Route::get('/certifications/{id}', [CertificationsController::class, 'show'])->name('certifications.show');
 Route::post('/certifications', [CertificationsController::class, 'store'])->name('certifications.store');
-Route::put('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
+Route::post('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
 Route::delete('/certifications/{id}', [CertificationsController::class, 'destroy'])->name('certifications.delete');
+
+// Language table routes CRUD
+Route::get('/language', [LanguageController::class, 'index'])->name('list-languages');
+Route::get('/language/{id}', [LanguageController::class, 'show'])->name('languages.show');
+Route::post('/language', [LanguageController::class, 'store'])->name('languages.store');
+Route::post('/language/{id}', [LanguageController::class, 'update'])->name('languages.update');
+Route::delete('/language/{id}', [LanguageController::class, 'destroy'])->name('languages.delete');
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');

@@ -11,22 +11,15 @@
     </div>
     <!-- VISTA PARA CREAR UN NUEVO REGISTRO / MODIFICAR REGISTRO -->
     <div class=" mb-4" v-else-if="formBind">
-    <form @submit.prevent="submit">
-        
-    
+    <form @submit.prevent="submit" enctype="multipart/form-data">
         <div class="flex flex-col justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:flex-row lg:pb-4">
             <div class="grow w-full lg:basis-1/2">
                 <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nombre del certificado</label>
                 <select v-model="this.certification.name_certification" required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     <option value>Seleccione un algo</option>
-                     <option  v-for="(list, index) in this.certifications_list" :key="index" :value="list">
-                                    {{ list }}
-                                </option>
-                    <!-- <option value="Instituto Tecnológico de Tuxtla Gutiérrez (ITTG)">Instituto Tecnológico de Tuxtla Gutiérrez (ITTG)</option>
-                    <option value="Instituto Tecnológico de Chihuahua (ITCH)">Instituto Tecnológico de Chihuahua (ITCH)</option>
-                    <option value="Universidad Anáhuac(UA)">Universidad Anáhuac(UA)</option>
-                    <option value="Instituto Tecnológico Superior de Misantla (ITSM)">Instituto Tecnológico Superior de Misantla (ITSM)</option>
-                    <option value="i have learned something new today">i have learned something new today</option> -->
+                    <option  v-for="(list, index) in this.certifications_list" :key="index" :value="list">
+                        {{ list }}
+                    </option>
                 </select>
                 <p id="helper-text-explanation" class=" text-[10px] text-justify lg:text-xs text-gray-500">¿No aparece tu centro de educación en la lista? <a href="#" class="text-red-500 hover:underline font-bold">regístralo aquí!</a>.</p>
             </div>
@@ -60,7 +53,7 @@
     
     <div class="2xl:mb-4" v-else-if="!formBind && ifExist">
         <div v-for="(Certifications, index) in certifications" :key="index" @click="edit(Certifications)"  class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
-            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{Certifications.name_certification}}</h3>
+            <h3 class="text-base text-gray-800 font-bold lg:text-xl leading-none truncate ... 2xl:text-2xl">{{Certifications.name_certification}}</h3>
             <div class="flex flex-col w-full justify-center items-center lg:flex lg:flex-row lg:justify-between">
                 <div v-if="Certifications.certification_path_name" class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
                     <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'storage/certifications/'+Certifications.certification_path_name">
@@ -191,7 +184,6 @@ export default {
       this.formBind = true;
       this.newData = false;
 
-
     },
     clearData(){
         this.certification.name_certification = "";
@@ -210,7 +202,7 @@ export default {
         if(this.newData) {
             this.certification.post(route('certifications.store'), { preserveScroll: true });
         } else if(!this.newData) {
-            this.certification.put(route('certifications.update', this.certification.id), { preserveScroll: true });
+            this.certification.post(route('certifications.update', this.certification.id), { preserveScroll: true });
         }
         this.getCertifications();
         this.formBind = false;
