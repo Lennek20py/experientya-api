@@ -184,7 +184,7 @@
                     Eliminar
                 </div>
             </div>
-            </form>
+        </form>
     </div>
     <div v-else-if="!formBind && ifExists" class="flex flex-col">
         <div @click="edit(study)" v-for="(study, index) in studyDegrees" :key="index"  class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
@@ -258,7 +258,7 @@ export default {
             await axios.get(route('study-degrees.show', this.studyDegree.cv_id))
             .then((response) => {
                 this.studyDegrees = response.data;
-                console.log(this.studyDegrees)
+                // console.log(this.studyDegrees)
                 if (response.data.length == 0){ 
                 this.ifExists = false
                 this.newStudyBind = true;

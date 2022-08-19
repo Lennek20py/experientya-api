@@ -3599,6 +3599,10 @@ select {
     margin-top: 1.5rem;
   }
 
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -3657,6 +3661,10 @@ select {
 
   .lg\:flex-none {
     flex: none;
+  }
+
+  .lg\:grow {
+    flex-grow: 1;
   }
 
   .lg\:basis-1\/2 {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCertificationsTable extends Migration
+class SetNullableFieldToCertificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateCertificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('certifications', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_certification');
-            $table->string('certification_path_name')->nullable();
-            $table->timestamps();
+        Schema::table('certifications', function (Blueprint $table) {
+            $table->string('certification_path_name')->nullable()->change();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateCertificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certifications');
+        Schema::table('certifications', function (Blueprint $table) {
+            $table->string('certification_path_name')->change();
+        });
     }
 }

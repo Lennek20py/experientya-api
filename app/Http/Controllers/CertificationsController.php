@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Certification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CertificationsController extends Controller
 {
@@ -38,13 +39,33 @@ class CertificationsController extends Controller
     public function store(Request $request)
     {
 
-        // $file = $request->file('certification_path_name')->store('certifications', 'public');
-        Certification::create([
-            'cv_id' => $request->cv_id,
-            'name_certification' => $request->name_certification,
-            // 'certification_path_name' => $file,
-            'certification_path_name' => $request->certification_path_name,
+        if ($request->hasFile("certification_path_name")) {
+            $file = $request->file("certification_path_name");
+            $nombre = $request->name_certification_capitalized."_".time().".".$file->guessExtension();
+            $ruta = public_path("storage/certifications/".$nombre);
+
+            if ($file->guessExtension() == "pdf") {
+               copy($file, $ruta);
+               Certification::create([
+                'cv_id' => $request->cv_id,
+                'name_certification' => $request->name_certification,
+                'certification_path_name' => $nombre,
+                ]);
+
+            } else {
+                dd("No es pdf");
+            }
+            
+        } else {
+            Certification::create([
+                'cv_id' => $request->cv_id,
+                'name_certification' => $request->name_certification,
         ]);
+
+        }
+
+        // $file = $request->file('certification_path_name')->store('certifications', 'public');
+        
 
         return redirect()->route('user.micv')->with('message', 'Datos insertados correctamente');
     }
@@ -99,7 +120,14 @@ class CertificationsController extends Controller
      */
     public function destroy($id)
     {
-        $data = Certification::findOrFail($id)->delete();
+        $data = Certification::findOrFail($id);
+        if (Storage::disk('public')->exists('certifications/'.$data->certification_path_name)) {
+            Storage::disk('public')->delete('certifications/'.$data->certification_path_name);
+
+        }
+        $data->delete();
+
+        // return $data;
         return redirect()->route('user.micv')->with('message', 'Datos eliminados correctamente');
     }
 }
