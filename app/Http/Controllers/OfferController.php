@@ -6,16 +6,25 @@ use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreOfferRequest;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class OfferController extends Controller
 {
     public function index()
     {
-        $offers = Offer::orderBy('id', 'desc')->paginate(5);
+        $offers = Offer::query()
+                    ->when(request()->get('search'), function($query, $search){
+                        $query->where('title', 'like', "%{$search}%");
+                    })
+                    ->orderBy('id', 'desc')
+                    ->where('company_id', Auth::id())
+                    ->paginate(5)
+                    ->withQueryString();
 
         return Inertia::render('Offer/Index', [
-            'offers' => $offers
+            'offers' => $offers,
+            'filters' => request()->only(['search'])
         ]);
     }
 
