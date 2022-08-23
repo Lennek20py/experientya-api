@@ -1,6 +1,6 @@
 <template>
-        <header class="bg-white py-8 rounded-md shadow-md border-solid border-2 border-neutral-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
+    <header class="bg-white py-8 rounded-md shadow-md border-solid border-2 border-neutral-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
             <div class="flex-1 min-w-0">
                 <h1 class="mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:tracking-tight sm:truncate">{{ offer.title }}</h1>
                 <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-8">
@@ -61,7 +61,15 @@
                             <div class="py-1" role="none">
                             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                             <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold" role="menuitem" tabindex="-1" id="menu-item-0">Editar</a>
-                            <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold" role="menuitem" tabindex="-1" id="menu-item-1">Eliminar</a>
+                            <a
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold"
+                                role="menuitem"
+                                tabindex="-1"
+                                id="menu-item-1"
+                                @click="acting = true;"
+                            >
+                                Eliminar
+                            </a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +86,7 @@
                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
-                            <p class="ml-2.5 text-sm font-medium">Published</p>
+                            <p class="ml-2.5 text-sm font-medium">Publicada</p>
                         </div>
                         <button type="button" class="relative inline-flex items-center bg-purple-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-purple-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
                             <span class="sr-only">Change published status</span>
@@ -105,20 +113,60 @@
                 </button>
                 </div>
             </div>
+        </div>
+        <JetModal :show="acting" @close="acting = null">
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="bg-white shadow sm:rounded-lg">
+                <form class="px-4 py-5 sm:p-6" @submit.prevent="submit">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Eliminar esta Vacante</h3>
+                    <div class="mt-2 max-w-xl text-sm text-gray-500">
+                    <p>Una vez que elimine la vacante <span class="text-black font-semibold">{{ offer.title }}</span>, perderá todos los datos asociados con ella.</p>
+                    </div>
+                    <div class="flex justify-end mt-5">
+                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <!-- Heroicon name: solid/mail -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="-ml-0.5 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
             </div>
-        </header>
+        </JetModal>
+    </header>
 </template>
 
 <script>
+import JetModal from '@/Jetstream/Modal'
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+        components: {
+            JetModal
+        },
         props: {
             offer: Object
         },
         data () {
             return {
-                menu: 0
+                menu: 0,
+                acting: false,
+                show: 0,
+                form: this.$inertia.form({
+                    'id': this.offer.id,
+                })
+            }
+        },
+        methods: {
+            submit () {
+                this.form.submit('delete', route('offer.destroy', [this.form.id]), {
+                    preserveState: false,
+                    onSuccess: () => {
+                        this.acting = false
+                    },
+                })
             }
         }
     })

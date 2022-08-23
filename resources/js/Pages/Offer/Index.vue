@@ -2,7 +2,7 @@
     <admin-layout>
         <main class="flex-1 pb-8">
             <div class="absolute top-8 right-10 z-10">
-                <SuccessAlert :message="$page.props.success.message"/>
+                <SuccessAlert :message="$page.props.success.message" :show="showAlert"/>
             </div>
 
             <div class="py-6">
@@ -62,7 +62,7 @@
     import OfferCard from '@/Components/Offer/OfferCard'
     import OfferPagination from '@/Components/Offer/OfferPagination'
 
-    import { defineComponent, watch } from 'vue'
+    import { defineComponent } from 'vue'
 
     export default defineComponent({
         components: {
@@ -78,7 +78,8 @@
         },
         data () {
             return {
-                search: this.filters.search
+                search: this.filters.search,
+                showAlert: true
             }
         },
         watch: {

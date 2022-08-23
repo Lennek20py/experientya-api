@@ -39,4 +39,11 @@ class OfferController extends Controller
 
         return Redirect::route('offer.index')->with('message','Vacante guardada exitosamente');
     }
+
+    public function destroy(Offer $offer)
+    {
+        $offer->delete();
+
+        return Redirect::route('offer.index')->with('message','Vacante eliminada exitosamente');
+    }
 }
