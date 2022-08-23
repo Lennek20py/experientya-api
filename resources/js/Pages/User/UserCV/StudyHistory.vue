@@ -71,18 +71,9 @@
                         <label for="starting_month" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Mes de inicio</label>
                         <select required v-model="this.studyDegree.starting_month" name="starting_month" id="starting_month" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione un algo</option>
-                            <option value="ENERO">ENERO</option>
-                            <option value="FEBRERO">FEBRERO</option>
-                            <option value="MARZO">MARZO</option>
-                            <option value="ABRIL">ABRIL</option>
-                            <option value="MAYO">MAYO</option>
-                            <option value="JUNIO">JUNIO</option>
-                            <option value="JULIO">JULIO</option>
-                            <option value="AGOSTO">AGOSTO</option>
-                            <option value="SEPTIEMBRE">SEPTIEMBRE</option>
-                            <option value="OCTUBRE">OCTUBRE</option>
-                            <option value="NOVIEMBRE">NOVIEMBRE</option>
-                            <option value="DICIEMBRE">DICIEMBRE</option>
+                            <option v-for="(Months, index) in this.months" :key="index" value="Months">
+                                {{ Months }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -92,28 +83,9 @@
                         <label for="starting_year" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Año de inicio</label>
                         <select required v-model="this.studyDegree.starting_year" name="starting_year" id="starting_year" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione un algo</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
+                            <option v-for="(Years, index) in this.years" :key="index" value="Years">
+                                {{ Years }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -126,18 +98,9 @@
                         <label for="finished_month" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Mes de finalización</label>
                         <select required v-model="this.studyDegree.finished_month" name="finished_month" id="finished_month" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione un algo</option>
-                            <option value="ENERO">ENERO</option>
-                            <option value="FEBRERO">FEBRERO</option>
-                            <option value="MARZO">MARZO</option>
-                            <option value="ABRIL">ABRIL</option>
-                            <option value="MAYO">MAYO</option>
-                            <option value="JUNIO">JUNIO</option>
-                            <option value="JULIO">JULIO</option>
-                            <option value="AGOSTO">AGOSTO</option>
-                            <option value="SEPTIEMBRE">SEPTIEMBRE</option>
-                            <option value="OCTUBRE">OCTUBRE</option>
-                            <option value="NOVIEMBRE">NOVIEMBRE</option>
-                            <option value="DICIEMBRE">DICIEMBRE</option>
+                            <option v-for="(Months, index) in this.months" :key="index" value="Months">
+                                {{ Months }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -145,29 +108,11 @@
                     <div class="mt-3 grow">
                         <label for="" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Año de finalización</label>
                         <select required v-model="this.studyDegree.finished_year" name="finished_year" id="finished_year" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                           <option value>Seleccione un algo</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
+                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione un algo</option>
+                            <option v-for="(Years, index) in this.years" :key="index" value="Years">
+                                {{ Years }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -239,6 +184,46 @@ export default {
                 study_country: "",
                 id: "",
             }),
+            years: [
+                '2001',
+                '2002',
+                '2003',
+                '2004',
+                '2005',
+                '2006',
+                '2007',
+                '2008',
+                '2009',
+                '2010',
+                '2011',
+                '2012',
+                '2013',
+                '2014',
+                '2015',
+                '2016',
+                '2017',
+                '2018',
+                '2019',
+                '2020',
+                '2021',
+                '2022',
+            ],
+
+            months: [
+                'ENERO',
+                'FEBRERO',
+                'MARZO', 
+                'ABRIL',
+                'MAYO',
+                'JUNIO',
+                'JULIO',
+                'AGOSTO',
+                'SEPTIEMBRE',
+                'OCTUBRE',
+                'NOVIEMBRE',
+                'DICIEMBRE',
+            ]
+
         }
     },
     methods: {

@@ -19,6 +19,9 @@
             <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
               <Languages :userProp="user" class="shadow-lg shadow-gray-300"></Languages>
             </div>
+            <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
+              <Experience :userProp="user" class="shadow-lg shadow-gray-300"></Experience>
+            </div>
           </div>
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -40,6 +43,7 @@ import Study from "@/Pages/User/UserCV/StudyHistory.vue";
 import Certifications from "@/Pages/User/UserCV/Certifications.vue";
 import Notification from '@/CustomComponents/Notification.vue';
 import Languages from '@/Pages/User/UserCV/Languages.vue';
+import Experience from '@/Pages/User/UserCV/Experience.vue';
 
 const props = defineProps({
   user: Object

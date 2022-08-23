@@ -53,7 +53,7 @@
     
     <div class="2xl:mb-4" v-else-if="!formBind && ifExist">
         <div v-for="(Certifications, index) in certifications" :key="index" @click="edit(Certifications)"  class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
-            <h3 class="text-base text-gray-800 font-bold lg:text-xl leading-none truncate ... 2xl:text-2xl">{{Certifications.name_certification}}</h3>
+            <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{Certifications.name_certification}}</h3>
             <div class="flex flex-col w-full justify-center items-center lg:flex lg:flex-row lg:justify-between">
                 <div v-if="Certifications.certification_path_name" class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
                     <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'storage/certifications/'+Certifications.certification_path_name">
