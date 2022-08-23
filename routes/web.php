@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\StudyDegreeController;
@@ -70,6 +71,13 @@ Route::get('/language/{id}', [LanguageController::class, 'show'])->name('languag
 Route::post('/language', [LanguageController::class, 'store'])->name('languages.store');
 Route::post('/language/{id}', [LanguageController::class, 'update'])->name('languages.update');
 Route::delete('/language/{id}', [LanguageController::class, 'destroy'])->name('languages.delete');
+
+// Experience table routes CRUD
+Route::get('/experience', [ExperienceController::class, 'index'])->name('list-experiences');
+Route::get('/experience/{id}', [ExperienceController::class, 'show'])->name('experiences.show');
+Route::post('/experience', [ExperienceController::class, 'store'])->name('experiences.store');
+Route::post('/experience/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
+Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experiences.delete');
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
