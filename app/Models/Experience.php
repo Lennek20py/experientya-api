@@ -18,6 +18,7 @@ class Experience extends Model
         'end_date',
         'company',
         'country',
+        'state',
         'city',
         'company_description',
     ];

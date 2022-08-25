@@ -4,8 +4,16 @@
     <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
         <h3>Certificaciones</h3>
     </div>
+    <!-- DIV CARGANDO DATOS  -->
+    <div v-if="!loadData"  role="status" class="max-w-sm animate-pulse pb-5 lg:pb-0">
+        <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[230px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[150px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[260px] mb-2.5"></div>
+        <span class="sr-only">Loading...</span>
+    </div>
     <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
-    <div v-if="!formBind && !ifExist" class="flex content-end justify-around flex-col my-4">
+    <div v-if="!formBind && !ifExist && loadData" class="flex content-end justify-around flex-col my-4">
         <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
         <a @click="newDataForm()" class="flex items-center text-red-500 text-lg font-semibold text-start pt-6 cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Agregar</a>
     </div>
@@ -42,16 +50,15 @@
                     <a @click="this.formBind = false" class="flex items-center text-red-500 text-base font-semibold text-center m-2 lg:text-lg cursor-pointer" v-if="formBind">Cancelar</a>
                 </div>
                 <!-- BOTON DE ELIMINAR -->
-                <div @click="deleteData()" v-if="!newData" class="flex flex-row justify-center items-center text-sm cursor-pointer text-gray-400 mt-2 lg:mt-0 order-last lg:text-base lg:order-first">
+                <div @click="deleteAlert()" v-if="!newData" class="flex flex-row justify-center items-center text-sm cursor-pointer text-gray-400 mt-2 lg:mt-0 order-last lg:text-base lg:order-first">
                    <svg class="w-4 h-4 mr-1 lg:w-5 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                     Eliminar
                 </div> 
             </div>
         </form>
     </div>
-    
-    
-    <div class="2xl:mb-4" v-else-if="!formBind && ifExist">
+    <!-- VISTA DE REGISTROS  -->
+    <div class="2xl:mb-4" v-else-if="!formBind && ifExist && loadData">
         <div v-for="(Certifications, index) in certifications" :key="index" @click="edit(Certifications)"  class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
             <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{Certifications.name_certification}}</h3>
             <div class="flex flex-col w-full justify-center items-center lg:flex lg:flex-row lg:justify-between">
@@ -81,11 +88,14 @@
 
 <script>
 import JetButton from '@/Jetstream/Button';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 export default {
-    components: {JetButton },
+    components: {JetButton, Swal },
     props: ['userProp'],
     data() {
         return {
+            loadData: false,
             ifExist: false,
             formBind: false,
             newData: false,
@@ -158,6 +168,8 @@ export default {
             console.log(error);
              this.ifExist = false;
         });
+
+        this.loadData = true;
     },
     capitalizeCertificationName() {
         let str = this.certification.name_certification;
@@ -207,6 +219,26 @@ export default {
         this.getCertifications();
         this.formBind = false;
     },
+    deleteAlert() {
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "No se podrá revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si, Eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                    'Eliminado!',
+                    'El registro fue eliminado exitosamente.',
+                    'success'
+                    )
+                    this.deleteData();
+                }
+            })
+        },
     deleteData() {
         // console.log(this.certification.id);
         this.certification.delete(route('certifications.delete', this.certification.id), { preserveScroll: true })

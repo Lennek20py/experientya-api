@@ -20,6 +20,7 @@ class CreateExperienceTable extends Migration
             $table->string("end_date")->nullable();
             $table->string("company");
             $table->string("country");
+            $table->string("state");
             $table->string("city");
             $table->string("company_description");
             $table->timestamps();

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class State extends Model
+class StateV2 extends Model
 {
     use HasFactory;
 
-    protected $table = 'states_old';
+    protected $table = 'states';
 }
