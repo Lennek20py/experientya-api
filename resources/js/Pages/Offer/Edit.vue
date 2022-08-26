@@ -7,10 +7,9 @@
                 <form aria-labelledby="applicant-information-title" @submit.prevent="submit">
                 <div class="bg-white shadow sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6">
-                    <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900">Nueva Vacante</h2>
+                    <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900">Editar Vacante</h2>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                        <span class="block after:ml-0.5 after:text-red-500 after:content-['*']">Los campos requeridos son marcados con un asterisco</span>
-                        <!-- {{ form }} -->
+                        <span class="block after:ml-0.5 after:text-red-500 after:content-['*']">Actualiza la información de tu vancate. Los campos requeridos son marcados con un asterisco</span>
                     </p>
                     </div>
                     <div class="border-t border-gray-200 px-4 py-5 sm:px-6 mb-4">
@@ -203,7 +202,7 @@
                                 </svg>
                             </span>
                             <span class="text-white">
-                                Guardar
+                                Actualizar
                             </span>
                         </button>
                     </div>
@@ -239,6 +238,7 @@
 <script>
     import AdminLayout from '@/Layouts/CompanyLayout'
     import { Link } from '@inertiajs/inertia-vue3'
+    import { Inertia } from '@inertiajs/inertia'
     import JetInputError from '@/Jetstream/InputError'
     import JetModal from '@/Jetstream/Modal'
 
@@ -251,6 +251,9 @@
             JetInputError,
             JetModal
         },
+        props: {
+            offer: Object
+        },
         data() {
             return {
                 states: [],
@@ -262,22 +265,23 @@
                 totalcharacterProfile: 0,
                 acting: false,
                 form: this.$inertia.form({
-                    'title': '',
-                    'title_job': '',
-                    'description': '',
-                    'type_job': '',
-                    'type_horary': '',
-                    'type_of_contract': '',
-                    'profile_description': '',
-                    'start_date': '',
-                    'salary': null,
-                    'payment_type': '',
-                    'offer_address': '',
-                    'state_id': '',
-                    'town_id': '',
-                    'area_id': '',
-                    'general_id': '',
-                    'specific_id': '',
+                    'id': this.offer.id,
+                    'title': this.offer.title,
+                    'title_job': this.offer.title_job,
+                    'description': this.offer.description,
+                    'type_job': this.offer.type_job,
+                    'type_horary': this.offer.type_horary,
+                    'type_of_contract': this.offer.type_of_contract,
+                    'profile_description': this.offer.profile_description,
+                    'start_date': this.offer.start_date,
+                    'salary': this.offer.salary,
+                    'payment_type': this.offer.payment_type,
+                    'offer_address': this.offer.offer_address,
+                    'state_id': this.offer.state_id,
+                    'town_id': this.offer.town_id,
+                    'area_id': this.offer.area_id,
+                    'general_id': this.offer.general_id,
+                    'specific_id': this.offer.specific_id,
                     'status': 0,
                     'company_id': this.$page.props.auth.company.id
                 })
@@ -293,6 +297,15 @@
                         console.log(error)
                     })
             },
+            async getTowns () {
+                await axios.get('/list-towns/' + this.offer.state_id)
+                    .then(response => {
+                        this.towns = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
             async getAnuiesAreas() {
                 await axios.get('/anuies-areas')
                     .then(response => {
@@ -302,6 +315,18 @@
                         console.log(error)
                     })
             },
+            async getAnuiesAreasGeneral () {
+                await axios.get('/anuies-generals/' + this.offer.area_id)
+                    .then(response => {
+                        this.anuies_general = response.data
+                    })
+            },
+            async getAnuiesAreasSpecific () {
+                await axios.get('/anuies-specifics/' + this.offer.general_id,)
+                    .then(response => {
+                        this.anuies_specific = response.data
+                    })
+            },
             charCountDescription(){
                 this.totalcharacterDescription = this.form.description.length;
             },
@@ -309,12 +334,33 @@
                 this.totalcharacterProfile = this.form.profile_description.length;
             },
             submit() {
-                this.form.submit('post', route('offer.store'))
+                Inertia.put(`/company/offer/update/${this.form.id}`, {
+                    title: this.form.title,
+                    title_job: this.form.title_job,
+                    description: this.form.description,
+                    type_job: this.form.type_job,
+                    type_horary: this.form.type_horary,
+                    type_of_contract: this.form.type_of_contract,
+                    profile_description: this.form.profile_description,
+                    start_date: this.form.start_date,
+                    salary: this.form.salary,
+                    payment_type: this.form.payment_type,
+                    offer_address: this.form.offer_address,
+                    state_id: this.form.state_id,
+                    town_id: this.form.town_id,
+                    area_id: this.form.area_id,
+                    general_id: this.form.general_id,
+                    specific_id: this.form.specific_id,
+                    company_id: this.$page.props.auth.company.id
+                })
             }
         },
         created () {
             this.getStates()
             this.getAnuiesAreas()
+            this.getTowns()
+            this.getAnuiesAreasGeneral()
+            this.getAnuiesAreasSpecific()
         },
         watch: {
             'form.state_id': function(value) {

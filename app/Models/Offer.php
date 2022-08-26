@@ -30,6 +30,7 @@ class Offer extends Model
         'area_id',
         'general_id',
         'specific_id',
-        'company_id'
+        'company_id',
+        'status'
     ];
 }

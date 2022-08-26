@@ -124,5 +124,8 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/offer', [OfferController::class, 'index'])->name('offer.index');
     Route::get('/company/newOffer', [OfferController::class, 'create'])->name('offer.create');
     Route::post('/company/newOffer/create', [OfferController::class, 'store'])->name('offer.store');
-    Route::delete('/company/newOffer/delete/{offer}', [OfferController::class, 'destroy'])->name('offer.destroy');
+    Route::delete('/company/offer/delete/{offer}', [OfferController::class, 'destroy'])->name('offer.destroy');
+    Route::get('/company/offer/edit/{id}', [OfferController::class, 'edit'])->name('offer.edit');
+    Route::put('/company/offer/update/{offer}', [OfferController::class, 'update'])->name('offer.update');
+    Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
 });

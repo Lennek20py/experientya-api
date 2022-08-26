@@ -60,7 +60,7 @@
                         <div v-if="menu" class="z-10 origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                             <div class="py-1" role="none">
                             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                            <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold" role="menuitem" tabindex="-1" id="menu-item-0">Editar</a>
+                            <Link :href="route('offer.edit', [offer.id])" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold" role="menuitem" tabindex="-1" id="menu-item-0">Editar</Link>
                             <a
                                 class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold"
                                 role="menuitem"
@@ -80,15 +80,23 @@
                     <label id="listbox-label" class="sr-only"> Change published status </label>
                     <div class="relative">
                     <div class="inline-flex shadow-sm rounded-md divide-x divide-purple-600">
-                        <div class="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-purple-600">
-                        <div class="relative inline-flex items-center bg-purple-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
+                        <div class=" relative z-0 inline-flex shadow-sm rounded-md divide-x divide-purple-600">
+                        <div
+                            class="relative inline-flex items-center py-2 pl-3 pr-4 border  rounded-l-md shadow-sm"
+                            :class="offer.status == 0 ? 'bg-white text-gray-600 border-slate-100' : 'bg-purple-500 text-white border-transparent'"
+                        >
                             <!-- Heroicon name: solid/check -->
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <svg class="h-5 w-5" v-if="offer.status == 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
-                            <p class="ml-2.5 text-sm font-medium">Publicada</p>
+                            <svg class="w-5 h-5" v-else-if="offer.status == 0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                            </svg>
+
+                            <p class="ml-2.5 text-sm font-medium" v-if="offer.status == 0">Inactiva </p>
+                            <p class="ml-2.5 text-sm font-medium" v-else-if="offer.status == 1">Publicada </p>
                         </div>
-                        <button type="button" class="relative inline-flex items-center bg-purple-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-purple-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                        <button @click="subMenuShow = !subMenuShow" type="button" class="relative inline-flex items-center bg-purple-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-purple-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
                             <span class="sr-only">Change published status</span>
                             <!-- Heroicon name: solid/chevron-down -->
                             <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -97,6 +105,52 @@
                         </button>
                         </div>
                     </div>
+                    <ul
+                        v-if="subMenuShow"
+                        @mouseover="hover = true"
+                        @mouseleave="hover = false"
+                        class="origin-top-right absolute left-0 mt-2 -mr-1 w-72 rounded-md shadow-lg overflow-hidden divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none sm:left-auto sm:right-0"
+                        :class="hover == false ? 'bg-white' : 'bg-purple-500'"
+                        tabindex="-1"
+                        role="listbox"
+                        aria-labelledby="listbox-label"
+                        aria-activedescendant="listbox-option-0"
+                    >
+                        <li
+                            class="text-gray-900 cursor-default select-none relative p-4 text-sm" id="listbox-option-0"
+                            role="option"
+                            style="cursor: pointer;"
+                            @click="offer.status = !offer.status"
+                        >
+                            <div class="flex flex-col">
+                                <div class="flex justify-between">
+                                <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                                <p
+                                    class="font-semibold"
+                                    :class="hover == false ? 'text-gray-900' : 'text-white'"
+                                >
+                                    <span v-if="offer.status == 0">Publicar</span>
+                                    <span v-if="offer.status == 1">Inactivar</span>
+                                </p>
+                                <!--
+                                    Checkmark, only display for selected option.
+
+                                    Highlighted: "text-white", Not Highlighted: "text-purple-500"
+                                -->
+                                <span :class="hover == false ? 'text-purple-500' : 'text-white'">
+                                    <!-- Heroicon name: solid/check -->
+                                    <svg class="h-5 w-5" v-if="offer.status == 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="w-5 h-5" v-else-if="offer.status == 1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                    </svg>
+                                </span>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- More items... -->
+                    </ul>
 
                     </div>
                 </div>
@@ -139,18 +193,23 @@
 
 <script>
 import JetModal from '@/Jetstream/Modal'
+import { Link } from '@inertiajs/inertia-vue3'
+import { Inertia } from '@inertiajs/inertia'
 
 import { defineComponent } from 'vue'
 
 export default defineComponent({
         components: {
-            JetModal
+            JetModal,
+            Link
         },
         props: {
             offer: Object
         },
         data () {
             return {
+                subMenuShow: false,
+                hover: false,
                 menu: 0,
                 acting: false,
                 show: 0,
@@ -165,7 +224,26 @@ export default defineComponent({
                     preserveState: false,
                     onSuccess: () => {
                         this.acting = false
-                    },
+                    }
+                })
+            }
+        },
+        watch: {
+            'offer.status': function(value) {
+                var state;
+                if (value === true) {
+                    state = 1
+                }else if (value === false) {
+                    state = 0
+                }
+                Inertia.put(`/company/offer/changeStatus/${this.offer.id}`, {
+                    status: state
+                }, {
+                    preserveState: false,
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.subMenuShow = false
+                    }
                 })
             }
         }
