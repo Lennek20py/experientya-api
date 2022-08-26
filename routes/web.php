@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CountriesStatesCitiesController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
@@ -42,6 +43,12 @@ Route::get('/list-states', [StateController::class, 'fetchStates'])->name('list-
 Route::get('/list-towns/{id}', [StateController::class, 'fetchTowns'])->name('list-towns');
 Route::get('/list-sectors', [SectorController::class, 'fetchSectors'])->name('list-sectors');
 Route::get('/town/{id}', [StateController::class, 'fecthTown'])->name('town');
+Route::get('/countries', [CountriesStatesCitiesController::class, 'fetchCountries'])->name('countries-list');
+Route::get('/states/{id}', [CountriesStatesCitiesController::class, 'fetchStates'])->name('states-list');
+Route::get('/cities/{id}', [CountriesStatesCitiesController::class, 'fetchCities'])->name('cities-list');
+// Route::get('/city/{id}', [CountriesStatesCitiesController::class, 'searchCountry'])->name('search-location-info');
+
+
 
 // ANUIES Areas, general and speecific areas.
 Route::get('/anuies-areas', [AnuiesController::class, 'fetchAreas'])->name('anuies-areas');

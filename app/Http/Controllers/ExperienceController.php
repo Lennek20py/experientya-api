@@ -44,6 +44,7 @@ class ExperienceController extends Controller
             'end_date' => $request->end_date,
             'company' => $request->company,
             'country' => $request->country,
+            'state' => $request->state,
             'city' => $request->city,
             'company_description' => $request->company_description
 
@@ -92,6 +93,7 @@ class ExperienceController extends Controller
             'end_date' => $request->end_date,
             'company' => $request->company,
             'country' => $request->country,
+            'state' => $request->state,
             'city' => $request->city,
             'company_description' => $request->company_description,
         ]);
