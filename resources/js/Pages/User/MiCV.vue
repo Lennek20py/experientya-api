@@ -22,6 +22,10 @@
             <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
               <Experience :userProp="user" class="shadow-lg shadow-gray-300"></Experience>
             </div>
+            <div class="gap-4 mx-3 flex flex-col md:flex-row lg:mx-0 lg:mr-4">
+              <Testdisc class="shadow-lg shadow-gray-300"></Testdisc>
+              <TestSoft class="shadow-lg shadow-gray-300"></TestSoft>
+            </div>
           </div>
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -44,6 +48,9 @@ import Certifications from "@/Pages/User/UserCV/Certifications.vue";
 import Notification from '@/CustomComponents/Notification.vue';
 import Languages from '@/Pages/User/UserCV/Languages.vue';
 import Experience from '@/Pages/User/UserCV/Experience.vue';
+import Testdisc from '@/Pages/User/UserCV/TestDisc.vue';
+import TestSoft from '@/Pages/User/UserCV/TestSoftskills.vue';
+import BaseModal from '@/CustomComponents/Modal.vue';
 
 const props = defineProps({
   user: Object
