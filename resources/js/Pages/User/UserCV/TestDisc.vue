@@ -23,7 +23,7 @@
 
 </div>
 <!-- <base-modal v-if="isShowModal" @close="toggleModal"/> -->
-
+<!-- MODAL DE INFORMACIÓP -->
 <div v-if="isShowModal" @close="toggleModal" class="fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center">
   <div class="fixed inset-0 transition-opacity">
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -48,19 +48,20 @@
                 <div class="py-1">
                     <p class="text-xs text-gray-500 text-justify leading-none justify-start">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p>
 
-                    <img class="w-56 h-auto mx-auto py-2" src="../../../../img/Instruction1.png" alt="">
+                    <img class="w-56 h-auto mx-auto py-2 mb-4" src="../../../../img/Instruction1.png" alt="">
                 </div>
                 <div class="py-1">
                     <p class="text-xs text-gray-500 text-justify leading-none justify-start">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para "más semejante" y rojo para "menos semejante".</p>
 
-                    <img class="w-56 h-auto mx-auto py-2" src="../../../../img/Instruction2.png" alt="">
-
-
-
+                    <img class="w-56 h-auto mx-auto py-2  mb-4" src="../../../../img/Instruction2.png" alt="">
                 </div>
                 <div class="py-1">
-                    <p class="text-xs text-gray-500 text-justify leading-none justify-start">1- Instrucción</p>
-                    <img src="" alt="">
+                    <p class="text-xs text-gray-500 text-justify leading-none justify-start">3- Si las elecciones son correctas, proceda a darle clic en el botón azul de la esquina inferior derecha para pasar al siguiente conjunto de palabras.</p>
+
+                    <img class="w-56 h-auto mx-auto py-2  mb-4" src="../../../../img/Instruction2.png" alt="">
+                </div>
+                <div class="py-1">
+                    <p class="text-xs text-gray-500 text-justify leading-none justify-start">4- Al pasar todas las preguntas el test tendrá una pantalla de finalizado, esta mostará el estado del test y si se realizó de manera correcta.</p>
                 </div>
             </div>
             <!-- BOTONES DEE RESPUESTA -->
@@ -70,7 +71,12 @@
       </div>
     </div>
         <!-- BOTONES / FOOTER PAGE -->
-    <div class="bg-gray-50 px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
+    <div class="bg-gray-50 px-4 py-6 sm:px-6 flex flex-col sm:flex-row-reverse">
+      <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+        <button @click="toggleModalTest(), toggleModal()" type="button" class="inline-flex justify-center font-bold w-full rounded-md border border-gray-300 px-4 py-2 bg-red-500 text-base leading-6 text-white shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          INICIAR
+        </button>
+      </span>
       <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
         <button @click="toggleModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
           Cancel
@@ -79,7 +85,51 @@
     </div>
   </div>
 </div>
-  
+<!-- MODAL DE TEST -->
+<div v-if="isStartTest" @close="toggleModal" class="fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center">
+  <div class="fixed inset-0 transition-opacity">
+    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+  </div>
+  <div class="z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5">
+      <div class="sm:flex w-full sm:items-start">
+        <div class="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...">
+          <div class="flex text-center flex-col justify-center items-center mb-4 w-full">
+                <!-- TÍTULO -->
+            <h3 class="uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900" id="modal-headline">
+              TEST DE COMPETENCIAS
+            </h3>
+                <!-- INSTRUCCIONES -->
+            <p class="text-xs text-gray-500 text-justify border-b-2">Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, se reiniciará por completo, por lo que, le pedimos atentamente que el test sea iniciado y terminado en el mismo intento.</p>
+          </div>
+            <!-- CUERPO -->
+            <div class="mt-2 flex flex-col">
+              <h4> Seleccione el adjetivo que más se asemeje a su personalidad.</h4>
+              <div class="flex flex-wrap justify-center gap-11">
+                <div class="py-2 gap-7 content-between flex flex-col">
+                  <div class="uppercase align-center text-center border-2 p-3 my-4s">RÁPIDO</div>
+                  <div class="uppercase align-center text-center border-2 p-3 my-4s">ENTUSIASTA</div>
+                </div>
+                <div class="py-2 gap-2 place-content-between flex flex-col">
+                  <div class="uppercase align-center text-center border-2 p-3 my-4s">APACIBLE</div>
+                  <div class="uppercase align-center text-center border-2 p-3 my-4s">LÓGICO</div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+        <!-- BOTONES / FOOTER PAGE -->
+    <div class="bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center sm:flex-row-reverse text-end">
+      <p class="text-gray-400 text-sm items-end">1/28</p>
+      <span class="mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto">
+        <button @click="toggleModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          Next
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -93,6 +143,51 @@ export default {
             ifExists: false,
             loadData: true,
             isShowModal: false,
+            isStartTest: true,
+            best: 0,
+            worst: 0,
+            questions: [
+              {
+                question: 'Seleccione la palabra que mejor se asemeje.',
+                options: [
+                  'RÁPIDO',
+                  'ENTUSIASTA',
+                  'APACIBLE',
+                  'LÓGICO'
+                ],
+                selected: null
+              },
+              {
+                question: 'Seleccione la palabra que PEOR se asemeje.',
+                options: [
+                  'RÁPIDO',
+                  'ENTUSIASTA',
+                  'APACIBLE',
+                  'LÓGICO'
+                ],
+                selected: null
+              },
+              {
+                question: 'Seleccione la palabra que mejor se asemeje.',
+                options: [
+                  'DECIDIDO',
+                  'RECEPTIVO',
+                  'BONDADOSO',
+                  'CAUTELOSO'
+                ],
+                selected: null
+              },
+              {
+                question: 'Seleccione la palabra que PEOR se asemeje.',
+                options: [
+                  'DECIDIDO',
+                  'RECEPTIVO',
+                  'BONDADOSO',
+                  'CAUTELOSO'
+                ],
+                selected: null
+              }
+            ]
         }
 
     },
@@ -100,9 +195,13 @@ export default {
         toggleModal() {
         this.isShowModal = !this.isShowModal;
         },
+        toggleModalTest() {
+        this.isStartTest = !this.isStartTest;
+        },
         handleClose() {
-      this.$emit("close");
-    }
+          this.$emit("close");
+        },
+        
     }
 
 }
@@ -111,7 +210,7 @@ export default {
 <style>
 
 .modal-body{
-    max-height: calc(100vh - 450px);
+    max-height: calc(100vh - 380px);
     overflow-y: auto;
 }
 
