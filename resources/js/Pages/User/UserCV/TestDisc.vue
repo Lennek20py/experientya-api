@@ -91,12 +91,17 @@
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
   </div>
   <div class="z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-    <div class="bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5">
+    <div class="bg-white px-4 pt-2 pb-4 sm:p-5 sm:pb-5 flex-col flex">
+      <div class="flex justify-end border-b-2">
+        <button @click="closeable()" type="button" class="py-2">
+          <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </button>
+      </div>
       <div class="sm:flex w-full sm:items-start">
         <div class="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...">
           <div class="flex text-center flex-col justify-center items-center mb-4 w-full">
                 <!-- TÍTULO -->
-            <h3 class="uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900" id="modal-headline">
+            <h3 class="uppercase px-1 py-2 pt-0 text-xl text-center leading-6 font-bold text-gray-900" id="modal-headline">
               TEST DE COMPETENCIAS
             </h3>
                 <!-- INSTRUCCIONES -->
@@ -104,15 +109,12 @@
           </div>
             <!-- CUERPO -->
             <div class="mt-2 flex flex-col">
-              <h4> Seleccione el adjetivo que más se asemeje a su personalidad.</h4>
+              <h4> {{ this.questions[0]['question']}}</h4>
               <div class="flex flex-wrap justify-center gap-11">
-                <div class="py-2 gap-7 content-between flex flex-col">
-                  <div class="uppercase align-center text-center border-2 p-3 my-4s">RÁPIDO</div>
-                  <div class="uppercase align-center text-center border-2 p-3 my-4s">ENTUSIASTA</div>
-                </div>
-                <div class="py-2 gap-2 place-content-between flex flex-col">
-                  <div class="uppercase align-center text-center border-2 p-3 my-4s">APACIBLE</div>
-                  <div class="uppercase align-center text-center border-2 p-3 my-4s">LÓGICO</div>
+                <div class="py-2 gap-7 flex flex-col justify-center sm:flex-row sm:py-16">
+                    <label :for="index" v-for="words, index in questions[0]['options']" :key="index" :class="{'bg-green-600 text-white' : index == this.questions[0]['selectedBetter'], 'bg-red-600 text-white' : index == this.questions[0]['selectedWorst'], 'cursor-pointer' : !this.fullAnswers}" class="uppercase align-center text-center w-full border-2 p-3 my-4s">
+                      <input @click="answered($event)" type="radio" :disabled="this.fullAnswers" :id="index" class="hidden" :value="index">{{words}}
+                    </label>
                 </div>
               </div>
             </div>
@@ -120,10 +122,13 @@
       </div>
     </div>
         <!-- BOTONES / FOOTER PAGE -->
-    <div class="bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center sm:flex-row-reverse text-end">
+    <div class="bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center text-end">
       <p class="text-gray-400 text-sm items-end">1/28</p>
       <span class="mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto">
-        <button @click="toggleModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+        <button @click="clean()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          Limpiar
+        </button>
+        <button :disabled="!this.fullAnswers" :class="{'opacity-40' : !this.fullAnswers}" @click="nextCalculate()" type="button" class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
           Next
         </button>
       </span>
@@ -135,27 +140,32 @@
 <script>
 // import Flowbite from 'flowbite';
 import BaseModal from '@/CustomComponents/Modal.vue';
+import Swal from 'sweetalert2';
 export default {
-    components: {BaseModal},
+    components: {BaseModal, Swal},
     data() {
         return{
             formBind: false,
             ifExists: false,
             loadData: true,
             isShowModal: false,
-            isStartTest: true,
-            best: 0,
-            worst: 0,
+            isStartTest: false,
+            countA: 0,
+            countB: 0,
+            countC: 0,
+            countD: 0,
+            fullAnswers: false,
             questions: [
               {
-                question: 'Seleccione la palabra que mejor se asemeje.',
-                options: [
-                  'RÁPIDO',
-                  'ENTUSIASTA',
-                  'APACIBLE',
-                  'LÓGICO'
-                ],
-                selected: null
+                question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+                options: {
+                  a: 'RÁPIDO',
+                  b: 'ENTUSIASTA',
+                  c: 'APACIBLE',
+                  d: 'LÓGICO'
+                },
+                selectedBetter: null,
+                selectedWorst: null
               },
               {
                 question: 'Seleccione la palabra que PEOR se asemeje.',
@@ -200,6 +210,60 @@ export default {
         },
         handleClose() {
           this.$emit("close");
+        },
+        answered(e) {
+          // console.log(this.questions[0]['selectedBetter']);
+          if (this.questions[0]['selectedBetter']==null) {
+            this.questions[0]['selectedBetter'] = e.target.value;
+            console.log('Primer valor asignado. mejor' + this.questions[0]['selectedBetter']);
+            this.questions[0]['question'] = 'Seleccione el adjetivo que menos se asemeje a su personalidad.';
+          } else if (this.questions[0]['selectedWorst']==null) {
+            this.questions[0]['selectedWorst'] = e.target.value;
+            console.log('Segundo valor asignado. Peor' + this.questions[0]['selectedWorst']);
+            this.fullAnswers = true;
+            this.questions[0]['question'] = 'Si las selecciones fueron correctas, presione el botón de siguiente. De lo contrario presione "limpiar"';
+          }
+
+          console.log(e.target.value);
+        },
+        clean() {
+          this.questions[0]['selectedBetter'] = null;
+          this.questions[0]['selectedWorst'] = null;
+          this.questions[0]['question'] = 'Seleccione el adjetivo que más se asemeje a su personalidad.';
+          this.fullAnswers = false;
+        },
+        closeable() {
+          Swal.fire({
+            title: '¿Está seguro?',
+            text: "Le recomendamos continuar con el test",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  this.isStartTest = false;
+                  this.clean();
+                }
+            })
+        },
+        nextCalculate() {
+          this.questions[0]['selectedBetter'] == 'a' ? this.countA++ : this.countA = this.countA;
+          this.questions[0]['selectedBetter'] == 'b' ? this.countB++ : this.countB = this.countB;
+          this.questions[0]['selectedBetter'] == 'c' ? this.countC++ : this.countC = this.countC;
+          this.questions[0]['selectedBetter'] == 'd' ? this.countD++ : this.countD = this.countD;
+
+          this.questions[0]['selectedWorst'] == 'a' ? this.countA-- : this.countA = this.countA;
+          this.questions[0]['selectedWorst'] == 'b' ? this.countB-- : this.countB = this.countB;
+          this.questions[0]['selectedWorst'] == 'c' ? this.countC-- : this.countC = this.countC;
+          this.questions[0]['selectedWorst'] == 'd' ? this.countD-- : this.countD = this.countD;
+
+          // console.log(this.countA);
+          // console.log(this.countB);
+          // console.log(this.countC);
+          // console.log(this.countD);
+
         },
         
     }
