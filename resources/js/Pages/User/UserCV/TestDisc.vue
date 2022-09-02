@@ -173,7 +173,7 @@ export default {
             ifExists: false,
             loadData: true,
             isShowModal: false,
-            isStartTest: true,
+            isStartTest: false,
             isFinishedTest: false,
             countA: 0,
             countB: 0,
