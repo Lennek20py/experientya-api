@@ -10,4 +10,10 @@ class AnuiesArea extends Model
     use HasFactory;
 
     protected $table = 'anuies_area';
+
+
+    public function generals()
+    {
+        return $this->hasMany('App\Models\AnuiesGeneral');
+    }
 }

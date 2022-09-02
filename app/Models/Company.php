@@ -65,4 +65,19 @@ class Company extends Authenticatable
     {
         return asset('storage/'.$this->attributes['profile_photo_path']);
     }
+
+    public function sector()
+    {
+        return $this->belongsTo('App\Models\Sector');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany('App\Models\Offer');
+    }
+
+    public function plans()
+    {
+        return $this->belongsToMany('App\Models\Plan');
+    }
 }

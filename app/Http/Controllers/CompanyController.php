@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Company;
+use App\Models\CompanyPlan;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
 use Illuminate\Support\Facades\Storage;
@@ -145,8 +147,19 @@ class CompanyController extends Controller
                         ->where('companies.id', Auth::id())
                         ->first();
 
+        $plans = Plan::all();
+
+        $shoppings = CompanyPlan::select('company_plan.*', 'plans.name', 'plans.price')
+                        ->join('plans', 'plans.id', '=', 'company_plan.plan_id')
+                        ->join('companies', 'companies.id', '=', 'company_plan.company_id')
+                        ->where('companies.id', Auth::id())
+                        ->orderBy('id', 'desc')
+                        ->get();
+
         return Inertia::render('Company/Settings',[
-            'userInfo' => $user_info
+            'userInfo' => $user_info,
+            'plans' => $plans,
+            'shoppings' => $shoppings
         ]);
     }
 }

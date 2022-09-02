@@ -14,6 +14,7 @@ use App\Http\Controllers\CountriesStatesCitiesController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\WorkPreferencesController;
 
@@ -135,4 +136,6 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/offer/edit/{id}', [OfferController::class, 'edit'])->name('offer.edit');
     Route::put('/company/offer/update/{offer}', [OfferController::class, 'update'])->name('offer.update');
     Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
+
+    Route::post('/company/buyPlan', [PlanController::class, 'store'])->name('plan.store');
 });

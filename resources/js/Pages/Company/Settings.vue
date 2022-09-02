@@ -1,6 +1,9 @@
 <template>
     <admin-layout>
         <div>
+            <div class="absolute top-8 right-10 z-10">
+                <SuccessAlert :message="$page.props.success.message" :show="showAlert"/>
+            </div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div class="py-4">
                     <div class="relative max-w-4xl mx-auto md:px-8 xl:px-0">
@@ -20,9 +23,9 @@
 
                                         <!-- <option>Notifications</option> -->
 
-                                        <option>Plan</option>
+                                        <option>Planes</option>
 
-                                        <!-- <option>Billing</option> -->
+                                        <option>Compras</option>
 
                                         <!-- <option>Team Members</option> -->
                                     </select>
@@ -37,7 +40,9 @@
 
                                             <!-- <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"> Notifications </a> -->
 
-                                            <a href="#" @click="option = 2" :class='option == 2 ? "border-teal-500 text-teal-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"> Plan </a>
+                                            <a href="#" @click="option = 2" :class='option == 2 ? "border-teal-500 text-teal-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"> Planes </a>
+
+                                            <a href="#" @click="option = 3" :class='option == 3 ? "border-teal-500 text-teal-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"> Compras </a>
 
                                         </nav>
                                     </div>
@@ -47,7 +52,8 @@
                                     <div>
                                         <Profile :userInfo="userInfo" v-if="option == 0"/>
                                         <Password v-else-if="option == 1"/>
-                                        <Package v-else-if="option == 2"/>
+                                        <Package :plans="plans" v-else-if="option == 2"/>
+                                        <Shopping :shoppings="shoppings" v-else-if="option == 3"/>
                                     </div>
                                     <!-- Description list with inline editing -->
 
@@ -67,6 +73,8 @@
     import Profile from '@/Components/Company/Profile'
     import Password from '@/Components/Company/Password'
     import Package from '@/Components/Company/Package'
+    import SuccessAlert from '@/Components/Alerts/SuccessAlert'
+    import Shopping from '@/Components/Company/MyShopping'
 
     import { defineComponent } from 'vue'
 
@@ -76,15 +84,20 @@
             AdminLayout,
             Profile,
             Password,
-            Package
+            Package,
+            SuccessAlert,
+            Shopping
         },
         props: {
-            userInfo: Object
+            userInfo: Object,
+            plans: Array,
+            shoppings: Array
         },
         data() {
             return {
                 option: 0,
-                selected: 'General'
+                selected: 'General',
+                showAlert: true
             }
         },
         watch: {
@@ -95,6 +108,8 @@
                     this.option = 1
                 } else if (value === 'Plan') {
                     this.option = 2
+                } else if (value === 'Compras') {
+                    this.option = 3
                 }
             }
         }

@@ -33,4 +33,9 @@ class Offer extends Model
         'company_id',
         'status'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
 }
