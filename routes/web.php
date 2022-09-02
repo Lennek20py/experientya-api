@@ -16,6 +16,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\StudyDegreeController;
+use App\Http\Controllers\TestCompetitionsController;
 use App\Http\Controllers\WorkPreferencesController;
 
 /*
@@ -86,6 +87,18 @@ Route::get('/experience/{id}', [ExperienceController::class, 'show'])->name('exp
 Route::post('/experience', [ExperienceController::class, 'store'])->name('experiences.store');
 Route::post('/experience/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
 Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experiences.delete');
+
+// Test Competitions CRUD
+Route::get('/testcomp', [TestCompetitionsController::class, 'indexTest'])->name('list-TestsCompetitions');
+Route::get('/testcompAsw', [TestCompetitionsController::class, 'indexAnswers'])->name('list-AnswerTestCompetition');
+Route::get('/testcomp/{id}', [TestCompetitionsController::class, 'searchTest'])->name('testcompetitions.show');
+Route::get('/testcompAws/{id}', [TestCompetitionsController::class, 'searchAnswers'])->name('AnswersRestCompetitions.show');
+Route::post('/testcomp', [TestCompetitionsController::class, 'store'])->name('testcompetitions.store');
+Route::post('/testcompAws', [TestCompetitionsController::class, 'storeAnswers'])->name('AnswersTestCompetitions.store');
+Route::post('/testcomp/{id}', [TestCompetitionsController::class, 'updateTest'])->name('testcompetitions.update');
+Route::post('/testcompAws/{id}', [TestCompetitionsController::class, 'updateAnswer'])->name('AnswersTestCompetitions.update');
+// Route::post('/experience/{id}', [TestCompetitionsController::class, 'update'])->name('experiences.update');
+// Route::delete('/experience/{id}', [TestCompetitionsController::class, 'destroy'])->name('experiences.delete');
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
