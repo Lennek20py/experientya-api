@@ -80,4 +80,14 @@ class Company extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Plan');
     }
+
+    public function plan()
+    {
+        return $this->hasMany('App\Models\CompanyPlan', 'company_id');
+    }
+
+    public function purchased_plans()
+    {
+        return $this->hasMany('App\Models\CompanyPlan', 'company_id')->select(['spaces_available', 'created_at']);
+    }
 }

@@ -36823,6 +36823,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   props: {
     shoppings: Array
+  },
+  methods: {
+    showPlans: function showPlans() {
+      this.$emit("showPlan", 2);
+    }
   }
 }));
 
@@ -39457,6 +39462,11 @@ __webpack_require__.r(__webpack_exports__);
       selected: 'General',
       showAlert: true
     };
+  },
+  methods: {
+    activePlan: function activePlan(value) {
+      this.option = value;
+    }
   },
   watch: {
     'selected': function selected(value) {
@@ -42211,26 +42221,458 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _CustomComponents_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/CustomComponents/Modal.vue */ "./resources/js/CustomComponents/Modal.vue");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
 // import Flowbite from 'flowbite';
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    BaseModal: _CustomComponents_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    BaseModal: _CustomComponents_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default())
   },
   data: function data() {
     return {
       formBind: false,
       ifExists: false,
       loadData: true,
-      isShowModal: false
+      isShowModal: false,
+      isStartTest: false,
+      isFinishedTest: false,
+      countA: 0,
+      countB: 0,
+      countC: 0,
+      countD: 0,
+      countQuestion: 0,
+      questions: [{
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Rápido(a)',
+          b: 'Entusiasta',
+          c: 'Apacible',
+          d: 'Lógico(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Decidido(a)',
+          b: 'Receptivo(a)',
+          c: 'Bondadoso(a)',
+          d: 'Cauteloso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Franco(a)',
+          b: 'Amigable ',
+          c: 'Tranquilo(a)',
+          d: 'Preciso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Decisivo(a)',
+          b: 'Elocuente',
+          c: 'Tolerante',
+          d: 'Controlado(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Atrevido(a)',
+          b: 'Comunicativo(a)',
+          c: 'Moderado(a)',
+          d: 'Concienzudo(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Acepta Riesgos',
+          b: 'Ingenioso(a)',
+          c: 'Ameno(a)',
+          d: 'Investigador(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Dominante',
+          b: 'Expresivo(a)',
+          c: 'Sensible',
+          d: 'Cuidadoso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Impaciente',
+          b: 'Extrovertido(a)',
+          c: 'Constante',
+          d: 'Precavido(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Insistente',
+          b: 'Encantador(a)',
+          c: 'Complaciente',
+          d: 'Discreto(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Valeroso(a)',
+          b: 'Anima a los demás',
+          c: 'Pacifico(a)',
+          d: 'Perfeccionista'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Osado(a)',
+          b: 'Alegre',
+          c: 'Atento(a)',
+          d: 'Reservado(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Independiente',
+          b: 'Estimulante',
+          c: 'Gentil',
+          d: 'Perceptivo(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Competitivo(a)',
+          b: 'Alegre',
+          c: 'Considerado(a)',
+          d: 'Sagaz'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Ideas Firmes',
+          b: 'Alentador(a)',
+          c: 'Obediente ',
+          d: 'Meticuloso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Tenaz',
+          b: 'Popular',
+          c: 'Calmado(a)',
+          d: 'Reflexivo(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Audaz',
+          b: 'Promotor(a)',
+          c: 'Leal',
+          d: 'Analítico(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Autosuficiente',
+          b: 'Sociable',
+          c: 'Paciente',
+          d: 'Certero(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Resuelto(a)',
+          b: 'Vivaz',
+          c: 'Adaptable',
+          d: 'Prevenido(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Agresivo(a)',
+          b: 'Impetuoso(a)',
+          c: 'Amistoso(a)',
+          d: 'Discerniente'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Habla Directo',
+          b: 'De trato Fácil',
+          c: 'Compasivo(a)',
+          d: 'Cauto(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Persistente',
+          b: 'Animado(a)',
+          c: 'Generoso(a)',
+          d: 'Evaluador(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Enérgico(a)',
+          b: 'Impulsivo(a)',
+          c: 'Tranquilo(a)',
+          d: 'Cuida los Detalles'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Vigoroso(a)',
+          b: 'Tolerante',
+          c: 'Sociable',
+          d: 'Sistemático(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Exigente',
+          b: 'Cautivador(a)',
+          c: 'Contento(a)',
+          d: 'Apegado(a) a las normas'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Le agrada discutir',
+          b: 'Desenvuelto(a)',
+          c: 'Comedido(a)',
+          d: 'Metódico(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Directo(a)',
+          b: 'Jovial',
+          c: 'Ecuánime',
+          d: 'Preciso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Inquieto(a)',
+          b: 'Elocuente',
+          c: 'Amable',
+          d: 'Cuidadoso(a)'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }, {
+        question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
+        options: {
+          a: 'Pionero(a)',
+          b: 'Espontáneo(a)',
+          c: 'Colaborador',
+          d: 'Prudente'
+        },
+        selectedBetter: null,
+        selectedWorst: null,
+        fullAnswers: false,
+        saved: false
+      }]
     };
   },
   methods: {
     toggleModal: function toggleModal() {
       this.isShowModal = !this.isShowModal;
     },
+    toggleModalTest: function toggleModalTest() {
+      this.isStartTest = !this.isStartTest;
+    },
     handleClose: function handleClose() {
       this.$emit("close");
+    },
+    answered: function answered(e) {
+      // console.log(this.questions[this.countQuestion]['selectedBetter']);
+      if (e.target.value == this.questions[this.countQuestion]['selectedBetter']) {
+        var error = true;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Selecciona otra opción diferente.'
+        });
+      } else {
+        if (this.questions[this.countQuestion]['selectedBetter'] == null && !error) {
+          this.questions[this.countQuestion]['selectedBetter'] = e.target.value;
+          console.log('Primer valor asignado. mejor' + this.questions[this.countQuestion]['selectedBetter']);
+          this.questions[this.countQuestion]['question'] = 'Seleccione el adjetivo que menos se asemeje a su personalidad.';
+        } else if (this.questions[this.countQuestion]['selectedWorst'] == null) {
+          this.questions[this.countQuestion]['selectedWorst'] = e.target.value;
+          console.log('Segundo valor asignado. Peor' + this.questions[this.countQuestion]['selectedWorst']);
+          this.questions[this.countQuestion]['fullAnswers'] = true;
+          this.questions[this.countQuestion]['question'] = 'Si las selecciones fueron correctas, presione el botón de siguiente. De lo contrario presione "limpiar"';
+        }
+      }
+
+      console.log(e.target.value);
+    },
+    clean: function clean() {
+      if (this.questions[this.countQuestion]['saved']) {
+        this.questions[this.countQuestion]['selectedBetter'] == 'a' ? this.countA-- : this.countA = this.countA;
+        this.questions[this.countQuestion]['selectedBetter'] == 'b' ? this.countB-- : this.countB = this.countB;
+        this.questions[this.countQuestion]['selectedBetter'] == 'c' ? this.countC-- : this.countC = this.countC;
+        this.questions[this.countQuestion]['selectedBetter'] == 'd' ? this.countD-- : this.countD = this.countD;
+        this.questions[this.countQuestion]['selectedWorst'] == 'a' ? this.countA++ : this.countA = this.countA;
+        this.questions[this.countQuestion]['selectedWorst'] == 'b' ? this.countB++ : this.countB = this.countB;
+        this.questions[this.countQuestion]['selectedWorst'] == 'c' ? this.countC++ : this.countC = this.countC;
+        this.questions[this.countQuestion]['selectedWorst'] == 'd' ? this.countD++ : this.countD = this.countD;
+        this.questions[this.countQuestion]['saved'] = false;
+      }
+
+      this.questions[this.countQuestion]['selectedBetter'] = null;
+      this.questions[this.countQuestion]['selectedWorst'] = null;
+      this.questions[this.countQuestion]['question'] = 'Seleccione el adjetivo que más se asemeje a su personalidad.';
+      this.questions[this.countQuestion]['fullAnswers'] = false;
+    },
+    closeable: function closeable() {
+      var _this = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        title: '¿Está seguro?',
+        text: "Le recomendamos continuar con el test",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Si'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this.isStartTest = false;
+
+          _this.clean();
+        }
+      });
+    },
+    nextCalculate: function nextCalculate() {
+      if (!this.questions[this.countQuestion]['saved']) {
+        this.questions[this.countQuestion]['selectedBetter'] == 'a' ? this.countA++ : this.countA = this.countA;
+        this.questions[this.countQuestion]['selectedBetter'] == 'b' ? this.countB++ : this.countB = this.countB;
+        this.questions[this.countQuestion]['selectedBetter'] == 'c' ? this.countC++ : this.countC = this.countC;
+        this.questions[this.countQuestion]['selectedBetter'] == 'd' ? this.countD++ : this.countD = this.countD;
+        this.questions[this.countQuestion]['selectedWorst'] == 'a' ? this.countA-- : this.countA = this.countA;
+        this.questions[this.countQuestion]['selectedWorst'] == 'b' ? this.countB-- : this.countB = this.countB;
+        this.questions[this.countQuestion]['selectedWorst'] == 'c' ? this.countC-- : this.countC = this.countC;
+        this.questions[this.countQuestion]['selectedWorst'] == 'd' ? this.countD-- : this.countD = this.countD;
+        this.questions[this.countQuestion]['saved'] = true;
+      }
+
+      console.log(this.countA);
+      console.log(this.countB);
+      console.log(this.countC);
+      console.log(this.countD);
+      this.countQuestion++;
+      console.log(this.countQuestion);
     }
   }
 });
@@ -42775,33 +43217,91 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "mt-10 divide-y divide-gray-200"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_2 = {
   "class": "space-y-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "text-lg leading-6 font-medium text-gray-900"
-}, "Planes contratados ahsas"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "max-w-2xl text-sm text-gray-500"
-}, "Se listan todas las compras de planes y paquetes relacionadas a su cuenta.")], -1
+}, "Planes contratados", -1
 /* HOISTED */
 );
 
-var _hoisted_3 = {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "max-w-2xl text-sm text-gray-500"
+}, "Se listan todas las compras de planes y paquetes relacionadas a su cuenta.", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
   "class": "grid sm:grid-cols-12 lg:grid-cols-1 gap-6 py-6"
 };
-var _hoisted_4 = {
-  "class": "p-6 bg-white sm:p-8 rounded-xl ring ring-indigo-50"
+var _hoisted_6 = {
+  key: 0
 };
-var _hoisted_5 = {
+var _hoisted_7 = {
+  "class": "rounded-md bg-blue-50 p-4"
+};
+var _hoisted_8 = {
+  "class": "flex"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex-shrink-0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heroicon name: mini/information-circle "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "h-5 w-5 text-blue-400",
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  "aria-hidden": "true"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "fill-rule": "evenodd",
+  d: "M19 10.5a8.5 8.5 0 11-17 0 8.5 8.5 0 0117 0zM8.25 9.75A.75.75 0 019 9h.253a1.75 1.75 0 011.709 2.13l-.46 2.066a.25.25 0 00.245.304H11a.75.75 0 010 1.5h-.253a1.75 1.75 0 01-1.709-2.13l.46-2.066a.25.25 0 00-.245-.304H9a.75.75 0 01-.75-.75zM10 7a1 1 0 100-2 1 1 0 000 2z",
+  "clip-rule": "evenodd"
+})])], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "ml-3 flex-1 md:flex md:justify-between"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-sm text-blue-700"
+}, "Aún no has adquirido algún plan", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  "class": "mt-3 text-sm md:mt-0 md:ml-6"
+};
+var _hoisted_13 = {
+  href: "#",
+  "class": "whitespace-nowrap font-medium text-blue-700 hover:text-blue-600"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "aria-hidden": "true"
+}, " →", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
+  key: 1
+};
+var _hoisted_16 = {
+  "class": "p-6 bg-white sm:p-8 rounded-xl ring mb-6 ring-indigo-50"
+};
+var _hoisted_17 = {
   "class": "flex items-start"
 };
-var _hoisted_6 = {
+var _hoisted_18 = {
   key: 0,
   "class": "hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-amber-700 animate-pulse",
   "aria-hidden": "true"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center gap-1"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -42818,14 +43318,14 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_8 = [_hoisted_7];
-var _hoisted_9 = {
+var _hoisted_20 = [_hoisted_19];
+var _hoisted_21 = {
   key: 1,
   "class": "hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-zinc-400 animate-pulse",
   "aria-hidden": "true"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center gap-1"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -42842,14 +43342,14 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_11 = [_hoisted_10];
-var _hoisted_12 = {
+var _hoisted_23 = [_hoisted_22];
+var _hoisted_24 = {
   key: 2,
   "class": "hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-yellow-500 animate-pulse",
   "aria-hidden": "true"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center gap-1"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -42866,48 +43366,48 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_14 = [_hoisted_13];
-var _hoisted_15 = {
+var _hoisted_26 = [_hoisted_25];
+var _hoisted_27 = {
   "class": "sm:ml-8"
 };
-var _hoisted_16 = {
+var _hoisted_28 = {
   key: 0,
   "class": "text-sm"
 };
-var _hoisted_17 = {
+var _hoisted_29 = {
   key: 1,
   "class": "text-sm"
 };
-var _hoisted_18 = {
+var _hoisted_30 = {
   "class": "mt-4 text-2xl font-medium sm:text-xl"
 };
-var _hoisted_19 = {
+var _hoisted_31 = {
   key: 0,
   "class": "hover:underline"
 };
-var _hoisted_20 = {
+var _hoisted_32 = {
   key: 1,
   "class": "hover:underline"
 };
-var _hoisted_21 = {
+var _hoisted_33 = {
   key: 2,
   "class": "hover:underline"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mt-1 text-sm text-gray-700"
 }, " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam nulla amet voluptatum sit rerum, atque, quo culpa ut necessitatibus eius suscipit eum accusamus, aperiam voluptas exercitationem facere aliquid fuga. Sint. ", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_35 = {
   "class": "mt-4 sm:flex sm:items-center sm:gap-2"
 };
-var _hoisted_24 = {
+var _hoisted_36 = {
   "class": "flex items-center text-gray-500"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   fill: "none",
   viewBox: "0 0 24 24",
@@ -42922,36 +43422,41 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_26 = {
+var _hoisted_38 = {
   "class": "ml-1 text-xs font-medium"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hidden sm:block",
   "aria-hidden": "true"
 }, "·", -1
 /* HOISTED */
 );
 
-var _hoisted_28 = {
+var _hoisted_40 = {
   "class": "mt-2 text-xs font-medium text-gray-500 sm:mt-0"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.shoppings, function (shopping) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_ctx.shoppings.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "font-bold",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return _ctx.showPlans && _ctx.showPlans.apply(_ctx, arguments);
+    })
+  }, "Comprar"), _hoisted_14])])])])])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.shoppings, function (shopping) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: shopping.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [shopping.name === 'bronze_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, _hoisted_8)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'silver_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'gold_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [shopping.name === 'bronze_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, _hoisted_20)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'silver_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'gold_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, _hoisted_26)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded border px-3 py-1.5 font-medium text-white", shopping.status === 1 ? 'border-green-500 bg-green-500' : 'border-red-500 bg-red-500'])
-    }, [shopping.status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, "Vigente")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.status === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, "Expirado")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
+    }, [shopping.status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_28, "Vigente")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.status === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_29, "Expirado")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
     /* CLASS */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_18, [shopping.name === 'bronze_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_19, " Paquete Bronce ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'silver_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_20, " Paquete Plata ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'gold_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_21, " Paquete Oro ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(shopping.date), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_30, [shopping.name === 'bronze_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_31, " Paquete Bronce ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'silver_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_32, " Paquete Plata ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), shopping.name === 'gold_pack' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_33, " Paquete Oro ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(shopping.date), 1
     /* TEXT */
-    )]), _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(shopping.spaces_available) + " disponible(s) ", 1
+    )]), _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(shopping.spaces_available) + " disponible(s) ", 1
     /* TEXT */
     )])])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]);
+  ))]))])])]);
 }
 
 /***/ }),
@@ -50679,10 +51184,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["plans"])) : _ctx.option == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Shopping, {
         key: 3,
+        onShowPlan: _ctx.activePlan,
         shoppings: _ctx.shoppings
       }, null, 8
       /* PROPS */
-      , ["shoppings"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description list with inline editing ")])])])])])])])];
+      , ["onShowPlan", "shoppings"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description list with inline editing ")])])])])])])])];
     }),
     _: 1
     /* STABLE */
@@ -52367,22 +52873,27 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "sm:flex sm:items-center"
 };
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_11 = {
   "class": "sm:flex-auto"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-xl font-semibold text-gray-900"
-}, "Vacantes"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2 text-sm text-gray-700"
-}, "Un listado de todas las vacantes relacionadas a su cuenta.")], -1
+}, "Vacantes", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mt-2 text-sm text-gray-700"
+}, "Un listado de todas las vacantes relacionadas a su cuenta.", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
   "class": "mt-4 sm:mt-0 sm:ml-16 sm:flex-none"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "-ml-1 mr-2 h-5 w-5 text-white",
   xmlns: "http://www.w3.org/2000/svg",
   fill: "none",
@@ -52397,21 +52908,43 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar vacante ");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Agregar vacante ");
 
-var _hoisted_15 = {
+var _hoisted_17 = {
   key: 0,
-  "class": "min-h-full mt-8 pr-10 lg:pr-96"
+  "class": "min-h-full mt-8"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "border-b pb-4 mt-16 text-lg font-semibold text-gray-900"
-}, " Sin contenido que mostrar . . . ", -1
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "rounded-md bg-blue-50 p-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex-shrink-0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heroicon name: mini/x-circle "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "h-5 w-5 text-blue-400",
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  "aria-hidden": "true"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "fill-rule": "evenodd",
+  d: "M19 10.5a8.5 8.5 0 11-17 0 8.5 8.5 0 0117 0zM8.25 9.75A.75.75 0 019 9h.253a1.75 1.75 0 011.709 2.13l-.46 2.066a.25.25 0 00.245.304H11a.75.75 0 010 1.5h-.253a1.75 1.75 0 01-1.709-2.13l.46-2.066a.25.25 0 00-.245-.304H9a.75.75 0 01-.75-.75zM10 7a1 1 0 100-2 1 1 0 000 2z",
+  "clip-rule": "evenodd"
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "ml-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-sm font-medium text-blue-800 font-bold"
+}, "Sin contenido que mostrar."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mt-2 text-sm text-blue-700"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+  role: "list",
+  "class": "list-disc space-y-1 pl-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Aún no has agregado algúna vacante"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "O aún no has adquirido algún plan")])])])])], -1
 /* HOISTED */
 );
 
-var _hoisted_17 = [_hoisted_16];
-var _hoisted_18 = {
+var _hoisted_19 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -52443,19 +52976,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         required: ""
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Replace with your content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Replace with your content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.company.total_spaces_available) + " ", 1
+      /* TEXT */
+      ), _hoisted_12, _hoisted_13]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: _ctx.route('offer.create'),
         "class": "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heroicon name: solid/mail "), _hoisted_13, _hoisted_14];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heroicon name: solid/mail "), _hoisted_15, _hoisted_16];
         }),
         _: 1
         /* STABLE */
 
       }, 8
       /* PROPS */
-      , ["href"])])]), _ctx.offers.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, _hoisted_17)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.offers.data, function (offer) {
+      , ["href"])])]), _ctx.offers.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This example requires Tailwind CSS v2.0+ "), _hoisted_18])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.offers.data, function (offer) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "min-h-full mt-10",
           key: offer.id
@@ -56816,33 +57351,260 @@ var _hoisted_12 = {
   "aria-labelledby": "modal-headline"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5\"><div class=\"sm:flex w-full sm:items-start\"><div class=\"mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...\"><div class=\"flex text-center flex-col justify-center items-center mb-4 w-full\"><!-- TÍTULO --><h3 class=\"uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900\" id=\"modal-headline\"> TEST DE COMPETENCIAS </h3><!-- INSTRUCCIONES --><p class=\"text-xs text-gray-500 text-justify border-b-2\">Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, este se guardará en la última respuesta brindada; le recomendamos tomar el test sin distractores externos y en un solo intento.</p></div><!-- CUERPO --><div class=\"mt-2 flex flex-col modal-body\"><div class=\"self-start px-1 py-2 text- leading-6 font-bold text-gray-900\">Instrucciones:</div><!-- TEXTO DE INFORMACIÓN  --><div class=\"flex flex-col\"><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p><img class=\"w-56 h-auto mx-auto py-2\" src=\"" + _img_Instruction1_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para &quot;más semejante&quot; y rojo para &quot;menos semejante&quot;.</p><img class=\"w-56 h-auto mx-auto py-2\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">1- Instrucción</p><img src=\"\" alt=\"\"></div></div><!-- BOTONES DEE RESPUESTA --><div id=\"answers\"></div></div></div></div></div>", 1);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5\"><div class=\"sm:flex w-full sm:items-start\"><div class=\"mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...\"><div class=\"flex text-center flex-col justify-center items-center mb-4 w-full\"><!-- TÍTULO --><h3 class=\"uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900\" id=\"modal-headline\"> TEST DE COMPETENCIAS </h3><!-- INSTRUCCIONES --><p class=\"text-xs text-gray-500 text-justify border-b-2\">Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, este se guardará en la última respuesta brindada; le recomendamos tomar el test sin distractores externos y en un solo intento.</p></div><!-- CUERPO --><div class=\"mt-2 flex flex-col modal-body\"><div class=\"self-start px-1 py-2 text- leading-6 font-bold text-gray-900\">Instrucciones:</div><!-- TEXTO DE INFORMACIÓN  --><div class=\"flex flex-col\"><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction1_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para &quot;más semejante&quot; y rojo para &quot;menos semejante&quot;.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">3- Si las elecciones son correctas, proceda a darle clic en el botón azul de la esquina inferior derecha para pasar al siguiente conjunto de palabras.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">4- Al pasar todas las preguntas el test tendrá una pantalla de finalizado, esta mostará el estado del test y si se realizó de manera correcta.</p></div></div><!-- BOTONES DEE RESPUESTA --><div id=\"answers\"></div></div></div></div></div>", 1);
 
 var _hoisted_14 = {
-  "class": "bg-gray-50 px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse"
+  "class": "bg-gray-50 px-4 py-6 sm:px-6 flex flex-col sm:flex-row-reverse"
 };
 var _hoisted_15 = {
   "class": "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
 };
+var _hoisted_16 = {
+  "class": "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "fixed inset-0 transition-opacity"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "absolute inset-0 bg-gray-500 opacity-75"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_18 = {
+  "class": "z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full",
+  role: "dialog",
+  "aria-modal": "true",
+  "aria-labelledby": "modal-headline"
+};
+var _hoisted_19 = {
+  "class": "bg-white px-4 pt-2 pb-4 sm:p-5 sm:pb-5 flex-col flex"
+};
+var _hoisted_20 = {
+  key: 0,
+  "class": "flex justify-end"
+};
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "w-6 h-6 text-red-600",
+  fill: "none",
+  stroke: "currentColor",
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_22 = [_hoisted_21];
+var _hoisted_23 = {
+  "class": "sm:flex w-full sm:items-start"
+};
+var _hoisted_24 = {
+  "class": "mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ..."
+};
+var _hoisted_25 = {
+  "class": "flex text-center flex-col justify-center items-center mb-4 w-full"
+};
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "uppercase px-1 py-2 pt-0 text-2xl text-center leading-6 font-extrabold text-gray-900",
+  id: "modal-headline"
+}, " TEST DE COMPETENCIAS ", -1
+/* HOISTED */
+);
+
+var _hoisted_27 = {
+  key: 0,
+  "class": "text-xs text-gray-500 text-justify border-b-2"
+};
+var _hoisted_28 = {
+  key: 1,
+  "class": "text-xs text-gray-500 text-justify border-b-2"
+};
+var _hoisted_29 = {
+  key: 0,
+  "class": "mt-2 flex flex-col"
+};
+var _hoisted_30 = {
+  "class": "flex flex-wrap justify-center gap-11"
+};
+var _hoisted_31 = {
+  "class": "py-2 gap-7 flex flex-col justify-center sm:flex-row sm:py-16"
+};
+var _hoisted_32 = ["for"];
+var _hoisted_33 = ["disabled", "id", "value"];
+var _hoisted_34 = {
+  key: 1,
+  "class": "mt-2 flex flex-col"
+};
+
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
+  "class": "font-bold text-xl"
+}, "¡TEST FINALIZADO!", -1
+/* HOISTED */
+);
+
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex flex-wrap justify-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "w-36 h-36 text-green-600",
+  fill: "none",
+  stroke: "currentColor",
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+})])], -1
+/* HOISTED */
+);
+
+var _hoisted_37 = [_hoisted_35, _hoisted_36];
+var _hoisted_38 = {
+  "class": "bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center text-end"
+};
+var _hoisted_39 = {
+  "class": "text-gray-400 text-sm items-end"
+};
+var _hoisted_40 = {
+  key: 0,
+  "class": "mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto"
+};
+var _hoisted_41 = ["disabled"];
+var _hoisted_42 = ["disabled"];
+var _hoisted_43 = ["disabled"];
+var _hoisted_44 = {
+  key: 1,
+  "class": "mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, !$data.formBind && !$data.ifExists && $data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggleModal();
     }),
     "class": "w-auto flex justify-center items-center lg:justify-center lg:py-1"
-  }, _hoisted_7)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.formBind && $data.ifExists && $data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"w-full text-sm font-light text-gray-500 mx-auto px- leading-tight text-justify\">Para poder completar tu perfil, es necesario realizar el test de competencias. Este test tiene una duración estimada de 5 - 20 minutos. Le recomendamos tomar el test sin distractores al rededor.\r\n        </span> "), _hoisted_9, _hoisted_10])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <base-modal v-if=\"isShowModal\" @close=\"toggleModal\"/> "), $data.isShowModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, _hoisted_7)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.formBind && $data.ifExists && $data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"w-full text-sm font-light text-gray-500 mx-auto px- leading-tight text-justify\">Para poder completar tu perfil, es necesario realizar el test de competencias. Este test tiene una duración estimada de 5 - 20 minutos. Le recomendamos tomar el test sin distractores al rededor.\r\n        </span> "), _hoisted_9, _hoisted_10])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <base-modal v-if=\"isShowModal\" @close=\"toggleModal\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL DE INFORMACIÓP "), $data.isShowModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    onClose: _cache[2] || (_cache[2] = function () {
+    onClose: _cache[3] || (_cache[3] = function () {
       return $options.toggleModal && $options.toggleModal.apply($options, arguments);
     }),
     "class": "fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center"
   }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.toggleModalTest(), $options.toggleModal();
+    }),
+    type: "button",
+    "class": "inline-flex justify-center font-bold w-full rounded-md border border-gray-300 px-4 py-2 bg-red-500 text-base leading-6 text-white shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+  }, " INICIAR ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.toggleModal();
     }),
     type: "button",
     "class": "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
   }, " Cancel ")])])])], 32
+  /* HYDRATE_EVENTS */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL DE TEST "), $data.isStartTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 1,
+    onClose: _cache[11] || (_cache[11] = function () {
+      return $options.toggleModal && $options.toggleModal.apply($options, arguments);
+    }),
+    "class": "fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center"
+  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [!this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[4] || (_cache[4] = function ($event) {
+      return $options.closeable();
+    }),
+    type: "button",
+    "class": "py-2"
+  }, _hoisted_22)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" TÍTULO "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" INSTRUCCIONES "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, "Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, se reiniciará por completo, por lo que, le pedimos atentamente que el test sea iniciado y terminado en el mismo intento. DETERMINANTE:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countA) + " INFLUENCIA:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countB) + " ESTABILIDAD:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countC) + " CUMPLIMIENTO:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countD), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_28, "¡Gracias por realizar el test de competencias!, los resultados han sido guardados y están en espera a revisión. Puede continuar completando el resto de zonas para su CV."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CUERPO "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.questions[this.countQuestion]['question']), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.questions[this.countQuestion]['options'], function (words, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", {
+      "for": index,
+      key: index,
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+        'bg-green-600 text-white': index == _this.questions[_this.countQuestion]['selectedBetter'],
+        'bg-red-600 text-white': index == _this.questions[_this.countQuestion]['selectedWorst'],
+        'cursor-pointer': !_this.questions[_this.countQuestion]['fullAnswers']
+      }, "uppercase my-auto content-center text-center w-full border-2 p-3 my-4s"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      onClick: _cache[5] || (_cache[5] = function ($event) {
+        return $options.answered($event);
+      }),
+      type: "radio",
+      disabled: _this.questions[_this.countQuestion]['fullAnswers'],
+      id: index,
+      "class": "hidden content-center",
+      value: index
+    }, null, 8
+    /* PROPS */
+    , _hoisted_33), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(words), 1
+    /* TEXT */
+    )], 10
+    /* CLASS, PROPS */
+    , _hoisted_32);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, _hoisted_37))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countQuestion + 1) + "/28", 1
+  /* TEXT */
+  ), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[6] || (_cache[6] = function ($event) {
+      return $options.clean();
+    }),
+    type: "button",
+    "class": "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+  }, " Limpiar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    disabled: this.countQuestion <= 0,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'opacity-40': this.countQuestion <= 0
+    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return _this.countQuestion--;
+    }),
+    type: "button"
+  }, " Atrás ", 10
+  /* CLASS, PROPS */
+  , _hoisted_41), this.countQuestion < 27 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
+    disabled: !this.questions[this.countQuestion]['fullAnswers'],
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'opacity-40': !this.questions[this.countQuestion]['fullAnswers']
+    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    onClick: _cache[8] || (_cache[8] = function ($event) {
+      return $options.nextCalculate();
+    }),
+    type: "button"
+  }, " Next ", 10
+  /* CLASS, PROPS */
+  , _hoisted_42)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    onClick: _cache[9] || (_cache[9] = function ($event) {
+      return $data.isFinishedTest = true;
+    }),
+    disabled: !this.questions[this.countQuestion]['fullAnswers'],
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'opacity-40': !this.questions[this.countQuestion]['fullAnswers']
+    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    type: "button"
+  }, " Finalizar ", 10
+  /* CLASS, PROPS */
+  , _hoisted_43))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[10] || (_cache[10] = function ($event) {
+      return $data.isStartTest = false, $data.ifExists = true;
+    }),
+    type: "button",
+    "class": "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+  }, " Finalizar ")]))])])], 32
   /* HYDRATE_EVENTS */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
@@ -58063,7 +58825,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-body{\r\n    max-height: calc(100vh - 450px);\r\n    overflow-y: auto;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-body{\r\n    max-height: calc(100vh - 380px);\r\n    overflow-y: auto;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -87028,12 +87790,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Modal_vue_vue_type_template_id_e91becfa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal.vue?vue&type=template&id=e91becfa */ "./resources/js/CustomComponents/Modal.vue?vue&type=template&id=e91becfa");
-/* harmony import */ var C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 const script = {}
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_Modal_vue_vue_type_template_id_e91becfa__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/CustomComponents/Modal.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_Modal_vue_vue_type_template_id_e91becfa__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/CustomComponents/Modal.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -88903,7 +89665,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TestDisc_vue_vue_type_template_id_e26350c6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TestDisc.vue?vue&type=template&id=e26350c6 */ "./resources/js/Pages/User/UserCV/TestDisc.vue?vue&type=template&id=e26350c6");
 /* harmony import */ var _TestDisc_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TestDisc.vue?vue&type=script&lang=js */ "./resources/js/Pages/User/UserCV/TestDisc.vue?vue&type=script&lang=js");
 /* harmony import */ var _TestDisc_vue_vue_type_style_index_0_id_e26350c6_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TestDisc.vue?vue&type=style&index=0&id=e26350c6&lang=css */ "./resources/js/Pages/User/UserCV/TestDisc.vue?vue&type=style&index=0&id=e26350c6&lang=css");
-/* harmony import */ var C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -88911,7 +89673,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_TestDisc_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TestDisc_vue_vue_type_template_id_e26350c6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/User/UserCV/TestDisc.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_TestDisc_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TestDisc_vue_vue_type_template_id_e26350c6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/User/UserCV/TestDisc.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -88933,13 +89695,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _TestSoftskills_vue_vue_type_template_id_eda48118__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TestSoftskills.vue?vue&type=template&id=eda48118 */ "./resources/js/Pages/User/UserCV/TestSoftskills.vue?vue&type=template&id=eda48118");
 /* harmony import */ var _TestSoftskills_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TestSoftskills.vue?vue&type=script&lang=js */ "./resources/js/Pages/User/UserCV/TestSoftskills.vue?vue&type=script&lang=js");
-/* harmony import */ var C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_TestSoftskills_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TestSoftskills_vue_vue_type_template_id_eda48118__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/User/UserCV/TestSoftskills.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_experientya_experientya_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_TestSoftskills_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TestSoftskills_vue_vue_type_template_id_eda48118__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/User/UserCV/TestSoftskills.vue"]])
 /* hot reload */
 if (false) {}
 

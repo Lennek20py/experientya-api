@@ -53,7 +53,7 @@
                                         <Profile :userInfo="userInfo" v-if="option == 0"/>
                                         <Password v-else-if="option == 1"/>
                                         <Package :plans="plans" v-else-if="option == 2"/>
-                                        <Shopping :shoppings="shoppings" v-else-if="option == 3"/>
+                                        <Shopping @show-plan="activePlan" :shoppings="shoppings" v-else-if="option == 3"/>
                                     </div>
                                     <!-- Description list with inline editing -->
 
@@ -98,6 +98,11 @@
                 option: 0,
                 selected: 'General',
                 showAlert: true
+            }
+        },
+        methods: {
+            activePlan (value) {
+                this.option = value
             }
         },
         watch: {

@@ -20,4 +20,9 @@ class CompanyPlan extends Model
     {
         return Carbon::parse($this->attributes['created_at'])->format('d-m-Y');
     }
+
+    public function companies()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
 }
