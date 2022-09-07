@@ -23,7 +23,7 @@
               <Experience :userProp="user" class="shadow-lg shadow-gray-300"></Experience>
             </div>
             <div class="gap-4 mx-3 flex flex-col md:flex-row lg:mx-0 lg:mr-4">
-              <Testdisc class="shadow-lg shadow-gray-300"></Testdisc>
+              <Testdisc :userProp="user" class="shadow-lg shadow-gray-300"></Testdisc>
               <TestSoft class="shadow-lg shadow-gray-300"></TestSoft>
             </div>
           </div>
