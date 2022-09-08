@@ -3,11 +3,15 @@
     <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 first-line:lg:text-3xl">
         <h3>Test de Competencias</h3>
     </div>
-    <div v-if="!loadData"  role="status" class="max-w-sm animate-pulse pb-5 lg:pb-0">
-        <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
-        <div class="h-2 bg-gray-200 rounded-full max-w-[230px] mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full max-w-[150px] mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full max-w-[260px] mb-2.5"></div>
+    <div v-if="!loadData"  role="status" class="sm:max-w-sm lg:max-w-full animate-pulse pb-5 lg:pb-0">
+        <div class="h-2.5 bg-white rounded-full w-48 mb-4"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[1150px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[1130px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full max-w-[260px] mb-5"></div>
+        <!-- <div class="h-2 bg-gray-200 rounded-full max-w-[260px] mb-2.5"></div> -->
+        <div class="flex mx-auto justify-center align-middle items-center w-full h-32 bg-gray-300 rounded sm:w-48">
+          <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"/></svg>
+        </div>
         <span class="sr-only">Loading...</span>
         <span class="sr-only">Loading...</span>
     </div>
@@ -135,18 +139,17 @@
               </div>
             </div>
             <div v-else class="mt-2 flex flex-col">
-              <h4 class="font-bold text-xl">¡TEST FINALIZADO!</h4>
+              <h4 class="font-bold text-center text-xl">¡TEST FINALIZADO!</h4>
               <div class="flex flex-wrap justify-center">
-                <svg class="w-36 h-36 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                <svg class="w-48 h-48 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
               </div>
             </div>
-
         </div>
       </div>
     </div>
         <!-- BOTONES / FOOTER PAGE -->
     <div class="bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center text-end">
-      <p class="text-gray-800 text-sm items-end">{{this.countQuestion+1}}/28</p>
+      <p v-if="!this.isFinishedTest" class="text-gray-900 text-lg items-end">{{this.countQuestion+1}}/28</p>
       <span v-if="!this.isFinishedTest" class="mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto">
         <button @click="clean()" type="button" class="inline-flex justify-center w-full rounded-md border select-none border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
           Limpiar
@@ -157,7 +160,7 @@
         <button v-if="this.countQuestion<27" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" @click="nextCalculate()" type="button" class=" inline-flex justify-center w-full select-none rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
           Next
         </button>
-        <button v-else @click="isFinishedTest = true, nextCalculate()" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" type="button" class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+        <button v-else @click="nextCalculate()" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" type="button" class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
           Finalizar
         </button>
       </span>
@@ -183,7 +186,7 @@ export default {
             formBind: false,
             ifExists: false,
             loadData: false,
-            isShowModal: true,
+            isShowModal: false,
             isStartTest: false,
             isFinishedTest: false,
             test_finished: false,
@@ -579,19 +582,25 @@ export default {
         await axios.get(route('cv-search', this.userProp.id))
         .then((response) => {
           this.cv_id = response.data[0].id;
-          console.log(this.cv_id+'elid de el cv')
         }).catch((error) => {
           console.log(error);
         });
         await axios.get(route('testcompetitions.show', this.cv_id))
         .then((response) => {
           this.test = response.data;
-          console.log(this.test[this.test.length-1].id);
+          // console.log(this.test[this.test.length-1].id);
           if (response.data.length == 0){ 
             this.ifExists = false
             this.newData = true
           } else {    
             this.ifExists = true
+            // console.log('el de get test:L ');
+            // console.log(response.data);
+            this.countA = response.data[0].CountDete
+            this.countB = response.data[0].CountInfl
+            this.countC = response.data[0].CountEsta
+            this.countD = response.data[0].CountCump
+          // console.log(this.cv_id+'elid de el cv')
             this.getAnswers();
           }
           if (this.test[this.test.length-1].test_finished == "true") {
@@ -615,7 +624,7 @@ export default {
             this.questions[index].saved = this.question[index].saved;
           }
           this.countQuestion = this.question.length
-          console.log(this.question);
+          // console.log(this.question);
         }).catch((error) => {
           console.log(error)
         });
@@ -629,6 +638,7 @@ export default {
           await axios.post(route('testcompetitions.store'), this.test_comp)
           .then((response) => {
             // console.log(response)
+            this.getTests();
             this.ifExists = true;
           }).catch((error) => {
             console.log(error)
@@ -654,6 +664,31 @@ export default {
           }).catch((error) => {
             console.log(error)
           });
+          // console.log('LA VAINA, EL CONTADOR ESTÁ EN: ' + this.countQuestion);
+      },
+      async resultsInsert(){
+        this.getTests();
+        let countOptions = {}
+        if (!(this.countQuestion < 27)) {
+          countOptions.test_finished = 'true'
+        } else {
+          countOptions.test_finished = 'false'
+        }
+
+        console.log('la pregunta va por: ' + this.countQuestion);
+        var today = new Date();
+        countOptions.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
+        countOptions.cv_id = this.cv_id;
+        countOptions.CountDete = this.countA
+        countOptions.CountInfl = this.countB
+        countOptions.CountEsta = this.countC
+        countOptions.CountCump = this.countD
+        await axios.post(route('testcompetitions.update', this.test[this.test.length - 1].id), countOptions)
+        .then((response) => {
+          // console.log(response.data);          
+        }).catch((error) => {
+            console.log(error)
+        });
       },
         toggleModal() {
           this.isShowModal = !this.isShowModal;
@@ -677,11 +712,11 @@ export default {
           } else {
             if (this.questions[this.countQuestion]['best_word']==null && !error) {
               this.questions[this.countQuestion]['best_word'] = e.target.value;
-              console.log('Primer valor asignado. mejor' + this.questions[this.countQuestion]['best_word']);
+              // console.log('Primer valor asignado. mejor' + this.questions[this.countQuestion]['best_word']);
               this.questions[this.countQuestion]['question'] = 'Seleccione el adjetivo que menos se asemeje a su personalidad.';
             } else if (this.questions[this.countQuestion]['worst_word']==null) {
               this.questions[this.countQuestion]['worst_word'] = e.target.value;
-              console.log('Segundo valor asignado. Peor' + this.questions[this.countQuestion]['worst_word']);
+              // console.log('Segundo valor asignado. Peor' + this.questions[this.countQuestion]['worst_word']);
               this.questions[this.countQuestion]['fullAnswers'] = true;
               this.questions[this.countQuestion]['question'] = 'Si las selecciones fueron correctas, presione el botón de siguiente. De lo contrario presione "limpiar"';
             }
@@ -740,13 +775,18 @@ export default {
           this.questions[this.countQuestion]['saved'] = true;
          }
          this.newAnswer(this.countQuestion);
-          console.log(this.countA);
-          console.log(this.countB);
-          console.log(this.countC);
-          console.log(this.countD);
+         this.resultsInsert();
+
+          // console.log(this.countA);
+          // console.log(this.countB);
+          // console.log(this.countC);
+          // console.log(this.countD);
 
           this.countQuestion++;
-          console.log(this.countQuestion);
+          if (!(this.countQuestion < 28)) {
+            this.isFinishedTest = true
+          }
+          // console.log(this.countQuestion);
 
         },
         
