@@ -58,14 +58,18 @@ class TestCompetitionsController extends Controller
 
     public function storeAnswers(Request $request)
     {
-       $data = AnswerTestCompetition::create([
-        'test_complete_id' =>$request->test_complete_id,
-        'question_number' =>$request->question_number,
-        'best_word' =>$request->best_word,
-        'worst_word' =>$request->worst_word,
-        'fullAnswers' =>$request->fullAnswers,
-        'saved' =>$request->saved
-       ]);
+       $datas = AnswerTestCompetition::updateOrCreate(
+            [
+                'test_complete_id' =>$request->test_complete_id,
+                'question_number' => $request->question_number
+            ],
+            [
+                'best_word' =>$request->best_word,
+                'worst_word' =>$request->worst_word,
+                'fullAnswers' =>$request->fullAnswers,
+                'saved' =>$request->saved
+            ]
+        );
        return redirect()->route('user.micv')->with('message', 'Pregunta guardada.');
     }
         
