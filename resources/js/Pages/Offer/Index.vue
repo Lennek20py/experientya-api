@@ -20,18 +20,25 @@
                     <div class="py-4 mt-2">
                         <div class="sm:flex sm:items-center">
                             <div class="sm:flex-auto">
-                                {{ $page.props.auth.company.total_spaces_available }}
                             <h1 class="text-xl font-semibold text-gray-900">Vacantes</h1>
                             <p class="mt-2 text-sm text-gray-700">Un listado de todas las vacantes relacionadas a su cuenta.</p>
                             </div>
                             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                                <Link :href="route('offer.create')" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                                <Link v-if="$page.props.auth.company.total_spaces_available > 0" :href="route('offer.create')" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                                 <!-- Heroicon name: solid/mail -->
                                 <svg class="-ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
                                 Agregar vacante
                                 </Link>
+
+                                <button @click="acting = true" v-else class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                <!-- Heroicon name: solid/mail -->
+                                <svg class="-ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                                Agregar vacante
+                                </button>
                             </div>
                         </div>
 
@@ -49,8 +56,7 @@
                                 <h3 class="text-sm font-medium text-blue-800 font-bold">Sin contenido que mostrar.</h3>
                                 <div class="mt-2 text-sm text-blue-700">
                                     <ul role="list" class="list-disc space-y-1 pl-5">
-                                    <li>Aún no has agregado algúna vacante</li>
-                                    <li>O aún no has adquirido algún plan</li>
+                                        <li>Aún no has agregado algúna vacante</li>
                                     </ul>
                                 </div>
                                 </div>
@@ -70,6 +76,26 @@
                     <!-- /End replace -->
                 </div>
             </div>
+
+            <JetModal :show="acting" @close="acting = null">
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="bg-white shadow sm:rounded-lg">
+                <form class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Aún no has adquirido algún plan</h3>
+                    <div class="mt-2 max-w-xl text-sm text-gray-500">
+                    </div>
+                    <div class="flex justify-end mt-5">
+                        <button @click="acting = false" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <!-- Heroicon name: solid/mail -->
+                        <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                            Cerrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </JetModal>
         </main>
     </admin-layout>
 </template>
@@ -81,6 +107,7 @@
     import SuccessAlert from '@/Components/Alerts/SuccessAlert'
     import OfferCard from '@/Components/Offer/OfferCard'
     import OfferPagination from '@/Components/Offer/OfferPagination'
+    import JetModal from '@/Jetstream/Modal'
 
     import { defineComponent } from 'vue'
 
@@ -90,7 +117,8 @@
             Link,
             SuccessAlert,
             OfferCard,
-            OfferPagination
+            OfferPagination,
+            JetModal
         },
         props: {
             offers: Object,
@@ -99,7 +127,8 @@
         data () {
             return {
                 search: this.filters.search,
-                showAlert: true
+                showAlert: true,
+                acting: false
             }
         },
         watch: {

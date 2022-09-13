@@ -107,7 +107,7 @@
                         <form class="px-4 py-5 sm:p-6" @submit.prevent="submit">
                             <h3 class="text-lg leading-6 font-medium text-gray-900">Comprar paquete</h3>
                             <div class="mt-2 max-w-xl text-sm text-gray-500">
-                            <p class="flex items-center">¿Esta seguro de efectuar la compra del paquete&nbsp;
+                            <p class="flex items-center">¿Esta seguro de efectuar la compra del &nbsp;
                                 <span class="text-amber-700 font-semibold" v-if="plan.id === 1">Paquete Bronce?</span>
                                 <svg v-if="plan.id === 1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-pulse text-amber-700 ml-1 w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
@@ -165,7 +165,6 @@ export default defineComponent({
             this.plan = plan
         },
         submit() {
-            console.log('este es es plan', this.plan.id)
             this.$inertia.post('/company/buyPlan', this.plan, {
                 preserveState: false,
                 preserveScroll: true,

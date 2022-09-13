@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Company;
+use App\Models\CompanyPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -25,5 +26,14 @@ class PlanController extends Controller
                                     ]);
 
         return Redirect::route('company.settings')->with('message','Paquete comprado exitosamente');
+    }
+
+    public function destroy($id)
+    {
+        $companyPlan = CompanyPlan::find($id);
+
+        $companyPlan->delete();
+
+        return Redirect::route('offer.index')->with('message','El Plan fue eliminado exitosamente');
     }
 }

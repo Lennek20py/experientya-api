@@ -151,4 +151,5 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
 
     Route::post('/company/buyPlan', [PlanController::class, 'store'])->name('plan.store');
+    Route::delete('/company/plan/delete/{id}', [PlanController::class, 'destroy'])->name('plan.destroy');
 });

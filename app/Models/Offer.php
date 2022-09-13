@@ -38,4 +38,9 @@ class Offer extends Model
     {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\KillerQuestion');
+    }
 }

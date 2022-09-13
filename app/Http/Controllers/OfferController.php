@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\CompanyPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreOfferRequest;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -36,6 +38,20 @@ class OfferController extends Controller
     public function store(StoreOfferRequest $request)
     {
         Offer::create($request->all());
+
+        $plans = CompanyPlan::where('company_id', Auth::id())->get();
+
+        foreach($plans as $plan) {
+            if($plan->spaces_available > 0) {
+                $purchased_plan = CompanyPlan::find($plan->id);
+                $purchased_plan->spaces_available = ($plan->spaces_available - 1);
+                if (($plan->spaces_available - 1) == 0) {
+                    $purchased_plan->status = 0;
+                }
+                $purchased_plan->save();
+                break;
+            }
+        }
 
         return Redirect::route('offer.index')->with('message','Vacante guardada exitosamente');
     }
