@@ -61,20 +61,9 @@
                 <div class="py-1">
                     <p class="text-xs text-gray-500 text-justify leading-none justify-start lg:text-base">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p>
 
-                    <img class="w-56 h-auto mx-auto py-2 mb-4" src="../../../../img/Instruction1.png" alt="">
-                </div>
-                <div class="py-1">
-                    <p class="text-xs text-gray-500 text-justify leading-none justify-start lg:text-base">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para "más semejante" y rojo para "menos semejante".</p>
+                    <img class="hidden h-auto mx-auto py-2 mb-4 lg:block" src="../../../../img/InstructionDesktop.gif" alt="">
+                    <img class="block w-64 h-auto mx-auto py-2 mb-4 lg:hidden" src="../../../../img/InstructionMobile.gif" alt="">
 
-                    <img class="w-56 h-auto mx-auto py-2  mb-4" src="../../../../img/Instruction2.png" alt="">
-                </div>
-                <div class="py-1">
-                    <p class="text-xs text-gray-500 text-justify leading-none justify-start lg:text-base">3- Si las elecciones son correctas, proceda a darle clic en el botón azul de la esquina inferior derecha para pasar al siguiente conjunto de palabras.</p>
-
-                    <img class="w-56 h-auto mx-auto py-2  mb-4" src="../../../../img/Instruction2.png" alt="">
-                </div>
-                <div class="py-1">
-                    <p class="text-xs text-gray-500 text-justify leading-none justify-start lg:text-base">4- Al pasar todas las preguntas el test tendrá una pantalla de finalizado, esta mostará el estado del test y si se realizó de manera correcta.</p>
                 </div>
             </div>
             <!-- BOTONES DEE RESPUESTA -->
@@ -124,7 +113,7 @@
           </div>
             <!-- CUERPO -->
             <div v-if="!this.isFinishedTest" class="mt-2 flex flex-col">
-              <h4 class="leading-none text-center lg:text-xl lg:font-bold"> {{ this.questions[this.countQuestion]['question']}}</h4>
+              <h4 class="transition ease-in-out delay-1 duration-300 leading-none text-center lg:text-xl lg:font-bold"> {{ this.questions[this.countQuestion]['question']}}</h4>
               <div class="flex flex-wrap justify-center gap-11">
                 <div class="py-2 gap-7 flex flex-col justify-center sm:flex-row sm:py-16">
                     <label :for="index" v-for="words, index in questions[this.countQuestion]['options']" :key="index" :class="{'bg-green-600 text-white' : index == this.questions[this.countQuestion]['best_word'], 'bg-red-600 text-white' : index == this.questions[this.countQuestion]['worst_word'], 'cursor-pointer' : !this.questions[this.countQuestion]['fullAnswers']}" class="uppercase select-none my-auto content-center text-center w-full border-2 p-3 lg:p-8 lg:text-2xl lg:font-semibold">
@@ -155,7 +144,7 @@
         <button v-if="this.countQuestion<27" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" @click="nextCalculate()" type="button" class=" inline-flex justify-center w-full select-none rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
           Siguiente
         </button>
-        <button v-else @click="nextCalculate()" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" type="button" class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
+        <button v-else @click="finishButton()" :disabled="!this.questions[this.countQuestion]['fullAnswers']" :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" type="button" class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
           Finalizar
         </button>
       </span>
@@ -756,6 +745,21 @@ export default {
                 }
             })
         },
+        finishButton(){
+          Swal.fire({
+            title: '¿Está seguro?',
+            text: "Si finaliza se bloquea y no se procede a cambios.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                 this.nextCalculate();
+                }
+            })
+        },
         nextCalculate() {
          if (!this.questions[this.countQuestion]['saved']) {
           this.questions[this.countQuestion]['best_word'] == 'a' ? this.countA++ : this.countA = this.countA;
@@ -771,17 +775,12 @@ export default {
          }
          this.newAnswer(this.countQuestion);
          this.resultsInsert();
+         
+          this.countQuestion < 28 ? this.countQuestion ++ : this.countQuestion = 28;
 
-          // console.log(this.countA);
-          // console.log(this.countB);
-          // console.log(this.countC);
-          // console.log(this.countD);
-
-          this.countQuestion++;
           if (!(this.countQuestion < 28)) {
             this.isFinishedTest = true
           }
-          // console.log(this.countQuestion);
 
         },
         
