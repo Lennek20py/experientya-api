@@ -42254,6 +42254,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CustomComponents_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/CustomComponents/Modal.vue */ "./resources/js/CustomComponents/Modal.vue");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 // import Flowbite from 'flowbite';
 
 
@@ -42262,19 +42270,33 @@ __webpack_require__.r(__webpack_exports__);
     BaseModal: _CustomComponents_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default())
   },
+  props: ['userProp'],
   data: function data() {
     return {
       formBind: false,
       ifExists: false,
-      loadData: true,
+      loadData: false,
       isShowModal: false,
       isStartTest: false,
       isFinishedTest: false,
+      test_finished: false,
+      test: [],
       countA: 0,
       countB: 0,
       countC: 0,
       countD: 0,
       countQuestion: 0,
+      cv_id: "",
+      question: [],
+      test_comp: {
+        "cv_id": 0,
+        "CountDete": "0",
+        "CountInfl": "0",
+        "CountEsta": "0",
+        "CountCump": "0",
+        "test_finished": "false",
+        "finished_date": ""
+      },
       questions: [{
         question: 'Seleccione el adjetivo que más se asemeje a su personalidad.',
         options: {
@@ -42283,8 +42305,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Apacible',
           d: 'Lógico(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42295,8 +42317,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Bondadoso(a)',
           d: 'Cauteloso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42307,8 +42329,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Tranquilo(a)',
           d: 'Preciso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42319,8 +42341,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Tolerante',
           d: 'Controlado(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42331,8 +42353,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Moderado(a)',
           d: 'Concienzudo(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42343,8 +42365,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Ameno(a)',
           d: 'Investigador(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42355,8 +42377,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Sensible',
           d: 'Cuidadoso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42367,8 +42389,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Constante',
           d: 'Precavido(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42379,8 +42401,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Complaciente',
           d: 'Discreto(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42391,8 +42413,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Pacifico(a)',
           d: 'Perfeccionista'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42403,8 +42425,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Atento(a)',
           d: 'Reservado(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42415,8 +42437,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Gentil',
           d: 'Perceptivo(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42427,8 +42449,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Considerado(a)',
           d: 'Sagaz'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42439,8 +42461,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Obediente ',
           d: 'Meticuloso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42451,8 +42473,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Calmado(a)',
           d: 'Reflexivo(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42463,8 +42485,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Leal',
           d: 'Analítico(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42475,8 +42497,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Paciente',
           d: 'Certero(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42487,8 +42509,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Adaptable',
           d: 'Prevenido(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42499,8 +42521,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Amistoso(a)',
           d: 'Discerniente'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42511,8 +42533,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Compasivo(a)',
           d: 'Cauto(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42523,8 +42545,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Generoso(a)',
           d: 'Evaluador(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42535,8 +42557,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Tranquilo(a)',
           d: 'Cuida los Detalles'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42547,8 +42569,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Sociable',
           d: 'Sistemático(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42559,8 +42581,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Contento(a)',
           d: 'Apegado(a) a las normas'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42571,8 +42593,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Comedido(a)',
           d: 'Metódico(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42583,8 +42605,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Ecuánime',
           d: 'Preciso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42595,8 +42617,8 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Amable',
           d: 'Cuidadoso(a)'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }, {
@@ -42607,26 +42629,228 @@ __webpack_require__.r(__webpack_exports__);
           c: 'Colaborador',
           d: 'Prudente'
         },
-        selectedBetter: null,
-        selectedWorst: null,
+        best_word: null,
+        worst_word: null,
         fullAnswers: false,
         saved: false
       }]
     };
   },
   methods: {
+    // METODOS PARA OBTENER TEST EXISTENTES
+    getTests: function getTests() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get(route('cv-search', _this.userProp.id)).then(function (response) {
+                  _this.cv_id = response.data[0].id;
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+                _context.next = 4;
+                return axios.get(route('testcompetitions.show', _this.cv_id)).then(function (response) {
+                  _this.test = response.data; // console.log(this.test[this.test.length-1].id);
+
+                  if (response.data.length == 0) {
+                    _this.ifExists = false;
+                    _this.newData = true;
+                  } else {
+                    _this.ifExists = true; // console.log('el de get test:L ');
+                    // console.log(response.data);
+
+                    _this.countA = response.data[0].CountDete;
+                    _this.countB = response.data[0].CountInfl;
+                    _this.countC = response.data[0].CountEsta;
+                    _this.countD = response.data[0].CountCump; // console.log(this.cv_id+'elid de el cv')
+
+                    _this.getAnswers();
+                  }
+
+                  if (_this.test[_this.test.length - 1].test_finished == "true") {
+                    _this.test_finished = true;
+                  }
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this.ifExists = false;
+                });
+
+              case 4:
+                _this.loadData = true;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    // METODOS PARA OBTENER LAS RESPUESTAS EN CASO DE QUE EXISTAN
+    getAnswers: function getAnswers() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get(route('AnswersRestCompetitions.show', _this2.test[_this2.test.length - 1].id)).then(function (response) {
+                  _this2.question = response.data;
+
+                  for (var index = 0; index < _this2.question.length; index++) {
+                    _this2.questions[index].best_word = _this2.question[index].best_word;
+                    _this2.questions[index].worst_word = _this2.question[index].worst_word;
+                    _this2.questions[index].fullAnswers = _this2.question[index].fullAnswers;
+                    _this2.questions[index].saved = _this2.question[index].saved;
+                  }
+
+                  _this2.countQuestion = _this2.question.length; // console.log(this.question);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    // ASYNC PARA INGRESAR UN NUEVO TEST
+    newTest: function newTest() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var today;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!(!(_this3.test.length > 0) || _this3.test[_this3.test.length - 1].test_finished == "true")) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                today = new Date();
+                _this3.test_comp.cv_id = _this3.cv_id;
+                _this3.test_comp.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+                _context3.next = 6;
+                return axios.post(route('testcompetitions.store'), _this3.test_comp).then(function (response) {
+                  // console.log(response)
+                  _this3.getTests();
+
+                  _this3.ifExists = true;
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 6:
+                _context3.next = 8;
+                break;
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    // ASYNC PARA INGRESAR RESPUESTAS
+    newAnswer: function newAnswer() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var formData;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                formData = {};
+                formData.test_complete_id = _this4.test[_this4.test.length - 1].id;
+                formData.question_number = _this4.countQuestion;
+                formData.best_word = _this4.questions[_this4.countQuestion]['best_word'];
+                formData.worst_word = _this4.questions[_this4.countQuestion]['worst_word'];
+                formData.fullAnswers = _this4.questions[_this4.countQuestion]['fullAnswers'];
+                formData.saved = _this4.questions[_this4.countQuestion]['saved']; // console.log(formData);
+
+                _context4.next = 9;
+                return axios.post(route('AnswersTestCompetitions.store'), formData).then(function (response) {// console.log(response)
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 9:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    resultsInsert: function resultsInsert() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var countOptions, today;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _this5.getTests();
+
+                countOptions = {};
+
+                if (!(_this5.countQuestion < 27)) {
+                  countOptions.test_finished = 'true';
+                } else {
+                  countOptions.test_finished = 'false';
+                }
+
+                console.log('la pregunta va por: ' + _this5.countQuestion);
+                today = new Date();
+                countOptions.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+                countOptions.cv_id = _this5.cv_id;
+                countOptions.CountDete = _this5.countA;
+                countOptions.CountInfl = _this5.countB;
+                countOptions.CountEsta = _this5.countC;
+                countOptions.CountCump = _this5.countD;
+                _context5.next = 13;
+                return axios.post(route('testcompetitions.update', _this5.test[_this5.test.length - 1].id), countOptions).then(function (response) {// console.log(response.data);          
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 13:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
     toggleModal: function toggleModal() {
       this.isShowModal = !this.isShowModal;
     },
     toggleModalTest: function toggleModalTest() {
       this.isStartTest = !this.isStartTest;
+      this.newTest();
     },
     handleClose: function handleClose() {
       this.$emit("close");
     },
     answered: function answered(e) {
-      // console.log(this.questions[this.countQuestion]['selectedBetter']);
-      if (e.target.value == this.questions[this.countQuestion]['selectedBetter']) {
+      // console.log(this.questions[this.countQuestion]['best_word']);
+      if (e.target.value == this.questions[this.countQuestion]['best_word']) {
         var error = true;
         sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
           icon: 'error',
@@ -42634,40 +42858,39 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Selecciona otra opción diferente.'
         });
       } else {
-        if (this.questions[this.countQuestion]['selectedBetter'] == null && !error) {
-          this.questions[this.countQuestion]['selectedBetter'] = e.target.value;
-          console.log('Primer valor asignado. mejor' + this.questions[this.countQuestion]['selectedBetter']);
+        if (this.questions[this.countQuestion]['best_word'] == null && !error) {
+          this.questions[this.countQuestion]['best_word'] = e.target.value; // console.log('Primer valor asignado. mejor' + this.questions[this.countQuestion]['best_word']);
+
           this.questions[this.countQuestion]['question'] = 'Seleccione el adjetivo que menos se asemeje a su personalidad.';
-        } else if (this.questions[this.countQuestion]['selectedWorst'] == null) {
-          this.questions[this.countQuestion]['selectedWorst'] = e.target.value;
-          console.log('Segundo valor asignado. Peor' + this.questions[this.countQuestion]['selectedWorst']);
+        } else if (this.questions[this.countQuestion]['worst_word'] == null) {
+          this.questions[this.countQuestion]['worst_word'] = e.target.value; // console.log('Segundo valor asignado. Peor' + this.questions[this.countQuestion]['worst_word']);
+
           this.questions[this.countQuestion]['fullAnswers'] = true;
           this.questions[this.countQuestion]['question'] = 'Si las selecciones fueron correctas, presione el botón de siguiente. De lo contrario presione "limpiar"';
         }
-      }
+      } // console.log(e.target.value);
 
-      console.log(e.target.value);
     },
     clean: function clean() {
       if (this.questions[this.countQuestion]['saved']) {
-        this.questions[this.countQuestion]['selectedBetter'] == 'a' ? this.countA-- : this.countA = this.countA;
-        this.questions[this.countQuestion]['selectedBetter'] == 'b' ? this.countB-- : this.countB = this.countB;
-        this.questions[this.countQuestion]['selectedBetter'] == 'c' ? this.countC-- : this.countC = this.countC;
-        this.questions[this.countQuestion]['selectedBetter'] == 'd' ? this.countD-- : this.countD = this.countD;
-        this.questions[this.countQuestion]['selectedWorst'] == 'a' ? this.countA++ : this.countA = this.countA;
-        this.questions[this.countQuestion]['selectedWorst'] == 'b' ? this.countB++ : this.countB = this.countB;
-        this.questions[this.countQuestion]['selectedWorst'] == 'c' ? this.countC++ : this.countC = this.countC;
-        this.questions[this.countQuestion]['selectedWorst'] == 'd' ? this.countD++ : this.countD = this.countD;
+        this.questions[this.countQuestion]['best_word'] == 'a' ? this.countA-- : this.countA = this.countA;
+        this.questions[this.countQuestion]['best_word'] == 'b' ? this.countB-- : this.countB = this.countB;
+        this.questions[this.countQuestion]['best_word'] == 'c' ? this.countC-- : this.countC = this.countC;
+        this.questions[this.countQuestion]['best_word'] == 'd' ? this.countD-- : this.countD = this.countD;
+        this.questions[this.countQuestion]['worst_word'] == 'a' ? this.countA++ : this.countA = this.countA;
+        this.questions[this.countQuestion]['worst_word'] == 'b' ? this.countB++ : this.countB = this.countB;
+        this.questions[this.countQuestion]['worst_word'] == 'c' ? this.countC++ : this.countC = this.countC;
+        this.questions[this.countQuestion]['worst_word'] == 'd' ? this.countD++ : this.countD = this.countD;
         this.questions[this.countQuestion]['saved'] = false;
       }
 
-      this.questions[this.countQuestion]['selectedBetter'] = null;
-      this.questions[this.countQuestion]['selectedWorst'] = null;
+      this.questions[this.countQuestion]['best_word'] = null;
+      this.questions[this.countQuestion]['worst_word'] = null;
       this.questions[this.countQuestion]['question'] = 'Seleccione el adjetivo que más se asemeje a su personalidad.';
       this.questions[this.countQuestion]['fullAnswers'] = false;
     },
     closeable: function closeable() {
-      var _this = this;
+      var _this6 = this;
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
         title: '¿Está seguro?',
@@ -42679,32 +42902,41 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Si'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this.isStartTest = false;
+          _this6.isStartTest = false;
 
-          _this.clean();
+          _this6.clean();
         }
       });
     },
     nextCalculate: function nextCalculate() {
       if (!this.questions[this.countQuestion]['saved']) {
-        this.questions[this.countQuestion]['selectedBetter'] == 'a' ? this.countA++ : this.countA = this.countA;
-        this.questions[this.countQuestion]['selectedBetter'] == 'b' ? this.countB++ : this.countB = this.countB;
-        this.questions[this.countQuestion]['selectedBetter'] == 'c' ? this.countC++ : this.countC = this.countC;
-        this.questions[this.countQuestion]['selectedBetter'] == 'd' ? this.countD++ : this.countD = this.countD;
-        this.questions[this.countQuestion]['selectedWorst'] == 'a' ? this.countA-- : this.countA = this.countA;
-        this.questions[this.countQuestion]['selectedWorst'] == 'b' ? this.countB-- : this.countB = this.countB;
-        this.questions[this.countQuestion]['selectedWorst'] == 'c' ? this.countC-- : this.countC = this.countC;
-        this.questions[this.countQuestion]['selectedWorst'] == 'd' ? this.countD-- : this.countD = this.countD;
+        this.questions[this.countQuestion]['best_word'] == 'a' ? this.countA++ : this.countA = this.countA;
+        this.questions[this.countQuestion]['best_word'] == 'b' ? this.countB++ : this.countB = this.countB;
+        this.questions[this.countQuestion]['best_word'] == 'c' ? this.countC++ : this.countC = this.countC;
+        this.questions[this.countQuestion]['best_word'] == 'd' ? this.countD++ : this.countD = this.countD;
+        this.questions[this.countQuestion]['worst_word'] == 'a' ? this.countA-- : this.countA = this.countA;
+        this.questions[this.countQuestion]['worst_word'] == 'b' ? this.countB-- : this.countB = this.countB;
+        this.questions[this.countQuestion]['worst_word'] == 'c' ? this.countC-- : this.countC = this.countC;
+        this.questions[this.countQuestion]['worst_word'] == 'd' ? this.countD-- : this.countD = this.countD;
         this.questions[this.countQuestion]['saved'] = true;
       }
 
-      console.log(this.countA);
-      console.log(this.countB);
-      console.log(this.countC);
-      console.log(this.countD);
+      this.newAnswer(this.countQuestion);
+      this.resultsInsert(); // console.log(this.countA);
+      // console.log(this.countB);
+      // console.log(this.countC);
+      // console.log(this.countD);
+
       this.countQuestion++;
-      console.log(this.countQuestion);
+
+      if (!(this.countQuestion < 28)) {
+        this.isFinishedTest = true;
+      } // console.log(this.countQuestion);
+
     }
+  },
+  created: function created() {
+    this.getTests();
   }
 });
 
@@ -54522,8 +54754,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["userProp"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Testdisc"], {
+        userProp: $props.user,
         "class": "shadow-lg shadow-gray-300"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TestSoft"], {
+      }, null, 8
+      /* PROPS */
+      , ["userProp"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TestSoft"], {
         "class": "shadow-lg shadow-gray-300"
       })])])]), _hoisted_10])];
     }),
@@ -57477,16 +57712,25 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_3 = {
   key: 0,
+  role: "status",
+  "class": "sm:max-w-sm lg:max-w-full animate-pulse pb-5 lg:pb-0"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"h-2.5 bg-white rounded-full w-48 mb-4\"></div><div class=\"h-2 bg-gray-200 rounded-full max-w-[1150px] mb-2.5\"></div><div class=\"h-2 bg-gray-200 rounded-full max-w-[1130px] mb-2.5\"></div><div class=\"h-2 bg-gray-200 rounded-full max-w-[260px] mb-5\"></div><div class=\"flex mx-auto justify-center align-middle items-center w-1/2 h-32 bg-gray-300 rounded\"><svg class=\"w-12 h-12 text-gray-200\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" fill=\"currentColor\" viewBox=\"0 0 640 512\"><path d=\"M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z\"></path></svg></div><span class=\"sr-only\">Loading...</span><span class=\"sr-only\">Loading...</span>", 7);
+
+var _hoisted_11 = [_hoisted_4];
+var _hoisted_12 = {
+  key: 1,
   "class": "flex justify-center align-center flex-col my-1"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "w-full text-sm font-light text-gray-500 mx-auto px- leading-tight text-justify"
 }, "Para poder completar tu perfil, es necesario realizar el test de competencias. Este test tiene una duración estimada de 5 - 20 minutos. Le recomendamos tomar el test sin distractores al rededor. ", -1
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "py-4 self-center w-[100px] lg:w-[120px] text-gray-300",
   fill: "none",
   stroke: "currentColor",
@@ -57501,19 +57745,20 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "flex items-center cursor-pointer content-center justify-cente text-lg font-semibold text-start rounded-full bg-red-500 text-gray-50 px-4 py-1"
-}, " INICIAR TEST", -1
-/* HOISTED */
-);
-
-var _hoisted_7 = [_hoisted_6];
-var _hoisted_8 = {
+var _hoisted_15 = {
+  key: 0,
+  "class": "flex items-center cursor-pointer content-center justify-cente text-lg font-semibold text-start rounded-full bg-red-600 text-gray-50 px-4 py-1"
+};
+var _hoisted_16 = {
   key: 1,
+  "class": "flex items-center cursor-pointer content-center justify-cente text-lg font-semibold text-start rounded-full bg-red-600 text-gray-50 px-4 py-1"
+};
+var _hoisted_17 = {
+  key: 2,
   "class": "flex justify-center align-center flex-col my-4"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "pt-4 self-center w-[100px] lg:w-[120px] text-green-600",
   fill: "none",
   stroke: "currentColor",
@@ -57528,13 +57773,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-auto flex text-sm justify-center items-center lg:justify-center text-gray-500 lg:py-4"
-}, " Realizado el 29/01/2022 ", -1
-/* HOISTED */
-);
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "fixed inset-0 transition-opacity"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "absolute inset-0 bg-gray-500 opacity-75"
@@ -57542,26 +57781,26 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_20 = {
   "class": "z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full",
   role: "dialog",
   "aria-modal": "true",
   "aria-labelledby": "modal-headline"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5\"><div class=\"sm:flex w-full sm:items-start\"><div class=\"mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...\"><div class=\"flex text-center flex-col justify-center items-center mb-4 w-full\"><!-- TÍTULO --><h3 class=\"uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900\" id=\"modal-headline\"> TEST DE COMPETENCIAS </h3><!-- INSTRUCCIONES --><p class=\"text-xs text-gray-500 text-justify border-b-2\">Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, este se guardará en la última respuesta brindada; le recomendamos tomar el test sin distractores externos y en un solo intento.</p></div><!-- CUERPO --><div class=\"mt-2 flex flex-col modal-body\"><div class=\"self-start px-1 py-2 text- leading-6 font-bold text-gray-900\">Instrucciones:</div><!-- TEXTO DE INFORMACIÓN  --><div class=\"flex flex-col\"><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction1_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para &quot;más semejante&quot; y rojo para &quot;menos semejante&quot;.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">3- Si las elecciones son correctas, proceda a darle clic en el botón azul de la esquina inferior derecha para pasar al siguiente conjunto de palabras.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start\">4- Al pasar todas las preguntas el test tendrá una pantalla de finalizado, esta mostará el estado del test y si se realizó de manera correcta.</p></div></div><!-- BOTONES DEE RESPUESTA --><div id=\"answers\"></div></div></div></div></div>", 1);
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5\"><div class=\"sm:flex w-full sm:items-start\"><div class=\"mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ...\"><div class=\"flex text-center flex-col justify-center items-center mb-4 w-full\"><!-- TÍTULO --><h3 class=\"uppercase px-1 py-2 text-xl text-center leading-6 font-bold text-gray-900 lg:text-3xl\" id=\"modal-headline\"> TEST DE COMPETENCIAS </h3><!-- INSTRUCCIONES --><p class=\"text-xs text-gray-500 text-justify border-b-2 sm:mx-10 md:mx-20 lg:text-base\">Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, este se guardará en la última respuesta brindada; le recomendamos tomar el test sin distractores externos y en un solo intento.</p></div><!-- CUERPO --><div class=\"mt-2 flex flex-col modal-body px-0 sm:px-10 md:px-20\"><div class=\"self-start px-1 py-2 leading-6 font-bold text-gray-900 lg:text-lg\">Instrucciones:</div><!-- TEXTO DE INFORMACIÓN  --><div class=\"flex flex-col lg:text-base\"><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start lg:text-base\">1- El test te mostrará cuatro palabras en pantalla. Est le pedirá que seleccione primero la palabra con la que más se sienta identificado.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction1_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start lg:text-base\">2- Para elegir el ítem solicitado, solo basta con darle clic en cualquier parte del cuadrado y se pintará del color acorde a lo solicitado, verde para &quot;más semejante&quot; y rojo para &quot;menos semejante&quot;.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start lg:text-base\">3- Si las elecciones son correctas, proceda a darle clic en el botón azul de la esquina inferior derecha para pasar al siguiente conjunto de palabras.</p><img class=\"w-56 h-auto mx-auto py-2 mb-4\" src=\"" + _img_Instruction2_png__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" alt=\"\"></div><div class=\"py-1\"><p class=\"text-xs text-gray-500 text-justify leading-none justify-start lg:text-base\">4- Al pasar todas las preguntas el test tendrá una pantalla de finalizado, esta mostará el estado del test y si se realizó de manera correcta.</p></div></div><!-- BOTONES DEE RESPUESTA --><div id=\"answers\"></div></div></div></div></div>", 1);
 
-var _hoisted_14 = {
-  "class": "bg-gray-50 px-4 py-6 sm:px-6 flex flex-col sm:flex-row-reverse"
+var _hoisted_22 = {
+  "class": "bg-gray-50 gap-2 px-4 py-6 sm:px-6 flex flex-col sm:flex-row-reverse"
 };
-var _hoisted_15 = {
+var _hoisted_23 = {
   "class": "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
 };
-var _hoisted_16 = {
+var _hoisted_24 = {
   "class": "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "fixed inset-0 transition-opacity"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "absolute inset-0 bg-gray-500 opacity-75"
@@ -57569,21 +57808,21 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_26 = {
   "class": "z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full",
   role: "dialog",
   "aria-modal": "true",
   "aria-labelledby": "modal-headline"
 };
-var _hoisted_19 = {
+var _hoisted_27 = {
   "class": "bg-white px-4 pt-2 pb-4 sm:p-5 sm:pb-5 flex-col flex"
 };
-var _hoisted_20 = {
+var _hoisted_28 = {
   key: 0,
   "class": "flex justify-end"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-6 h-6 text-red-600",
   fill: "none",
   stroke: "currentColor",
@@ -57598,59 +57837,62 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_22 = [_hoisted_21];
-var _hoisted_23 = {
+var _hoisted_30 = [_hoisted_29];
+var _hoisted_31 = {
   "class": "sm:flex w-full sm:items-start"
 };
-var _hoisted_24 = {
+var _hoisted_32 = {
   "class": "mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left overflow-auto ..."
 };
-var _hoisted_25 = {
+var _hoisted_33 = {
   "class": "flex text-center flex-col justify-center items-center mb-4 w-full"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "uppercase px-1 py-2 pt-0 text-2xl text-center leading-6 font-extrabold text-gray-900",
   id: "modal-headline"
 }, " TEST DE COMPETENCIAS ", -1
 /* HOISTED */
 );
 
-var _hoisted_27 = {
+var _hoisted_35 = {
   key: 0,
-  "class": "text-xs text-gray-500 text-justify border-b-2"
+  "class": "text-xs select-none text-gray-500 text-justify border-b-2 lg:mx-10 lg:text-base"
 };
-var _hoisted_28 = {
+var _hoisted_36 = {
   key: 1,
-  "class": "text-xs text-gray-500 text-justify border-b-2"
+  "class": "text-xs text-gray-500 select-none text-justify border-b-2 lg:text-lg"
 };
-var _hoisted_29 = {
+var _hoisted_37 = {
   key: 0,
   "class": "mt-2 flex flex-col"
 };
-var _hoisted_30 = {
+var _hoisted_38 = {
+  "class": "leading-none text-center lg:text-xl lg:font-bold"
+};
+var _hoisted_39 = {
   "class": "flex flex-wrap justify-center gap-11"
 };
-var _hoisted_31 = {
+var _hoisted_40 = {
   "class": "py-2 gap-7 flex flex-col justify-center sm:flex-row sm:py-16"
 };
-var _hoisted_32 = ["for"];
-var _hoisted_33 = ["disabled", "id", "value"];
-var _hoisted_34 = {
+var _hoisted_41 = ["for"];
+var _hoisted_42 = ["disabled", "id", "value"];
+var _hoisted_43 = {
   key: 1,
   "class": "mt-2 flex flex-col"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-  "class": "font-bold text-xl"
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
+  "class": "font-bold text-center text-xl lg:text-2xl"
 }, "¡TEST FINALIZADO!", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex flex-wrap justify-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  "class": "w-36 h-36 text-green-600",
+  "class": "w-48 h-48 text-green-600",
   fill: "none",
   stroke: "currentColor",
   viewBox: "0 0 24 24",
@@ -57664,50 +57906,62 @@ var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_37 = [_hoisted_35, _hoisted_36];
-var _hoisted_38 = {
-  "class": "bg-gray-50 px-4 py-6 sm:px-6 flex flex-row justify-between items-end content-center text-end"
+var _hoisted_46 = [_hoisted_44, _hoisted_45];
+var _hoisted_47 = {
+  "class": "flex flex-col bg-gray-50 px-4 py-6 text-center items-center justify-between content-center sm:px-6 lg:items-end lg:flex-row lg:text-end"
 };
-var _hoisted_39 = {
-  "class": "text-gray-400 text-sm items-end"
-};
-var _hoisted_40 = {
+var _hoisted_48 = {
   key: 0,
-  "class": "mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto"
+  "class": "order-last mt-4 text-gray-900 text-base items-end lg:text-lg lg:order-first"
 };
-var _hoisted_41 = ["disabled"];
-var _hoisted_42 = ["disabled"];
-var _hoisted_43 = ["disabled"];
-var _hoisted_44 = {
+var _hoisted_49 = {
   key: 1,
-  "class": "mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto"
+  "class": "mt-3 flex w-auto items-center rounded-md justify-between shadow-sm sm:mt-0 sm:w-auto lg:align-middle"
+};
+var _hoisted_50 = ["disabled"];
+var _hoisted_51 = ["disabled"];
+var _hoisted_52 = ["disabled"];
+var _hoisted_53 = {
+  key: 2,
+  "class": "mt-3 flex w-auto items-center align-middle rounded-md shadow-sm sm:mt-0 sm:w-auto lg:self-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, !$data.formBind && !$data.ifExists && $data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, !$data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.formBind && $data.loadData && !$data.test_finished ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggleModal();
     }),
     "class": "w-auto flex justify-center items-center lg:justify-center lg:py-1"
-  }, _hoisted_7)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.formBind && $data.ifExists && $data.loadData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"w-full text-sm font-light text-gray-500 mx-auto px- leading-tight text-justify\">Para poder completar tu perfil, es necesario realizar el test de competencias. Este test tiene una duración estimada de 5 - 20 minutos. Le recomendamos tomar el test sin distractores al rededor.\r\n        </span> "), _hoisted_9, _hoisted_10])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <base-modal v-if=\"isShowModal\" @close=\"toggleModal\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL DE INFORMACIÓP "), $data.isShowModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, [$data.ifExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_15, " CONTINUAR")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_16, " INICIAR TEST"))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.formBind && $data.loadData && $data.test_finished ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"w-full text-sm font-light text-gray-500 mx-auto px- leading-tight text-justify\">Para poder completar tu perfil, es necesario realizar el test de competencias. Este test tiene una duración estimada de 5 - 20 minutos. Le recomendamos tomar el test sin distractores al rededor.\r\n        </span> "), _hoisted_18, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.test, function (tests, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index,
+      "class": "w-auto flex text-sm justify-center items-center lg:justify-center text-gray-500 lg:py-4"
+    }, " Realizado el " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tests.finished_date), 1
+    /* TEXT */
+    );
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <base-modal v-if=\"isShowModal\" @close=\"toggleModal\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL DE INFORMACIÓP "), $data.isShowModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     onClose: _cache[3] || (_cache[3] = function () {
       return $options.toggleModal && $options.toggleModal.apply($options, arguments);
     }),
     "class": "fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center"
-  }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.toggleModalTest(), $options.toggleModal();
     }),
     type: "button",
-    "class": "inline-flex justify-center font-bold w-full rounded-md border border-gray-300 px-4 py-2 bg-red-500 text-base leading-6 text-white shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-  }, " INICIAR ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "inline-flex justify-center font-bold w-full rounded-md select-none border border-gray-300 px-4 py-2 bg-red-600 text-base leading-6 text-white shadow-sm hover:text-gray-2000 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.ifExists ? "CONTINUAR" : "INICIAR"), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.toggleModal();
     }),
     type: "button",
-    "class": "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+    "class": "inline-flex justify-center w-full rounded-md border select-none border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
   }, " Cancel ")])])])], 32
   /* HYDRATE_EVENTS */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL DE TEST "), $data.isStartTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -57716,25 +57970,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.toggleModal && $options.toggleModal.apply($options, arguments);
     }),
     "class": "fixed bottom-0 inset-x-0 px-4 pb-4 inset-0 flex items-center justify-center"
-  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [!this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [!this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.closeable();
     }),
     type: "button",
     "class": "py-2"
-  }, _hoisted_22)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" TÍTULO "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" INSTRUCCIONES "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, "Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, se reiniciará por completo, por lo que, le pedimos atentamente que el test sea iniciado y terminado en el mismo intento. DETERMINANTE:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countA) + " INFLUENCIA:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countB) + " ESTABILIDAD:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countC) + " CUMPLIMIENTO:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countD), 1
+  }, _hoisted_30)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" TÍTULO "), _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" INSTRUCCIONES "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_35, "Lea atentamente el enunciado y seleccione la opción que más se acople a su manera de ser. Si desea cerrar la ventana del test, se reiniciará por completo, por lo que, le pedimos atentamente que el test sea iniciado y terminado en el mismo intento. ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_36, "¡Gracias por realizar el test de competencias!, los resultados han sido guardados y están en espera a revisión. Puede continuar completando el resto de zonas para su CV."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CUERPO "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.questions[this.countQuestion]['question']), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_28, "¡Gracias por realizar el test de competencias!, los resultados han sido guardados y están en espera a revisión. Puede continuar completando el resto de zonas para su CV."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CUERPO "), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.questions[this.countQuestion]['question']), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.questions[this.countQuestion]['options'], function (words, index) {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.questions[this.countQuestion]['options'], function (words, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", {
       "for": index,
       key: index,
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'bg-green-600 text-white': index == _this.questions[_this.countQuestion]['selectedBetter'],
-        'bg-red-600 text-white': index == _this.questions[_this.countQuestion]['selectedWorst'],
+        'bg-green-600 text-white': index == _this.questions[_this.countQuestion]['best_word'],
+        'bg-red-600 text-white': index == _this.questions[_this.countQuestion]['worst_word'],
         'cursor-pointer': !_this.questions[_this.countQuestion]['fullAnswers']
-      }, "uppercase my-auto content-center text-center w-full border-2 p-3 my-4s"])
+      }, "uppercase select-none my-auto content-center text-center w-full border-2 p-3 lg:p-8 lg:text-2xl lg:font-semibold"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       onClick: _cache[5] || (_cache[5] = function ($event) {
         return $options.answered($event);
@@ -57746,62 +57998,62 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       value: index
     }, null, 8
     /* PROPS */
-    , _hoisted_33), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(words), 1
+    , _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(words), 1
     /* TEXT */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_32);
+    , _hoisted_41);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, _hoisted_37))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countQuestion + 1) + "/28", 1
+  ))])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, _hoisted_46))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BOTONES / FOOTER PAGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [!this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.countQuestion + 1) + "/28", 1
   /* TEXT */
-  ), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !this.isFinishedTest ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $options.clean();
     }),
     type: "button",
-    "class": "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+    "class": "inline-flex justify-center w-full rounded-md border select-none border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl"
   }, " Limpiar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: this.countQuestion <= 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'opacity-40': this.countQuestion <= 0
-    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    }, "inline-flex select-none justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl"]),
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return _this.countQuestion--;
     }),
     type: "button"
   }, " Atrás ", 10
   /* CLASS, PROPS */
-  , _hoisted_41), this.countQuestion < 27 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  , _hoisted_50), this.countQuestion < 27 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     disabled: !this.questions[this.countQuestion]['fullAnswers'],
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'opacity-40': !this.questions[this.countQuestion]['fullAnswers']
-    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    }, "inline-flex justify-center w-full select-none rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl"]),
     onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.nextCalculate();
     }),
     type: "button"
-  }, " Next ", 10
+  }, " Siguiente ", 10
   /* CLASS, PROPS */
-  , _hoisted_42)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  , _hoisted_51)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
     onClick: _cache[9] || (_cache[9] = function ($event) {
-      return $data.isFinishedTest = true;
+      return $options.nextCalculate();
     }),
     disabled: !this.questions[this.countQuestion]['fullAnswers'],
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'opacity-40': !this.questions[this.countQuestion]['fullAnswers']
-    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"]),
+    }, "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl"]),
     type: "button"
   }, " Finalizar ", 10
   /* CLASS, PROPS */
-  , _hoisted_43))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , _hoisted_52))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[10] || (_cache[10] = function ($event) {
       return $data.isStartTest = false, $data.ifExists = true;
     }),
     type: "button",
-    "class": "inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+    "class": "inline-flex justify-center justify-items-end w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl"
   }, " Finalizar ")]))])])], 32
   /* HYDRATE_EVENTS */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64

@@ -18,8 +18,8 @@ class CreateKillerQuestionsTable extends Migration
             $table->text('question');
             $table->text('description')->nullable();
 
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->unsignedBigInteger('offer_id');
+            $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
 
             $table->timestamps();
         });

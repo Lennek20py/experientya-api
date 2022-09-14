@@ -1425,6 +1425,9 @@ select {
 .h-14 {
   height: 3.5rem;
 }
+.h-48 {
+  height: 12rem;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -1569,6 +1572,12 @@ select {
 }
 .max-w-\[260px\] {
   max-width: 260px;
+}
+.max-w-\[1150px\] {
+  max-width: 1150px;
+}
+.max-w-\[1130px\] {
+  max-width: 1130px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1764,6 +1773,9 @@ select {
 }
 .justify-items-start {
   justify-items: start;
+}
+.justify-items-end {
+  justify-items: end;
 }
 .gap-6 {
   gap: 1.5rem;
@@ -2307,6 +2319,10 @@ select {
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -3496,6 +3512,11 @@ select {
     margin-bottom: -1px;
   }
 
+  .sm\:mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
   .sm\:ml-3 {
     margin-left: 0.75rem;
   }
@@ -3943,6 +3964,11 @@ select {
     margin-right: 1.75rem;
   }
 
+  .md\:mx-20 {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -4055,6 +4081,11 @@ select {
     padding-right: 0px;
   }
 
+  .md\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
   .md\:text-gray-900 {
     --tw-text-opacity: 1;
     color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -4122,6 +4153,11 @@ select {
   .lg\:my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
+  }
+
+  .lg\:mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
   }
 
   .lg\:mr-4 {
@@ -4196,6 +4232,10 @@ select {
     max-width: 24rem;
   }
 
+  .lg\:max-w-full {
+    max-width: 100%;
+  }
+
   .lg\:flex-none {
     flex: none;
   }
@@ -4232,6 +4272,10 @@ select {
     align-items: flex-start;
   }
 
+  .lg\:items-end {
+    align-items: flex-end;
+  }
+
   .lg\:items-center {
     align-items: center;
   }
@@ -4264,6 +4308,10 @@ select {
     gap: 0.25rem;
   }
 
+  .lg\:self-end {
+    align-self: flex-end;
+  }
+
   .lg\:rounded-full {
     border-radius: 9999px;
   }
@@ -4280,6 +4328,10 @@ select {
 
   .lg\:p-2 {
     padding: 0.5rem;
+  }
+
+  .lg\:p-8 {
+    padding: 2rem;
   }
 
   .lg\:px-8 {
@@ -4315,6 +4367,11 @@ select {
   .lg\:px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+
+  .lg\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .lg\:pl-64 {
@@ -4355,6 +4412,14 @@ select {
 
   .lg\:text-start {
     text-align: start;
+  }
+
+  .lg\:text-end {
+    text-align: end;
+  }
+
+  .lg\:align-middle {
+    vertical-align: middle;
   }
 
   .lg\:text-4xl {
@@ -4399,6 +4464,14 @@ select {
 
   .lg\:font-extrabold {
     font-weight: 800;
+  }
+
+  .lg\:font-bold {
+    font-weight: 700;
+  }
+
+  .lg\:font-semibold {
+    font-weight: 600;
   }
 
   .lg\:text-gray-50 {
