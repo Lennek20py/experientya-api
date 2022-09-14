@@ -6,13 +6,14 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\StateV2;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CountriesStatesCitiesController extends Controller
 {
    public function fetchCountries()
    {
-    $countries = Country::all();
-    return response()->json($countries);
+    $response = Http::withHeaders(['X-CSCAPI-KEY' => 'cUlVWVJxVGRJdXVlVmZURER3QnJCOTRtOVZteklKblpFYTJ1TklUZw=='])->get('https://api.countrystatecity.in/v1/countries');
+    return response()->json($response);
    }
 
    public function fetchStates($id)

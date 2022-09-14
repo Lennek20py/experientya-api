@@ -29,7 +29,6 @@
                         {{ list }}
                     </option>
                 </select>
-                <p id="helper-text-explanation" class=" text-[10px] text-justify lg:text-xs text-gray-500">¿No aparece tu centro de educación en la lista? <a href="#" class="text-red-500 hover:underline font-bold">regístralo aquí!</a>.</p>
             </div>
             <div class="flex grow w-full lg:basis-1/2 2xl:ml-4">
             <div class="w-full lg:grow">
@@ -213,8 +212,18 @@ export default {
         this.capitalizeCertificationName();
         if(this.newData) {
             this.certification.post(route('certifications.store'), { preserveScroll: true });
+            Swal.fire(
+                    'Exito!',
+                    'La certificación fue registrada exitosamente!',
+                    'success'
+                    );
         } else if(!this.newData) {
             this.certification.post(route('certifications.update', this.certification.id), { preserveScroll: true });
+            Swal.fire(
+                    'Actualizado!',
+                    'La certificación fue actualizada exitosamente!',
+                    'success'
+                    );
         }
         this.getCertifications();
         this.formBind = false;

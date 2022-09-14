@@ -161,7 +161,7 @@ export default {
             state: "1",
             locationInfo: {},
             experiences: [],
-            countries: [],
+            countries: [{}],
             states: [],
             cities: [],
             experience: this.$inertia.form( {
@@ -201,15 +201,23 @@ export default {
                 console.log(error);
                 this.ifExists = false
             });
-
+            const self = this;
             this.loadData = true;
-
-            await axios.get(route('countries-list'))
-            .then((response) => {
-                this.countries = response.data;
-            }).catch((error) => {
-                console.log(error);;
+            var config = {
+                method: 'get',
+                url: 'https://api.countrystatecity.in/v1/countries',
+                headers: {
+                    'X-CSCAPI-KEY': 'cUlVWVJxVGRJdXVlVmZURER3QnJCOTRtOVZteklKblpFYTJ1TklUZw=='
+                }
+            };
+            axios(config)
+            .then(function (response) {
+                console.log(response.data);
+                self.countries = response.data;
             })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         newDataMethod(){
             this.clearData();
@@ -283,12 +291,28 @@ export default {
         async fetchStates() {
             this.experience.state = "";
             this.experience.city = "";
-            await axios.get(route('states-list', this.experience.country))
-            .then((response) => {
-              this.states = response.data;
-            }).catch((error) => {
+            const self = this;
+            var config = {
+                method: 'get',
+                url: 'https://api.countrystatecity.in/v1/countries/' + this.experience.country + '/states',
+                headers: {
+                    'X-CSCAPI-KEY': 'cUlVWVJxVGRJdXVlVmZURER3QnJCOTRtOVZteklKblpFYTJ1TklUZw=='
+                }
+            };
+            axios(config)
+            .then(function (response) {
+                self.states = response.data;
+            })
+            .catch(function (error) {
                 console.log(error);
             });
+
+            // await axios.get(route('states-list', this.experience.country))
+            // .then((response) => {
+            //   this.states = response.data;
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
         },
         async fetchStatesEdit() {
             await axios.get(route('states-list', this.experience.country))
