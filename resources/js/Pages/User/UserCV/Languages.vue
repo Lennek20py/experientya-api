@@ -23,7 +23,7 @@
                 <div class="grow w-full lg:tgyhnybasis-1/2">
                     <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Idioma</label>
                     <select required name="school_name" v-model="this.language.name_language" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                        <option value>Seleccione un algo</option>
+                        <option value>Seleccione un idioma</option>
                         <option v-for="(list, id) in this.list_languages" :key="id" :value="list.language">
                             {{ list.language }}
                         </option>
@@ -32,7 +32,7 @@
                 <div class="grow w-full lg:basis-1/2">
                     <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nivel</label>
                     <select v-model="this.language.level" required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                        <option value>Seleccione un algo</option>
+                        <option value>Seleccione el nivel</option>
                         <option value="No Hablado">No Hablado</option>
                         <option value="Básico">Básico</option>
                         <option value="Intermedio">Intermedio</option>
@@ -604,8 +604,18 @@ export default {
             this.capitalizeCertificationName();
             if(this.newData) {
                 this.language.post(route('languages.store'), { preserveScroll: true });
+                Swal.fire(
+                    'Exito!',
+                    'El idioma fue registrado exitosamente!',
+                    'success'
+                    );
             } else if(!this.newData) {
                 this.language.post(route('languages.update', this.language.id), { preserveScroll: true });
+                Swal.fire(
+                    'Actualizado!',
+                    'El idioma fue actualizado exitosamente!',
+                    'success'
+                    );
             }
         this.getCertifications();
         this.formBind = false;

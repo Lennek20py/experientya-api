@@ -219,9 +219,10 @@
 import JetButton from '@/Jetstream/Button'
 import Notification from '@/CustomComponents/Notification.vue'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { tsThisType } from '@babel/types';
 export default {
-    components: {JetButton, Notification},
+    components: {JetButton, Notification, Swal},
     props: ['userProp'],
     data() {
         return {
@@ -342,6 +343,11 @@ export default {
         },
         submit() {
             this.workPreferences.post(route('workPreferences.update', this.userProp.id), { preserveScroll: true});
+            Swal.fire(
+                    'Actualizado!',
+                    'El registro fue actualizado exitosamente!',
+                    'success'
+                    );
             this.formBind = false;
             this.ifExists = true;
             this.getTownInfo();

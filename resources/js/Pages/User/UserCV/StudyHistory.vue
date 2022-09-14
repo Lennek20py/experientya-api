@@ -53,30 +53,20 @@
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
                             <input v-model="this.studyDegree.school_name" type="search" id="school-name" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-10 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base" placeholder="Buscar centro de educación..." required>
-                            <!-- <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button> -->
                         </div>
-                        <!-- <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Centro de educación</label>
-                        <select required v-model="studyDegree.school_name" name="school_name" id="school_name" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
-                            <option value="Instituto Tecnológico de Tuxtla Gutiérrez (ITTG)">Instituto Tecnológico de Tuxtla Gutiérrez (ITTG)</option>
-                            <option value="Instituto Tecnológico de Chihuahua (ITCH)">Instituto Tecnológico de Chihuahua (ITCH)</option>
-                            <option value="Universidad Anáhuac(UA)">Universidad Anáhuac(UA)</option>
-                            <option value="Instituto Tecnológico Superior de Misantla (ITSM)">Instituto Tecnológico Superior de Misantla (ITSM)</option>
-                            
-                        </select> -->
-                        <p id="helper-text-explanation" class=" text-[10px] text-justify lg:text-xs text-gray-500">¿No aparece tu centro de educación en la lista? <a href="#" class="text-red-500 hover:underline font-bold">regístralo aquí!</a>.</p>
                     </div>
                 </div>
                 <div class="flex grow basis-1/2 2xl:ml-4">
                     <div class="mt-3 grow">
                         <label for="study_certificate" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Título de la carrera</label>
-                        <select required v-model="this.studyDegree.study_tittle" name="study_certificate" id="study_certificate" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                        <input type="text" v-model="this.studyDegree.study_tittle" required placeholder="Ingrese le título de la carrera" name="job" id="job" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                        <!-- <select required v-model="this.studyDegree.study_tittle" name="study_certificate" id="study_certificate" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                             <option value>Seleccione un algo</option>
                             <option value="ARQUITECTURA">ARQUITECTURA </option>
                             <option value="INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES">INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES </option>
                             <option value="LICENCIATURA EN TURISMO">LICENCIATURA EN TURISMO </option>
                             <option value="ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA">ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA </option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
             </div>
@@ -349,8 +339,18 @@ export default {
         submit() {
             if (this.newStudyBind) {
                 this.studyDegree.post(route('study-degree.store'), { preserveScroll: true});
+                Swal.fire(
+                    'Creado!',
+                    'El registro fue creado exitosamente!',
+                    'success'
+                    );
             } else if (!this.newStudyBind) {
                 this.studyDegree.put(route('study-degree.update', this.studyDegree.id), { preserveScroll: true});
+                Swal.fire(
+                    'Actualizado!',
+                    'El registro fue actualizado exitosamente!',
+                    'success'
+                    );
             }
             this.getStudyDegree();
             this.formBind = false;
