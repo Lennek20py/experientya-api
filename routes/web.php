@@ -61,6 +61,7 @@ Route::get('/anuies-specifics', [AnuiesController::class, 'fetchSpecificsAll'])-
 
 // Study Degree table routes CRUD
 Route::get('/study-degree', [StudyDegreeController::class, 'index'])->name('list-degrees');
+Route::get('/study-degree/schools', [StudyDegreeController::class, 'getSchools'])->name('list-degrees-schools');
 Route::get('/study-degree/{id}', [StudyDegreeController::class, 'show'])->name('study-degrees.show');
 Route::post('/study-degree', [StudyDegreeController::class, 'store'])->name('study-degree.store');
 Route::put('/study-degree/{id}', [StudyDegreeController::class, 'update'])->name('study-degree.update');
