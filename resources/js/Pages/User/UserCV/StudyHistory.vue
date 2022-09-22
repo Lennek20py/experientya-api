@@ -20,7 +20,7 @@
     <div class="2xl:mb-4" v-else-if="formBind">
             <form @submit.prevent="submit">
                 <div class="flex flex-row justify-around items-center align-center grow gap-2 lg:gap-4">
-                <div class="flex grow 2xl:ml-1">
+                <div class="flex grow 2xl:ml-1 basis-1/2">
                     <div class="mt-3 grow">
                         <label for="studyLevel" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Grado cursado</label>
                         <select required v-model="this.studyDegree.study_level" name="studyLevel" id="studyLevel" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="flex grow gap-2 2xl:ml-4 lg:gap-4">
+                <div class="flex grow 2xl:ml-4 basis-1/2 lg:gap-4">
                     <div class="mt-3 grow">
                         <label for="study_status" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Estatus</label>
                         <select required name="study_status" @change="watchStatus" v-model="studyDegree.study_status" id="study_status" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
@@ -57,14 +57,7 @@
                 <div class="flex w-full 2xl:ml-1 lg:basis-1/2 lg:grow">
                     <div class="mt-3 grow">
                         <label for="study_certificate" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Título de la carrera</label>
-                        <input type="text" v-model="this.studyDegree.study_tittle" required placeholder="Ingrese el título de la carrera" name="job" id="job" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                        <!-- <select required v-model="this.studyDegree.study_tittle" name="study_certificate" id="study_certificate" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
-                            <option value="ARQUITECTURA">ARQUITECTURA </option>
-                            <option value="INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES">INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES </option>
-                            <option value="LICENCIATURA EN TURISMO">LICENCIATURA EN TURISMO </option>
-                            <option value="ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA">ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA </option>
-                        </select> -->
+                        <input type="text" v-model="this.studyDegree.study_tittle" required autocomplete="off" placeholder="Ingrese el título de la carrera" name="job" id="job" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     </div>
                 </div>
             </div>

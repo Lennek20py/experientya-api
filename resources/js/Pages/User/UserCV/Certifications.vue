@@ -21,16 +21,17 @@
     <div class=" mb-4" v-else-if="formBind">
     <form @submit.prevent="submit" enctype="multipart/form-data">
         <div class="flex flex-col justify-around w-full items-start grow gap-2 2xl:ml-1 lg:gap-4 lg:flex-row lg:pb-4">
-            <div class="grow w-full lg:basis-1/2">
+            <div class="grow w-full lg:basis-2/3">
                 <label for="school_name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base after:ml-0.5 after:text-red-500 after:content-['*']">Nombre del certificado</label>
-                <select v-model="this.certification.name_certification" required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
+                <v-select taggable v-model="this.certification.name_certification" :options="certifications_list"></v-select>
+                <!-- <select v-model="this.certification.name_certification" required name="school_name" id="school_name" class="block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     <option value>Seleccione un algo</option>
                     <option  v-for="(list, index) in this.certifications_list" :key="index" :value="list">
                         {{ list }}
                     </option>
-                </select>
+                </select> -->
             </div>
-            <div class="flex grow w-full lg:basis-1/2 2xl:ml-4">
+            <div class="flex grow w-full lg:basis-1/3 2xl:ml-4">
             <div class="w-full lg:grow">
                 <label for="certification_path_name" class="block text-sm font-medium text-gray-700">
                     <span class="block text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Adjuntar certificado</span>
@@ -89,8 +90,9 @@
 import JetButton from '@/Jetstream/Button';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import vSelect from 'vue-select';
 export default {
-    components: {JetButton, Swal },
+    components: {JetButton, Swal, vSelect },
     props: ['userProp'],
     data() {
         return {
@@ -156,7 +158,8 @@ export default {
         await axios.get(route('certifications.show', this.certification.cv_id))
         .then((response) => {
             this.certifications = response.data;
-            // console.log(this.certifications);
+            this.certifications.forEach(element => this.certifications_list.indexOf(element.name_certification) === -1 ? this.certifications_list.push(element.name_certification) : this.certifications_list = this.certifications_list );
+            
             if (response.data.length == 0) {
                 this.ifExist = false;
                 this.newData = true;     
@@ -259,6 +262,12 @@ export default {
     created() {
         this.getCertifications();
     },
+    // computed: {
+    //     addCertifications: function() {
+    //         console.log(this.certifications)
+    //         return true;
+    //     } 
+    // }
 };
 </script>
 
