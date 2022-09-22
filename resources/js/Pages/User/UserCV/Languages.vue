@@ -546,7 +546,7 @@ export default {
                 console.log(error);
             });
 
-            await axios.get(route('languages.show', this.language.cv_id))
+            await axios.get(route('language.show', this.language.cv_id))
             .then((response) => {
                 this.languages = response.data;
                 console.log(this.languages);
@@ -579,6 +579,7 @@ export default {
         }, 
     edit(i) {
         this.language.id = i.id;
+        this.language.cv_id = i.cv_id;
         this.language.name_language = i.name_language;
         this.language.level = i.level;
         this.language.language_certification_path_name = i.language_certification_path_name;
@@ -603,14 +604,14 @@ export default {
         submit() {
             this.capitalizeCertificationName();
             if(this.newData) {
-                this.language.post(route('languages.store'), { preserveScroll: true });
+                this.language.post(route('language.store'), { preserveScroll: true });
                 Swal.fire(
                     'Exito!',
                     'El idioma fue registrado exitosamente!',
                     'success'
                     );
             } else if(!this.newData) {
-                this.language.post(route('languages.update', this.language.id), { preserveScroll: true });
+                this.language.put(route('language.update', this.language.id), { preserveScroll: true });
                 Swal.fire(
                     'Actualizado!',
                     'El idioma fue actualizado exitosamente!',
@@ -643,7 +644,7 @@ export default {
 
        deleteData() {
         // console.log(this.certification.id);
-        this.language.delete(route('languages.delete', this.language.id), { preserveScroll: true })
+        this.language.delete(route('language.destroy', this.language.id), { preserveScroll: true })
         this.formBind = false;
         this.getCertifications();
     },

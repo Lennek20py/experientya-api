@@ -68,26 +68,26 @@ Route::put('/study-degree/{id}', [StudyDegreeController::class, 'update'])->name
 Route::delete('/study-degree/{id}', [StudyDegreeController::class, 'destroy'])->name('study-degree.delete');
 Route::get('/cv-search/{id}', [StudyDegreeController::class, 'cvSearch'])->name('cv-search');
 
-// Certifications table routes CRUD
-Route::get('/certifications', [CertificationsController::class, 'index'])->name('list-certifications');
-Route::get('/certifications/{id}', [CertificationsController::class, 'show'])->name('certifications.show');
-Route::post('/certifications', [CertificationsController::class, 'store'])->name('certifications.store');
-Route::post('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
-Route::delete('/certifications/{id}', [CertificationsController::class, 'destroy'])->name('certifications.delete');
+// // Certifications table routes CRUD
+// Route::get('/certifications', [CertificationsController::class, 'index'])->name('list-certifications');
+// Route::get('/certifications/{id}', [CertificationsController::class, 'show'])->name('certifications.show');
+// Route::post('/certifications', [CertificationsController::class, 'store'])->name('certifications.store');
+// Route::post('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
+// Route::delete('/certifications/{id}', [CertificationsController::class, 'destroy'])->name('certifications.delete');
 
 // Language table routes CRUD
-Route::get('/language', [LanguageController::class, 'index'])->name('list-languages');
-Route::get('/language/{id}', [LanguageController::class, 'show'])->name('languages.show');
-Route::post('/language', [LanguageController::class, 'store'])->name('languages.store');
-Route::post('/language/{id}', [LanguageController::class, 'update'])->name('languages.update');
-Route::delete('/language/{id}', [LanguageController::class, 'destroy'])->name('languages.delete');
+// Route::get('/language', [LanguageController::class, 'index'])->name('list-languages');
+// Route::get('/language/{id}', [LanguageController::class, 'show'])->name('languages.show');
+// Route::post('/language', [LanguageController::class, 'store'])->name('languages.store');
+// Route::post('/language/{id}', [LanguageController::class, 'update'])->name('languages.update');
+// Route::delete('/language/{id}', [LanguageController::class, 'destroy'])->name('languages.delete');
 
-// Experience table routes CRUD
-Route::get('/experience', [ExperienceController::class, 'index'])->name('list-experiences');
-Route::get('/experience/{id}', [ExperienceController::class, 'show'])->name('experiences.show');
-Route::post('/experience', [ExperienceController::class, 'store'])->name('experiences.store');
-Route::post('/experience/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
-Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experiences.delete');
+// // Experience table routes CRUD
+// Route::get('/experience', [ExperienceController::class, 'index'])->name('list-experiences');
+// Route::get('/experience/{id}', [ExperienceController::class, 'show'])->name('experiences.show');
+// Route::post('/experience', [ExperienceController::class, 'store'])->name('experiences.store');
+// Route::post('/experience/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
+// Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experiences.delete');
 
 // Test Competitions CRUD
 Route::get('/testcomp', [TestCompetitionsController::class, 'indexTest'])->name('list-TestsCompetitions');
@@ -114,7 +114,11 @@ Route::get('/user/wp', [WorkPreferencesController::class, 'index'])->name('workP
 Route::get('/user/wp/{id}', [WorkPreferencesController::class, 'search'])->name('workPreferences.search');
 Route::post('/user/wp/{id}', [WorkPreferencesController::class, 'update'])->name('workPreferences.update');
 
-
+Route::apiResources([
+    "experience" => ExperienceController::class,
+    "language" => LanguageController::class,
+    "certifications" => CertificationsController::class,
+]);
 
 
 Route::middleware([
