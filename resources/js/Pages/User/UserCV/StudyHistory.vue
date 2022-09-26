@@ -20,11 +20,11 @@
     <div class="2xl:mb-4" v-else-if="formBind">
             <form @submit.prevent="submit">
                 <div class="flex flex-row justify-around items-center align-center grow gap-2 lg:gap-4">
-                <div class="flex grow 2xl:ml-1">
+                <div class="flex grow 2xl:ml-1 basis-1/2">
                     <div class="mt-3 grow">
                         <label for="studyLevel" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Grado cursado</label>
                         <select required v-model="this.studyDegree.study_level" name="studyLevel" id="studyLevel" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el grado cursado</option>
                             <option value="Secundaria">Secundaria</option>
                             <option value="Preparatoria">Preparatoria</option>
                             <option value="Licenciatura">Licenciatura</option>
@@ -33,40 +33,31 @@
                         </select>
                     </div>
                 </div>
-                <div class="flex grow gap-2 2xl:ml-4 lg:gap-4">
+                <div class="flex grow 2xl:ml-4 basis-1/2 lg:gap-4">
                     <div class="mt-3 grow">
                         <label for="study_status" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Estatus</label>
                         <select required name="study_status" @change="watchStatus" v-model="studyDegree.study_status" id="study_status" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el estado</option>
                             <option value="progress">En curso</option>
                             <option value="done">Finalizado</option>
                         </select>
                     </div>
                 </div>
                 </div>
-            <div class="flex flex-row justify-around items-start grow gap-2 lg:gap-4">
-                <div class="flex grow 2xl:ml-1 basis-1/2">
+            <div class="flex flex-col justify-around items-start grow gap-2 lg:gap-4 lg:flex-row">
+                <div class="flex w-full 2xl:ml-1 lg:basis-1/2 lg:grow">
                     <div class="mt-3 grow">
                         <label for="school-name" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Centro de educación</label>
                         <div class="relative">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            </div>
-                            <input v-model="this.studyDegree.school_name" type="search" id="school-name" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-10 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base" placeholder="Buscar centro de educación..." required>
+                            <v-select taggable v-model="this.studyDegree.school_name" :options="schools" class="mt-1 block w-full text-xs rounded-md border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base"></v-select>
+                            <p id="helper-text-explanation" class=" text-[10px] text-justify lg:text-xs text-gray-500">¿No aparece tu centro de educación en la lista? Ingresa tu centro de educación con su nombre y sus iniciales entre paréntesis. <span>Ej: Instituto Experientya (IE)</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="flex grow basis-1/2 2xl:ml-4">
+                <div class="flex w-full 2xl:ml-1 lg:basis-1/2 lg:grow">
                     <div class="mt-3 grow">
                         <label for="study_certificate" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Título de la carrera</label>
-                        <input type="text" v-model="this.studyDegree.study_tittle" required placeholder="Ingrese le título de la carrera" name="job" id="job" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                        <!-- <select required v-model="this.studyDegree.study_tittle" name="study_certificate" id="study_certificate" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
-                            <option value="ARQUITECTURA">ARQUITECTURA </option>
-                            <option value="INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES">INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES </option>
-                            <option value="LICENCIATURA EN TURISMO">LICENCIATURA EN TURISMO </option>
-                            <option value="ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA">ESPECIALIZACIÓN EN INVESTIGACIÓN EDUCATIVA </option>
-                        </select> -->
+                        <input type="text" v-model="this.studyDegree.study_tittle" required autocomplete="off" placeholder="Ingrese el título de la carrera" name="job" id="job" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                     </div>
                 </div>
             </div>
@@ -75,7 +66,7 @@
                     <div class="mt-1 grow">
                         <label for="starting_month" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Mes de inicio</label>
                         <select required v-model="this.studyDegree.starting_month" name="starting_month" id="starting_month" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el mes de inicio</option>
                             <option v-for="(Months, index) in this.months" :key="index" :value="Months">
                                 {{ Months }}
                             </option>
@@ -87,7 +78,7 @@
                     <div class="mt-1 grow">
                         <label for="starting_year" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Año de inicio</label>
                         <select required v-model="this.studyDegree.starting_year" name="starting_year" id="starting_year" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el año de inicio</option>
                             <option v-for="(Years, index) in this.years" :key="index" :value="Years">
                                 {{ Years }}
                             </option>
@@ -185,10 +176,11 @@
 import JetButton from '@/Jetstream/Button';
 import Notification from '@/CustomComponents/Notification';
 import axios from 'axios';
-import Multiselect from 'vue-multiselect';
 import Swal from 'sweetalert2';
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 export default {
-    components: {JetButton, Notification, Multiselect, Swal},
+    components: {JetButton, Notification, vSelect, Swal},
     props: ['userProp'],
     data() {
         return {
@@ -199,6 +191,7 @@ export default {
             deleteModal: false,
             state: "1",
             studyDegrees: [],
+            schools: [],
             studyDegree: this.$inertia.form( {
                 cv_id: "",
                 school_name: "",
@@ -262,19 +255,13 @@ export default {
             await axios.get(route('cv-search', this.userProp.id))
             .then((response) => {
                 this.studyDegree.cv_id = response.data[0].id;
-                // this.studyDegree.cv_id = response.data[0].user_id;
-                // console.log(response.data[0]);
-                // console.log(this.studyDegree.id);
             }).catch((error) => {
                 console.log(error);
             });
 
-            // console.log("El cv_id esaaaa ", this.studyDegree.cv_id)
-
             await axios.get(route('study-degrees.show', this.studyDegree.cv_id))
             .then((response) => {
                 this.studyDegrees = response.data;
-                // console.log(this.studyDegrees)
                 if (response.data.length == 0){ 
                 this.ifExists = false
                 this.newStudyBind = true;
@@ -285,6 +272,14 @@ export default {
                 console.log(error);
                 this.ifExists = false
             });
+            
+            await axios.get(route('list-degrees-schools'))
+            .then((response) => {
+                this.schools = response.data;
+                console.log(this.schools)
+            }).catch((error) => {
+                console.log(error);
+            })
             this.loadData = true;
         },
         newStudy(){
@@ -308,8 +303,6 @@ export default {
             this.studyDegree.id= i.id;
             this.formBind = true;
             this.newStudyBind = false;
-            // console.log(i);
-            // console.log('Id que se tiene', this.studyDegree.id);
         },
         deleteAlert() {
             Swal.fire({
@@ -383,5 +376,5 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
+

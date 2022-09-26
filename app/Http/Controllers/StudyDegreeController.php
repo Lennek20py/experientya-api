@@ -25,6 +25,15 @@ class StudyDegreeController extends Controller
         $cv = Cv::where('user_id', $id)->get();
         return response()->json($cv);
     }
+    public function getSchools()
+    {
+        $search = request()->get('search');
+        $data = StudyDegree::distinct('school_name')->orderBy('school_name', 'asc')
+            ->when($search !== null, function ($query) use ($search) {
+                $query = $query->where('school_name', 'LIKE', '%' . $search . '%');
+            })->pluck('school_name');
+        return response()->json($data);
+    }
 
     /**
      * Show the form for creating a new resource.
