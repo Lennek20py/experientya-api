@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\CompanyPlan;
+use App\Models\KillerQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreOfferRequest;
@@ -35,24 +36,61 @@ class OfferController extends Controller
         return Inertia::render('Offer/Create');
     }
 
-    public function store(StoreOfferRequest $request)
+    //StoreOfferRequest
+    public function store(Request $request)
     {
-        Offer::create($request->all());
+        if( $request->question_check == 1) {
+            $offer = Offer::create($request->all());
 
-        $plans = CompanyPlan::where('company_id', Auth::id())->get();
+            $plans = CompanyPlan::where('company_id', Auth::id())->get();
 
-        foreach($plans as $plan) {
-            if($plan->spaces_available > 0) {
-                $purchased_plan = CompanyPlan::find($plan->id);
-                $purchased_plan->spaces_available = ($plan->spaces_available - 1);
-                if (($plan->spaces_available - 1) == 0) {
-                    $purchased_plan->status = 0;
+            foreach($plans as $plan) {
+                if($plan->spaces_available > 0) {
+                    $purchased_plan = CompanyPlan::find($plan->id);
+                    $purchased_plan->spaces_available = ($plan->spaces_available - 1);
+                    if (($plan->spaces_available - 1) == 0) {
+                        $purchased_plan->status = 0;
+                    }
+                    $purchased_plan->save();
+                    break;
                 }
-                $purchased_plan->save();
-                break;
+            }
+
+            $cont = 1;
+            $questions = array();
+            while($cont < 10) {
+                if ($request->{'question_'.$cont} !== null) {
+                    array_push($questions, $request->{'question_'.$cont});
+                }
+                $cont = $cont + 1;
+            }
+
+            foreach($questions as $question) {
+                $killer = new KillerQuestion;
+                $killer->question = $question;
+                $killer->offer_id = $offer->id;
+                $killer->save();
+            }
+
+        } else {
+            $offer = Offer::create($request->all());
+
+            $plans = CompanyPlan::where('company_id', Auth::id())->get();
+
+            foreach($plans as $plan) {
+                if($plan->spaces_available > 0) {
+                    $purchased_plan = CompanyPlan::find($plan->id);
+                    $purchased_plan->spaces_available = ($plan->spaces_available - 1);
+                    if (($plan->spaces_available - 1) == 0) {
+                        $purchased_plan->status = 0;
+                    }
+                    $purchased_plan->save();
+                    break;
+                }
             }
         }
 
+        // return $offer->id;
         return Redirect::route('offer.index')->with('message','Vacante guardada exitosamente');
     }
 
@@ -60,8 +98,11 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrFail($id);
 
+        $killers = KillerQuestion::where('offer_id', $id)->get();
+
         return Inertia::render('Offer/Edit',[
-            'offer' => $offer
+            'offer' => $offer,
+            'killers' => $killers
         ]);
     }
 

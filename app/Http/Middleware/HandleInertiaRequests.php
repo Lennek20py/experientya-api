@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
                         'responsible_last_name' => $request->user()->responsible_last_name,
                         'responsible_phone_number' => $request->user()->responsible_phone_number,
                         'profile_photo_path' => asset('storage/'.$request->user()->profile_photo_path),
-                        // 'total_spaces_available' => $request->user()->purchased_plans->sum('spaces_available')
+                        'total_spaces_available' => $request->user()->purchased_plans->sum('spaces_available')
 
                     ] : null,
                 ];

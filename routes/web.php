@@ -12,6 +12,7 @@ use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CountriesStatesCitiesController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\KillerQuestionController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PlanController;
@@ -150,6 +151,11 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::put('/company/offer/update/{offer}', [OfferController::class, 'update'])->name('offer.update');
     Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
 
+    //Plans and Package
     Route::post('/company/buyPlan', [PlanController::class, 'store'])->name('plan.store');
     Route::delete('/company/plan/delete/{id}', [PlanController::class, 'destroy'])->name('plan.destroy');
+
+    //KillerQuestions
+    Route::delete('/company/question/delete/{killer}', [KillerQuestionController::class, 'destroy'])->name('question.destroy');
+    Route::put('/company/question/update/{killer}', [KillerQuestionController::class, 'update'])->name('question.update');
 });

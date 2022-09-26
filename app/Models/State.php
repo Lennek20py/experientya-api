@@ -9,5 +9,5 @@ class State extends Model
 {
     use HasFactory;
 
-    protected $table = 'states_old';
+    protected $table = 'states';
 }

@@ -1094,14 +1094,11 @@ select {
 .bottom-2 {
   bottom: 0.5rem;
 }
-.right-2\.5 {
-  right: 0.625rem;
-}
-.bottom-2\.5 {
-  bottom: 0.625rem;
-}
 .top-3 {
   top: 0.75rem;
+}
+.right-2\.5 {
+  right: 0.625rem;
 }
 .z-0 {
   z-index: 0;
@@ -1523,8 +1520,8 @@ select {
 .w-\[100px\] {
   width: 100px;
 }
-.w-56 {
-  width: 14rem;
+.w-64 {
+  width: 16rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -2426,9 +2423,6 @@ select {
 .text-start {
   text-align: start;
 }
-.text-end {
-  text-align: end;
-}
 .align-middle {
   vertical-align: middle;
 }
@@ -3001,6 +2995,10 @@ select {
 .hover\:bg-blue-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+.hover\:bg-indigo-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 56 202 / var(--tw-bg-opacity));
 }
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
@@ -4140,6 +4138,11 @@ select {
     margin-right: 0.5rem;
   }
 
+  .lg\:mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
   .lg\:my-0 {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -4155,9 +4158,8 @@ select {
     margin-bottom: 1.25rem;
   }
 
-  .lg\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
+  .lg\:ml-3 {
+    margin-left: 0.75rem;
   }
 
   .lg\:mr-4 {
@@ -4326,12 +4328,12 @@ select {
     background-color: rgb(59 130 246 / var(--tw-bg-opacity));
   }
 
-  .lg\:p-2 {
-    padding: 0.5rem;
-  }
-
   .lg\:p-8 {
     padding: 2rem;
+  }
+
+  .lg\:p-2 {
+    padding: 0.5rem;
   }
 
   .lg\:px-8 {
@@ -4364,14 +4366,14 @@ select {
     padding-bottom: 0.25rem;
   }
 
-  .lg\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
   .lg\:py-3 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
+  }
+
+  .lg\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .lg\:pl-64 {
@@ -4462,16 +4464,16 @@ select {
     line-height: 2rem;
   }
 
-  .lg\:font-extrabold {
-    font-weight: 800;
-  }
-
   .lg\:font-bold {
     font-weight: 700;
   }
 
   .lg\:font-semibold {
     font-weight: 600;
+  }
+
+  .lg\:font-extrabold {
+    font-weight: 800;
   }
 
   .lg\:text-gray-50 {
