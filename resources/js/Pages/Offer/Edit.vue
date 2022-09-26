@@ -1,6 +1,9 @@
 <template>
     <admin-layout>
     <main class="flex-1 pb-8 bg-gray-50">
+        <div class="absolute top-8 right-10 z-10">
+            <SuccessAlert :message="$page.props.success.message" :show="showAlert"/>
+        </div>
         <div class="py-6 max-h-full">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-14 pt-6">
             <!-- Replace with your content -->
@@ -207,8 +210,54 @@
                         </button>
                     </div>
                 </div>
+
+                    <div class="bg-white shadow sm:rounded-lg mt-8" v-if="killers.length !== 0">
+                        <div class="px-4 py-5 sm:px-6">
+                        <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900">Killer Questions</h2>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            <span class="block">
+                                Un listado de todas las Killer Questions asociadas a la vacante.
+                            </span>
+                            <!-- {{ form }} -->
+                        </p>
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6 mb-4">
+                            <div class="col-span-12 lg:col-span-6 mt-1">
+                                <div v-for="killer in killers" :key="killer.id" class="mt-4">
+                                    <label for="question" class="block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']">Defina su pregunta</label>
+
+                                    <div class="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="question"
+                                            disabled
+                                            :value="killer.question"
+                                            autocomplete="question"
+                                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                                        >
+                                        <button @click="showModalEdit(killer)" type="button" class="ml-3 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2.5 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                            <!-- Heroicon name: mini/envelope -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                            </svg>
+                                        </button>
+                                        <button @click="showModalDelete(killer)" type="button" class="ml-2 inline-flex items-center rounded-md border border-transparent bg-red-600 px-3 py-2.5 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                            <!-- Heroicon name: mini/envelope -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="flex justify-end px-4 py-4 bg-gray-100 rounded-b-md">
+
+                        </div>
+                    </div>
                 </form>
-            <!-- /End replace -->
+            <!-- Change Salary -->
             <JetModal :show="acting" @close="acting = null">
                 <div class="bg-gray-50 shadow-2xl py-8">
                     <form class="px-12">
@@ -229,6 +278,57 @@
                     </form>
                 </div>
             </JetModal>
+            <!-- Change Salary -->
+
+            <!-- Delete Killer Questions -->
+            <JetModal :show="actingDelete" @close="actingDelete = null">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="bg-white shadow sm:rounded-lg">
+                    <form class="px-4 py-5 sm:p-6" @submit.prevent="deleteQuestion">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Eliminar Killer Question</h3>
+                        <div class="mt-2 max-w-xl text-sm text-gray-500">
+                        <p>¿Estas seguro que deseas eliminar la killer question?</p>
+                        </div>
+                        <div class="flex justify-end mt-5">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            <!-- Heroicon name: solid/mail -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="-ml-0.5 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                                Eliminar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </JetModal>
+            <!-- Delete Killer Questions -->
+
+            <!-- Update Killer Questions -->
+            <JetModal :show="actingEdit" @close="actingEdit = null">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="bg-white shadow sm:rounded-lg">
+                    <form class="px-4 py-5 sm:p-6" @submit.prevent="editQuestion">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Edite su Killer Question</h3>
+                        <div class="mt-2 text-sm text-gray-500">
+                                <label for="edit_question" class="block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"> Defina la pregunta </label>
+                                <div class="mt-1">
+                                    <input v-model="currentQuestion.title" type="text" id="edit_question" class="shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                        </div>
+                        <div class="flex justify-end mt-5">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <!-- Heroicon name: solid/mail -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="-ml-0.5 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                                Actualizar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </JetModal>
+            <!-- Update Killer Questions -->
+
             </div>
         </div>
     </main>
@@ -241,6 +341,7 @@
     import { Inertia } from '@inertiajs/inertia'
     import JetInputError from '@/Jetstream/InputError'
     import JetModal from '@/Jetstream/Modal'
+    import SuccessAlert from '@/Components/Alerts/SuccessAlert'
 
     import { defineComponent } from 'vue'
 
@@ -249,10 +350,12 @@
             AdminLayout,
             Link,
             JetInputError,
+            SuccessAlert,
             JetModal
         },
         props: {
-            offer: Object
+            offer: Object,
+            killers: Array
         },
         data() {
             return {
@@ -264,6 +367,10 @@
                 totalcharacterDescription: 0,
                 totalcharacterProfile: 0,
                 acting: false,
+                showAlert: true,
+                actingDelete: false,
+                actingEdit: false,
+                selectedQuestion: null,
                 form: this.$inertia.form({
                     'id': this.offer.id,
                     'title': this.offer.title,
@@ -284,7 +391,12 @@
                     'specific_id': this.offer.specific_id,
                     'status': 0,
                     'company_id': this.$page.props.auth.company.id
-                })
+                }),
+                currentQuestion: {
+                    id: null,
+                    title: null,
+                    offer_id: null
+                }
             }
         },
         methods: {
@@ -352,6 +464,39 @@
                     general_id: this.form.general_id,
                     specific_id: this.form.specific_id,
                     company_id: this.$page.props.auth.company.id
+                })
+            },
+            showModalDelete(question) {
+                this.selectedQuestion = question
+                this.actingDelete = true;
+            },
+            showModalEdit (question) {
+                this.currentQuestion.id = question.id
+                this.currentQuestion.title = question.question
+                this.currentQuestion.offer_id = question.offer_id
+                this.actingEdit = true;
+            },
+            deleteQuestion () {
+                this.form.submit('delete', route('question.destroy', [this.selectedQuestion]), {
+                    preserveState: false,
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.actingDelete = false
+                    }
+                })
+            },
+            editQuestion () {
+                Inertia.put(`/company/question/update/${this.currentQuestion.id}`, {
+                    id: this.currentQuestion.id,
+                    question: this.currentQuestion.title,
+                    offer_id: this.currentQuestion.offer_id
+                },
+                {
+                    preserveState: false,
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.actingEdit = false
+                    }
                 })
             }
         },
