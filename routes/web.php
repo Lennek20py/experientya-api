@@ -18,6 +18,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\TestCompetitionsController;
+use App\Http\Controllers\TestSoftSkillsController;
 use App\Http\Controllers\WorkPreferencesController;
 
 /*
@@ -69,27 +70,6 @@ Route::put('/study-degree/{id}', [StudyDegreeController::class, 'update'])->name
 Route::delete('/study-degree/{id}', [StudyDegreeController::class, 'destroy'])->name('study-degree.delete');
 Route::get('/cv-search/{id}', [StudyDegreeController::class, 'cvSearch'])->name('cv-search');
 
-// // Certifications table routes CRUD
-// Route::get('/certifications', [CertificationsController::class, 'index'])->name('list-certifications');
-// Route::get('/certifications/{id}', [CertificationsController::class, 'show'])->name('certifications.show');
-// Route::post('/certifications', [CertificationsController::class, 'store'])->name('certifications.store');
-// Route::post('/certifications/{id}', [CertificationsController::class, 'update'])->name('certifications.update');
-// Route::delete('/certifications/{id}', [CertificationsController::class, 'destroy'])->name('certifications.delete');
-
-// Language table routes CRUD
-// Route::get('/language', [LanguageController::class, 'index'])->name('list-languages');
-// Route::get('/language/{id}', [LanguageController::class, 'show'])->name('languages.show');
-// Route::post('/language', [LanguageController::class, 'store'])->name('languages.store');
-// Route::post('/language/{id}', [LanguageController::class, 'update'])->name('languages.update');
-// Route::delete('/language/{id}', [LanguageController::class, 'destroy'])->name('languages.delete');
-
-// // Experience table routes CRUD
-// Route::get('/experience', [ExperienceController::class, 'index'])->name('list-experiences');
-// Route::get('/experience/{id}', [ExperienceController::class, 'show'])->name('experiences.show');
-// Route::post('/experience', [ExperienceController::class, 'store'])->name('experiences.store');
-// Route::post('/experience/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
-// Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experiences.delete');
-
 // Test Competitions CRUD
 Route::get('/testcomp', [TestCompetitionsController::class, 'indexTest'])->name('list-TestsCompetitions');
 Route::get('/testcompAsw', [TestCompetitionsController::class, 'indexAnswers'])->name('list-AnswerTestCompetition');
@@ -101,6 +81,14 @@ Route::post('/testcomp/{id}', [TestCompetitionsController::class, 'updateTest'])
 Route::post('/testcompAws/{id}', [TestCompetitionsController::class, 'updateAnswer'])->name('AnswersTestCompetitions.update');
 // Route::post('/experience/{id}', [TestCompetitionsController::class, 'update'])->name('experiences.update');
 // Route::delete('/experience/{id}', [TestCompetitionsController::class, 'destroy'])->name('experiences.delete');
+
+// Test Soft Skills CRUD Alternative Routes
+Route::get('testsoftskills', [TestSoftSkillsController::class, 'indexTest'])->name('list-answers-test-softskills');
+Route::get('testsoftskills/{id}', [TestSoftSkillsController::class, 'showTest'])->name('testsoftskills.show');
+Route::post('testsoftskills', [TestSoftSkillsController::class, 'storeTest'])->name('testsoftskills.store');
+Route::put('testsoftskills/{id}', [TestSoftSkillsController::class, 'update'])->name('testsoftskills.update');
+
+
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
@@ -119,6 +107,7 @@ Route::apiResources([
     "experience" => ExperienceController::class,
     "language" => LanguageController::class,
     "certifications" => CertificationsController::class,
+    "testsoftskillsAsw" => TestSoftSkillsController::class,
 ]);
 
 
