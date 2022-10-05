@@ -99,6 +99,7 @@ class LanguageController extends Controller
     {
         $data = Language::find($id);
         $data->cv_id = $request->input('cv_id');
+        dd($data->cv_id);
         $data->name_language = $request->input('name_language');
 
         if ($request->hasFile('language_certification_path_name')) {

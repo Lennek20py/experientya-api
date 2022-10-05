@@ -1809,6 +1809,9 @@ select {
 .gap-7 {
   gap: 1.75rem;
 }
+.gap-3 {
+  gap: 0.75rem;
+}
 .gap-y-6 {
   row-gap: 1.5rem;
 }
@@ -3376,9 +3379,9 @@ select {
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
   }
 
-  .dark\:text-gray-500 {
+  .dark\:text-gray-400 {
     --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
+    color: rgb(156 163 175 / var(--tw-text-opacity));
   }
 
   .dark\:text-white {
@@ -3386,14 +3389,14 @@ select {
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 
-  .dark\:text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-text-opacity));
-  }
-
   .dark\:text-teal-500 {
     --tw-text-opacity: 1;
     color: rgb(20 184 166 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-500 {
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
   }
 
   .dark\:text-gray-200 {
@@ -3559,10 +3562,6 @@ select {
 
   .sm\:ml-6 {
     margin-left: 1.5rem;
-  }
-
-  .sm\:ml-0 {
-    margin-left: 0px;
   }
 
   .sm\:ml-8 {
@@ -3886,6 +3885,11 @@ select {
     padding-bottom: 4rem;
   }
 
+  .sm\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -3912,10 +3916,6 @@ select {
 
   .sm\:text-left {
     text-align: left;
-  }
-
-  .sm\:text-right {
-    text-align: right;
   }
 
   .sm\:text-sm {
@@ -4340,6 +4340,14 @@ select {
     gap: 1rem;
   }
 
+  .lg\:gap-11 {
+    gap: 2.75rem;
+  }
+
+  .lg\:gap-7 {
+    gap: 1.75rem;
+  }
+
   .lg\:gap-1 {
     gap: 0.25rem;
   }
@@ -4364,6 +4372,10 @@ select {
 
   .lg\:p-8 {
     padding: 2rem;
+  }
+
+  .lg\:p-5 {
+    padding: 1.25rem;
   }
 
   .lg\:p-2 {

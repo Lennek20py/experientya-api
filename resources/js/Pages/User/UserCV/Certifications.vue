@@ -150,7 +150,6 @@ export default {
         await axios.get(route('cv-search', this.userProp.id))
         .then((response) => {
             this.certification.cv_id = response.data[0].id;
-            // console.log(this.certification.cv_id);
         }).catch((error) => {
             console.log(error);
         });
@@ -221,7 +220,7 @@ export default {
                     'success'
                     );
         } else if(!this.newData) {
-            this.certification.post(route('certifications.update', this.certification.id), { preserveScroll: true });
+            this.certification.put(route('certifications.update', this.certification.id), { preserveScroll: true });
             Swal.fire(
                     'Actualizado!',
                     'La certificación fue actualizada exitosamente!',
@@ -252,8 +251,7 @@ export default {
             })
         },
     deleteData() {
-        // console.log(this.certification.id);
-        this.certification.delete(route('certifications.delete', this.certification.id), { preserveScroll: true })
+        this.certification.delete(route('certifications.destroy', this.certification.id), { preserveScroll: true })
         this.formBind = false;
         this.getCertifications();
     },
@@ -262,12 +260,6 @@ export default {
     created() {
         this.getCertifications();
     },
-    // computed: {
-    //     addCertifications: function() {
-    //         console.log(this.certifications)
-    //         return true;
-    //     } 
-    // }
 };
 </script>
 

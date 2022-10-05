@@ -44,35 +44,35 @@ class TestCompetitionsController extends Controller
      */
     public function store(Request $request)
     {
-       $data = TestCompetition::create([
-        'cv_id' =>$request->cv_id,
-        'CountDete' =>$request->CountDete,
-        'CountInfl' =>$request->CountInfl,
-        'CountEsta' =>$request->CountEsta,
-        'CountCump' =>$request->CountCump,
-        'test_finished' =>$request->test_finished,
-        'finished_date' =>$request->finished_date
-       ]);
-       return redirect()->route('user.micv');
+        $data = TestCompetition::create([
+            'cv_id' => $request->cv_id,
+            'CountDete' => $request->CountDete,
+            'CountInfl' => $request->CountInfl,
+            'CountEsta' => $request->CountEsta,
+            'CountCump' => $request->CountCump,
+            'test_finished' => $request->test_finished,
+            'finished_date' => $request->finished_date
+        ]);
+        return redirect()->route('user.micv');
     }
 
     public function storeAnswers(Request $request)
     {
-       $datas = AnswerTestCompetition::updateOrCreate(
+        $datas = AnswerTestCompetition::updateOrCreate(
             [
-                'test_complete_id' =>$request->test_complete_id,
+                'test_complete_id' => $request->test_complete_id,
                 'question_number' => $request->question_number
             ],
             [
-                'best_word' =>$request->best_word,
-                'worst_word' =>$request->worst_word,
-                'fullAnswers' =>$request->fullAnswers,
-                'saved' =>$request->saved
+                'best_word' => $request->best_word,
+                'worst_word' => $request->worst_word,
+                'fullAnswers' => $request->fullAnswers,
+                'saved' => $request->saved
             ]
         );
-       return redirect()->route('user.micv')->with('message', 'Pregunta guardada.');
+        return redirect()->route('user.micv')->with('message', 'Pregunta guardada.');
     }
-        
+
     public function updateTest(Request $request, $id)
     {
         $data = TestCompetition::updateOrCreate(
@@ -80,31 +80,31 @@ class TestCompetitionsController extends Controller
                 'id' => $id
             ],
             [
-                'cv_id' =>$request->cv_id,
-                'CountDete' =>$request->CountDete,
-                'CountInfl' =>$request->CountInfl,
-                'CountEsta' =>$request->CountEsta,
-                'CountCump' =>$request->CountCump,
-                'test_finished' =>$request->test_finished,
-                'finished_date' =>$request->finished_date
+                'cv_id' => $request->cv_id,
+                'CountDete' => $request->CountDete,
+                'CountInfl' => $request->CountInfl,
+                'CountEsta' => $request->CountEsta,
+                'CountCump' => $request->CountCump,
+                'test_finished' => $request->test_finished,
+                'finished_date' => $request->finished_date
             ]
-            );
-            return redirect()->route('user.micv');
+        );
+        return redirect()->route('user.micv');
     }
     public function updateAnswer(Request $request, $id)
     {
         $data = AnswerTestCompetition::where('id', $id)->update([
-            'test_complete_id' =>$request->test_complete_id,
-            'question_number' =>$request->question_number,
-            'best_word' =>$request->best_word,
-            'worst_word' =>$request->worst_word,
-            'fullAnswers' =>$request->fullAnswers,
-            'saved' =>$request->saved
+            'test_complete_id' => $request->test_complete_id,
+            'question_number' => $request->question_number,
+            'best_word' => $request->best_word,
+            'worst_word' => $request->worst_word,
+            'fullAnswers' => $request->fullAnswers,
+            'saved' => $request->saved
         ]);
-            return redirect()->route('user.micv')->with('message', 'Pregunta guardada.');
+        return redirect()->route('user.micv')->with('message', 'Pregunta guardada.');
     }
-        /**
-         * Display the specified resource.
+    /**
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

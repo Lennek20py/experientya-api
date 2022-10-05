@@ -59,7 +59,7 @@ class ExperienceController extends Controller
      * @param  \App\Models\Experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function show(Experience $experience, $id)
+    public function show($id)
     {
         $data = Experience::where('cv_id', $id)->get();
         
@@ -84,7 +84,7 @@ class ExperienceController extends Controller
      * @param  \App\Models\Experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Experience $experience, $id)
+    public function update(Request $request, $id)
     {
         $data = Experience::where('id', $id)->update([
             'cv_id' => $request->cv_id,

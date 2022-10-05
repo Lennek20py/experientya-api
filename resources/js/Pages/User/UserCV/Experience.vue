@@ -188,7 +188,7 @@ export default {
                 console.log(error);
             });
 
-            await axios.get(route('experiences.show', this.experience.cv_id))
+            await axios.get(route('experience.show', this.experience.cv_id))
             .then((response) => {
                 this.experiences = response.data;
                 if (response.data.length == 0){ 
@@ -260,15 +260,15 @@ export default {
             })
         },
         deletes(){
-            this.experience.delete(route('experiences.delete', this.experience.id), { preserveScroll: true});
+            this.experience.delete(route('experience.destroy', this.experience.id), { preserveScroll: true});
             this.formBind = false;
             this.getExperiences();
         },
         submit() {
             if (this.newData) {
-                this.experience.post(route('experiences.store'), { preserveScroll: true});
+                this.experience.post(route('experience.store'), { preserveScroll: true});
             } else if (!this.newData) {
-                this.experience.post(route('experiences.update', this.experience.id), { preserveScroll: true});
+                this.experience.put(route('experience.update', this.experience.id), { preserveScroll: true});
             }
             this.getExperiences();
             this.formBind = false;
