@@ -54,7 +54,7 @@
                                 </svg>
                                 </div>
                                 <div class="ml-3">
-                                <h3 class="text-sm font-medium text-blue-800 font-bold">Sin contenido que mostrar.</h3>
+                                <h3 class="text-sm text-blue-800 font-bold">Sin contenido que mostrar.</h3>
                                 <div class="mt-2 text-sm text-blue-700">
                                     <ul role="list" class="list-disc space-y-1 pl-5">
                                         <li>Aún no has agregado algúna vacante</li>

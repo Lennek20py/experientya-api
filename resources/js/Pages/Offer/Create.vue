@@ -221,7 +221,9 @@
                         <div class="px-4 py-5 sm:px-6">
                         <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900">Killer Questions</h2>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                            <span class="block after:ml-0.5 after:text-red-500 after:content-['*']">Los campos requeridos son marcados con un asterisco, no es necesario agregar signos de interrogación</span>
+                            <span class="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                                Los campos requeridos son marcados con un asterisco. Solo puedes definir un máximo de 10 killer questions.
+                            </span>
                             <!-- {{ form }} -->
                         </p>
                         </div>

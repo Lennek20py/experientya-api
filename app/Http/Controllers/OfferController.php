@@ -37,7 +37,7 @@ class OfferController extends Controller
     }
 
     //StoreOfferRequest
-    public function store(Request $request)
+    public function store(StoreOfferRequest $request)
     {
         if( $request->question_check == 1) {
             $offer = Offer::create($request->all());
@@ -108,9 +108,34 @@ class OfferController extends Controller
 
     public function update(StoreOfferRequest $request, Offer $offer)
     {
-        $offer->update(array_filter($request->all()));
+        if( $request->question_check == 1) {
+            $offer->update(array_filter($request->all()));
 
-        return Redirect::route('offer.index')->with('message','Vacante actualizada exitosamente');
+            $cont = 1;
+            $questions = array();
+            while($cont < 10) {
+                if ($request->{'question_'.$cont} !== null) {
+                    array_push($questions, $request->{'question_'.$cont});
+                }
+                $cont = $cont + 1;
+            }
+
+            foreach($questions as $question) {
+                $killer = new KillerQuestion;
+                $killer->question = $question;
+                $killer->offer_id = $offer->id;
+                $killer->save();
+            }
+
+            return redirect()->route('offer.edit', ['id' => $offer->id ])->with('message','Killer Questions actualizadas exitosamente');
+            return Redirect::route('offer.index')->with('message','Vacante actualizada exitosamente');
+
+        } else {
+
+            $offer->update(array_filter($request->all()));
+            return Redirect::route('offer.index')->with('message','Vacante actualizada exitosamente');
+        }
+        // return Redirect::route('offer.index')->with('message','Vacante actualizada exitosamente');
     }
 
     public function destroy(Offer $offer)

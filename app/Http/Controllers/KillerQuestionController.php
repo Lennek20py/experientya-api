@@ -14,7 +14,7 @@ class KillerQuestionController extends Controller
         $killer->question = $request->question;
         $killer->save();
 
-        return redirect()->route('offer.edit', ['id' => $request->offer_id ])->with('message','Killer Questions actualizada exitosamente');
+        return redirect()->route('offer.edit', ['id' => $request->offer_id ])->with('message','Killer Question actualizada exitosamente');
     }
 
     public function destroy(KillerQuestion $killer)
