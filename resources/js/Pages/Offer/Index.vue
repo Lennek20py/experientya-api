@@ -25,7 +25,7 @@
                             <p class="mt-2 text-sm text-gray-700">Un listado de todas las vacantes relacionadas a su cuenta.</p>
                             </div>
                             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                                <Link v-if="$page.props.auth.company.total_spaces_available > 0" :href="route('offer.create')" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                                <Link v-if="total_spaces > 0" :href="route('offer.create')" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                                 <!-- Heroicon name: solid/mail -->
                                 <svg class="-ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -127,6 +127,7 @@
         },
         data () {
             return {
+                total_spaces: 0,
                 search: this.filters.search,
                 showAlert: true,
                 acting: false
@@ -139,6 +140,11 @@
                     replace: true
                 } )
             }
+        },
+        created () {
+            this.$page.props.auth.company.total_spaces_available.forEach(element => {
+                this.total_spaces = this.total_spaces + element.spaces_available
+            });
         }
     })
 </script>
