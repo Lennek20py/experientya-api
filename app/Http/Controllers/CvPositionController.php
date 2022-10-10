@@ -12,9 +12,10 @@ class CvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $data = Cv::where('user_id', $id);
+        return $data;
     }
 
     /**
@@ -35,7 +36,7 @@ class CvController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -67,9 +68,12 @@ class CvController extends Controller
      * @param  \App\Models\Cv  $cv
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cv $cv)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Cv::where('user_id', $id)->update([
+            'position' => $request->position
+        ]);
+        return $data;
     }
 
     /**
