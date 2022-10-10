@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cv extends Model
+class UserSkill extends Model
 {
     use HasFactory;
-
-    protected $table = 'cv';
+    protected $table = 'user_skills';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_id',
-        'position',
-        'verified',
-        'report_path',
-        ];
-
+        'cv_id',
+        'skill'
+    ];
 }
+
