@@ -12,7 +12,7 @@
             <h5 class="mb-1 text-xl font-semibold text-gray-900 lg:text-xl text-center">
                 {{$page.props.user.user_first_name}} {{$page.props.user.user_last_name}}</h5>
             <div class="flex flex-row justify-center content-center place-content-center">
-                <span :class="{'text-red-500' : this.position = 'Presiona aquí para ingresar un título'}"
+                <span :class="{ 'text-red-500' : position == 'Presiona aquí para ingresar un título' }"
                     class="text-base text-center font-medium select-none text-gray-700">{{this.position}}</span>
                 <svg class="min-w-fit w-5 h-5 lg:w-5 lg:h-5 p-1 text-gray-500" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +77,9 @@
                                     <label for="study_certificate" class="text-xs text-gray-800 font-medium">Ingrese el
                                         título del
                                         puesto / profesión que desea aplicar:</label>
-                                    <input type="text" v-model="this.position" required autocomplete="off"
-                                        placeholder="Ingrese el título de la carrera" name="job" id="job"
+                                    <input type="text" v-on:keyup.enter="savePosition()" v-model="this.position"
+                                        required autocomplete="off" placeholder="Ingrese el título de la carrera"
+                                        name="job" id="job"
                                         class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
                                 </div>
 
@@ -133,19 +134,18 @@ export default {
                 })
         },
         async savePosition() {
-            await axios.put(route('user.position.update', this.userProp.id), "ingeniero")
+            let data = {}
+            data.position = this.position
+            await axios.put(route('user.position.update', this.userProp.id), data)
                 .then((response) => {
-                    console.log('awa')
-                    console.log(response.data)
-                    if (response.data == 1) {
-                        Swal.fire(
-                            'Actualizado!',
-                            'El registro fue actualizado exitosamente!',
-                            'success'
-                        );
-                        this.getTittle()
-                        this.toggleModal()
-                    }
+                    Swal.fire(
+                        'Actualizado!',
+                        'El registro fue actualizado exitosamente!',
+                        'success'
+                    );
+                    this.getTittle()
+                    this.toggleModal()
+
                 }).catch((error) => {
                     console.log(error)
                 })
