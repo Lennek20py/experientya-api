@@ -93,7 +93,7 @@
                     <div class="mt-3 grow">
                         <label for="finished_month" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Mes de finalización</label>
                         <select required v-model="this.studyDegree.finished_month" name="finished_month" id="finished_month" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el mes de finalización</option>
                             <option v-for="(Months, index) in this.months" :key="index" :value="Months">
                                 {{ Months }}
                             </option>
@@ -104,8 +104,7 @@
                     <div class="mt-3 grow">
                         <label for="" class="text-xs text-gray-800 font-medium lg:text-sm 2xl:text-base">Año de finalización</label>
                         <select required v-model="this.studyDegree.finished_year" name="finished_year" id="finished_year" class="mt-1 block w-full text-xs rounded-md border-gray-300 py-2 pl-3 lg:pr-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 xl:text-base">
-                            <option value>Seleccione un algo</option>
-                            <option value>Seleccione un algo</option>
+                            <option value>Seleccione el año de finalización</option>
                             <option v-for="(Years, index) in this.years" :key="index" :value="Years">
                                 {{ Years }}
                             </option>

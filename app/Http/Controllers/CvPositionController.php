@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cv;
 use Illuminate\Http\Request;
 
-class CvController extends Controller
+class CvPositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CvController extends Controller
      */
     public function index($id)
     {
-        $data = Cv::where('user_id', $id);
+        $data = Cv::where('user_id', $id)->get();
         return $data;
     }
 
