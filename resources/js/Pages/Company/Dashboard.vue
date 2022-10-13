@@ -206,6 +206,7 @@
                 this.form.state_id = null
                 this.form.town_id = null
                 this.form.change_address = null
+                this.form.type_job = null
             }
         },
         created () {
