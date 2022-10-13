@@ -16,6 +16,7 @@ use App\Http\Controllers\KillerQuestionController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\CvPositionController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\TestCompetitionsController;
 use App\Http\Controllers\TestSoftSkillsController;
@@ -88,8 +89,6 @@ Route::get('testsoftskills/{id}', [TestSoftSkillsController::class, 'showTest'])
 Route::post('testsoftskills', [TestSoftSkillsController::class, 'storeTest'])->name('testsoftskills.store');
 Route::put('testsoftskills/{id}', [TestSoftSkillsController::class, 'update'])->name('testsoftskills.update');
 
-
-
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
 Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
@@ -102,6 +101,8 @@ Route::get('/user/wp', [WorkPreferencesController::class, 'index'])->name('workP
 // Route::post('/user/wp', [WorkPreferencesController::class, 'store'])->name('workPreferences.store');
 Route::get('/user/wp/{id}', [WorkPreferencesController::class, 'search'])->name('workPreferences.search');
 Route::post('/user/wp/{id}', [WorkPreferencesController::class, 'update'])->name('workPreferences.update');
+Route::put('/user/position/{id}', [CvPositionController::class, 'update'])->name('user.position.update');
+Route::get('/user/position/{id}', [CvPositionController::class, 'index'])->name('user.position.index');
 
 Route::apiResources([
     "experience" => ExperienceController::class,
