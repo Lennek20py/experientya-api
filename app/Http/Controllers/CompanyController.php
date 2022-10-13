@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Company;
 use App\Models\CompanyPlan;
 use App\Models\Plan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
 use Illuminate\Support\Facades\Storage;
@@ -18,9 +19,45 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Company/Dashboard');
+        // $users = User::query()
+        //                 ->when(
+        //                     $request->filled("search"),
+        //                     function ($q) use ($request) {
+        //                         $q->whereHas("cv", fn ($q) => $q->where("position", "like", "%$request->search%"))
+        //                             ->with(["cv" => fn ($q) => $q->where("position", "like", "%$request->search%")]);
+        //                     }
+        //                 )
+        //                 ->get();
+
+        $users = User::select(
+                            'users.*',
+                            'cv.position',
+                            'states.name as state_name',
+                            'towns.name as city_name',
+                            'work_preferences.change_city',
+                            'work_preferences.work',
+                            'work_preferences.practices',
+                            'work_preferences.dual_education'
+                            )
+                        ->join('cv', 'cv.user_id', "=", 'users.id')
+                        ->join('states', 'states.id', "=", 'user_state_id')
+                        ->join('towns','towns.id', '=','users.user_city_id')
+                        ->join('work_preferences', 'work_preferences.user_id', "=", 'users.id');
+
+
+        $allusers = $users->when(request()->get('search'), function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->type_job}%");
+                            })->get();
+
+        return Inertia::render('Company/Dashboard', [
+            'users' => $allusers
+        ]);
     }
 
     /**
