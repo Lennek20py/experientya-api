@@ -16,6 +16,10 @@ class Cv extends Model
         'position',
         'verified',
         'report_path',
-        ];
+    ];
 
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }
