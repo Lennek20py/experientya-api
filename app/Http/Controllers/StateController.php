@@ -26,9 +26,9 @@ class StateController extends Controller
 
     public function fecthTown($id)
     {
-      $data = State::join('towns', 'towns.state_id', '=', 'states_old.id')
+      $data = State::join('towns', 'towns.state_id', '=', 'states.id')
                 ->where('towns.id', $id)
-                ->get(['towns.*', 'states_old.name as state_name', 'towns.name as town_name']);
+                ->get(['towns.*', 'states.name as state_name', 'towns.name as town_name']);
 
         return response()->json($data);
 
