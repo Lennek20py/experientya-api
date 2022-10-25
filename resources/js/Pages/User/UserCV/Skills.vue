@@ -25,11 +25,7 @@
         </div>
         <!-- VISTA PARA CREAR UN NUEVO REGISTRO / MODIFICAR REGISTRO -->
         <div class="2xl:mb-4" v-else-if="!formBind && ifExists && loadData">
-            <span class="w-full text-xs lg:text-sm font-light text-gray-500 mx-auto leading-none text-justify">Las
-                skills son
-                habilidades técnicas o académicas reproducibles y medibles. Saber utilizar un programa determinado,
-                hablar idiomas o conocer la teoría de cómo hacer un plan de marketing son ejemplos de estas habilidades
-                duras o hard skills.
+            <span class="w-full text-xs lg:text-sm font-light text-gray-500 mx-auto leading-none text-justify">Ingrese las skills o habilidades que posea en el botón gris de "Nueva Skill", el límite de skills es de 10. Actualmente tiene <span class="font-bold" :class="[skills.length < 10 && skills.length > 7 ? 'text-red-700' : '', skills.length <= 7 && skills.length >= 5 ? 'text-yellow-500' : '', skills.length <= 4 && skills.length >= 0 ? 'text-green-500' : '']">{{10 - skills.length}} restante/s.</span>
             </span>
 
             <div
@@ -37,8 +33,8 @@
 
                 <span v-for="(data, index) in skills" :key="index" id="badge-dismiss-pink"
                     class="inline-flex items-center py-1 px-2 mr-2 text-sm font-medium rounded"
-                    :class="randomColor(index)">
-                    {{data.skill}}
+                    :class="setColor(index)">
+                    {{ data.skill }}
                     <button type="button" @click="deleteAlert(data.id)"
                         class="inline-flex items-center p-0.5 ml-2 text-sm text-gray-700 bg-transparent rounded-sm "
                         data-dismiss-target="#badge-dismiss-pink" aria-label="Remove">
@@ -53,7 +49,7 @@
                 </span>
 
                 <!-- Agregar nueva Skill -->
-                <form @submit.prevent="submit">
+                <form @submit.prevent="submit" v-if="!fullData">
                     <span id="badge-dismiss-dark"
                         class="inline-flex cursor-pointer items-center py-1 px-2 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-200 dark:text-gray-800">
                         <div class="relative">
@@ -96,6 +92,7 @@ export default {
             ifExists: false,
             formBind: false,
             newData: false,
+            fullData: false,
             skill: this.$inertia.form({
                 cv_id: "",
                 skill: ""
@@ -121,6 +118,15 @@ export default {
             },
             {
                 color: "bg-pink-100 text-pink-800"
+            },
+            {
+                color: "bg-blue-100 text-blue-800"
+            },
+            {
+                color: "bg-green-100 text-green-800"
+            },
+            {
+                color: "bg-indigo-100 text-indigo-800"
             }
             ],
             colorsExtended: []
@@ -140,6 +146,9 @@ export default {
                     this.loadData = true
                     this.ifExists = true
                     this.skills = response.data;
+                    this.skills.length < 10 ? this.fullData = false : this.fullData = true
+                    console.log('awa, el skill length es: ' + this.skills.length)
+                    console.log('owo, el load data es: ' + this.fullData)
                 })
         },
         submit() {
@@ -163,7 +172,7 @@ export default {
         deleteAlert(id) {
             Swal.fire({
                 title: '¿Está seguro?',
-                text: "No se podrá revertir" + id,
+                text: "No se podrá revertir",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -184,13 +193,7 @@ export default {
         deleteData(id) {
             this.skill.delete(route('userSkill.destroy', id), { preserveScroll: true })
         },
-        randomColor(id) {
-            if (id > (this.colors.length - 1)) {
-                for (let i = 0; i < 10; i++) {
-                    this.colorsExtended = this.colorsExtended.concat(this.colors.slice(0).map(r => ({ ...r })))
-                }
-                return this.colorsExtended[id].color
-            }
+        setColor(id) {
             return this.colors[id].color
         }
 
