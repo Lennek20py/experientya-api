@@ -20,6 +20,7 @@ use App\Http\Controllers\CvPositionController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\TestCompetitionsController;
 use App\Http\Controllers\TestSoftSkillsController;
+use App\Http\Controllers\UserSkillController;
 use App\Http\Controllers\WorkPreferencesController;
 
 /*
@@ -103,12 +104,15 @@ Route::get('/user/wp/{id}', [WorkPreferencesController::class, 'search'])->name(
 Route::post('/user/wp/{id}', [WorkPreferencesController::class, 'update'])->name('workPreferences.update');
 Route::put('/user/position/{id}', [CvPositionController::class, 'update'])->name('user.position.update');
 Route::get('/user/position/{id}', [CvPositionController::class, 'index'])->name('user.position.index');
+Route::get('/userSkill/{id}', [UserSkillController::class, 'index'])->name('user.skills.index');
+
 
 Route::apiResources([
     "experience" => ExperienceController::class,
     "language" => LanguageController::class,
     "certifications" => CertificationsController::class,
     "testsoftskillsAsw" => TestSoftSkillsController::class,
+    "userSkill" => UserSkillController::class
 ]);
 
 

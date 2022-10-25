@@ -14,8 +14,8 @@ class UserSkillController extends Controller
      */
     public function index($id)
     {
-        UserSkill::where('user_id', $id);
-
+        $result = UserSkill::where('cv_id', $id)->get();
+        return $result;
     }
 
     /**
@@ -36,7 +36,12 @@ class UserSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = UserSkill::create([
+            'cv_id' => $request->cv_id,
+            'skill' => $request->skill
+        ]);
+
+        return redirect()->route('user.micv')->with('message', 'Datos insertados correctamente');
     }
 
     /**
@@ -81,6 +86,7 @@ class UserSkillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        UserSkill::findOrFail($id)->delete();
+        return redirect()->route('user.micv')->with('message', 'Datos eliminados correctamente');
     }
 }

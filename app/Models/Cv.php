@@ -33,4 +33,8 @@ class Cv extends Model
         return $this->hasMany('App\Models\Experience');
     }
 
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }

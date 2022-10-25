@@ -73,19 +73,15 @@ class User extends Authenticatable
         'profile_photo_link'
     ];
 
-    public function setPasswordAttribute($value){
-        if(!empty($value)){
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
             $this->attributes['password'] = bcrypt($value);
         }
     }
 
     public function getProfilePhotoLinkAttribute()
     {
-        return asset('storage/'.$this->attributes['profile_photo_path']);
-    }
-
-    public function cv()
-    {
-        return $this->hasOne('App\Models\Cv');
+        return asset('storage/' . $this->attributes['profile_photo_path']);
     }
 }
