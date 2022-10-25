@@ -16,4 +16,9 @@ class Certification extends Model
         'name_certification',
         'certification_path_name'
     ];
+
+    public function cv()
+    {
+        return $this->belongsTo('App\Models\Cv');
+    }
 }

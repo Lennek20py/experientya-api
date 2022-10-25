@@ -16,6 +16,21 @@ class Cv extends Model
         'position',
         'verified',
         'report_path',
-        ];
+    ];
+
+    public function certifications()
+    {
+        return $this->hasMany('App\Models\Certification');
+    }
+
+    public function lenguages()
+    {
+        return $this->hasMany('App\Models\Language');
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany('App\Models\Experience');
+    }
 
 }

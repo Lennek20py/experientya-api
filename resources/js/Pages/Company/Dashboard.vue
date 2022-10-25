@@ -22,7 +22,7 @@
                             Buscar
                         </button>
                     </form>
-                    <p class="text-sm">{{users}}</p>
+                    <!-- <p class="text-sm">{{users}}</p>-->
                     <p class="text-sm">{{form}}</p>
                     <!-- Replace with your content -->
                     <div class="py-4 mt-2">
@@ -89,43 +89,99 @@
 
 
                         <div class="mt-7 text-sm text-gray-500">
-                            <h3 class="text-lg leading-6 text-gray-800 mb-2">Tipo de trabajo y cambio de residencia:</h3>
+                            <h3 class="text-lg leading-6 text-gray-800 mb-2">Preferencias Laborales:</h3>
                             <div class="grid grid-cols-6 gap-6">
-                                <div class="col-span-12 lg:col-span-3 mt-1">
-                                    <label for="type_job" class="block text-sm font-medium text-gray-700">Tipo de Trabajo</label>
-                                    <select v-model="form.type_job" id="type_job" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md">
-                                        <option disabled selected value="">Selecciona una opción</option>
-                                        <option value="1">Empleo</option>
-                                        <option value="1">Residencia</option>
-                                        <option value="1">Práctica profesional</option>
-                                        <option value="1">Educación Dual</option>
-                                    </select>
+                                <div class="col-span-12 lg:col-span-4 mt-1">
+                                    <label for="type_job" class="block text-sm font-medium text-gray-700 mb-3">Tipo de Trabajo</label>
+                                    <div class="flex">
+                                        <div class="flex items-center mr-4">
+                                            <input id="inline-checkbox" type="checkbox" v-model="form.work" true-value="1" :false-value="null" class="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="inline-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Empleo</label>
+                                        </div>
+                                        <div class="flex items-center mr-4">
+                                            <input id="inline-2-checkbox" type="checkbox" v-model="form.practices" true-value="1" :false-value="null" class="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="inline-2-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Residencia / Práctica profesional</label>
+                                        </div>
+                                        <div class="flex items-center mr-4">
+                                            <input checked id="inline-checked-checkbox" type="checkbox" v-model="form.dual_education" true-value="1" :false-value="null" class="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="inline-checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Educación Dual</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-span-12 lg:col-span-3 mt-1">
+                                <div class="col-span-12 lg:col-span-2 mt-1">
                                     <label for="range" class="block text-sm font-medium text-gray-700 mb-3">Cambio de residencia</label>
                                     <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                                         <div class="flex items-center">
-                                            <input v-model="form.change_address" id="payment_type_1" name="notification-method" type="radio" value="Y" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <input v-model="form.change_address" id="payment_type_1" type="radio" value="Y" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
                                             <label for="payment_type_1" class="ml-3 block text-sm font-medium text-gray-700"> Si  </label>
                                         </div>
 
                                         <div class="flex items-center">
-                                            <input v-model="form.change_address" id="payment_type_2" name="notification-method" type="radio" value="N" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <input v-model="form.change_address" id="payment_type_2" type="radio" value="N" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
                                             <label for="payment_type_2" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 lg:col-span-2 mt-1">
+                                    <label for="range" class="block text-sm font-medium text-gray-700 mb-3">¿Que cuente con experiencia?</label>
+                                    <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                                        <div class="flex items-center">
+                                            <input v-model="form.experiences" id="experience_1" type="radio" value="Y" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="experience_1" class="ml-3 block text-sm font-medium text-gray-700"> Si  </label>
+                                        </div>
+
+                                        <div class="flex items-center">
+                                            <input v-model="form.experiences" id="experience_2" type="radio" value="N" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="experience_2" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 lg:col-span-2 mt-1">
+                                    <label for="range" class="block text-sm font-medium text-gray-700 mb-3">¿Que cuente con certificaciones?</label>
+                                    <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                                        <div class="flex items-center">
+                                            <input v-model="form.certifications" id="certifications_1" type="radio" value="Y" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="certifications_1" class="ml-3 block text-sm font-medium text-gray-700"> Si  </label>
+                                        </div>
+
+                                        <div class="flex items-center">
+                                            <input v-model="form.certifications" id="certifications_2" type="radio" value="N" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="certifications_2" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 lg:col-span-2 mt-1">
+                                    <label for="range" class="block text-sm font-medium text-gray-700 mb-3">¿Que hable otro idioma?</label>
+                                    <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                                        <div class="flex items-center">
+                                            <input v-model="form.lenguages" id="lenguages_1" type="radio" value="Y" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="lenguages_1" class="ml-3 block text-sm font-medium text-gray-700"> Si  </label>
+                                        </div>
+
+                                        <div class="flex items-center">
+                                            <input v-model="form.lenguages" id="lenguages_2" type="radio" value="N" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300">
+                                            <label for="lenguages_2" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="flex justify-end mt-5">
+                            <button type="button" @click="acting = null" class="mr-2 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Cerrar
+                            </button>
                             <button type="button" @click="clear()" class="mr-2 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-ml-0.5 mr-2 h-4 w-4 text-white">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                                 </svg>
                                 Limpiar
                             </button>
-                            <button type="button" @click="acting = null" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                Cerrar
+                            <button type="button" @click="submit(); acting = null" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <!-- Heroicon name: mini/envelope -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-ml-0.5 mr-2 h-4 w-4 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+                                </svg>
+                                Aplicar
                             </button>
                         </div>
                     </form>
@@ -169,7 +225,13 @@
                     'area_id': '',
                     'general_id': '',
                     'specific_id': '',
-                    'change_address': ''
+                    'change_address': '',
+                    'work': null,
+                    'practices': null,
+                    'dual_education': null,
+                    'certifications': null,
+                    'lenguages': null,
+                    'experiences': null
                 })
             }
         },
@@ -196,6 +258,7 @@
                     })
             },
             submit () {
+                this.acting = false,
                 this.form.submit('get', route('company.index'),
                 {
                     preserveState: true,
@@ -203,10 +266,19 @@
                 })
             },
             clear () {
-                this.form.state_id = null
-                this.form.town_id = null
+                this.form.state_id = ''
+                this.form.town_id = ''
                 this.form.change_address = null
                 this.form.type_job = null
+                this.form.work = null
+                this.form.practices = null
+                this.form.dual_education = null
+                this.form.area_id = ''
+                this.form.general_id = ''
+                this.form.specific_id = ''
+                this.form.certifications = null
+                this.form.lenguages = null
+                this.form.experience = null
             }
         },
         created () {
@@ -232,6 +304,21 @@
                     .then(response => {
                         this.anuies_specific = response.data
                     })
+            },
+            'form.work': function(value) {
+                this.form.practices = null
+                this.form.dual_education = null
+                this.form.work = 1
+            },
+            'form.practices': function(value) {
+                this.form.work = null
+                this.form.dual_education = null
+                this.form.practices = 1
+            },
+            'form.dual_education': function (value) {
+                this.form.work = null
+                this.form.practices = null
+                this.form.dual_education = 1
             }
         }
     })

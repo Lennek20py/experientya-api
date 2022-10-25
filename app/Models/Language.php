@@ -17,4 +17,9 @@ class Language extends Model
         'level',
         'language_certification_path_name'
     ];
+
+    public function cv()
+    {
+        return $this->belongsTo('App\Models\Cv');
+    }
 }

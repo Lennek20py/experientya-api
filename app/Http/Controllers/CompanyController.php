@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\CompanyPlan;
 use App\Models\Plan;
 use App\Models\User;
+use App\Models\Cv;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class CompanyController extends Controller
         //                 )
         //                 ->get();
 
-        $users = User::select(
+        $users = Cv::select(
                             'users.*',
                             'cv.position',
                             'states.name as state_name',
@@ -39,21 +40,71 @@ class CompanyController extends Controller
                             'work_preferences.change_city',
                             'work_preferences.work',
                             'work_preferences.practices',
-                            'work_preferences.dual_education'
+                            'work_preferences.dual_education',
+                            'work_preferences.area',
+                            'work_preferences.general_profile',
+                            'work_preferences.specific_profile'
                             )
-                        ->join('cv', 'cv.user_id', "=", 'users.id')
+                        ->join('users', 'cv.user_id', "=", 'users.id')
                         ->join('states', 'states.id', "=", 'user_state_id')
                         ->join('towns','towns.id', '=','users.user_city_id')
                         ->join('work_preferences', 'work_preferences.user_id', "=", 'users.id');
-
 
         $allusers = $users->when(request()->get('search'), function($query) use($request){
                                 $query->where('position', 'like', "%{$request->search}%")
                                 ->where('user_state_id', 'like', "%{$request->state_id}%")
                                 ->where('user_city_id', 'like', "%{$request->town_id}%")
                                 ->where('change_city', 'like', "%{$request->change_address}%")
-                                ->where('work', 'like', "%{$request->type_job}%");
-                            })->get();
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->with('certifications')
+                                ->with('lenguages')
+                                ->with('experiences');
+                            })
+                            ->when(request()->get('certifications') == 'Y', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->has('certifications');
+                            })
+                            ->when(request()->get('lenguages') == 'Y', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->has('lenguages');
+                            })
+                            ->when(request()->get('experiences') == 'Y', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->has('experiences');
+                            })
+                            ->get();
 
         return Inertia::render('Company/Dashboard', [
             'users' => $allusers
