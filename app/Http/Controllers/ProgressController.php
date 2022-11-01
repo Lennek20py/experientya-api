@@ -12,6 +12,7 @@ use App\Models\StudyDegree;
 use App\Models\TestCompetition;
 use App\Models\TestSoftSkill;
 use App\Models\User;
+use App\Models\UserSkill;
 use App\Models\Workpreferences;
 use Illuminate\Http\Request;
 
@@ -24,21 +25,25 @@ class ProgressController extends Controller
         TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first() === null ?  $testSoft_id = null : $testSoft_id = TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first();
         if ($cv_id) {
             $data = array(
+                "position" => Cv::where('user_id', $id)->first() ? "true" : "false",
                 "work" => Workpreferences::where('user_id', $id)->first() ? "true" : "false",
                 "study" => StudyDegree::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "certification" => Certification::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "language" => Language::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "experience" => Experience::where('cv_id', $cv_id->id)->first() ? "true" : "false",
+                "skill" => UserSkill::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "testcompetition" => $testComp_id == null ? "false" : AnswerTestCompetition::where('test_complete_id', $testComp_id->id)->orderBy('question_number', 'desc')->first()->question_number,
                 "testsoftskill" => $testSoft_id == null ? "false" : AnswerTestSoftSkill::where('test_id', $testSoft_id->id)->orderBy('question', 'desc')->first()->question
 
             );
         } else {
             $data = array(
+                "position" => "false",
                 "work" => "false",
                 "study" => "false",
                 "certification" => "false",
                 "language" => "false",
+                "skill" => "false",
                 "experience" => "false",
                 "testsoftskill" => "false",
                 "testcompetition" => "false"

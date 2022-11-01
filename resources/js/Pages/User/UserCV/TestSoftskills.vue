@@ -307,7 +307,6 @@ export default {
         this.test_soft.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
         await axios.post(route('testsoftskills.store'), this.test_soft)
           .then((response) => {
-            console.log(response);
             this.getTest();
             this.ifExists = true;
           }).catch((error) => {
@@ -374,8 +373,6 @@ export default {
       })
     },
     answered(e) {
-      console.log('erda');
-      console.log(e.target.value);
       if (e.target.value == this.questions[this.countQuestion]['answer_skill']) {
         var error = true;
         Swal.fire({

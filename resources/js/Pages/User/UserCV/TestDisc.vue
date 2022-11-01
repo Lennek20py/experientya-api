@@ -50,7 +50,7 @@
       </svg>
       <div v-for="(tests, index) in test" :key="index"
         class="w-auto flex text-sm justify-center items-center lg:justify-center text-gray-500 lg:py-4">
-        Realizado el {{tests.finished_date}}
+        Realizado el {{ tests.finished_date }}
       </div>
     </div>
 
@@ -107,7 +107,7 @@
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
           <button @click="toggleModalTest(), toggleModal()" type="button"
             class="inline-flex justify-center font-bold w-full rounded-md select-none border border-gray-300 px-4 py-2 bg-red-600 text-base leading-6 text-white shadow-sm hover:text-gray-2000 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-            {{ifExists ? "CONTINUAR" : "INICIAR" }}
+            {{ ifExists ? "CONTINUAR" : "INICIAR" }}
           </button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
@@ -159,15 +159,15 @@
             <!-- CUERPO -->
             <div v-if="!this.isFinishedTest" class="mt-2 flex flex-col">
               <h4 class="transition ease-in-out delay-1 duration-300 leading-none text-center lg:text-xl lg:font-bold">
-                {{ this.questions[this.countQuestion]['question']}}</h4>
+                {{ this.questions[this.countQuestion]['question'] }}</h4>
               <div class="flex flex-wrap justify-center gap-11">
                 <div class="py-2 gap-7 flex flex-col justify-center sm:flex-row sm:py-16">
                   <label :for="index" v-for="words, index in questions[this.countQuestion]['options']" :key="index"
-                    :class="{'bg-green-600 text-white' : index == this.questions[this.countQuestion]['best_word'], 'bg-red-600 text-white' : index == this.questions[this.countQuestion]['worst_word'], 'cursor-pointer' : !this.questions[this.countQuestion]['fullAnswers']}"
+                    :class="{ 'bg-green-600 text-white': index == this.questions[this.countQuestion]['best_word'], 'bg-red-600 text-white': index == this.questions[this.countQuestion]['worst_word'], 'cursor-pointer': !this.questions[this.countQuestion]['fullAnswers'] }"
                     class="uppercase select-none my-auto content-center text-center w-full border-2 p-3 lg:p-8 lg:text-2xl lg:font-semibold">
                     <input @click="answered($event)" type="radio"
                       :disabled="this.questions[this.countQuestion]['fullAnswers']" :id="index"
-                      class="hidden content-center" :value="index">{{words}}
+                      class="hidden content-center" :value="index">{{ words }}
                   </label>
                 </div>
               </div>
@@ -191,26 +191,26 @@
         class="flex flex-col bg-gray-50 px-4 py-6 text-center items-center justify-between content-center sm:px-6 lg:items-end lg:flex-row lg:text-end">
         <p v-if="!this.isFinishedTest"
           class="order-last mt-4 text-gray-900 text-base items-end lg:text-lg lg:order-first">
-          {{this.countQuestion+1}}/28</p>
+          {{ this.countQuestion + 1 }}/28</p>
         <span v-if="!this.isFinishedTest"
           class="mt-3 flex w-auto items-center rounded-md justify-between shadow-sm sm:mt-0 sm:w-auto lg:align-middle">
           <button @click="clean()" type="button"
             class="inline-flex justify-center w-full rounded-md border select-none border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
             Limpiar
           </button>
-          <button :disabled="this.countQuestion<=0" :class="{'opacity-40' : this.countQuestion<=0}"
+          <button :disabled="this.countQuestion <= 0" :class="{ 'opacity-40': this.countQuestion <= 0 }"
             @click="this.countQuestion--" type="button"
             class=" inline-flex select-none justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
             Atrás
           </button>
-          <button v-if="this.countQuestion<27" :disabled="!this.questions[this.countQuestion]['fullAnswers']"
-            :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" @click="nextCalculate()"
+          <button v-if="this.countQuestion < 27" :disabled="!this.questions[this.countQuestion]['fullAnswers']"
+            :class="{ 'opacity-40': !this.questions[this.countQuestion]['fullAnswers'] }" @click="nextCalculate()"
             type="button"
             class=" inline-flex justify-center w-full select-none rounded-md border border-gray-300 mx-2 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
             Siguiente
           </button>
           <button v-else @click="finishButton()" :disabled="!this.questions[this.countQuestion]['fullAnswers']"
-            :class="{'opacity-40' : !this.questions[this.countQuestion]['fullAnswers']}" type="button"
+            :class="{ 'opacity-40': !this.questions[this.countQuestion]['fullAnswers'] }" type="button"
             class=" inline-flex justify-center w-full rounded-md border border-gray-300 mx-2 px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:text-white focus:outline-none focus:border-blue-300 hover:bg-red-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 lg:px-8 lg:py-3 lg:text-xl">
             Finalizar
           </button>
@@ -362,8 +362,7 @@ export default {
       } else {
         countOptions.test_finished = 'false'
       }
-
-      console.log('la pregunta va por: ' + this.countQuestion);
+      
       var today = new Date();
       countOptions.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
       countOptions.cv_id = this.cv_id;

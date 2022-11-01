@@ -147,8 +147,6 @@ export default {
                     this.ifExists = true
                     this.skills = response.data;
                     this.skills.length < 10 ? this.fullData = false : this.fullData = true
-                    console.log('awa, el skill length es: ' + this.skills.length)
-                    console.log('owo, el load data es: ' + this.fullData)
                 })
         },
         submit() {

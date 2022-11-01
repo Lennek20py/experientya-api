@@ -174,14 +174,11 @@ export default {
     },
     capitalizeCertificationName() {
         let str = this.certification.name_certification;
-        // console.log(this.certification.name_certification);
         const arr = str.split(" ");
         for (var i = 0; i < arr.length; i++) {
             arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
         }
         this.certification.name_certification_capitalized = arr.join("");
-        // console.log(arr.join(""));
-        // console.log(this.certification.name_certification_capitalized);
     },
     newDataForm(){
             this.clearData();

@@ -540,7 +540,6 @@ export default {
             await axios.get(route('cv-search', this.userProp.id))
             .then((response) => {
                 this.language.cv_id = response.data[0].id;
-                console.log(this.language.cv_id);
 
             }).catch((error) => {
                 console.log(error);
@@ -549,7 +548,6 @@ export default {
             await axios.get(route('language.show', this.language.cv_id))
             .then((response) => {
                 this.languages = response.data;
-                console.log(this.languages);
                 if (response.data.length == 0) {
                     this.ifExists = false;
                     this.newData = true;

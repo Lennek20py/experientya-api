@@ -3,7 +3,7 @@
     <div class="min-h-screen">
       <Notification :message="$page.props.flash.message" class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2" />
         <div class="flex items-start justify-start gap-4">
-          <Progress class="hidden md:block "></Progress>
+          <Progress :userProp="user" class="hidden md:block "></Progress>
           <!-- <Progress class="hidden md:block md:fixed md:top-20 md:left-0"></Progress> -->
           <div class="flex flex-col align-center gap-4 w-full align-center pb-3">
             <div class="flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0">

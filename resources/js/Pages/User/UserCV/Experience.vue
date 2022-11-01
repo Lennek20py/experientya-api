@@ -298,7 +298,6 @@ export default {
             };
             axios(config)
                 .then(function (response) {
-                    console.log(response.data);
                     self.countries = response.data;
                 })
                 .catch(function (error) {
