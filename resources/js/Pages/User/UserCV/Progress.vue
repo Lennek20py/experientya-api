@@ -144,8 +144,7 @@
 
 <script>
 export default ({
-   // components: { Header, Footer, JetInputError, JetButton },
-   props: ['userProp'],
+   props: ['userProp', 'updateStatus'],
    data: function () {
       return {
          general_progress: "0",
@@ -168,6 +167,7 @@ export default ({
                this.progress = response.data
             })
          this.calculate()
+         this.$emit('sending-event', '')
       },
       circulo() {
          let circularProgress = document.querySelector(".circular-progress"),
@@ -186,8 +186,6 @@ export default ({
 
          this.progress["testsoftskill"] == "false" ? subtotal = subtotal : subtotal = subtotal
          // this.progress["testsoftskill"] == "true" ? subtotal += 1 : subtotal = subtotal
-
-
          console.log('aqui el subtotal: ', subtotal)
          let total = (subtotal / 9) * 100
          this.general_progress = total.toFixed(1)
@@ -199,6 +197,14 @@ export default ({
       this.circulo();
       this.getProgress()
    },
+   mounted() {
+      
+   },
+   watch : {
+      updateStatus(oldStatus, newStatus) {
+         this.getProgress()
+      }
+   }
 });
 
 </script>
