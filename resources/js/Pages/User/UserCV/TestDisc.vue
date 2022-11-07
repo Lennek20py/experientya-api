@@ -276,6 +276,7 @@ export default {
       await axios.get(route('testcompetitions.show', this.cv_id))
         .then((response) => {
           this.test = response.data;
+          this.$emit('sending-event', 'changed')
           // console.log(this.test[this.test.length-1].id);
           if (response.data.length == 0) {
             this.ifExists = false

@@ -548,6 +548,7 @@ export default {
             await axios.get(route('language.show', this.language.cv_id))
             .then((response) => {
                 this.languages = response.data;
+                this.$emit('sending-event', 'changed')
                 if (response.data.length == 0) {
                     this.ifExists = false;
                     this.newData = true;

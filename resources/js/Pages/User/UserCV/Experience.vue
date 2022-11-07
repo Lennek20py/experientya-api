@@ -277,6 +277,7 @@ export default {
             await axios.get(route('experience.show', this.experience.cv_id))
                 .then((response) => {
                     this.experiences = response.data;
+                    this.$emit('sending-event', 'changed')
                     if (response.data.length == 0) {
                         this.ifExists = false
                         this.newData = true;

@@ -465,6 +465,7 @@ export default {
             this.formBind = false;
             this.ifExists = true;
             this.getTownInfo();
+            this.$emit('sending-event', 'changed')
         },
     },
     created() {

@@ -119,7 +119,7 @@
                <div
                   class="p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                   <span class="flex flex-row justify-between">Test de SoftSkills
-                     <svg class="w-6 h-6 text-yellow-600"
+                     <svg class="w-6 h-6 text-yellow-500"
                         :class="[progress['testsoftskill'] != 'false' && progress['testsoftskill'] <= 28 ? 'visible' : 'invisible']"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +127,7 @@
                         </path>
                      </svg>
                      <svg class="w-6 h-6"
-                        :class="[progress['testsoftskill'] != 'false' && progress['testsoftskill'] <= 28 ? 'visible' : 'invisible']"
+                        :class="[progress['testsoftskill'] != 'false' && progress['testsoftskill'] > 28 ? 'visible' : 'invisible']"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
@@ -186,7 +186,7 @@ export default ({
 
          this.progress["testsoftskill"] == "false" ? subtotal = subtotal : subtotal = subtotal
          // this.progress["testsoftskill"] == "true" ? subtotal += 1 : subtotal = subtotal
-         console.log('aqui el subtotal: ', subtotal)
+         // console.log('aqui el subtotal: ', subtotal)
          let total = (subtotal / 9) * 100
          this.general_progress = total.toFixed(1)
 

@@ -129,6 +129,7 @@ export default {
             await axios.get(route('user.position.index', this.userProp.id))
                 .then((response) => {
                     this.position = response.data[0].position
+                    this.$emit('sending-event', 'changed')
                     this.position == null ? this.position = "Presiona aquí para ingresar un título" : this.position = this.position
                 }).catch((error) => {
                     console.log(error)

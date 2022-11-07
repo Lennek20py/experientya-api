@@ -254,6 +254,7 @@ export default {
             await axios.get(route('cv-search', this.userProp.id))
             .then((response) => {
                 this.studyDegree.cv_id = response.data[0].id;
+                this.$emit('sending-event', 'changed')
             }).catch((error) => {
                 console.log(error);
             });

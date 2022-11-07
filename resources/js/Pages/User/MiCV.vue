@@ -4,7 +4,7 @@
       <Notification :message="$page.props.flash.message"
         class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2" />
       <div class="flex items-start justify-start gap-4">
-        <Progress :userProp="user" :updateStatus="updateStatus" @sending-event="ReceivedEvent" class="hidden md:block "></Progress>
+        <Progress :userProp="user" :updateStatus="updateStatus" @sending-event="ReceivedEvent" class="hidden md:block"></Progress>
         <!-- <Progress class="hidden md:block md:fixed md:top-20 md:left-0"></Progress> -->
         <div class="flex flex-col align-center gap-4 w-full align-center pb-3">
           <div class="flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0">
@@ -15,7 +15,7 @@
             </BasicInfo>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Study :userProp="user" class="shadow-lg shadow-gray-300"></Study>
+            <Study :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Study>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
             <Certifications :userProp="user" class="shadow-lg shadow-gray-300"></Certifications>

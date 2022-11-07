@@ -157,6 +157,7 @@ export default {
         await axios.get(route('certifications.show', this.certification.cv_id))
         .then((response) => {
             this.certifications = response.data;
+            this.$emit('sending-event', 'changed')
             this.certifications.forEach(element => this.certifications_list.indexOf(element.name_certification) === -1 ? this.certifications_list.push(element.name_certification) : this.certifications_list = this.certifications_list );
             
             if (response.data.length == 0) {
