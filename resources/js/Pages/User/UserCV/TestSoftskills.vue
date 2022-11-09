@@ -123,7 +123,7 @@
     <div class="fixed inset-0 transition-opacity">
       <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
-    <div class="z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl sm:w-full"
+    <div class="z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-7xl max-h-screen sm:w-full"
       role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <div class="bg-white px-4 pt-2 pb-4 sm:p-5 sm:pb-5 flex-col flex">
         <div v-if="!this.isFinishedTest" class="flex justify-end">
@@ -262,6 +262,7 @@ export default {
       await axios.get(route('cv-search', this.cv_id))
         .then((response) => {
           this.cv_id = response.data[0].id;
+          this.$emit('sending-event', 'changed')
         }).catch((error) => {
           console.log(error);
         });
@@ -307,8 +308,7 @@ export default {
         this.test_soft.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
         await axios.post(route('testsoftskills.store'), this.test_soft)
           .then((response) => {
-            console.log(response);
-            this.getTest();
+            this.getTests();
             this.ifExists = true;
           }).catch((error) => {
             console.log(error);
@@ -374,8 +374,6 @@ export default {
       })
     },
     answered(e) {
-      console.log('erda');
-      console.log(e.target.value);
       if (e.target.value == this.questions[this.countQuestion]['answer_skill']) {
         var error = true;
         Swal.fire({

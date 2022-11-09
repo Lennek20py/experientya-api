@@ -157,6 +157,7 @@ export default {
         await axios.get(route('certifications.show', this.certification.cv_id))
         .then((response) => {
             this.certifications = response.data;
+            this.$emit('sending-event', 'changed')
             this.certifications.forEach(element => this.certifications_list.indexOf(element.name_certification) === -1 ? this.certifications_list.push(element.name_certification) : this.certifications_list = this.certifications_list );
             
             if (response.data.length == 0) {
@@ -174,14 +175,11 @@ export default {
     },
     capitalizeCertificationName() {
         let str = this.certification.name_certification;
-        // console.log(this.certification.name_certification);
         const arr = str.split(" ");
         for (var i = 0; i < arr.length; i++) {
             arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
         }
         this.certification.name_certification_capitalized = arr.join("");
-        // console.log(arr.join(""));
-        // console.log(this.certification.name_certification_capitalized);
     },
     newDataForm(){
             this.clearData();

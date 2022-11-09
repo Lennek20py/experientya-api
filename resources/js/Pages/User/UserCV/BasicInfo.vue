@@ -10,10 +10,10 @@
             <img class="mb-3 w-32 h-32 rounded-full shadow-lg md:w-36 md:h-36"
                 :src="$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')" alt="Bonnie image">
             <h5 class="mb-1 text-xl font-semibold text-gray-900 lg:text-xl text-center">
-                {{$page.props.user.user_first_name}} {{$page.props.user.user_last_name}}</h5>
+                {{ $page.props.user.user_first_name }} {{ $page.props.user.user_last_name }}</h5>
             <div class="flex flex-row justify-center content-center place-content-center">
-                <span :class="{ 'text-red-500' : position == 'Presiona aquí para ingresar un título' }"
-                    class="text-base text-center font-medium select-none text-gray-700">{{this.position}}</span>
+                <span :class="{ 'text-red-500': position == 'Presiona aquí para ingresar un título' }"
+                    class="text-base text-center font-medium select-none text-gray-700">{{ this.position }}</span>
                 <svg class="min-w-fit w-5 h-5 lg:w-5 lg:h-5 p-1 text-gray-500" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,8 +21,9 @@
                     </path>
                 </svg>
             </div>
-            <span class="text-sm text-center font-medium text-gray-500" v-for="states in state"
-                :key="states.id">{{states.town_name}}, {{states.state_name}}</span>
+            <span class="text-sm text-center font-medium text-gray-500" v-for="states in state" :key="states.id">{{
+                    states.town_name
+            }}, {{ states.state_name }}</span>
             <div class="flex mt-4 space-x-3 lg:mt-6 items-center">
                 <a href="#"
                     class="inline-flex items-center py-2 text-sm font-medium text-center text-gray-600 bg-white rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-20"><svg
@@ -128,6 +129,7 @@ export default {
             await axios.get(route('user.position.index', this.userProp.id))
                 .then((response) => {
                     this.position = response.data[0].position
+                    this.$emit('sending-event', 'changed')
                     this.position == null ? this.position = "Presiona aquí para ingresar un título" : this.position = this.position
                 }).catch((error) => {
                     console.log(error)
@@ -145,6 +147,7 @@ export default {
                     );
                     this.getTittle()
                     this.toggleModal()
+                    this.$refs.progress.getProgress()
 
                 }).catch((error) => {
                     console.log(error)
@@ -152,7 +155,7 @@ export default {
         },
         toggleModal() {
             this.isShowModal = !this.isShowModal;
-        }
+        },
     },
     created() {
         this.getTownInfo();

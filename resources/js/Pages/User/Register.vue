@@ -493,12 +493,10 @@ export default defineComponent({
         if (this.user.password == this.user.password_confirmation) {
             this.user.errors.password = "";
             this.user.errors.password_confirmation = "";
-            console.log('contrasenas coinciden');
             // return true;
         } else {
             this.user.errors.password = "Las contraseñas no coinciden.";
             this.user.errors.password_confirmation = "Las contraseñas no coinciden.";
-            console.log('contras no coinciden');
             // return false;
         }
     },
@@ -506,9 +504,7 @@ export default defineComponent({
         if (this.user.errors.email == "" && this.user.errors.password == "") {
             this.bind = false;
             this.user.errors.confirmation = ""
-            // console.log('esta todo bien la bó');
             } else {
-                // console.log('algo apsa');
             this.user.errors.confirmation = "Revise los campos requeridos antes de continuar."
             this.bind = true;
         }

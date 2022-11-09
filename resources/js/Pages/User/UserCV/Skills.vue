@@ -25,7 +25,13 @@
         </div>
         <!-- VISTA PARA CREAR UN NUEVO REGISTRO / MODIFICAR REGISTRO -->
         <div class="2xl:mb-4" v-else-if="!formBind && ifExists && loadData">
-            <span class="w-full text-xs lg:text-sm font-light text-gray-500 mx-auto leading-none text-justify">Ingrese las skills o habilidades que posea en el botón gris de "Nueva Skill", el límite de skills es de 10. Actualmente tiene <span class="font-bold" :class="[skills.length < 10 && skills.length > 7 ? 'text-red-700' : '', skills.length <= 7 && skills.length >= 5 ? 'text-yellow-500' : '', skills.length <= 4 && skills.length >= 0 ? 'text-green-500' : '']">{{10 - skills.length}} restante/s.</span>
+            <span class="w-full text-xs lg:text-sm font-light text-gray-500 mx-auto leading-none text-justify">Ingrese
+                las skills o habilidades que posea en el botón gris de "Nueva Skill", el límite de skills es de 10.
+                Actualmente tiene <span class="font-bold"
+                    :class="[skills.length < 10 && skills.length > 7 ? 'text-red-700' : '', skills.length <= 7 && skills.length >= 5 ? 'text-yellow-500' : '', skills.length <= 4 && skills.length >= 0 ? 'text-green-500' : '']">{{
+                            10
+                            - skills.length
+                    }} restante/s.</span>
             </span>
 
             <div
@@ -57,7 +63,7 @@
                                 class="block cursor-pointer px-1 py-1 w-full text-sm text-gray-700 bg-transparent rounded-lg border-transparent focus:border-transparent appearance-none focus:outline-none focus:ring-0 peer"
                                 placeholder=" " />
                             <label for="floating_outlined"
-                                class="absolute text-sm text-gray-800 duration-300 transform -translate-y-5 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-5 left-1">Nuevo
+                                class="absolute text-sm text-gray-800 duration-300 transform -translate-y-5 scale-75 top-2 z-5 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-5 left-1">Nuevo
                                 Skill</label>
                         </div>
                         <button type="button" @click="submit"
@@ -137,6 +143,7 @@ export default {
             await axios.get(route('cv-search', this.userProp.id))
                 .then((response) => {
                     this.skill.cv_id = response.data[0].id;
+                    this.$emit('sending-event', 'changed')
                 }).catch((error) => {
                     console.log(error)
                 })
@@ -147,8 +154,6 @@ export default {
                     this.ifExists = true
                     this.skills = response.data;
                     this.skills.length < 10 ? this.fullData = false : this.fullData = true
-                    console.log('awa, el skill length es: ' + this.skills.length)
-                    console.log('owo, el load data es: ' + this.fullData)
                 })
         },
         submit() {

@@ -17,6 +17,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\CvPositionController;
+use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\TestCompetitionsController;
 use App\Http\Controllers\TestSoftSkillsController;
@@ -105,6 +106,7 @@ Route::post('/user/wp/{id}', [WorkPreferencesController::class, 'update'])->name
 Route::put('/user/position/{id}', [CvPositionController::class, 'update'])->name('user.position.update');
 Route::get('/user/position/{id}', [CvPositionController::class, 'index'])->name('user.position.index');
 Route::get('/userSkill/{id}', [UserSkillController::class, 'index'])->name('user.skills.index');
+Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progress.index');
 
 
 Route::apiResources([
