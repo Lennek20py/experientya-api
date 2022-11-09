@@ -157,4 +157,7 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     //KillerQuestions
     Route::delete('/company/question/delete/{killer}', [KillerQuestionController::class, 'destroy'])->name('question.destroy');
     Route::put('/company/question/update/{killer}', [KillerQuestionController::class, 'update'])->name('question.update');
+
+    //CV - Applicant
+    Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');;
 });

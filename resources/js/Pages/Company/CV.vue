@@ -1,0 +1,310 @@
+<template>
+    <admin-layout>
+        <main class="flex-1 pb-8">
+            <nav class="shadow hidden border-b border-gray-200 bg-white lg:flex" aria-label="Breadcrumb">
+                <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8">
+                    <li class="flex">
+                    <div class="flex items-center">
+                        <Link :href="route('company.index')" class="text-gray-400 hover:text-gray-500">
+                        <!-- Heroicon name: mini/home -->
+                        <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Home</span>
+                        </Link>
+                    </div>
+                    </li>
+
+                    <li class="flex">
+                    <div class="flex items-center">
+                        <svg class="h-full w-6 flex-shrink-0 text-gray-200" preserveAspectRatio="none" viewBox="0 0 24 44" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                        </svg>
+                        <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">CV</a>
+                    </div>
+                    </li>
+                </ol>
+            </nav>
+            <div class="py-6">
+                <div class="max-w-7xl px-4 sm:px-6 md:px-8">
+                    <!-- <p class="text-sm">{{user}}</p> -->
+                    <!-- <p class="text-sm">{{form}}</p> -->
+                    <!-- Replace with your content -->
+                    <div class="py-4 mt-2">
+                        <article class="shadow-md rounded-b-lg mt-5 w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
+                        <!-- Profile header -->
+                        <div>
+                            <div>
+                            <img class="h-32 w-full object-cover lg:h-48 rounded-t-lg" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+                            </div>
+                            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                            <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
+                                <div class="flex">
+                                <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="user.profile_photo_path.replace('profile/', '/storage/profile/')" alt="">
+                                </div>
+                                <div class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+                                <div class="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
+                                    <h1 class="truncate text-2xl font-bold text-gray-900">{{ user.user_first_name }} {{ user.user_last_name }}</h1>
+                                </div>
+                                <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                                    <!-- Heroicon name: mini/envelope -->
+                                    <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                                        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                                    </svg>
+                                    <span>Enviar Invitación</span>
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
+                                <h1 class="truncate text-2xl font-bold text-gray-900">{{ user.user_first_name }} {{ user.user_last_name }}</h1>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="mt-6 sm:mt-2 2xl:mt-5">
+                            <div class="border-b border-gray-200">
+                            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                                <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                                <!-- Current: "border-pink-500 text-gray-900", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+                                <a @click="option = 0" :class='option == 0 ? "border-purple-500 text-purple-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">Pérfil</a>
+
+                                <a @click="option = 1" :class='option == 1 ? "border-purple-500 text-purple-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="border-transparent whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Preferencias Laborales</a>
+
+                                </nav>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Description list -->
+                        <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8" v-if="option === 0">
+                            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Título</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{user.position}}</dd>
+                            </div>
+
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Email</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{user.email}}</dd>
+                            </div>
+
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Telefono</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{ user.user_phone_number }}</dd>
+                            </div>
+
+                            <!-- <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Team</dt>
+                                <dd class="mt-1 text-sm text-gray-900">Product Development</dd>
+                            </div> -->
+
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Dirección</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{user.user_address}}</dd>
+                            </div>
+
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Ubicación</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{user.city_name}}, {{user.state_name}}</dd>
+                            </div>
+
+                            <!-- <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Salary</dt>
+                                <dd class="mt-1 text-sm text-gray-900">$145,000</dd>
+                            </div> -->
+
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Cumpleaños</dt>
+                                <dd class="mt-1 text-sm text-gray-900">{{ user.user_date_of_birth }}</dd>
+                            </div>
+
+                            <!-- <div class="sm:col-span-2">
+                                <dt class="text-sm font-medium text-gray-500">About</dt>
+                                <dd class="mt-1 max-w-prose space-y-5 text-sm text-gray-900">
+                                <p>Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.</p>
+                                <p>Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</p>
+                                </dd>
+                            </div> -->
+                            </dl>
+                        </div>
+
+                        <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8" v-else-if="option === 1">
+                            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-gray-500">Hola</dt>
+                            </div>
+                            </dl>
+                        </div>
+                        <!-- Team member list -->
+                        <div class="mx-auto mt-8 max-w-5xl px-4 pb-12 sm:px-6 lg:px-8">
+                        </div>
+                        </article>
+
+                        <div class="mt-5 shadow-md w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
+                            <div class="mt-2 text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
+                                <h3>Educación</h3>
+                            </div>
+                            <div class="flex flex-col py-4" v-if="user.study_degrees.length > 0">
+                                <div v-for="(study, index) in user.study_degrees" :key="index"  class="my-3 w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
+                                    <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{study.school_name}}</h3>
+                                    <p class="text-xs text-gray-500">{{study.starting_year}} - {{study.finished_year}}</p>
+                                    <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
+                                        <div class="flex flex-nowrap justify-center items-center py-2 transition">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                                            <div class="text-sm text-gray-600 text-center w-auto leading-none align-middle">{{study.study_level}} en {{study.study_tittle}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col py-4" v-else>
+                                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify pb-5 pt-2">
+                                    Aún no se encuentran registros acerca de la educación dadas de alta por el usuario.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 shadow-md w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
+                            <div class="mt-2 text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
+                                <h3>Certificaciones</h3>
+                            </div>
+                            <div class="flex flex-col py-4" v-if="user.certifications.length > 0">
+                                <div v-for="(Certifications, index) in user.certifications" :key="index"  class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
+                                    <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{Certifications.name_certification}}</h3>
+                                    <div class="flex flex-col w-full justify-center items-center lg:flex lg:flex-row lg:justify-between">
+                                        <div v-if="Certifications.certification_path_name" class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
+                                            <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'/storage/certifications/'+Certifications.certification_path_name">
+                                                <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-red-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                                <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">{{Certifications.certification_path_name}}</div>
+                                            </a>
+                                        </div>
+                                        <div v-else class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">Sin documento adjunto</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col py-4" v-else>
+                                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify pb-5 pt-2">
+                                    Aún no se encuentran registros acerca de las certificaciones dadas de alta por el usuario.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 shadow-md w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
+                            <div class="mt-2 text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
+                                <h3>Idiomas</h3>
+                            </div>
+                            <div class="flex flex-col py-4" v-if="user.lenguages.length > 0">
+                                <div v-for="(Language, index) in user.lenguages" :key="index" class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
+                                    <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{ Language.name_language }}</h3>
+                                    <p class="text-xs text-gray-500">Nivel: {{ Language.level }}</p>
+                                    <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
+                                    <div v-if="Language.language_certification_path_name" class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
+                                        <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'storage/certifications/'+Language.language_certification_path_name">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-red-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">{{Language.language_certification_path_name}}</div>
+                                        </a>
+                                    </div>
+                                    <div v-else class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
+                                        <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                        <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">Sin documento adjunto</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col py-4" v-else>
+                                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify pb-5 pt-2">
+                                    Aún no se encuentran registros acerca de los idiomas dados de alta por el usuario.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 shadow-md w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
+                            <div class="mt-2 text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
+                                <h3>Experiencia</h3>
+                            </div>
+                            <div class="flex flex-col py-4" v-if="user.experiences.length > 0">
+                                <div v-for="(Experience, index) in user.experiences" :key="index"
+                                class="w-full flex flex-col items-center text-center mb-3 md:mb-5 lg:items-start lg:text-start border-b border-gray-200 group in-ease-out delay-150 cursor-pointer">
+                                <!-- <div class="hidden">{{fetchLocationInfo(Experience.city)}}</div> -->
+                                <h3 class="text-base text-gray-800 font-bold lg:text-xl 2xl:text-2xl">{{ Experience.company }}</h3>
+                                <div class="flex flex-nowrap justify-center items-center py-0 transition">
+                                    <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-300 pr-1" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                    <p class="text-xs text-gray-500">{{ Experience.start_date }} - {{ Experience.end_date }}</p>
+                                </div>
+                                <div class="flex flex-nowrap justify-center items-center py-0 transition">
+                                    <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-gray-300 pr-1" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <p class="text-xs text-gray-500">{{ Experience.city }}, {{ Experience.state }}, {{
+                                            Experience.country
+                                    }}
+                                    </p>
+                                </div>
+                                <div
+                                    class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
+                                    <div class="flex flex-nowrap justify-center items-center py-2 transition">
+                                        <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                            </path>
+                                        </svg>
+                                        <div class="text-sm text-gray-600 text-center w-auto leading-none align-middle">
+                                            {{ Experience.job }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="flex flex-col py-4" v-else>
+                                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify pb-5 pt-2">
+                                    Aún no se encuentran registros acerca de las experiencias dadas de alta por el usuario.
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </admin-layout>
+</template>
+
+<script>
+    import AdminLayout from '@/Layouts/CompanyLayout'
+    import { Link } from '@inertiajs/inertia-vue3'
+
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
+        components: {
+            AdminLayout,
+            Link
+        },
+        props:{
+            user: Object
+        },
+        data () {
+            return {
+                option: 0
+            }
+        }
+    })
+
+</script>

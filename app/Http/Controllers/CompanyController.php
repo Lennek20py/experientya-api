@@ -63,7 +63,8 @@ class CompanyController extends Controller
                                 ->where('specific_profile', 'like', "%{$request->specific_id}%")
                                 ->with('certifications')
                                 ->with('lenguages')
-                                ->with('experiences');
+                                ->with('experiences')
+                                ->with('studyDegrees');
                             })
                             ->when(request()->get('certifications') == 'Y', function($query) use($request){
                                 $query->where('position', 'like', "%{$request->search}%")
@@ -103,6 +104,81 @@ class CompanyController extends Controller
                                 ->where('general_profile', 'like', "%{$request->general_id}%")
                                 ->where('specific_profile', 'like', "%{$request->specific_id}%")
                                 ->has('experiences');
+                            })
+                            ->when(request()->get('educational_status') == 'Secundaria', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->whereHas('studyDegrees', function($q) use ($request){
+                                    $q->where('study_level', 'like', "%{$request->educational_status}%");
+                                });
+                            })
+                            ->when(request()->get('educational_status') == 'Preparatoria', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->whereHas('studyDegrees', function($q) use ($request){
+                                    $q->where('study_level', 'like', "%{$request->educational_status}%");
+                                });
+                            })
+                            ->when(request()->get('educational_status') == 'Licenciatura', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->whereHas('studyDegrees', function($q) use ($request){
+                                    $q->where('study_level', 'like', "%{$request->educational_status}%");
+                                });
+                            })
+                            ->when(request()->get('educational_status') == 'Maestria', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->whereHas('studyDegrees', function($q) use ($request){
+                                    $q->where('study_level', 'like', "%{$request->educational_status}%");
+                                });
+                            })
+                            ->when(request()->get('educational_status') == 'Doctorado', function($query) use($request){
+                                $query->where('position', 'like', "%{$request->search}%")
+                                ->where('user_state_id', 'like', "%{$request->state_id}%")
+                                ->where('user_city_id', 'like', "%{$request->town_id}%")
+                                ->where('change_city', 'like', "%{$request->change_address}%")
+                                ->where('work', 'like', "%{$request->work}%")
+                                ->where('practices', 'like', "%{$request->practices}%")
+                                ->where('dual_education', 'like', "%{$request->dual_education}%")
+                                ->where('area', 'like', "%{$request->area_id}%")
+                                ->where('general_profile', 'like', "%{$request->general_id}%")
+                                ->where('specific_profile', 'like', "%{$request->specific_id}%")
+                                ->whereHas('studyDegrees', function($q) use ($request){
+                                    $q->where('study_level', 'like', "%{$request->educational_status}%");
+                                });
                             })
                             ->get();
 
@@ -162,7 +238,30 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+    }
+
+    public function cv($id)
+    {
+        $user = Cv::select(
+                            'users.*',
+                            'states.name as state_name',
+                            'towns.name as city_name',
+                            'cv.position'
+                            )
+                    ->join('users', 'cv.user_id', '=', 'users.id')
+                    ->join('states', 'states.id', "=", 'users.user_state_id')
+                    ->join('towns','towns.id', '=','users.user_city_id')
+                    ->where('users.id', $id)
+                    ->with('studyDegrees')
+                    ->with('certifications')
+                    ->with('lenguages')
+                    ->with('experiences')
+                    ->first();
+
+
+        return Inertia::render('Company/CV', [
+            'user' => $user
+        ]);
     }
 
     /**

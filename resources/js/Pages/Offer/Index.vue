@@ -20,7 +20,6 @@
                     <div class="py-4 mt-2">
                         <div class="sm:flex sm:items-center">
                             <div class="sm:flex-auto">
-                                <!-- {{ $page.props.auth.company.total_spaces_available }} -->
                             <h1 class="text-xl font-semibold text-gray-900">Vacantes</h1>
                             <p class="mt-2 text-sm text-gray-700">Un listado de todas las vacantes relacionadas a su cuenta.</p>
                             </div>

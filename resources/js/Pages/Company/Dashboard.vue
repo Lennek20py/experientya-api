@@ -23,7 +23,7 @@
                         </button>
                     </form>
                     <!-- <p class="text-sm">{{users}}</p>-->
-                    <p class="text-sm">{{form}}</p>
+                    <!-- <p class="text-sm">{{form}}</p> -->
                     <!-- Replace with your content -->
                     <div class="py-4 mt-2">
                         <div class="min-h-full">

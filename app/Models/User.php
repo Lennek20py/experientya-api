@@ -84,4 +84,9 @@ class User extends Authenticatable
     {
         return asset('storage/' . $this->attributes['profile_photo_path']);
     }
+
+    public function cvs()
+    {
+        return $this->hasMany('App\Models\Cv');
+    }
 }
