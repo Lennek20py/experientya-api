@@ -1,6 +1,6 @@
 <template>
     <!-- TITULO DE TARJETA -->
-    <div
+    <div ref="MondaPelua"
         class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
         <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
             <h3>Skills</h3>
@@ -35,8 +35,7 @@
             </span>
 
             <div
-                class="flex flex-row flex-wrap gap-x-4 gap-y-2 py-4 justify-between content-center place-content-center lg:justify-start lg:gap-x-2 lg:gap-y-2">
-
+                class="flex flex-row flex-wrap gap-x-4 gap-y-2 py-4 justify-start content-center place-content-center lg:justify-start lg:gap-x-2 lg:gap-y-2">
                 <span v-for="(data, index) in skills" :key="index" id="badge-dismiss-pink"
                     class="inline-flex items-center py-1 px-2 mr-2 text-sm font-medium rounded"
                     :class="setColor(index)">
