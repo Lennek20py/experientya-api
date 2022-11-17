@@ -1,6 +1,6 @@
 <template>
   <AppLayout title="Mi CV">
-    <div class="min-h-screen pt-16">
+    <div class="min-h-screen pt-16 scroll-smooth">
       <Notification :message="$page.props.flash.message"
         class="text-green-500 font-semibold rounded-full border-green-800 fixed right-2 bottom-2" />
       <div class="flex items-start justify-start gap-4">
@@ -24,32 +24,32 @@
         <!-- <Progress class="hidden md:block md:fixed md:top-20 md:left-0"></Progress> -->
         <div class="flex flex-col align-center gap-4 w-full align-center pb-3">
           <div class="flex flex-col align-center justify-center mx-3 mt-3 gap-4 lg:flex-row lg:mr-4 lg:mx-0">
-            <WorkPreferences :userProp="user" @sending-event="ReceivedEvent"
+            <WorkPreferences id="workPreferencesSection" :userProp="user" @sending-event="ReceivedEvent"
               class="order-last shadow-lg shadow-gray-300 lg:order-first">
             </WorkPreferences>
-            <BasicInfo :userProp="user" @sending-event="ReceivedEvent"
+            <BasicInfo id="tittleSection" :userProp="user" @sending-event="ReceivedEvent"
               class="order first items-center shadow-lg shadow-gray-300 lg:order-first">
             </BasicInfo>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Study :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Study>
+            <Study id="educationSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Study>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Certifications :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300">
+            <Certifications id="certificationsSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300">
             </Certifications>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Languages :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Languages>
+            <Languages id="languagesSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Languages>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Experience :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Experience>
+            <Experience id="workExperienceSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Experience>
           </div>
           <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Skills :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Skills>
+            <Skills id="skillsSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Skills>
           </div>
           <div class="gap-4 mx-3 flex flex-col md:flex-row lg:mx-0 lg:mr-4">
-            <Testdisc :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Testdisc>
-            <TestSoft :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></TestSoft>
+            <Testdisc id="testDiscSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Testdisc>
+            <TestSoft id="testSoftSkillsSection" :userProp="user" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></TestSoft>
           </div>
         </div>
       </div>
@@ -119,3 +119,9 @@ export default defineComponent({
 })
 
 </script>
+
+<style>
+#workPreferencesSection, #tittleSection, #educationSection, #certificationsSection, #languagesSection, #workExperienceSection, #skillsSection {
+  scroll-margin-top: 68px;
+}
+</style>
