@@ -38,6 +38,11 @@ class Cv extends Model
         return $this->hasMany('App\Models\StudyDegree');
     }
 
+    public function userSkills()
+    {
+        return $this->hasMany('App\Models\UserSkill');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');

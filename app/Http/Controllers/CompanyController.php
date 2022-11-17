@@ -246,16 +246,28 @@ class CompanyController extends Controller
                             'users.*',
                             'states.name as state_name',
                             'towns.name as city_name',
-                            'cv.position'
+                            'cv.position',
+                            'work_preferences.work',
+                            'work_preferences.practices',
+                            'work_preferences.dual_education',
+                            'work_preferences.change_city',
+                            'anuies_area.name as area_name',
+                            'anuies_general.name as general_area_name',
+                            'anuies_specific.name as specific_area_name'
                             )
                     ->join('users', 'cv.user_id', '=', 'users.id')
+                    ->join('work_preferences', 'work_preferences.user_id', "=", 'users.id')
                     ->join('states', 'states.id', "=", 'users.user_state_id')
                     ->join('towns','towns.id', '=','users.user_city_id')
+                    ->join('anuies_area', 'anuies_area.id', '=', 'work_preferences.area')
+                    ->join('anuies_general', 'anuies_general.id', '=', 'work_preferences.general_profile')
+                    ->join('anuies_specific', 'anuies_specific.id', '=', 'work_preferences.specific_profile')
                     ->where('users.id', $id)
                     ->with('studyDegrees')
                     ->with('certifications')
                     ->with('lenguages')
                     ->with('experiences')
+                    ->with('userSkills')
                     ->first();
 
 

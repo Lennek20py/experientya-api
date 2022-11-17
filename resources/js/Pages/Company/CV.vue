@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                                 <div class="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
-                                    <h1 class="truncate text-2xl font-bold text-gray-900">{{ user.user_first_name }} {{ user.user_last_name }}</h1>
+                                    <h1 class="truncate text-2xl font-bold text-gray-900">{{ full_name(user.user_first_name, user.user_last_name ) }} </h1>
                                 </div>
                                 <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                                     <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
-                                <h1 class="truncate text-2xl font-bold text-gray-900">{{ user.user_first_name }} {{ user.user_last_name }}</h1>
+                                <h1 class="truncate text-2xl font-bold text-gray-900">{{ full_name(user.user_first_name, user.user_last_name ) }}</h1>
                             </div>
                             </div>
                         </div>
@@ -134,9 +134,141 @@
 
                         <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8" v-else-if="option === 1">
                             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                            <div class="sm:col-span-1">
-                                <dt class="text-sm font-medium text-gray-500">Hola</dt>
-                            </div>
+                                <div class="sm:col-span-1">
+                                    <dt class="text-sm font-medium text-gray-500">Áreas Laborales</dt>
+                                    <div class="mt-2 flex py-0 flex-col items-center justify-start gap-2 lg:gap-1 lg:flex-nowrap lg:basis-1/2 lg:justify-between 2xl:gap-2 2xl:py-2">
+                                        <div class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                            <label
+                                                class="text-sm font-bold items-center justify-center text-gray-800 lg:text-sm 2xl:text-base">Área</label>
+                                            <label for="" class="flex flex-row items-center py-1 ">
+                                                <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                    </path>
+                                                </svg>
+                                                <span
+                                                    class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                    {{ user.area_name }}
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                            <label for=""
+                                                class="text-sm font-bold justify-center text-gray-800 lg:text-sm 2xl:text-base">Campo
+                                                General</label>
+                                            <label for="" class="flex flex-row items-center py-1">
+                                                <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                    </path>
+                                                </svg>
+                                                <span
+                                                    class="text-xs font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                    {{ user.general_area_name }}
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                            <label for=""
+                                                class="text-sm font-bold items-center justify-center text-gray-800 lg:text-sm 2xl:text-base">Campo
+                                                Específico</label>
+                                            <label for="" class="flex flex-row items-center py-1">
+                                                <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1 flex-no-shrink"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                    </path>
+                                                </svg>
+                                                <span
+                                                    class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                    {{ user.specific_area_name }}
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <dt class="text-sm font-medium text-gray-500 mb-2">Me Interesa</dt>
+
+                                    <div v-if="user.work == '1'" class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                        <label for="" class="flex flex-row items-center py-1">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1 flex-no-shrink"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                </path>
+                                            </svg>
+                                            <span
+                                                class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                Trabajo
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div v-if="user.practices == '1'" class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                        <label for="" class="flex flex-row items-center py-1">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1 flex-no-shrink"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                </path>
+                                            </svg>
+                                            <span
+                                                class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                Residencia / Práctica profesional
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div v-if="user.dual_education == '1'" class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                        <label for="" class="flex flex-row items-center py-1">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1 flex-no-shrink"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                </path>
+                                            </svg>
+                                            <span
+                                                class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                Educación dual
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-1">
+                                    <dt class="text-sm font-medium text-gray-500 mb-3">Cambio de Residencia</dt>
+                                    <div v-if="user.work == '1'" class="2xl:mt-1 shrink flex flex-col w-full pb-1">
+                                        <label for="" class="flex flex-row items-center py-1">
+                                            <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-blue-500 pr-1 flex-no-shrink"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                                </path>
+                                            </svg>
+                                            <span v-if="user.change_city == 'Y'"
+                                                class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                Sí
+                                            </span>
+
+                                            <span v-else-if="user.change_city == 'N'"
+                                                class="text-xs justify-items-start font-medium w-auto text-justify leading-none align-middle text-slate-700 lg:text-sm 2xl:text-base">
+                                                No
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
                             </dl>
                         </div>
                         <!-- Team member list -->
@@ -205,7 +337,7 @@
                                     <p class="text-xs text-gray-500">Nivel: {{ Language.level }}</p>
                                     <div class="flex flex-col w-auto justify-center items-center lg:flex lg:flex-row lg:justify-between lg:w-full">
                                     <div v-if="Language.language_certification_path_name" class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start">
-                                        <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'storage/certifications/'+Language.language_certification_path_name">
+                                        <a class="flex w-full flex-nowrap justify-center items-center py-2 cursor-pointer text-ellipsis overflow-hidden transition lg:justify-start" target="_blank" rel="noopener noreferrer" :href="'/storage/certifications/'+Language.language_certification_path_name">
                                             <svg class="min-w-fit w-4 h-4 lg:w-5 lg:h-5 self-start text-red-500 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                             <div class="text-sm text-gray-600 text-center w-auto leading-none truncate ... align-middle">{{Language.language_certification_path_name}}</div>
                                         </a>
@@ -278,7 +410,29 @@
                             </div>
                         </div>
 
-
+                        <div class="mt-5 shadow-md w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
+                            <div class="mt-2 text-2xl text-center mx-auto font-bold  text-gray-900 py-2 lg:text-start lg:text-3xl">
+                                <h3>Skills</h3>
+                            </div>
+                            <div class="flex flex-col py-2" v-if="user.user_skills.length > 0">
+                                <div class="flex flex-row flex-wrap gap-x-4 gap-y-2 py-4 justify-between content-center place-content-center lg:justify-start lg:gap-x-2 lg:gap-y-2">
+                                    <span v-for="(data, index) in user.user_skills" :key="index" id="badge-dismiss-pink"
+                                        class="inline-flex items-center py-1 px-2 mr-2 text-sm font-medium rounded"
+                                        :class="setColor(index)">
+                                        {{ data.skill }}
+                                        <button type="button" disabled
+                                            class="inline-flex items-center p-0.5 ml-2 text-sm text-gray-700 bg-transparent rounded-sm "
+                                            data-dismiss-target="#badge-dismiss-pink" aria-label="Remove">
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col py-4" v-else>
+                                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify pb-5 pt-2">
+                                    Aún no se encuentran registros acerca de los skills dados de alta por el usuario.
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -302,7 +456,54 @@
         },
         data () {
             return {
-                option: 0
+                option: 0,
+                colors: [{
+                        color: "bg-blue-100 text-blue-800"
+                    },
+                    {
+                        color: "bg-red-100 text-red-800"
+                    },
+                    {
+                        color: "bg-green-100 text-green-800"
+                    },
+                    {
+                        color: "bg-yellow-100 text-yellow-800"
+                    },
+                    {
+                        color: "bg-indigo-100 text-indigo-800"
+                    },
+                    {
+                        color: "bg-purple-100 text-purple-800"
+                    },
+                    {
+                        color: "bg-pink-100 text-pink-800"
+                    },
+                    {
+                        color: "bg-blue-100 text-blue-800"
+                    },
+                    {
+                        color: "bg-green-100 text-green-800"
+                    },
+                    {
+                        color: "bg-indigo-100 text-indigo-800"
+                    }
+                ],
+            }
+        },
+        methods: {
+            setColor(id) {
+                return this.colors[id].color
+            },
+            full_name(first_name, last_name) {
+                const fullName = first_name + ' ' + last_name
+
+                const upperFullName = fullName.split(" ");
+
+                for (let i = 0; i < upperFullName.length; i++) {
+                    upperFullName[i] = upperFullName[i][0].toUpperCase() + upperFullName[i].substr(1);
+                }
+
+                return upperFullName.join(" ");
             }
         }
     })
