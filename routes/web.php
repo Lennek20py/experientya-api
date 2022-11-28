@@ -161,5 +161,6 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::put('/company/question/update/{killer}', [KillerQuestionController::class, 'update'])->name('question.update');
 
     //CV - Applicant
-    Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');;
+    Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');
+    Route::get('/company/downloadCV/{id}', [CompanyController::class, 'downloadCVPDF'])->name('company.downloadCVPDF');
 });

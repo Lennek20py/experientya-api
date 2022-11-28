@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CompanyController extends Controller
 {
@@ -360,5 +361,16 @@ class CompanyController extends Controller
             'plans' => $plans,
             'shoppings' => $shoppings
         ]);
+    }
+
+    public function downloadCVPDF($id)
+    {
+        $users = User::find($id);
+
+        view()->share('cv.candidate_cv', $users);
+
+        $pdf = PDF::loadView('cv.candidate_cv', ['users' => $users]);
+
+        return $pdf->download('CV');
     }
 }

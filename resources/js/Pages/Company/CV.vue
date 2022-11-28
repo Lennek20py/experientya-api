@@ -47,13 +47,22 @@
                                     <h1 class="truncate text-2xl font-bold text-gray-900">{{ full_name(user.user_first_name, user.user_last_name ) }} </h1>
                                 </div>
                                 <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                     <!-- Heroicon name: mini/envelope -->
                                     <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
                                         <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
                                     </svg>
                                     <span>Enviar Invitación</span>
+                                    </button>
+                                </div>
+                                <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+                                    <button @click="PDFDownload" type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                    <!-- Heroicon name: mini/envelope -->
+                                    <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
+                                    </svg>
+                                    <span>Descargar PDF</span>
                                     </button>
                                 </div>
                                 </div>
@@ -443,6 +452,8 @@
 <script>
     import AdminLayout from '@/Layouts/CompanyLayout'
     import { Link } from '@inertiajs/inertia-vue3'
+    import axios from 'axios'
+    import { Inertia } from '@inertiajs/inertia'
 
     import { defineComponent } from 'vue'
 
@@ -504,6 +515,20 @@
                 }
 
                 return upperFullName.join(" ");
+            },
+            PDFDownload() {
+                axios({
+                    url: '/company/downloadCV/' + this.user.id,
+                    method: 'GET',
+                    responseType: 'blob', // important
+                    }).then((response) => {
+                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', `${this.user.user_first_name}-${this.user.user_last_name}-CV.pdf`);
+                    document.body.appendChild(link);
+                    link.click();
+                    });
             }
         }
     })
