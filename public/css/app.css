@@ -1222,6 +1222,14 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-0\.5 {
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+}
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1383,6 +1391,9 @@ select {
 }
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+.-ml-3 {
+  margin-left: -0.75rem;
 }
 .block {
   display: block;
@@ -2028,6 +2039,9 @@ select {
 }
 .overflow-y-hidden {
   overflow-y: hidden;
+}
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
 .truncate {
   overflow: hidden;
@@ -3448,10 +3462,6 @@ select {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(168 85 247 / var(--tw-ring-opacity));
 }
-.focus\:ring-pink-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(236 72 153 / var(--tw-ring-opacity));
-}
 .focus\:ring-gray-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
@@ -3637,9 +3647,9 @@ select {
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
   }
 
-  .dark\:text-gray-500 {
+  .dark\:text-gray-400 {
     --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
+    color: rgb(156 163 175 / var(--tw-text-opacity));
   }
 
   .dark\:text-white {
@@ -3647,14 +3657,14 @@ select {
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 
-  .dark\:text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-text-opacity));
-  }
-
   .dark\:text-teal-500 {
     --tw-text-opacity: 1;
     color: rgb(20 184 166 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-500 {
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
   }
 
   .dark\:text-gray-300 {
@@ -3848,10 +3858,6 @@ select {
 
   .sm\:ml-6 {
     margin-left: 1.5rem;
-  }
-
-  .sm\:ml-0 {
-    margin-left: 0px;
   }
 
   .sm\:ml-8 {
@@ -4254,10 +4260,6 @@ select {
     text-align: left;
   }
 
-  .sm\:text-right {
-    text-align: right;
-  }
-
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -4331,6 +4333,11 @@ select {
   .md\:mx-20 {
     margin-left: 5rem;
     margin-right: 5rem;
+  }
+
+  .md\:mx-1 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
   }
 
   .md\:mt-0 {
@@ -4452,6 +4459,25 @@ select {
   .md\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .md\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .md\:font-medium {
+    font-weight: 500;
   }
 
   .md\:text-gray-900 {

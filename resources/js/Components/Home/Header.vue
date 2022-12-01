@@ -5,7 +5,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
             <div class="flex">
-                <div class="-ml-2 mr-2 flex items-center md:hidden">
+                <div class="-ml-3 mr-2 flex items-center md:hidden">
                 <!-- Mobile menu button -->
                 <button type="button" @click="mobile_menu = !mobile_menu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
@@ -32,19 +32,19 @@
                 </button>
                 </div>
                 <Link :href="route('/')" class="flex-shrink-0 flex items-center">
-                <img class="block lg:hidden h-24 w-auto" src="../../../img/logo-01.png" alt="Workflow">
+                <img class="block lg:hidden h-20 w-auto" src="../../../img/logo-01.png" alt="Workflow">
                 <img class="hidden lg:block h-32 w-auto" src="../../../img/logo-01.png" alt="Workflow">
                 </Link>
             </div>
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <Link :href="route('user.register')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <Link :href="route('user.register')" type="button" class="text-sm mx-0.5 md:text-base md:mx-1 relative inline-flex items-center px-2 py-1 md:px-4 md:py-2 border border-transparent font-normal md:font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span>Candidato</span>
                     </Link>
-                    <Link :href="route('company.register')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-teal-500 shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
+                    <Link :href="route('company.register')" type="button" class="text-sm mx-0.5 md:text-base md:mx-1 relative inline-flex items-center px-2 py-1 md:px-4 md:py-2 border border-transparent font-normal md:font-medium rounded-full text-white bg-teal-500 shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
                         <span>Empresa</span>
                     </Link>
-                    <Link :href="route('login')" type="button" class="text-base mx-1 relative inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-full border-teal-600 text-teal-600 bg-white-100 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-700">
+                    <Link :href="route('login')" type="button" class="text-sm mx-0.5 md:text-base md:mx-1 relative inline-flex items-center px-2 py-1 md:px-4 md:py-2 border border-transparent font-normal md:font-medium rounded-full border-teal-600 text-teal-600 bg-white-100 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-700">
                         <span>Entrar</span>
                     </Link>
                 </div>
