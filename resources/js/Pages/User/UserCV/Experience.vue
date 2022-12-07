@@ -16,7 +16,7 @@
         <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
         <div v-if="!formBind && !ifExists && loadData" class="flex content-end justify-around flex-col my-4">
             <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran
-                registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
+                registros sobre la experiencia, por favor ingrese los datos nuevos en el botón de "+Agregar".</span>
             <a @click="this.formBind = true"
                 class="flex items-center text-red-500 text-lg font-semibold text-start pt-6"><svg class="w-6 h-6"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

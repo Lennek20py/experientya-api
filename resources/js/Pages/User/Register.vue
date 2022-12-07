@@ -171,7 +171,7 @@
                                                 class="mr-2 leading-tight"
                                                 type="checkbox"
                                                 v-model="user.newsletter"/>
-                                            <span class="text-xs font-medium text-slate-700 after:ml-0.5 after:text-red-500 after:content-['*']">Acepto recibir comunicados de mi interés relacionados con EXPERIENTYA.</span>
+                                            <span class="text-xs font-medium text-slate-700">Acepto recibir comunicados de mi interés relacionados con EXPERIENTYA.</span>
                                         </label>
                                         <jet-input-error :message="user.errors.newsletter"/>
                                     </div>

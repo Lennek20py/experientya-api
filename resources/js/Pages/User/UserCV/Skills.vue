@@ -26,7 +26,7 @@
         <!-- VISTA PARA CREAR UN NUEVO REGISTRO / MODIFICAR REGISTRO -->
         <div class="2xl:mb-4" v-else-if="!formBind && ifExists && loadData">
             <span class="w-full text-xs lg:text-sm font-light text-gray-500 mx-auto leading-none text-justify">Ingrese
-                las skills o habilidades que posea en el botón gris de "Nueva Skill", el límite de skills es de 10.
+                las skills o habilidades que posea en el botón gris de "Nuevo Skill", el límite de skills es de 10.
                 Actualmente tiene <span class="font-bold"
                     :class="[skills.length < 10 && skills.length > 7 ? 'text-red-700' : '', skills.length <= 7 && skills.length >= 5 ? 'text-yellow-500' : '', skills.length <= 4 && skills.length >= 0 ? 'text-green-500' : '']">{{
                             10
