@@ -98,22 +98,22 @@ class LanguageController extends Controller
     public function update(Request $request, $id)
     {
         $data = Language::find($id);
-        $data->cv_id = $request->input('cv_id');
-        dd($data->cv_id);
         $data->name_language = $request->input('name_language');
+        $data->level = $request->input('level');
 
         if ($request->hasFile('language_certification_path_name')) {
-            $file = $request->file("language_certification_path_name");
+            $file = $request->file("language_certificaon_path_name");
             $nombre = $request->name_certification_capitalized . "Cert" . "_" . time() . "." . $file->guessExtension();
             $ruta = public_path("storage/certifications/" . $nombre);
 
             if ($file->guessExtension() == "pdf") {
-                if (Storage::disk('public')->exists('certifications/'.$data->language_certification_path_name)) {
-                    Storage::disk('public')->delete('certifications/'.$data->language_certification_path_name);
+                if (Storage::disk('public')->exists('certifications/' . $data->language_certification_path_name)) {
+                    Storage::disk('public')->delete('certifications/' . $data->language_certification_path_name);
                 }
-                    copy($file, $ruta);
-                    $data->language_certification_path_name = $nombre;
-           } else {
+                copy($file, $ruta);
+                $data->language_certification_path_name = $nombre;
+                $data->save();
+            } else {
                 dd("No es pdf");
             }
         }
@@ -132,11 +132,10 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         $data = Language::findOrFail($id);
-        if (Storage::disk('public')->exists('certifications/'.$data->language_certification_path_name)) {
-            Storage::disk('public')->delete('certifications/'.$data->language_certification_path_name);
+        if (Storage::disk('public')->exists('certifications/' . $data->language_certification_path_name)) {
+            Storage::disk('public')->delete('certifications/' . $data->language_certification_path_name);
         }
         $data->delete();
         return redirect()->route('user.micv')->with('message', 'Datos eliminados correctamente');
     }
-
 }
