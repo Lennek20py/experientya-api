@@ -2,7 +2,7 @@
   <div
     class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delay-75 hover:-translate-x-1">
     <div class="text-2xl text-center mx-auto font-bold  text-gray-900 py-2 first-line:lg:text-3xl">
-      <h3>Test de SoftSkills</h3>
+      <h3>Test de Soft Skills</h3>
     </div>
     <!-- CARGANDO VISTA  -->
     <div v-if="!loadData" role="status" class="sm:max-w-sm lg:max-w-full animate-pulse pb-5 lg:pb-0">

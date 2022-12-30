@@ -171,11 +171,11 @@ const logout = () => {
                                             <template #content>
                                                 <!-- Account Management -->
                                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                                    Manage Account
+                                                    Administrar cuenta
                                                 </div>
 
                                                 <JetDropdownLink :href="route('profile.show')">
-                                                    Profile
+                                                    Perfil
                                                 </JetDropdownLink>
 
                                                 <JetDropdownLink v-if="$page.props.jetstream.hasApiFeatures"
@@ -188,7 +188,7 @@ const logout = () => {
                                                 <!-- Authentication -->
                                                 <form @submit.prevent="logout">
                                                     <JetDropdownLink as="button">
-                                                        Log Out
+                                                        Cerrar sesión
                                                     </JetDropdownLink>
                                                 </form>
                                             </template>

@@ -16,7 +16,7 @@
         <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
         <div v-if="!formBind && !ifExists && loadData" class="flex content-end justify-around flex-col my-4">
             <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran
-                registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
+                registros sobre la experiencia, por favor ingrese los datos nuevos en el botón de "+Agregar".</span>
             <a @click="this.formBind = true"
                 class="flex items-center text-red-500 text-lg font-semibold text-start pt-6"><svg class="w-6 h-6"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +201,7 @@
                                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
                             </path>
                         </svg>
-                        <div class="text-sm text-gray-600 text-center w-auto leading-none align-middle">
+                        <div class="text-sm text-gray-600 text-left w-auto leading-none ml-1 align-middle">
                             {{ Experience.job }}</div>
                     </div>
                     <div
