@@ -9,10 +9,10 @@
 
             </div>
             <div v-if="!formBind && !ifExists" class="flex content-end justify-around flex-col my-4 lg:my-0">
-                <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran
+                <span class="w-full text-sm font-light text-gray-500 mx-auto text-justify">Aún no se encuentran
                     registros acerca de las preferencias laborales, por favor ingrese los datos nuevos en el botón a
                     continuación.</span>
-                <div class="w-auto flex justify-start lg:items-center lg:justify-center lg:py-4 lg:pt-64">
+                <div class="w-auto flex justify-start cursor-pointer lg:items-center lg:justify-center lg:py-4 lg:pt-64">
                     <!-- <a href="#" @click="this.formBind = true" class="hidden lg:flex lg:text-center lg:text-white lg:text-3xl lg:font-extrabold lg:p-2 lg:rounded-full lg:bg-blue-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></a> -->
                     <a @click="this.formBind = true"
                         class="lg:hiddn flex items-center content-center justify-center text-red-500 text-lg font-semibold text-start pt-6 lg:rounded-full lg:bg-red-500 lg:text-gray-50 lg:px-4 lg:py-1">

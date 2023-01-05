@@ -23,19 +23,23 @@ class ProgressController extends Controller
         $cv_id = Cv::where('user_id', $id)->get('id')->first();
         $testDisc = null;
         $testSoftSkill = null;
-        TestCompetition::where('cv_id', $cv_id->id)->get('id')->first() === null ? $testComp_id = null : $testComp_id = TestCompetition::where('cv_id', $cv_id->id)->get('id')->first();
+        // TestCompetition::where('cv_id', $cv_id->id)->get('id')->first() === null ? $testComp_id = null : $testComp_id = TestCompetition::where('cv_id', $cv_id->id)->get('id')->first();
         if (TestCompetition::where('cv_id', $cv_id->id)->get('id')->first() === null ? $testComp_id = null : $testComp_id = TestCompetition::where('cv_id', $cv_id->id)->get('id')->first()) {
             if (AnswerTestCompetition::where('test_complete_id', $testComp_id->id)->orderBy('question_number', 'desc')->first()) {
                 $testDisc = AnswerTestCompetition::where('test_complete_id', $testComp_id->id)->orderBy('question_number', 'desc')->first()->question_number;
+            } else {
+                $testDisc = "in_course";
             }
         } else {
             $testDisc = null;
         }
 
-        TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first() === null ?  $testSoft_id = null : $testSoft_id = TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first();
-        if (TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first() != null) {
+        // TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first() === null ?  $testSoft_id = null : $testSoft_id = TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first();
+        if (TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first() === null ? $testSoft_id = null : $testSoft_id = TestSoftSkill::where('cv_id', $cv_id->id)->get('id')->first()) {
             if (AnswerTestSoftSkill::where('test_id', $testSoft_id->id)->orderBy('question', 'desc')->first()) {
                 $testSoftSkill = AnswerTestSoftSkill::where('test_id', $testSoft_id->id)->orderBy('question', 'desc')->first()->question;
+            } else {
+                $testSoftSkill = "in_course";
             }
         } else {
             $testSoftSkill = null;
@@ -43,7 +47,8 @@ class ProgressController extends Controller
 
         if ($cv_id) {
             $data = array(
-                "position" => Cv::where('user_id', $id)->first() ? "true" : "false",
+                "id" => $id,
+                "position" => Cv::where('user_id', $id)->get("position")->first()->position == null ? "false" : "true",
                 "work" => Workpreferences::where('user_id', $id)->first() ? "true" : "false",
                 "study" => StudyDegree::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "certification" => Certification::where('cv_id', $cv_id->id)->first() ? "true" : "false",

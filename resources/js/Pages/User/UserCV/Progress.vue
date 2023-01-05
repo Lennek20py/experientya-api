@@ -119,14 +119,14 @@
                   <a href="#skillsSection">
                      <span class="flex flex-row justify-between">Test Competencias
                         <svg class="w-6 h-6 text-yellow-500"
-                           :class="[progress['testcompetition'] != 'false' && progress['testcompetition'] <= 26 ? 'visible' : 'invisible']"
+                           :class="[progress['testcompetition'] == 'in_course' || progress['testcompetition'] <= 26 ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                            </path>
                         </svg>
                         <svg class="w-6 h-6"
-                           :class="[progress['testcompetition'] != 'false' && progress['testcompetition'] > 26 ? 'visible' : 'invisible']"
+                           :class="[progress['testcompetition'] != null && progress['testcompetition'] > 26 ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
@@ -141,14 +141,14 @@
                   <a href="#skillsSection">
                      <span class="flex flex-row justify-between">Test de SoftSkills
                         <svg class="w-6 h-6 text-yellow-500"
-                           :class="[progress['testsoftskill'] != 'false' && progress['testsoftskill'] <= 28 ? 'visible' : 'invisible']"
+                           :class="[progress['testsoftskill'] == 'in_course' || progress['testsoftskill'] <= 28 ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                            </path>
                         </svg>
                         <svg class="w-6 h-6"
-                           :class="[progress['testsoftskill'] != 'false' && progress['testsoftskill'] > 28 ? 'visible' : 'invisible']"
+                           :class="[progress['testsoftskill'] != null && progress['testsoftskill'] > 28 ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
@@ -192,7 +192,6 @@ export default ({
          this.$emit('sending-event', '')
       },
       scrollToMe() {
-         console.log('si doy clic')
          const el = this.$refs.MondaPelua
          if (el) {
             el.scrollIntoView({ behavior: 'smooth' })
@@ -201,6 +200,9 @@ export default ({
       circulo() {
          let circularProgress = document.querySelector(".circular-progress"),
             progressValue = document.querySelector(".progress-value");
+      },
+      message () {
+         console.log(this.progress)
       },
       calculate() {
          let subtotal = 0
@@ -226,6 +228,7 @@ export default ({
    created() {
       this.circulo();
       this.getProgress()
+      this.message()
    },
    mounted() {
 

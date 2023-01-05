@@ -14,7 +14,7 @@
             <span class="sr-only">Loading...</span>
         </div>
         <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
-        <div v-if="!formBind && !ifExists && loadData" class="flex content-end justify-around flex-col my-4">
+        <div v-if="!formBind && !ifExists && loadData" class="flex content-end justify-around flex-col my-4 cursor-pointer">
             <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran
                 registros sobre la experiencia, por favor ingrese los datos nuevos en el botón de "+Agregar".</span>
             <a @click="this.formBind = true"

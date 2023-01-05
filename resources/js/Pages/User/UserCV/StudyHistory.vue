@@ -12,7 +12,7 @@
         <span class="sr-only">Loading...</span>
     </div>
     <!-- VISTA EN CASO DE QUE NO EXISTAN REGISTROS -->
-    <div v-if="!formBind && !ifExists && loadData" class="flex content-end justify-around flex-col my-4">
+    <div v-if="!formBind && !ifExists && loadData" class="flex content-end cursor-pointer justify-around flex-col my-4">
         <span class="w-full text-sm font-light text-gray-500 mx-auto px- text-justify">Aún no se encuentran registros acerca de la educación, por favor ingrese los datos nuevos en el link a continuación.</span>
         <a @click="this.formBind = true" class="flex items-center text-red-500 text-lg font-semibold text-start pt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Agregar</a>
     </div>
@@ -141,7 +141,7 @@
                 </div>
            </div>
         </div>
-         <div class="w-auto flex justify-center items-center lg:justify-center lg:py-4">
+         <div class="w-auto flex justify-center items-center lg:justify-center lg:py-4 cursor-pointer">
             <a @click="newStudy()" class="lg:hiddn flex items-center cursor-pointer content-center justify-center text-red-500 text-lg font-semibold text-start lg:rounded-full lg:bg-red-500 lg:text-gray-50 lg:px-4 lg:py-1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Agregar</a>
         </div>
