@@ -138,7 +138,6 @@
             <li>
                <div
                   class="p-1 lg:p-1.5 text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-blue-500 hover:text-white hover:cursor-pointer">
-                  {{ progress }}
                   <a href="#skillsSection">
                      <span class="flex flex-row justify-between">Test de SoftSkills
                         <svg class="w-6 h-6 text-yellow-500"
