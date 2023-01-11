@@ -233,7 +233,7 @@ import Swal from 'sweetalert2';
 import questionData from '@/CustomData/SoftSkillsArray'
 export default {
   components: { BaseModal2, Swal },
-  props: ['userProp'],
+  props: ['userProp', 'cvId'],
   data() {
     return {
       formBind: false,
@@ -259,16 +259,10 @@ export default {
   },
   methods: {
     async getTests() {
-      await axios.get(route('cv-search', this.cv_id))
-        .then((response) => {
-          this.cv_id = response.data[0].id;
-          this.$emit('sending-event', 'changed')
-        }).catch((error) => {
-          console.log(error);
-        });
-      await axios.get(route('testsoftskills.show', this.cv_id))
+      await axios.get(route('testsoftskills.show', this.cvId.id))
         .then((response) => {
           this.test = response.data;
+          this.cv_id = this.cvId.id
           if (response.data.length == 0) {
             this.ifExists = false
             this.newData = true
@@ -279,6 +273,7 @@ export default {
           if (this.test[this.test.length - 1].finished_test == "true") {
             this.test_finished = true;
           }
+          this.$emit('sending-event', 'changed')
         }).catch((error) => {
           console.log(error)
           this.ifExists = false
@@ -303,7 +298,7 @@ export default {
     async newTest() {
       if (!(this.test.length > 0) || this.test[this.test.length - 1].test_finished == "true") {
         var today = new Date();
-        this.test_soft.cv_id = this.cv_id;
+        this.test_soft.cv_id = this.cvId.id
         this.test_soft.name_user = this.userProp.user_first_name;
         this.test_soft.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
         await axios.post(route('testsoftskills.store'), this.test_soft)
@@ -422,8 +417,11 @@ export default {
   },
 
   created() {
-    this.cv_id = this.userProp.id
-    this.getTests();
+  },
+  watch: {
+    cvId(newCv, oldCv) {
+      this.getTests();
+    }
   }
 
 }

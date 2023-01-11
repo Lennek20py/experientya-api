@@ -234,7 +234,7 @@ import Swal from 'sweetalert2';
 import questionData from '@/CustomData/DiscArray';
 export default {
   components: { BaseModal, Swal },
-  props: ['userProp'],
+  props: ['userProp', 'cvId'],
   data() {
     return {
       formBind: false,
@@ -250,7 +250,6 @@ export default {
       countC: 0,
       countD: 0,
       countQuestion: 0,
-      cv_id: "",
       question: [],
       test_comp: {
         "cv_id": 0,
@@ -267,13 +266,7 @@ export default {
   methods: {
     // METODOS PARA OBTENER TEST EXISTENTES
     async getTests() {
-      await axios.get(route('cv-search', this.userProp.id))
-        .then((response) => {
-          this.cv_id = response.data[0].id;
-        }).catch((error) => {
-          console.log(error);
-        });
-      await axios.get(route('testcompetitions.show', this.cv_id))
+      await axios.get(route('testcompetitions.show', this.cvId.id))
         .then((response) => {
           this.test = response.data;
           this.$emit('sending-event', 'changed')
@@ -322,7 +315,7 @@ export default {
     async newTest() {
       if (!(this.test.length > 0) || this.test[this.test.length - 1].test_finished == "true") {
         var today = new Date();
-        this.test_comp.cv_id = this.cv_id;
+        this.test_comp.cv_id = this.cvId.id;
         this.test_comp.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
         await axios.post(route('testcompetitions.store'), this.test_comp)
           .then((response) => {
@@ -366,7 +359,7 @@ export default {
       
       var today = new Date();
       countOptions.finished_date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
-      countOptions.cv_id = this.cv_id;
+      countOptions.cv_id = this.cvId.id;
       countOptions.CountDete = this.countA
       countOptions.CountInfl = this.countB
       countOptions.CountEsta = this.countC
@@ -490,7 +483,11 @@ export default {
 
   },
   created() {
-    this.getTests();
+  },
+  watch: {
+    cvId(newCv, oldCv) {
+      this.getTests();
+    }
   }
 
 }

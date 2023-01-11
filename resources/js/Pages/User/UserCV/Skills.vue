@@ -90,7 +90,7 @@ import Swal from 'sweetalert2';
 import route from '../../../../../vendor/tightenco/ziggy/src/js';
 export default {
     components: { JetButton, Swal },
-    props: ['userProp'],
+    props: ['userProp', 'cvId'],
     data() {
         return {
             loadData: false,
@@ -139,20 +139,13 @@ export default {
     },
     methods: {
         async getSkills() {
-            await axios.get(route('cv-search', this.userProp.id))
-                .then((response) => {
-                    this.skill.cv_id = response.data[0].id;
-                    this.$emit('sending-event', 'changed')
-                }).catch((error) => {
-                    console.log(error)
-                })
-
-            await axios.get(route('user.skills.index', this.skill.cv_id))
+            await axios.get(route('user.skills.index', this.cvId.id))
                 .then((response) => {
                     this.loadData = true
                     this.ifExists = true
                     this.skills = response.data;
                     this.skills.length < 10 ? this.fullData = false : this.fullData = true
+                    this.$emit('sending-event', 'changed')
                 })
         },
         submit() {
@@ -202,10 +195,12 @@ export default {
         }
 
     },
-    created() {
-        this.getSkills()
-    },
     computed: {
+    },
+    watch: {
+        cvId(newCv, oldCv) {
+            this.getSkills()
+        }
     }
 };
 </script>

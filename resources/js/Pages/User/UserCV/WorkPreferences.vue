@@ -1,10 +1,8 @@
 <template>
-    <Transition>
 
-        <div
-            class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
-            <div
-                class="text-2xl mx-auto font-bold text-gray-900 py-2 flex flex-wrap text-center items-center justify-center lg:justify-between lg:text-start lg:text-2xl 2xl:text-3xl">
+    <Transition>
+        <div class="w-full w-4xl bg-white rounded-lg border border-gray-200 shadow-m px-5 py-2 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75 hover:-translate-x-1">
+            <div class="text-2xl mx-auto font-bold text-gray-900 py-2 flex flex-wrap text-center items-center justify-center lg:justify-between lg:text-start lg:text-2xl 2xl:text-3xl">
                 <h3>Preferencias Laborales</h3>
 
             </div>
@@ -332,12 +330,12 @@
 
 <script>
 
-import JetButton from '@/Jetstream/Button'
-import Notification from '@/CustomComponents/Notification.vue'
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { tsThisType } from '@babel/types';
-export default {
+    import JetButton from '@/Jetstream/Button'
+    import Notification from '@/CustomComponents/Notification.vue'
+    import axios from 'axios';
+    import Swal from 'sweetalert2';
+    import { tsThisType } from '@babel/types';
+    export default {
     components: { JetButton, Notification, Swal },
     props: ['userProp'],
     data() {

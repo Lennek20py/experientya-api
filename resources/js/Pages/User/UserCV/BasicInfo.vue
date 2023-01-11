@@ -100,68 +100,68 @@
 </template>
 
 <script>
-import BaseModal from '@/CustomComponents/Modal.vue';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { defineComponent } from "vue";
-import AppLayout from "@/Layouts/UserLayout.vue";
-import route from '../../../../../vendor/tightenco/ziggy/src/js';
-export default {
-    props: ['userProp'],
-    components: { AppLayout, Swal },
-    data: function () {
-        return {
-            state: {},
-            isShowModal: false,
-            position: ""
-        }
-    },
-    methods: {
-        async getTownInfo() {
-            await axios.get("town/" + this.userProp.user_city_id)
-                .then((response) => {
-                    this.state = response.data;
-                }).catch((error) => {
-                    console.log(error);
-                });
+    import BaseModal from '@/CustomComponents/Modal.vue';
+    import axios from 'axios';
+    import Swal from 'sweetalert2';
+    import { defineComponent } from "vue";
+    import AppLayout from "@/Layouts/UserLayout.vue";
+    import route from '../../../../../vendor/tightenco/ziggy/src/js';
+    export default {
+        props: ['userProp'],
+        components: { AppLayout, Swal },
+        data: function () {
+            return {
+                state: {},
+                isShowModal: false,
+                position: ""
+            }
         },
-        async getTittle() {
-            await axios.get(route('user.position.index', this.userProp.id))
-                .then((response) => {
-                    this.position = response.data[0].position
-                    this.$emit('sending-event', 'changed')
-                    this.position == null ? this.position = "Presiona aquí para ingresar un título" : this.position = this.position
-                }).catch((error) => {
-                    console.log(error)
-                })
-        },
-        async savePosition() {
-            let data = {}
-            data.position = this.position
-            await axios.put(route('user.position.update', this.userProp.id), data)
-                .then((response) => {
-                    Swal.fire(
-                        'Actualizado!',
-                        'El registro fue actualizado exitosamente!',
-                        'success'
-                    );
-                    this.getTittle()
-                    this.toggleModal()
-                    this.$refs.progress.getProgress()
+        methods: {
+            async getTownInfo() {
+                await axios.get("town/" + this.userProp.user_city_id)
+                    .then((response) => {
+                        this.state = response.data;
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+            },
+            async getTittle() {
+                await axios.get(route('user.position.index', this.userProp.id))
+                    .then((response) => {
+                        this.position = response.data[0].position
+                        this.$emit('sending-event', 'changed')
+                        this.position == null ? this.position = "Presiona aquí para ingresar un título" : this.position = this.position
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+            },
+            async savePosition() {
+                let data = {}
+                data.position = this.position
+                await axios.put(route('user.position.update', this.userProp.id), data)
+                    .then((response) => {
+                        Swal.fire(
+                            'Actualizado!',
+                            'El registro fue actualizado exitosamente!',
+                            'success'
+                        );
+                        this.getTittle()
+                        this.toggleModal()
+                        this.$refs.progress.getProgress()
 
-                }).catch((error) => {
-                    console.log(error)
-                })
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+            },
+            toggleModal() {
+                this.isShowModal = !this.isShowModal;
+            },
         },
-        toggleModal() {
-            this.isShowModal = !this.isShowModal;
-        },
-    },
-    created() {
-        this.getTownInfo();
-        this.getTittle()
-    }
-};
+        created() {
+            this.getTownInfo();
+            this.getTittle()
+        }
+    };
 </script>
 
 <style>

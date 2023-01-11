@@ -104,7 +104,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 export default {
     components: {JetButton, Swal },
-    props: ['userProp'],
+    props: ['userProp', 'cvId'],
     data() {
         return {
             loadData: false,
@@ -537,69 +537,60 @@ export default {
     },
     methods: {
         async getCertifications() {
-            await axios.get(route('cv-search', this.userProp.id))
-            .then((response) => {
-                this.language.cv_id = response.data[0].id;
+            await axios.get(route('language.show', this.cvId.id))
+                .then((response) => {
+                    this.languages = response.data;
+                    this.$emit('sending-event', 'changed')
+                    if (response.data.length == 0) {
+                        this.ifExists = false;
+                        this.newData = true;
+                    } else {
+                        this.ifExists = true;
+                    }
 
-            }).catch((error) => {
-                console.log(error);
-            });
-
-            await axios.get(route('language.show', this.language.cv_id))
-            .then((response) => {
-                this.languages = response.data;
-                this.$emit('sending-event', 'changed')
-                if (response.data.length == 0) {
+                }).catch((error) => {
+                    console.log(error);
                     this.ifExists = false;
-                    this.newData = true;
-                } else {
-                    this.ifExists = true;
-                }
-
-            }).catch((error) => {
-                console.log(error);
-                this.ifExists = false;
-            });
-
+                });
             this.loadData = true;
         },
         capitalizeCertificationName() {
-        let str = this.language.name_language;
-        const arr = str.split(" ");
-        for (var i = 0; i < arr.length; i++) {
-            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-        }
-        this.language.language_certification_path_name_capitalized = arr.join("");
+            let str = this.language.name_language;
+            const arr = str.split(" ");
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+            }
+            this.language.language_certification_path_name_capitalized = arr.join("");
         },
         newDataForm(){
             this.clearData();
             this.formBind = true;
             this.newData = true;
         }, 
-    edit(i) {
-        this.language.id = i.id;
-        this.language.cv_id = i.cv_id;
-        this.language.name_language = i.name_language;
-        this.language.level = i.level;
-        this.language.language_certification_path_name = i.language_certification_path_name;
-        this.language.language_certification_path_name_capitalized = i.language_certification_path_name_capitalized;
-        this.certification_url = i.language_certification_path_name;
-        this.formBind = true;
-        this.newData = false;
+        edit(i) {
+            this.language.id = i.id;
+            this.language.cv_id = i.cv_id;
+            this.language.name_language = i.name_language;
+            this.language.level = i.level;
+            this.language.language_certification_path_name = i.language_certification_path_name;
+            this.language.language_certification_path_name_capitalized = i.language_certification_path_name_capitalized;
+            this.certification_url = i.language_certification_path_name;
+            this.formBind = true;
+            this.newData = false;
 
-    },
-    clearData(){
-        this.language.name_language = "";
-        this.language.level = "";
-        this.language.language_certification_path_name = "";
-        this.language.language_certification_path_name_capitalized = "";
-        this.certification_url = "";
-    },
-    onFileSelected(event) {
-        this.capitalizeCertificationName();
-        this.language.language_certification_path_name = event.target.files[0];
-        // console.log(event.target.files[0]);
-    },
+        },
+        clearData(){
+            this.language.name_language = "";
+            this.language.level = "";
+            this.language.language_certification_path_name = "";
+            this.language.language_certification_path_name_capitalized = "";
+            this.certification_url = "";
+        },
+        onFileSelected(event) {
+            this.capitalizeCertificationName();
+            this.language.language_certification_path_name = event.target.files[0];
+            // console.log(event.target.files[0]);
+        },
         submit() {
             this.capitalizeCertificationName();
             if(this.newData) {
@@ -608,19 +599,19 @@ export default {
                     'Exito!',
                     'El idioma fue registrado exitosamente!',
                     'success'
-                    );
+                );
             } else if(!this.newData) {
                 this.language.put(route('language.update', this.language.id), { preserveScroll: true });
                 Swal.fire(
                     'Actualizado!',
                     'El idioma fue actualizado exitosamente!',
                     'success'
-                    );
+                );
             }
-        this.getCertifications();
-        this.formBind = false;
-    },
-    deleteAlert() {
+            this.getCertifications();
+            this.formBind = false;
+        },
+        deleteAlert() {
             Swal.fire({
             title: '¿Está seguro?',
             text: "No se podrá revertir",
@@ -641,16 +632,18 @@ export default {
             })
         },
 
-       deleteData() {
-        // console.log(this.certification.id);
-        this.language.delete(route('language.destroy', this.language.id), { preserveScroll: true })
-        this.formBind = false;
-        this.getCertifications();
-    },
-
+        deleteData() {
+            this.language.delete(route('language.destroy', this.language.id), { preserveScroll: true })
+            this.formBind = false;
+            this.getCertifications();
+        },
     },
     created() {
-        this.getCertifications();
+    },
+    watch: {
+        cvId(newCv, oldCv) {
+            this.getCertifications()
+        }
     }
 };
 </script>

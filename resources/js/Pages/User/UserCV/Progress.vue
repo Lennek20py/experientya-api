@@ -166,25 +166,17 @@
 
 <script>
 export default ({
-   props: ['userProp', 'updateStatus'],
+   props: ['userProp', 'updateStatus', 'cvId'],
    data: function () {
       return {
          general_progress: "0",
          deg: "50",
-         cv_id: "",
          progress: []
       };
    },
    methods: {
       async getProgress() {
-         await axios.get(route('cv-search', this.userProp.id))
-            .then((response) => {
-               this.cv_id = response.data;
-            }).catch((error) => {
-               console.log(error);
-            });
-
-         await axios.get(route('progress.index', this.cv_id))
+         await axios.get(route('progress.index', this.cvId.id))
             .then((response) => {
                this.progress = response.data
             })
@@ -200,9 +192,6 @@ export default ({
       circulo() {
          let circularProgress = document.querySelector(".circular-progress"),
             progressValue = document.querySelector(".progress-value");
-      },
-      message () {
-         console.log(this.progress)
       },
       calculate() {
          let subtotal = 0
@@ -227,8 +216,6 @@ export default ({
    },
    created() {
       this.circulo();
-      this.getProgress()
-      this.message()
    },
    mounted() {
 
@@ -236,7 +223,10 @@ export default ({
    watch: {
       updateStatus(oldStatus, newStatus) {
          this.getProgress()
-      }
+      },
+      cvId(newCv, oldCv) {
+            this.getProgress()
+        }
    }
 });
 

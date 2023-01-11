@@ -237,7 +237,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 export default {
     components: { JetButton, Notification, Swal },
-    props: ['userProp'],
+    props: ['userProp', 'cvId'],
     data() {
         return {
             loadData: false,
@@ -267,14 +267,7 @@ export default {
     },
     methods: {
         async getExperiences() {
-            await axios.get(route('cv-search', this.userProp.id))
-                .then((response) => {
-                    this.experience.cv_id = response.data[0].id;
-                }).catch((error) => {
-                    console.log(error);
-                });
-
-            await axios.get(route('experience.show', this.experience.cv_id))
+            await axios.get(route('experience.show', this.cvId.id))
                 .then((response) => {
                     this.experiences = response.data;
                     this.$emit('sending-event', 'changed')
@@ -419,15 +412,6 @@ export default {
                     console.log(error);
                 });
         },
-        // async fetchCities() {
-        //     this.experience.city = "";
-        //     await axios.get(route('cities-list', this.experience.state))
-        //     .then((response) => {
-        //         this.cities = response.data;
-        //     }).catch((error) => {
-        //         console.log(error);
-        //     });
-        // },
         async fetchCitiesEdit() {
             await axios.get(route('cities-list', this.experience.state))
                 .then((response) => {
@@ -439,8 +423,12 @@ export default {
     },
 
     created() {
-        this.getExperiences();
     },
+    watch: {
+        cvId(newCv, oldCv) {
+            this.getExperiences()
+        }
+    }
 };
 </script>
 

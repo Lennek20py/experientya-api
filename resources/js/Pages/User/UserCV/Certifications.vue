@@ -93,7 +93,7 @@ import Swal from 'sweetalert2';
 import vSelect from 'vue-select';
 export default {
     components: {JetButton, Swal, vSelect },
-    props: ['userProp'],
+    props: ['userProp', 'cvId'],
     data() {
         return {
             loadData: false,
@@ -147,14 +147,7 @@ export default {
     },
     methods: {
     async getCertifications() {
-        await axios.get(route('cv-search', this.userProp.id))
-        .then((response) => {
-            this.certification.cv_id = response.data[0].id;
-        }).catch((error) => {
-            console.log(error);
-        });
-
-        await axios.get(route('certifications.show', this.certification.cv_id))
+        await axios.get(route('certifications.show', this.cvId.id))
         .then((response) => {
             this.certifications = response.data;
             this.$emit('sending-event', 'changed')
@@ -256,8 +249,12 @@ export default {
     
     },
     created() {
-        this.getCertifications();
     },
+    watch: {
+        cvId(newCv, oldCv) {
+            this.getCertifications()
+        }
+    }
 };
 </script>
 

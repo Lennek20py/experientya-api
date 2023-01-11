@@ -180,7 +180,7 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 export default {
     components: {JetButton, Notification, vSelect, Swal},
-    props: ['userProp'],
+    props: ['userProp', 'cvId'],
     data() {
         return {
             loadData: false,
@@ -251,15 +251,7 @@ export default {
     },
     methods: {
         async getStudyDegree() {
-            await axios.get(route('cv-search', this.userProp.id))
-            .then((response) => {
-                this.studyDegree.cv_id = response.data[0].id;
-                this.$emit('sending-event', 'changed')
-            }).catch((error) => {
-                console.log(error);
-            });
-
-            await axios.get(route('study-degrees.show', this.studyDegree.cv_id))
+            await axios.get(route('study-degrees.show', this.cvId.id))
             .then((response) => {
                 this.studyDegrees = response.data;
                 if (response.data.length == 0){ 
@@ -371,8 +363,12 @@ export default {
     },
 
     created() {
-        this.getStudyDegree();
     },
+    watch: {
+        cvId(newCv, oldCv) {
+            this.getStudyDegree()
+        }
+    }
 };
 </script>
 
