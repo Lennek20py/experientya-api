@@ -139,6 +139,7 @@ export default {
     },
     methods: {
         async getSkills() {
+            this.skill.cv_id = this.cvId.id
             await axios.get(route('user.skills.index', this.cvId.id))
                 .then((response) => {
                     this.loadData = true
@@ -159,7 +160,7 @@ export default {
                 this.skill.post(route('userSkill.store'), { preserveScroll: true });
                 Swal.fire(
                     'Exito!',
-                    'El idioma fue registrado exitosamente!',
+                    'El Skill fue registrado exitosamente!',
                     'success'
                 );
                 this.skill.skill = ""
