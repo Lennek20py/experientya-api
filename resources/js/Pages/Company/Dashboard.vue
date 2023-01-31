@@ -41,7 +41,7 @@
                     <form class="px-4 py-5 sm:p-6">
                         <h3 class="mb-6 text-2xl leading-6 font-bold text-gray-900">Filtros</h3>
                         <div class="mt-2 text-sm text-gray-500">
-                            <h3 class="text-lg leading-6 text-gray-800 mb-2">Area de Trabajo:</h3>
+                            <h3 class="text-lg leading-6 text-gray-800 mb-2">Area de Trabajo dsdsa:</h3>
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-12 lg:col-span-2 mt-1">
                                     <label for="type_of_contract" class="block text-sm font-medium text-gray-700">Area</label>

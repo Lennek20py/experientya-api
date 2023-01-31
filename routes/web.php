@@ -22,6 +22,7 @@ use App\Http\Controllers\StudyDegreeController;
 use App\Http\Controllers\TestCompetitionsController;
 use App\Http\Controllers\TestSoftSkillsController;
 use App\Http\Controllers\UserSkillController;
+use App\Http\Controllers\VacanciesController;
 use App\Http\Controllers\WorkPreferencesController;
 
 /*
@@ -107,6 +108,9 @@ Route::put('/user/position/{id}', [CvPositionController::class, 'update'])->name
 Route::get('/user/position/{id}', [CvPositionController::class, 'index'])->name('user.position.index');
 Route::get('/userSkill/{id}', [UserSkillController::class, 'index'])->name('user.skills.index');
 Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progress.index');
+Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
+Route::get('/vacants/detail/{id}', [VacanciesController::class, 'view'])->name('vacants.detail');
+
 
 
 Route::apiResources([

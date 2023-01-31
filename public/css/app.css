@@ -2805,6 +2805,9 @@ select {
 .pl-5 {
   padding-left: 1.25rem;
 }
+.pt-12 {
+  padding-top: 3rem;
+}
 .pb-10 {
   padding-bottom: 2.5rem;
 }

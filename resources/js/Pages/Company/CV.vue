@@ -79,7 +79,7 @@
                             <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
                                 <nav class="-mb-px flex space-x-8" aria-label="Tabs">
                                 <!-- Current: "border-pink-500 text-gray-900", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-                                <a @click="option = 0" :class='option == 0 ? "border-purple-500 text-purple-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">Pérfil</a>
+                                <a @click="option = 0" :class='option == 0 ? "border-purple-500 text-purple-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">Perfil</a>
 
                                 <a @click="option = 1" :class='option == 1 ? "border-purple-500 text-purple-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"' class="border-transparent whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Preferencias Laborales</a>
 
