@@ -109,7 +109,7 @@ Route::get('/user/position/{id}', [CvPositionController::class, 'index'])->name(
 Route::get('/userSkill/{id}', [UserSkillController::class, 'index'])->name('user.skills.index');
 Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progress.index');
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
-Route::get('/vacants/detail/{id}', [VacanciesController::class, 'view'])->name('vacants.detail');
+Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
 
 
 
@@ -130,9 +130,9 @@ Route::middleware([
     Route::get('/micv', function () {
         return Inertia::render('User/MiCV');
     })->name('user.micv');
-    Route::get('/vacants', function () {
+    Route::get('/vacancies', function () {
         return Inertia::render('User/Vacant');
-    })->name('user.vacants');
+    })->name('user.vacancies');
     Route::get('/messages', function () {
         return Inertia::render('User/Messages');
     })->name('user.messages');

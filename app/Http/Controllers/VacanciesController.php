@@ -71,7 +71,7 @@ class VacanciesController extends Controller
     {
         $vacant = Offer::findOrFail($id);
         
-        return Inertia::render('User/Vacants/VacantDetail');
+        return Inertia::render('User/Vacancies/VacantDetail');
     }
 
 

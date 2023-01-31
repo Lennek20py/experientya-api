@@ -57,11 +57,11 @@ const logout = () => {
                             <div class="flex">
                                 <!-- Navigation Links -->
                                 <div class="hidden items-center space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <JetNavLink :href="route('user.vacancies')" :active="route().current('user.vacancies')">
+                                        Vacantes
+                                    </JetNavLink>
                                     <JetNavLink :href="route('user.micv')" :active="route().current('user.micv')">
                                         MI CV
-                                    </JetNavLink>
-                                    <JetNavLink :href="route('user.vacants')" :active="route().current('user.vacants')">
-                                        Vacantes
                                     </JetNavLink>
                                     <JetNavLink :href="route('user.messages')"
                                         :active="route().current('user.messages')">
@@ -227,8 +227,8 @@ const logout = () => {
                             <JetResponsiveNavLink :href="route('user.micv')" :active="route().current('user.micv')">
                                 Mi CV
                             </JetResponsiveNavLink>
-                            <JetResponsiveNavLink :href="route('user.vacants')"
-                                :active="route().current('user.vacants')">
+                            <JetResponsiveNavLink :href="route('user.vacancies')"
+                                :active="route().current('user.vacancies')">
                                 Vacantes
                             </JetResponsiveNavLink>
                             <JetResponsiveNavLink :href="route('user.messages')"

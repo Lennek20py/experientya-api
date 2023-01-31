@@ -1,7 +1,7 @@
 <template>
     <header v-for="(vacancie, index) in vacancies" :key="index"
         class="bg-white py-8 rounded-md shadow-md border-solid border-2 border-neutral-100 mb-5">
-        <a :href="route('vacants.detail', 1)">
+        <a :href="route('vacancies.detail', 1)">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1
@@ -88,7 +88,7 @@ export default defineComponent({
         }
     },
     methods: {
-        async getVacants() {
+        async getvacancies() {
             await axios.get(route('vacancies.index', 8))
                 .then((response) => {
                     this.vacancies = response.data
@@ -98,7 +98,7 @@ export default defineComponent({
 
     },
     created() {
-        this.getVacants()
+        this.getvacancies()
     },
     watch: {
     }
