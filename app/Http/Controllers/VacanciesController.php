@@ -69,9 +69,13 @@ class VacanciesController extends Controller
      */
     public function view($id)
     {
-        $vacant = Offer::findOrFail($id);
-        
-        return Inertia::render('User/Vacancies/VacantDetail');
+        $vacant = Offer::select('offers.*', 'companies.*')
+        ->join('companies', 'companies.id', '=', 'offers.company_id')
+        ->where('offers.id', $id)
+        ->first();
+        return Inertia::render('User/Vacancies/VacantDetail', [
+            'vacant' => $vacant
+        ]);
     }
 
 
