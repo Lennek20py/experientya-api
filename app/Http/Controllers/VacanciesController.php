@@ -22,42 +22,42 @@ class VacanciesController extends Controller
         $user = User::findOrFail($basic_info->user_id);
         $work_preferences = Workpreferences::where('user_id', $id)->first();
         $type_work = array();
-        array_push($type_work, $work_preferences->work == "1" ? "Empleo" : "" );
-        array_push($type_work, $work_preferences->practices == "1" ? "Práctica profesional" : "" );
-        array_push($type_work, $work_preferences->dual_education == "1" ? "Educación Dual" : "" );
+        array_push($type_work, $work_preferences->work == "1" ? "Empleo" : "");
+        array_push($type_work, $work_preferences->practices == "1" ? "Práctica profesional" : "");
+        array_push($type_work, $work_preferences->dual_education == "1" ? "Educación Dual" : "");
         $first_word = strtok($basic_info->position, " ");
 
         // dd($user->user_state_id);
         $vacancies = Offer::select('offers.*', 'companies.company_name', 'companies.company_address', 'states.name AS state', 'towns.name AS town')
-        ->join('companies', 'offers.company_id', '=', 'companies.id')
-        ->join('states', 'offers.state_id', '=', 'states.id')
-        ->join('towns', 'offers.town_id', '=', 'towns.id');
+            ->join('companies', 'offers.company_id', '=', 'companies.id')
+            ->join('states', 'offers.state_id', '=', 'states.id')
+            ->join('towns', 'offers.town_id', '=', 'towns.id');
 
-        $filter_vacancies = $vacancies->when(request()->get('all') == 'Y' && request()->get('search') == null, function($query) use ($request) {
+        $filter_vacancies = $vacancies->when(request()->get('all') == 'Y' && request()->get('search') == null, function ($query) use ($request) {
             $query->where('title', 'LIKE', "%%");
         })
-        ->when(request()->get('search') != null, function($query) use ($request) {
-            $query->where('title', 'LIKE', "%{$request->search}%");
-        })
-        ->when(request()->get('type_work') != null, function($query) {
-            $query->where('type_job', request()->get('type_work'));
-        })
-        ->when(request()->get('time_work') != null, function($query) {
-            $query->where('type_horary', request()->get('time_work'));
-        })
-        ->when(request()->get('payment_type') != null, function($query) {
-            $query->where('payment_type', request()->get('payment_type'));
-        })
-        ->when(request()->get('moving') == 'Y', function($query) use ($user) {
-            $query->where('offers.state_id', $user->user_state_id);
-        })
-        ->when(request()->get('all') != 'Y', function($query) use ($first_word, $type_work) {
-            $query->where('title', 'LIKE', "%{$first_word}%")
-            ->where('title_job', 'LIKE', "%{$first_word}%")
-            ->whereIn('type_job', $type_work);
-        })
-        ->get();
-        
+            ->when(request()->get('search') != null, function ($query) use ($request) {
+                $query->where('title', 'LIKE', "%{$request->search}%");
+            })
+            ->when(request()->get('type_work') != null, function ($query) {
+                $query->where('type_job', request()->get('type_work'));
+            })
+            ->when(request()->get('time_work') != null, function ($query) {
+                $query->where('type_horary', request()->get('time_work'));
+            })
+            ->when(request()->get('payment_type') != null, function ($query) {
+                $query->where('payment_type', request()->get('payment_type'));
+            })
+            ->when(request()->get('moving') == 'Y', function ($query) use ($user) {
+                $query->where('offers.state_id', $user->user_state_id);
+            })
+            ->when(request()->get('all') != 'Y', function ($query) use ($first_word, $type_work) {
+                $query->where('title', 'LIKE', "%{$first_word}%")
+                    ->where('title_job', 'LIKE', "%{$first_word}%")
+                    ->whereIn('type_job', $type_work);
+            })
+            ->get();
+
         return $filter_vacancies;
     }
 
@@ -69,10 +69,21 @@ class VacanciesController extends Controller
      */
     public function view($id)
     {
-        $vacant = Offer::select('offers.*', 'companies.*')
-        ->join('companies', 'companies.id', '=', 'offers.company_id')
-        ->where('offers.id', $id)
-        ->first();
+        $vacant = Offer::select(
+            'offers.*',
+            'companies.email AS company_email',
+            'companies.profile_photo_path AS company_profile_photo_path',
+            'companies.company_name AS company_name',
+            'states.name as state_name',
+            'towns.name as city_name',
+        )
+            ->join('companies', 'companies.id', '=', 'offers.company_id')
+            ->join('states', 'states.id', '=', 'offers.state_id')
+            ->join('towns', 'towns.id', '=', 'offers.town_id')
+            ->where('offers.id', $id)
+            ->first();
+
+        // dd($vacant);
         return Inertia::render('User/Vacancies/VacantDetail', [
             'vacant' => $vacant
         ]);
