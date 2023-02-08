@@ -197,6 +197,14 @@
                                         </span>
                                     </label>
                                 </div>
+                                <div class="col-span-12 lg:col-span-2 mt-1 sm:ml-none lg:ml-3">
+                                    <label class="block text-gray-500">
+                                        <input class="mr-1 leading-tight" type="checkbox" :true-value="'false'" :false-value="'true'" v-model="form.salary_visibility"/>
+                                        <span class="text-sm font-medium text-slate-700 after:ml-0.5">
+                                            Ocultar Salario
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="flex justify-end px-4 py-4 bg-gray-100 rounded-b-md">
@@ -609,6 +617,7 @@
                     'profile_description': this.offer.profile_description,
                     'start_date': this.offer.start_date,
                     'salary': this.offer.salary,
+                    'salary_visibility': this.offer.salary_visibility,
                     'payment_type': this.offer.payment_type,
                     'offer_address': this.offer.offer_address,
                     'state_id': this.offer.state_id,
@@ -694,6 +703,7 @@
                     profile_description: this.form.profile_description,
                     start_date: this.form.start_date,
                     salary: this.form.salary,
+                    salary_visibility: this.form.salary_visibility,
                     payment_type: this.form.payment_type,
                     offer_address: this.form.offer_address,
                     state_id: this.form.state_id,

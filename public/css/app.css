@@ -1359,10 +1359,6 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -2028,9 +2024,6 @@ select {
 .place-content-center {
   place-content: center;
 }
-.place-items-center {
-  place-items: center;
-}
 .content-center {
   align-content: center;
 }
@@ -2340,12 +2333,6 @@ select {
 .border-t-2 {
   border-top-width: 2px;
 }
-.border-b-\[1px\] {
-  border-bottom-width: 1px;
-}
-.border-b-\[0\.5px\] {
-  border-bottom-width: 0.5px;
-}
 .border-solid {
   border-style: solid;
 }
@@ -2419,10 +2406,6 @@ select {
 .border-green-800 {
   --tw-border-opacity: 1;
   border-color: rgb(22 101 52 / var(--tw-border-opacity));
-}
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
 }
 .border-opacity-10 {
   --tw-border-opacity: 0.1;
@@ -4992,10 +4975,6 @@ select {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .lg\:grid-rows-2 {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-
   .lg\:flex-row {
     flex-direction: row;
   }
@@ -5050,10 +5029,6 @@ select {
 
   .lg\:gap-7 {
     gap: 1.75rem;
-  }
-
-  .lg\:gap-32 {
-    gap: 8rem;
   }
 
   .lg\:gap-x-2 {

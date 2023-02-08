@@ -23,6 +23,7 @@ class Offer extends Model
         'profile_description',
         'start_date',
         'salary',
+        'salary_visibility',
         'payment_type',
         'offer_address',
         'state_id',
