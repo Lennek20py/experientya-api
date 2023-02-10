@@ -84,7 +84,7 @@ class VacanciesController extends Controller
             ->first();
 
         // dd($vacant);
-        return Inertia::render('User/Vacancies/VacantDetail', [
+        return Inertia::render('User/VacanciesDetail', [
             'vacant' => $vacant
         ]);
     }

@@ -150,6 +150,7 @@ const logout = () => {
                                                     <img class="h-8 w-8 rounded-full object-cover"
                                                         :src="$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')"
                                                         :alt="$page.props.user.user_first_name">
+                                                        <!-- {{ $page.props.user.profile_photo_path.replace('profile/', 'storage/profile/') }} -->
                                                 </button>
 
                                                 <span v-else class="inline-flex rounded-md">

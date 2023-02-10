@@ -134,6 +134,9 @@ Route::middleware([
     Route::get('/vacancies', function () {
         return Inertia::render('User/Vacant');
     })->name('user.vacancies');
+    Route::get('/vacantdetail', function () {
+        return Inertia::render('User/VacanciesDetail');
+    })->name('user.vacanciesdetail');
     Route::get('/messages', function () {
         return Inertia::render('User/Messages');
     })->name('user.messages');
