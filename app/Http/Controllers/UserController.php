@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Cv;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -92,6 +96,24 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    //Function send email vacant
+    public function sendEmail(Request $request)
+    {
+        $email = $request->email;
+        $user= $request->user;
+        $mailData = [
+            'email'=> $request->email,
+            'user'=> $request->user,
+            //'title' => 'Mail from Web-tuts.com',
+            //'body' => 'This is for testing email using smtp.'
+        ];
+
+        Mail::to($email)->send(new SendEmail($mailData));
+        return Redirect::route('company.index');
+        //dd($email);
+
     }
 
     /**

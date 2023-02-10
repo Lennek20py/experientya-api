@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\Company;
 use App\Models\CompanyPlan;
 use App\Models\KillerQuestion;
 use Illuminate\Http\Request;
@@ -25,10 +26,12 @@ class OfferController extends Controller
                     ->paginate(5)
                     ->withQueryString();
 
-        return Inertia::render('Offer/Index', [
+     return Inertia::render('Offer/Index', [
             'offers' => $offers,
             'filters' => request()->only(['search'])
         ]);
+
+
     }
 
     public function create()

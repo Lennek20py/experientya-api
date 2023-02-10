@@ -207,7 +207,9 @@
             Applicant
         },
         props: {
-            users: Array
+            users: Array,
+            offers: Object,
+
         },
         data () {
             return {

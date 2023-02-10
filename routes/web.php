@@ -111,7 +111,8 @@ Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progre
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
 Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
 
-
+// / Candidate Basic Info
+Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
 
 Route::apiResources([
     "experience" => ExperienceController::class,
