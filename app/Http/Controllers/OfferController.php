@@ -34,6 +34,21 @@ class OfferController extends Controller
 
     }
 
+    public function getOffer()
+    {
+        $offers = Offer::query()
+                    ->when(request()->get('search'), function($query, $search){
+                        $query->where('title', 'like', "%{$search}%");
+                    })
+                    ->orderBy('id', 'desc')
+                    ->where('company_id', Auth::id())
+                    ->get();
+
+     return $offers;
+
+
+    }
+
     public function create()
     {
         return Inertia::render('Offer/Create');

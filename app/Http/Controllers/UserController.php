@@ -103,16 +103,21 @@ class UserController extends Controller
     {
         $email = $request->email;
         $user= $request->user;
+        $idVacant= $request->id;
+        //$nameVacant = $request->
+
         $mailData = [
             'email'=> $request->email,
             'user'=> $request->user,
+            'idVacant'=> $request->idV,
+            'nameOff'=>$request->nameOff
             //'title' => 'Mail from Web-tuts.com',
             //'body' => 'This is for testing email using smtp.'
         ];
 
         Mail::to($email)->send(new SendEmail($mailData));
         return Redirect::route('company.index');
-        //dd($email);
+    // dd($mailData);
 
     }
 
