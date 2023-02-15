@@ -47,14 +47,18 @@
                                     <h1 class="truncate text-2xl font-bold text-gray-900">{{ full_name(user.user_first_name, user.user_last_name ) }} </h1>
                                 </div>
                                 <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                    <!-- Heroicon name: mini/envelope -->
-                                    <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-                                        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-                                    </svg>
-                                    <span>Enviar Invitación</span>
-                                    </button>
+                                    <form @submit.prevent="submit" class="">
+                                        <button @click="acting = true" type="button"
+                                            class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                            <!-- Heroicon name: mini/envelope -->
+                                            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                fill="currentColor" aria-hidden="true">
+                                                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                                                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                                            </svg>
+                                            <span>Enviar Invitación</span>
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                                     <button @click="PDFDownload" type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
@@ -72,6 +76,57 @@
                             </div>
                             </div>
                         </div>
+
+                        <JetModal maxWidth="4xl" :show="acting" @close="acting = null">
+        <div v-if="vacants" class="bg-white shadow sm:rounded-lg">
+            <form class="px-4 py-5 sm:p-6">
+                <h3 class="mb-6 text-2xl leading-6 font-bold text-gray-900">Invitación</h3>
+                <div class="mt-2 text-sm text-gray-500">
+                    <h3 class="text-lg leading-6 text-gray-800 mb-2">¡Hola!</h3>
+                    <h3 class="text-lg leading-6 text-gray-800 mb-2">¿Esta seguro de invitar al candidato <strong>{{
+                        user.user_first_name + ' ' + user.user_last_name
+                    }}</strong> al proceso de selección de su
+                        empresa?</h3>
+
+                </div>
+                <div class="mt-7 text-sm text-gray-500">
+
+                    <div class="grid grid-cols-6 gap-6">
+                        <div class="col-span-12 lg:col-span-3 mt-1">
+                            <label for="type_of_contract" class="block text-sm font-medium text-gray-700">Vacantes
+                                Disponibles</label>
+                            <select v-model="selectVacant.id"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md">
+                                <option value>Seleccione una vacante de la lista</option>
+                                <option v-for="vacant in vacants" :key="vacant.id" :value="vacant.id">
+                                    {{vacant.title}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-5">
+                    <button type="button" @click="acting = null"
+                        class="mr-2 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Cerrar
+                    </button>
+
+                    <button type="button" @click="submit(user.email,selectVacant.id); acting = null"
+                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <!-- Heroicon name: mini/envelope -->
+                        <svg class="-ml-1 mr-2 h-5 w-5 text-dark-400" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                            <path
+                                d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                        </svg>
+                        Enviar Invitación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </JetModal>
 
                         <!-- Tabs -->
                         <div class="mt-6 sm:mt-2 2xl:mt-5">
@@ -447,26 +502,44 @@
             </div>
         </main>
     </admin-layout>
+
+
 </template>
 
 <script>
-    import AdminLayout from '@/Layouts/CompanyLayout'
-    import { Link } from '@inertiajs/inertia-vue3'
-    import axios from 'axios'
-    import { Inertia } from '@inertiajs/inertia'
+import AdminLayout from '@/Layouts/CompanyLayout'
+import { Link } from '@inertiajs/inertia-vue3'
+import axios from 'axios'
+import JetModal from '@/Jetstream/Modal'
+import Swal from 'sweetalert2';
 
-    import { defineComponent } from 'vue'
+//import { Inertia } from '@inertiajs/inertia'
+
+import { defineComponent } from 'vue'
 
     export default defineComponent({
         components: {
             AdminLayout,
-            Link
+            Link,
+            JetModal,
+            Swal
         },
         props:{
-            user: Object
+            user: Object,
+            offer:Object
         },
         data () {
             return {
+                acting: false,
+                emailData: this.$inertia.form({
+                    'email': this.user.email,
+                    'user': this.user.user_first_name + ' ' + this.user.user_last_name,
+
+
+                }),
+
+                vacants: [],
+                selectVacant:[],
                 option: 0,
                 colors: [{
                         color: "bg-blue-100 text-blue-800"
@@ -502,6 +575,35 @@
             }
         },
         methods: {
+
+            async getVacant(){
+                await axios.get(route('offer.getOffer'))
+                .then((response)=>{
+                    this.vacants = response.data;
+
+                    console.log(this.vacants.length)
+                    //console.log(this.vacants[0].title)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            submit(){
+
+                this.emailData.get(route('user.sendEmail', {
+                    idV: 'this.vacants[0].id',
+                    nameOff:'this.vacants[0].title',
+                }))
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Enviar Email!',
+                    text: 'El email se ha enviado con éxito',
+                    showConfirmButton: false,
+                    timer:1800
+                })
+            },
+
             setColor(id) {
                 return this.colors[id].color
             },
@@ -529,7 +631,11 @@
                     document.body.appendChild(link);
                     link.click();
                     });
-            }
+            },
+            created() {
+                this.getVacant()
+
+    },
         }
     })
 

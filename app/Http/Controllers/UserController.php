@@ -117,7 +117,7 @@ class UserController extends Controller
 
         Mail::to($email)->send(new SendEmail($mailData));
         return Redirect::route('company.index');
-    // dd($mailData);
+   // dd($mailData);
 
     }
 

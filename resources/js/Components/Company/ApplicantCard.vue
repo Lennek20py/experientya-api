@@ -85,7 +85,7 @@
                         Cerrar
                     </button>
 
-                    <button type="button" @click="submit(user.email,selectVacant.id); acting = null"
+                    <button type="button" @click="submit(selectVacant.id,selectVacant.title); acting = null"
                         class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <!-- Heroicon name: mini/envelope -->
                         <svg class="-ml-1 mr-2 h-5 w-5 text-dark-400" xmlns="http://www.w3.org/2000/svg"
@@ -146,22 +146,19 @@ export default defineComponent({
                 await axios.get(route('offer.getOffer'))
                 .then((response)=>{
                     this.vacants = response.data;
-
-                   // console.log(this.vacants.length)
-                    //console.log(this.vacants[0].title)
                 })
                 .catch((error) => {
                     console.log(error);
                 });
             },
 
-            submit(email,id){
-
-
-                console.log(email);
+            submit(idV,titleV,titleV2){
+                console.log(idV),
+               // console.log(this.vacants.findIndex(x=>x.id == this.vacants.title))
                 this.emailData.get(route('user.sendEmail', {
-                    idV: this.vacants[0].id,
-                    nameOff:this.vacants[0].title,
+                    idV:idV,
+                   // nameOff:this.vacants.findIndex(x=>x.id == idV)
+
                 }))
                 Swal.fire({
                     icon: 'success',
@@ -170,12 +167,14 @@ export default defineComponent({
                     showConfirmButton: false,
                     timer:1800
                 })
+
             }
 
 
     },
     created() {
       this.getVacant()
+
     },
 
 

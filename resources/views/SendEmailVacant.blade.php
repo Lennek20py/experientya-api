@@ -93,7 +93,7 @@
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="esd-block-text es-p10t es-p5r es-p5l">
-                                                                                            <p style="font-size: 14px; color: #ff0000; font-family: georgia, times, 'times new roman', serif; line-height: 120%; text-align: justify;">De acuerdo a la revisión de su perfil por parte de la empresa usted ha sido seleccionado a participar en el proceso de reclutamiento para el puesto de&nbsp;<u><strong><span style="font-size:16px;"> {{ $mailData['nameOff'] }}</span></strong></u>&nbsp; haga click en el enlace para revisar la vacante.</p>
+                                                                                            <p style="font-size: 14px; color: #ff0000; font-family: georgia, times, 'times new roman', serif; line-height: 120%; text-align: justify;">De acuerdo a la revisión de su perfil por parte de la empresa usted ha sido seleccionado a participar en el proceso de reclutamiento para nuestra empresa.</p>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -115,7 +115,7 @@
                                                                                     <tr>
                                                                                         <td class="esd-block-button es-p10t es-p10b es-m-txt-l" align="center">
                                                                                             <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                                                                                <a target="_blank" href="http://127.0.0.1:8000/vacancies/detail/{{ $mailData['idVacant'] }}"> {{ $mailData['nameOff'] }}</a>
+                                                                                                <a target="_blank" href="https://www.experientya.com//vacancies/detail/{{ $mailData['idVacant'] }}"> Ver Vacante</a>
                                                                                             </button>
                                                                                             <!--<![endif]-->
                                                                                         </td>

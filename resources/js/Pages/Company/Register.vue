@@ -91,7 +91,7 @@
                                 <div class="sm:col-span-2">
                                 <label for="company_phone_number" class="block text-sm font-medium text-gray-700 after:text-red-500 after:content-['*']"> Número telefónico </label>
                                 <div class="mt-1">
-                                <input id="company_phone_number" v-model="form.company_phone_number" type="number" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                                <input id="company_phone_number" v-model="form.company_phone_number" type="text" maxlength="10" @keydown="filterKey" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
                                 </div>
                                     <jet-input-error :message="form.errors.company_phone_number"/>
                                 </div>
@@ -270,6 +270,16 @@
             }
         },
         methods: {
+            filterKey(e) {
+                // Si el código es menor que 48 (0) o mayor que 57 (9)
+                var regex = new "^(\d{3}[- ]?){2}\d{4}$";
+  var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+  if (!regex.test(key)) {
+    e.preventDefault();
+    return false;
+  }
+            },
+
             async getStates() {
                 await axios.get('/list-states')
                     .then(response => {
