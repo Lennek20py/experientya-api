@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <button type="button"
+        <button type="button" @click="show()" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
             class="p-2.5 ml-2 text-sm font-medium text-white bg-[#1579ac] rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -11,12 +11,29 @@
             <span class="sr-only">Icon description</span>
         </button>
     </div>
+    <FilterModal :open="open" />
 </template>
 
 <script>
+    import FilterModal from '@/CustomComponents/SearchFilterModal.vue'
 
 
 export default {
+    components: {
+        FilterModal
+    },
+    data() {
+        return {
+            open: true
+        }
+    },
+    methods: {
+        show() {
+            this.open = !this.open
+            console.log('miau')
+            console.log(this.open)
+        }
+    }
 
 }
 </script>
