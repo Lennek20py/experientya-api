@@ -1,9 +1,7 @@
 <template>
     <AppLayout title="Dashboard">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight pt-12">
-                vacancies
-            </h2>
+            <SearchBar class="py-6 mt-12"/>
             <vacancies></vacancies>
 
         </template>
@@ -19,19 +17,18 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/UserLayout.vue';
-import vacancies from './Vacancies/VacanciesComponent.vue'
+    import AppLayout from '@/Layouts/UserLayout.vue';
+    import SearchBar from '@/CustomComponents/SearchBar.vue';
+    import vacancies from './Vacancies/VacanciesComponent.vue'
+    import { defineComponent } from 'vue'
 
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    components: {
-        AppLayout,
-        vacancies
-    }
-
-
-})
+    export default defineComponent({
+        components: {
+            AppLayout,
+            vacancies,
+            SearchBar
+        }
 
 
+    })
 </script>
