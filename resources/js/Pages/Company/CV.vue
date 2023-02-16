@@ -117,8 +117,7 @@
                                             <div class="grid grid-cols-6 gap-6">
                                                 <div class="col-span-12 lg:col-span-3 mt-1">
                                                     <label for="type_of_contract"
-                                                        class="block text-sm font-medium text-gray-700">{{ vacants
-                                                        }}</label>
+                                                        class="block text-sm font-medium text-gray-700">Vacantes Disponibles</label>
                                                     <select v-model="selectVacant.id"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md">
                                                         <option value>Seleccione una vacante de la lista</option>
@@ -618,18 +617,13 @@
 </template>
 
 <script>
-
-
 import AdminLayout from '@/Layouts/CompanyLayout'
 import { Link } from '@inertiajs/inertia-vue3'
 import axios from 'axios'
 import JetModal from '@/Jetstream/Modal'
 import Swal from 'sweetalert2';
-
 //import { Inertia } from '@inertiajs/inertia'
-
 import { defineComponent } from 'vue'
-
 export default defineComponent({
     components: {
         AdminLayout,
@@ -647,10 +641,7 @@ export default defineComponent({
             emailData: this.$inertia.form({
                 'email': this.user.email,
                 'user': this.user.user_first_name + ' ' + this.user.user_last_name,
-
-
             }),
-
             vacants: [],
             selectVacant: [],
             option: 0,
@@ -688,12 +679,10 @@ export default defineComponent({
         }
     },
     methods: {
-
         async getVacant() {
             await axios.get(route('offer.getOffer'))
                 .then((response) => {
                     this.vacants = response.data;
-
                     console.log(this.vacants.length)
                     //console.log(this.vacants[0].title)
                 })
@@ -701,11 +690,10 @@ export default defineComponent({
                     console.log(error);
                 });
         },
-
-        submit() {
+        submit(idV) {
             this.emailData.get(route('user.sendEmail', {
-                idV: 'this.vacants[0].id',
-                nameOff: 'this.vacants[0].title',
+                idV: idV,
+                //nameOff: 'this.vacants[0].title',
             }))
             Swal.fire({
                 icon: 'success',
@@ -715,19 +703,15 @@ export default defineComponent({
                 timer: 1800
             })
         },
-
         setColor(id) {
             return this.colors[id].color
         },
         full_name(first_name, last_name) {
             const fullName = first_name + ' ' + last_name
-
             const upperFullName = fullName.split(" ");
-
             for (let i = 0; i < upperFullName.length; i++) {
                 upperFullName[i] = upperFullName[i][0].toUpperCase() + upperFullName[i].substr(1);
             }
-
             return upperFullName.join(" ");
         },
         PDFDownload() {
@@ -744,12 +728,9 @@ export default defineComponent({
                 link.click();
             });
         },
-
     },
     created() {
         this.getVacant()
-
     },
 })
-
 </script>

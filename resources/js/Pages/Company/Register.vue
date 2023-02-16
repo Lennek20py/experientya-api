@@ -270,15 +270,7 @@
             }
         },
         methods: {
-            filterKey(e) {
-                // Si el código es menor que 48 (0) o mayor que 57 (9)
-                var regex = new "^(\d{3}[- ]?){2}\d{4}$";
-  var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-  if (!regex.test(key)) {
-    e.preventDefault();
-    return false;
-  }
-            },
+
 
             async getStates() {
                 await axios.get('/list-states')
