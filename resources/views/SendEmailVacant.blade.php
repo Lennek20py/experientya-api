@@ -1,278 +1,200 @@
-<template>
-    <main class="relative bg-white">
 
-        <div class="es-wrapper-color">
-            <!--[if gte mso 9]>
-                        <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-                            <v:fill type="tile" color="#F0F0F0"></v:fill>
-                        </v:background>
-                    <![endif]-->
-            <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
-                <tbody>
-                    <tr>
-                        <td class="esd-email-paddings" valign="top">
-                            <table class="esd-header-popover es-header" cellspacing="0" cellpadding="0" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" esd-custom-block-id="822357" align="center">
-                                            <table class="es-header-body" style="background-color: #ffffff;" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure esdev-adapt-off es-p20l" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="es-m-p0r esd-container-frame" width="580" valign="top" align="center">
-                                                                            <table width="100%" cellspacing="10" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-p5" align="left">
-                                                                                            <h1 style="color: #ff0000; font-size: 27px; font-family: georgia, times, 'times new roman', serif;">Bienvenido a su primera Experientya</h1>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="es-content" cellspacing="0" cellpadding="0" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" esd-custom-block-id="813049" align="center">
-                                            <table class="es-content-body" style="background-color: #ffffff;" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20r es-p20l" style="background-color: #fafafa;" esd-custom-block-id="822358" bgcolor="#fafafa" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="560" align="left">
-                                                                            <table width="100%" cellspacing="10" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-p20t es-p20b es-p5r es-p5l" align="left">
-                                                                                            <p style="color: #cc0000; font-family: georgia, times, 'times new roman', serif;"><span style="color:#000000;"><b>Estimado(a)</b></span><b><strong></strong></b><span style="color:#FF0000;"><u><strong>{{ $mailData['user'] }}</strong></u></span></p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="es-content" cellspacing="0" cellpadding="10" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" align="center">
-                                            <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure esdev-adapt-off es-p40t es-p20b es-p20r es-p20l" esd-custom-block-id="822359" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="560" align="left">
-                                                                            <table width="100%" cellspacing="10" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-p10t es-p5r es-p5l">
-                                                                                            <p style="font-size: 14px; color: #ff0000; font-family: georgia, times, 'times new roman', serif; line-height: 120%; text-align: justify;">De acuerdo a la revisión de su perfil por parte de la empresa usted ha sido seleccionado a participar en el proceso de reclutamiento para nuestra empresa.</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="esd-structure es-p10t es-p40b es-p20r es-p20l" esd-custom-block-id="822360" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="560" align="left">
-                                                                            <table width="100%" cellspacing="10" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-button es-p10t es-p10b es-m-txt-l" align="center">
-                                                                                            <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                                                                                <a target="_blank" href="https://www.experientya.com//vacancies/detail/{{ $mailData['idVacant'] }}"> Ver Vacante</a>
-                                                                                            </button>
-                                                                                            <!--<![endif]-->
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="es-content" cellspacing="10" cellpadding="10" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" esd-custom-block-id="822374" align="center">
-                                            <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure es-p15t es-p15b es-p20r" style="background-color: #049398;" bgcolor="#049398" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="580" align="left">
-                                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-p5" align="center">
-                                                                                            <p style="color: #000000; line-height: 120%; font-family: georgia, times, 'times new roman', serif;">Síguenos en:</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-social" style="font-size:0" align="center">
-                                                                                            <table class="es-table-not-adapt es-social" cellspacing="10" cellpadding="0">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td class="es-p10r" valign="top" align="center"><a target="_blank" href="https://es-la.facebook.com/"><img title="Facebook" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/facebook-circle-black.png" alt="Fb" width="32"></a></td>
-                                                                                                        <td class="es-p10r" valign="top" align="center"><a target="_blank" href="https://twitter.com/?lang=es"><img title="Twitter" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/twitter-circle-black.png" alt="Tw" width="32"></a></td>
-                                                                                                        <td class="es-p10r" valign="top" align="center"><a target="_blank" href="https://www.instagram.com/"><img title="Instagram" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/instagram-circle-black.png" alt="Inst" width="32"></a></td>
-                                                                                                        <td valign="top" align="center"><a target="_blank" href="https://www.youtube.com/"><img title="Youtube" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/youtube-circle-black.png" alt="Yt" width="32"></a></td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="es-footer" cellspacing="0" cellpadding="0" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" esd-custom-block-id="652869" align="center">
-                                            <table class="es-footer-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20r es-p20l" esd-custom-block-id="822375" style="background-color: #ffffff;" bgcolor="#ffffff" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="560" valign="top" align="center">
-                                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-image made_with" style="font-size: 0px;" align="center"><a target="_blank" href="https://www.experientya.com/"><img src="https://axbysv.stripocdn.email/content/guids/CABINET_6c5f9be3aed2b11b04a98ec31f8c7c0f29482382a3e98e7878c61544f4a800bb/images/logo01.png" alt style="display: block;" width="140"></a></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-infoblock" esd-links-color="#ffffff" align="center">
-                                                                                            <p style="color: #ffffff; font-size: 14px; line-height: 120%;"><br></p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="esd-footer-popover es-footer" cellspacing="0" cellpadding="0" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" align="center">
-                                            <table class="es-footer-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20t es-p40b es-p20r es-p20l" align="left">
-                                                            <table width="100%" cellspacing="0" cellpadding="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esd-container-frame" width="560" align="left">
-                                                                            <table width="100%" cellspacing="10" cellpadding="0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="esd-block-text es-p5">
-                                                                                            <p style="font-size: 10px; color: #077cb3; font-family: georgia, times, 'times new roman', serif; text-align: justify;">El presente mensaje es confidencial, dirigido únicamente para el destinatario. Si usted no es el destinatario, no deberá copiarlo, revelarlo o distribuirlo. Cualquier acción realizada en este sentido, será ilegal. Si por error recibe el presente mensaje, por favor notifique al remitente.<br><br>This communication is confidential and intended only for the addressee. If you are not the intended recipient, you may not copy, disclose, or distribute this message to anyone else; any such actions may be unlawful. If you have received this communication in error, please contact the sender of the message to inform him or her of the error.</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </main>
-</template>
-<script>
-    import { Link } from '@inertiajs/inertia-vue3'
-    import { defineComponent } from 'vue'
-    import JetModal from '@/Jetstream/Modal'
-
-
-
-
-    export default defineComponent({
-        components: {
-            Link,
-            JetModal,
-        },
-
-
-
-    })
-</script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet"><!--<![endif]-->
+  <style type="text/css">
+#outlook a {
+	padding:0;
+}
+.es-button {
+	mso-style-priority:100!important;
+	text-decoration:none!important;
+}
+a[x-apple-data-detectors] {
+	color:inherit!important;
+	text-decoration:none!important;
+	font-size:inherit!important;
+	font-family:inherit!important;
+	font-weight:inherit!important;
+	line-height:inherit!important;
+}
+.es-desk-hidden {
+	display:none;
+	float:left;
+	overflow:hidden;
+	width:0;
+	max-height:0;
+	line-height:0;
+	mso-hide:all;
+}
+[data-ogsb] .es-button {
+	border-width:0!important;
+	padding:15px 40px 15px 40px!important;
+}
+@media only screen and (max-width:600px) {p, ul li, ol li, a { line-height:150%!important } h1, h2, h3, h1 a, h2 a, h3 a { line-height:120% } h1 { font-size:30px!important; text-align:left } h2 { font-size:24px!important; text-align:left } h3 { font-size:20px!important; text-align:left } .es-header-body h1 a, .es-content-body h1 a, .es-footer-body h1 a { font-size:30px!important; text-align:left } .es-header-body h2 a, .es-content-body h2 a, .es-footer-body h2 a { font-size:24px!important; text-align:left } .es-header-body h3 a, .es-content-body h3 a, .es-footer-body h3 a { font-size:20px!important; text-align:left } .es-menu td a { font-size:14px!important } .es-header-body p, .es-header-body ul li, .es-header-body ol li, .es-header-body a { font-size:14px!important } .es-content-body p, .es-content-body ul li, .es-content-body ol li, .es-content-body a { font-size:14px!important } .es-footer-body p, .es-footer-body ul li, .es-footer-body ol li, .es-footer-body a { font-size:14px!important } .es-infoblock p, .es-infoblock ul li, .es-infoblock ol li, .es-infoblock a { font-size:12px!important } *[class="gmail-fix"] { display:none!important } .es-m-txt-c, .es-m-txt-c h1, .es-m-txt-c h2, .es-m-txt-c h3 { text-align:center!important } .es-m-txt-r, .es-m-txt-r h1, .es-m-txt-r h2, .es-m-txt-r h3 { text-align:right!important } .es-m-txt-l, .es-m-txt-l h1, .es-m-txt-l h2, .es-m-txt-l h3 { text-align:left!important } .es-m-txt-r img, .es-m-txt-c img, .es-m-txt-l img { display:inline!important } .es-button-border { display:inline-block!important } a.es-button, button.es-button { font-size:18px!important; display:inline-block!important } .es-adaptive table, .es-left, .es-right { width:100%!important } .es-content table, .es-header table, .es-footer table, .es-content, .es-footer, .es-header { width:100%!important; max-width:600px!important } .es-adapt-td { display:block!important; width:100%!important } .adapt-img { width:100%!important; height:auto!important } .es-m-p0 { padding:0!important } .es-m-p0r { padding-right:0!important } .es-m-p0l { padding-left:0!important } .es-m-p0t { padding-top:0!important } .es-m-p0b { padding-bottom:0!important } .es-m-p20b { padding-bottom:20px!important } .es-mobile-hidden, .es-hidden { display:none!important } tr.es-desk-hidden, td.es-desk-hidden, table.es-desk-hidden { width:auto!important; overflow:visible!important; float:none!important; max-height:inherit!important; line-height:inherit!important } tr.es-desk-hidden { display:table-row!important } table.es-desk-hidden { display:table!important } td.es-desk-menu-hidden { display:table-cell!important } .es-menu td { width:1%!important } table.es-table-not-adapt, .esd-block-html table { width:auto!important } table.es-social { display:inline-block!important } table.es-social td { display:inline-block!important } .es-m-p5 { padding:5px!important } .es-m-p5t { padding-top:5px!important } .es-m-p5b { padding-bottom:5px!important } .es-m-p5r { padding-right:5px!important } .es-m-p5l { padding-left:5px!important } .es-m-p10 { padding:10px!important } .es-m-p10t { padding-top:10px!important } .es-m-p10b { padding-bottom:10px!important } .es-m-p10r { padding-right:10px!important } .es-m-p10l { padding-left:10px!important } .es-m-p15 { padding:15px!important } .es-m-p15t { padding-top:15px!important } .es-m-p15b { padding-bottom:15px!important } .es-m-p15r { padding-right:15px!important } .es-m-p15l { padding-left:15px!important } .es-m-p20 { padding:20px!important } .es-m-p20t { padding-top:20px!important } .es-m-p20r { padding-right:20px!important } .es-m-p20l { padding-left:20px!important } .es-m-p25 { padding:25px!important } .es-m-p25t { padding-top:25px!important } .es-m-p25b { padding-bottom:25px!important } .es-m-p25r { padding-right:25px!important } .es-m-p25l { padding-left:25px!important } .es-m-p30 { padding:30px!important } .es-m-p30t { padding-top:30px!important } .es-m-p30b { padding-bottom:30px!important } .es-m-p30r { padding-right:30px!important } .es-m-p30l { padding-left:30px!important } .es-m-p35 { padding:35px!important } .es-m-p35t { padding-top:35px!important } .es-m-p35b { padding-bottom:35px!important } .es-m-p35r { padding-right:35px!important } .es-m-p35l { padding-left:35px!important } .es-m-p40 { padding:40px!important } .es-m-p40t { padding-top:40px!important } .es-m-p40b { padding-bottom:40px!important } .es-m-p40r { padding-right:40px!important } .es-m-p40l { padding-left:40px!important } .es-desk-hidden { display:table-row!important; width:auto!important; overflow:visible!important; max-height:inherit!important } }
+</style>
+ </head>
+ <body style="width:100%;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
+  <div class="es-wrapper-color" style="background-color:#F0F0F0"><!--[if gte mso 9]>
+			<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+				<v:fill type="tile" color="#F0F0F0"></v:fill>
+			</v:background>
+		<![endif]-->
+   <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top;background-color:#F0F0F0">
+     <tr>
+      <td valign="top" style="padding:0;Margin:0">
+       <table class="es-header" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table class="es-header-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#ffffff;width:600px" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
+             <tr>
+              <td class="esdev-adapt-off" align="left" style="padding:0;Margin:0;padding-left:20px">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td class="es-m-p0r" valign="top" align="center" style="padding:0;Margin:0;width:580px">
+                   <table width="100%" cellspacing="10" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="left" style="padding:5px;Margin:0"><h1 style="Margin:0;line-height:32px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:27px;font-style:normal;font-weight:bold;color:#040000">Bienvenido a su primera Experientya</h1></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table>
+       <table class="es-content" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table class="es-content-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#ffffff;width:600px" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
+             <tr>
+              <td style="padding:0;Margin:0;padding-left:20px;padding-right:20px;background-color:#fafafa" bgcolor="#fafafa" align="left">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="left" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="10" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="left" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:20px;padding-bottom:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;line-height:27px;color:#049398;font-size:18px"><span style="font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#000000"><b>Estimado(a)</b></span><u><strong><span style="font-family:arial, 'helvetica neue', helvetica, sans-serif"> {{$mailData['user'] }}</span></strong></u><br></p></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table>
+       <table class="es-content" cellspacing="0" cellpadding="10" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table class="es-content-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#ffffff;width:600px" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
+             <tr>
+              <td class="esdev-adapt-off" align="left" style="Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px;padding-top:40px">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="left" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="10" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td style="padding:0;Margin:0;padding-left:5px;padding-right:5px;padding-top:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:19px;color:#090100;font-size:16px;text-align:justify">De acuerdo a la revisión de su perfil por parte de la empresa usted ha sido seleccionado a participar en el proceso de reclutamiento para la siguiente vacante.</p></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+             <tr>
+              <td align="left" style="Margin:0;padding-top:10px;padding-left:20px;padding-right:20px;padding-bottom:40px">
+               <table width="100%" cellspacing="10" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="left" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="10" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://www.experientya.com//vacancies/detail/{{ $mailData['idVacant'] }}" target="_blank" hidden>
+	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://www.experientya.com//vacancies/detail/{{ $mailData['idVacant'] }}"
+                style="height:50px; v-text-anchor:middle; width:180px" arcsize="38%" stroke="f"  fillcolor="#049398">
+		<w:anchorlock></w:anchorlock>
+		<center style='color:#ffffff; font-family:arial, "helvetica neue", helvetica, sans-serif; font-size:18px; font-weight:700; line-height:18px;  mso-text-raise:1px'>Ver Vacante</center>
+	</v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="msohide es-button-border" style="border-style:solid;border-color:#2cb543;background:#049398;border-width:0px;display:inline-block;border-radius:19px;width:auto;mso-hide:all"><a href="https://www.experientya.com//vacancies/detail/{{$mailData['idVacant']}}" class="es-button msohide" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:18px;border-style:solid;border-color:#049398;border-width:15px 40px 15px 40px;display:inline-block;background:#049398;border-radius:19px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:bold;font-style:normal;line-height:22px;width:auto;text-align:center;mso-hide:all">Ver Vacante</a></span><!--<![endif]--></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table>
+       <table class="es-content" cellspacing="10" cellpadding="10" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
+         <tr>
+          <td align="center" style="padding:0;Margin:20">
+           <table class="es-content-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#049398;width:600px" cellspacing="0" cellpadding="0" bgcolor="#049398" align="center">
+             <tr>
+              <td style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;padding-right:20px;background-color:#049398" bgcolor="#049398" align="left">
+               <table width="100%" cellspacing="20" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="left" style="padding:0;Margin:0;width:580px">
+                   <table width="100%" cellspacing="20" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" style="padding:5px;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:22px;color:#000000;font-size:18px">Síguenos en:</p></td>
+                     </tr>
+                     <tr>
+                      <td style="padding:0;Margin:0;font-size:0" align="center">
+                       <table class="es-table-not-adapt es-social" cellspacing="20" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                         <tr>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><a target="_blank" href="https://es-la.facebook.com/" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#555555;font-size:18px"><img title="Facebook" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/facebook-circle-black.png" alt="Fb" width="32" height="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><a target="_blank" href="https://twitter.com/?lang=es" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#555555;font-size:18px"><img title="Twitter" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/twitter-circle-black.png" alt="Tw" width="32" height="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><a target="_blank" href="https://www.instagram.com/" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#555555;font-size:18px"><img title="Instagram" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/instagram-circle-black.png" alt="Inst" width="32" height="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0"><a target="_blank" href="https://www.youtube.com/" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#555555;font-size:18px"><img title="Youtube" src="https://axbysv.stripocdn.email/content/assets/img/social-icons/circle-black/youtube-circle-black.png" alt="Yt" width="32" height="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                         </tr>
+                       </table></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table>
+       <table class="es-footer" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table class="es-footer-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#049398;width:600px" cellspacing="0" cellpadding="0" bgcolor="#049398" align="center">
+             <tr>
+              <td style="padding:0;Margin:0;padding-left:20px;padding-right:20px;background-color:#ffffff" bgcolor="#ffffff" align="left">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td class="made_with" style="padding:0;Margin:0;font-size:0px" align="center"><a target="_blank" href="https://www.experientya.com/" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#EFEFEF;font-size:14px"><img src="https://axbysv.stripocdn.email/content/guids/CABINET_6c5f9be3aed2b11b04a98ec31f8c7c0f29482382a3e98e7878c61544f4a800bb/images/logo01.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="140" height="165"></a></td>
+                     </tr>
+                     <tr>
+                      <td class="es-infoblock" align="center" style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:17px;color:#ffffff;font-size:14px"><br></p></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table>
+       <table class="es-footer" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table class="es-footer-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#049398;width:600px" cellspacing="0" cellpadding="0" bgcolor="#049398" align="center">
+             <tr>
+              <td align="left" style="Margin:0;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:40px">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="left" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="10" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td style="padding:5px;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;color:#e6f0f4;font-size:10px;text-align:justify"><strong>El presente mensaje es confidencial, dirigido únicamente para el destinatario. Si usted no es el destinatario, no deberá copiarlo, revelarlo o distribuirlo. Cualquier acción realizada en este sentido, será ilegal. Si por error recibe el presente mensaje, por favor notifique al remitente.<br><br>This communication is confidential and intended only for the addressee. If you are not the intended recipient, you may not copy, disclose, or distribute this message to anyone else; any such actions may be unlawful. If you have received this communication in error, please contact the sender of the message to inform him or her of the error.</strong></p></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+           </table></td>
+         </tr>
+       </table></td>
+     </tr>
+   </table>
+  </div>
+ </body>

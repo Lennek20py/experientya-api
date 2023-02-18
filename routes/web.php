@@ -41,7 +41,11 @@ use App\Http\Controllers\WorkPreferencesController;
 
 //Home
 Route::get('/', [HomeController::class, 'index'])->name('/');
+
+
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
+
+
 Route::get('/company/register', [HomeController::class, 'companyRegister'])->name('company.register');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('user.register');
 Route::get('/user/micv', [HomeController::class, 'miCV'])->name('user.micv');

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
+use App\Mail\SendEmailUserRegister;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -63,6 +64,7 @@ class UserController extends Controller
             'user_phone_number' => $request->user_phone_number,
             'email_alternative' => $request->email_alternative,
             'user_date_of_birth' => $request->user_date_of_birth,
+            'is_email_verified'=> '1',
             // 'user_social_networks' => $request->user_social_networks,
             // 'user_country_id' => $request->user_country_id,
             // 'terms' => $request->terms
@@ -73,7 +75,28 @@ class UserController extends Controller
             'user_id' => $user->id,
         ]);
 
+       $nombre = $request->user_first_name;
+        $apellido = $request->user_last_name;
+        $email = $request->email;
+        $user= $nombre;
+
+
+        //$nameVacant = $request->
+
+        $mailData = [
+            'email'=> $email,
+            'user'=> $user,
+            'apellido' => $apellido,
+
+        ];
+
+        Mail::to($email)->send(new SendEmailUserRegister($mailData));
+        //return Redirect::route('company.index');
+
         return redirect()->route('welcome');
+
+
+
     }
 
     /**

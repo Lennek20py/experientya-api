@@ -19,43 +19,33 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 </script>
 
 <template>
-    <Head title="Email Verification" />
+    <Head title="Verificación de Email" />
 
     <JetAuthenticationCard>
         <template #logo>
             <JetAuthenticationCardLogo />
+
         </template>
 
-        <div class="mb-4 text-sm text-gray-600">
-            Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
-        </div>
+        <div class=" text-sm text-gray-900">
+            <p class=" font-extrabold ">¡Verifica tu cuenta porfavor!</p> <br>
 
+            <p> Antes de continuar, <br> ¿Podría verificar su dirección de email haciendo clic en el enlace que le acabamos de enviar a su correo electrónico?</p>
+            <br>
+            Si no recibiste el correo electrónico, da click en el siguiente botón y se reenviará un nuevo correo.
+        </div>
+        <br>
         <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
-            A new verification link has been sent to the email address you provided in your profile settings.
+            Se ha enviado un nuevo enlace de verificación a la dirección de correo electrónico que proporcionó en la configuración de su perfil. <br>
         </div>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
                 <JetButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Resend Verification Email
+                    Reenviar una nueva verifiación
                 </JetButton>
 
-                <div>
-                    <Link
-                        :href="route('profile.show')"
-                        class="underline text-sm text-gray-600 hover:text-gray-900"
-                    >
-                        Edit Profile</Link>
 
-                    <Link
-                        :href="route('logout')"
-                        method="post"
-                        as="button"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
-                    >
-                        Log Out
-                    </Link>
-                </div>
             </div>
         </form>
     </JetAuthenticationCard>
