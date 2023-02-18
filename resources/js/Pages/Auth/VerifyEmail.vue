@@ -32,7 +32,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
             <p> Antes de continuar, <br> ¿Podría verificar su dirección de email haciendo clic en el enlace que le acabamos de enviar a su correo electrónico?</p>
             <br>
-            Si no recibiste el correo electrónico, da click en el siguiente botón y se reenviará un nuevo correo.
+            Si no recibiste el correo electrónico, da click en el siguiente botón y se reenviará un nuevo enlace.
         </div>
         <br>
         <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">

@@ -1629,6 +1629,9 @@ select {
 .h-48 {
   height: 12rem;
 }
+.h-40 {
+  height: 10rem;
+}
 .max-h-56 {
   max-height: 14rem;
 }
@@ -2744,6 +2747,10 @@ select {
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .pt-6 {
   padding-top: 1.5rem;

@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 <template>
     <Link :href="'/'">
-        <img class="block h-36 w-auto" src="../../img/logo-01.png" alt="Workflow">
+        <img class="block h-40 w-auto" src="../../img/logo-01.png" alt="Workflow">
 
 
     </Link>
