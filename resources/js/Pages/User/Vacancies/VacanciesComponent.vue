@@ -1,5 +1,5 @@
 <template>
-    <header v-for="(vacancie, index) in vacancies" :key="index"
+    <header v-for="(vacancie, index) in vacants" :key="index"
         class="bg-white py-8 rounded-md shadow-md border-solid border-2 border-neutral-100 mb-5">
         <Link :href="route('vacancies.detail', vacancie.id)">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
@@ -81,26 +81,17 @@ export default defineComponent({
         Link
     },
     props: {
-
+        vacants: Object
     },
-    data() {
-        return {
-            vacancies: []
-        }
-    },
-    methods: {
-        async getvacancies() {
-            await axios.get(route('vacancies.index', 8))
-                .then((response) => {
-                    this.vacancies = response.data
-                    console.log(this.vacancies)
-                })
-        }
-
-    },
-    created() {
-        this.getvacancies()
-    },
+    // data() {
+    //     return {
+    //         vacants: []
+    //     }
+    // },
+    // created() {
+    //     this.vacants = vacancies
+    // },
+    
     watch: {
     }
 })

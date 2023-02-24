@@ -10,7 +10,7 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </div>
-            <input type="text" id="simple-search"
+            <input type="text" id="simple-search" @input="emit('searching', searchText)" v-model="searchText"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Buscar" required>
         </div>
@@ -26,12 +26,20 @@
     </form>
 </template>
 
+<script setup>
+import { defineEmits, defineProps } from 'vue'
+import SearchFilter from '@/CustomComponents/SearchFilter.vue'
+
+const emit = defineEmits(['searching'])
+</script>
+
 <script>
-    import SearchFilter from '@/CustomComponents/SearchFilter.vue'
 
 export default {
-    components: {
-        SearchFilter
+    data() {
+        return {
+            searchText: ''
+        }
     }
 
 }

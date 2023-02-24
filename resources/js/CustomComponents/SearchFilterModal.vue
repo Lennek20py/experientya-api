@@ -21,12 +21,11 @@
                                         <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Filtros de
                                             búsqueda</DialogTitle>
                                         <div class="mt-2">
-                                            <p class="text-sm text-gray-500">Are you sure you want to deactivate your
-                                                account? All of your data will be permanently removed. This action cannot be
-                                                undone.</p>
+                                            <p class="text-sm text-gray-500">A continuación seleccione los filtros para
+                                                realizar una búsqueda personalizada.</p>
                                         </div>
                                         <label for="all_filter">
-                                            <div class="flex justify-between flex-nowrap items-center border-y-2">
+                                            <div class="flex justify-between flex-nowrap items-center border-t-2">
                                                 <div class="flex justify-center items-center">
                                                     <div class="p-2 text-[#1579ac] font-bold">
                                                         <svg fill="none" stroke="currentColor" stroke-width="1.5"
@@ -71,32 +70,38 @@
                                                 </label>
                                             </div>
                                         </label>
-                                    <SearchFilter />
-
+                                        <SearchFilter :CustomData="horaryData" :Title="'Tipo de Horario'" />
+                                        <SearchFilter :CustomData="workData" :Title="'Tipo de Trabajo'" />
+                                        <SearchFilter :CustomData="contractData" :Title="'Tipo de Contrato'" />
                                     </div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="button"
-                                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-[#1579ac] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="open = false">Aplicar</button>
+                                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-[#1579ac] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-[#2fa286] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                                    @click="emit('setOpen', !props.open)">Aplicar</button>
                                 <button type="button"
                                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="open = false" ref="cancelButtonRef">Cancelar</button>
+                                    @click="emit('setOpen', !props.open)" ref="cancelButtonRef">Cancelar</button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
                 </div>
             </div>
         </Dialog>
-</TransitionRoot>
+    </TransitionRoot>
 </template>
   
 <script setup>
-import { ref } from 'vue'
+import { ref, defineEmits, defineProps } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import SearchFilter from '@/CustomComponents/SelectInput.vue'
+import horaryData from '@/CustomData/TypeHorary';
+import workData from '@/CustomData/TypeWork';
+import contractData from '@/CustomData/TypeContract';
 
+const emit = defineEmits(['setOpen'])
 
-const open = ref(true)
+const props = defineProps(['open'])
+
 </script>

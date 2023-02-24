@@ -1,8 +1,8 @@
 <template>
     <AppLayout title="Dashboard">
         <template #header>
-            <SearchBar class="py-6 mt-12"/>
-            <vacancies></vacancies>
+            <SearchBar class="py-6 mt-12" @searching="search" />
+            <Vacants :vacants="vacancies" />
 
         </template>
 
@@ -17,18 +17,49 @@
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/UserLayout.vue';
-    import SearchBar from '@/CustomComponents/SearchBar.vue';
-    import vacancies from './Vacancies/VacanciesComponent.vue'
-    import { defineComponent } from 'vue'
+import AppLayout from '@/Layouts/UserLayout.vue';
+import SearchBar from '@/CustomComponents/SearchBar.vue';
+import Vacants from './Vacancies/VacanciesComponent.vue'
 
-    export default defineComponent({
-        components: {
-            AppLayout,
-            vacancies,
-            SearchBar
+export default {
+    components: {
+        AppLayout,
+        Vacants,
+        SearchBar
+    },
+    data() {
+        return {
+            vacancies: [],
+            loading: false,
+            params: {
+                search: '',
+                type_work: '',
+                time_work: '',
+                payment_type: '',
+                moving: '',
+                all: ''
+            }
         }
-
-
-    })
+    },
+    methods: {
+        async getvacancies() {
+            await axios.get(route('vacancies.index', 8), { params: this.params })
+                .then((response) => {
+                    this.vacancies = response.data
+                    console.log(this.vacancies)
+                })
+        },
+        search(text) {
+            this.params.search = text
+            this.getvacancies()
+        },
+        searchFilter(params) {
+            console.log('comokieser')
+            console.log(params)
+        }
+    },
+    created() {
+        this.getvacancies()
+    },
+}
 </script>
