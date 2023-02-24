@@ -30,11 +30,11 @@ class AppServiceProvider extends ServiceProvider
         //
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl) {
             return (new MailMessage)
-                ->subject(Lang::get('Verificación de email'))
-                ->greeting(Lang::get("Hola estimado usuario ") . $notifiable->name)
-                ->line(Lang::get('Por favor da click en el siguiente botón para confirmar tu correo'))
+                ->subject(Lang::get('¡Activa tu nueva cuenta en Experientya!'))
+                ->greeting(Lang::get("Hola estimado usuario, Estas a un paso de conseguir tu primera Experientya  ") . $notifiable->name)
+                ->line(Lang::get('Por favor da click en el siguiente botón para confirmar su cuenta'))
                 ->action(Lang::get('Verificar ahora'), $verificationUrl)
-                ->line(Lang::get('Sí tu no creaste una cuenta, no es necesaría ninguna acción requerida')
+                ->line(Lang::get('Sí usted no creo una cuenta, no es necesaría realizar ninguna acción')
 
                );
         };

@@ -26,7 +26,9 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
             <JetAuthenticationCardLogo />
 
         </template>
-
+        <div style="border-top: 30px;">
+<p> <br> </p>
+        </div>
         <div class=" text-sm text-gray-900">
             <p class=" font-extrabold ">¡Verifica tu cuenta porfavor!</p> <br>
 
@@ -45,8 +47,23 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                     Reenviar una nueva verifiación
                 </JetButton>
 
+                 <div>
+
+
+                    <Link
+                        :href="route('logout')"
+                        method="post"
+                        as="button"
+                        class="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
+                    >
+                        Salir
+                    </Link>
+                </div>
 
             </div>
         </form>
+        <div style="border-top: 30px;">
+<p> <br> </p>
+        </div>
     </JetAuthenticationCard>
 </template>
