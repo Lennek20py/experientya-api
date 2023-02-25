@@ -82,16 +82,7 @@ export default defineComponent({
     },
     props: {
         vacants: Object
-    },
-    // data() {
-    //     return {
-    //         vacants: []
-    //     }
-    // },
-    // created() {
-    //     this.vacants = vacancies
-    // },
-    
+    },    
     watch: {
     }
 })

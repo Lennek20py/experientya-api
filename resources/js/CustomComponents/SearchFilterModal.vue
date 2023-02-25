@@ -39,7 +39,9 @@
                                                     <p>Ver todos</p>
                                                 </div>
                                                 <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" id="all_filter" value="" class="sr-only peer">
+                                                    <input type="checkbox" id="all_filter" :true-value="'Y'"
+                                                        :false-value="''" value="''" class="sr-only peer"
+                                                        v-model="filter.all">
                                                     <div
                                                         class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
                                                     </div>
@@ -63,23 +65,28 @@
                                                     <p>Posibilidad de mudarse</p>
                                                 </div>
                                                 <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" id="moving" value="" class="sr-only peer">
+                                                    <input type="checkbox" id="moving" :true-value="'Y'"
+                                                        :false-value="''" value="''" class="sr-only peer" v-model="filter.moving">
                                                     <div
                                                         class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
                                                     </div>
                                                 </label>
                                             </div>
                                         </label>
-                                        <SearchFilter :CustomData="horaryData" :Title="'Tipo de Horario'" />
-                                        <SearchFilter :CustomData="workData" :Title="'Tipo de Trabajo'" />
-                                        <SearchFilter :CustomData="contractData" :Title="'Tipo de Contrato'" />
+                                        <SelectInput :CustomData="horaryData" :Title="'Tipo de Horario'" v-model="filter.time_work" />
+                                        <SelectInput :CustomData="workData" :Title="'Tipo de Trabajo'" v-model="filter.type_work" />
+                                        <SelectInput :CustomData="contractData" :Title="'Tipo de Contrato'" v-model="filter.type_contract" />
+                                        <SelectInput :CustomData="contractData" :Title="'Tipo de Pago'" v-model="filter.payment_type" />
+
                                     </div>
                                 </div>
+                                <p>{{ filter }}</p>
+
                             </div>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="button"
                                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-[#1579ac] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-[#2fa286] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="emit('setOpen', !props.open)">Aplicar</button>
+                                    @click="emit('setOpen', !props.open), message()">Aplicar</button>
                                 <button type="button"
                                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     @click="emit('setOpen', !props.open)" ref="cancelButtonRef">Cancelar</button>
@@ -95,7 +102,7 @@
 <script setup>
 import { ref, defineEmits, defineProps } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import SearchFilter from '@/CustomComponents/SelectInput.vue'
+import SelectInput from '@/CustomComponents/SelectInput.vue'
 import horaryData from '@/CustomData/TypeHorary';
 import workData from '@/CustomData/TypeWork';
 import contractData from '@/CustomData/TypeContract';
@@ -104,4 +111,28 @@ const emit = defineEmits(['setOpen'])
 
 const props = defineProps(['open'])
 
+</script>
+
+<script>
+
+export default {
+    data() {
+        return {
+            filter: {
+                all: '',
+                type_work: '',
+                time_work: '',
+                payment_type: '',
+                type_contract: '',
+                moving: ''
+            }
+        }
+    },
+    methods: {
+        message() {
+            console.log('wuau')
+            console.log(this.filter)
+        }
+    }
+}
 </script>
