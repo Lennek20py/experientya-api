@@ -76,7 +76,7 @@
                                         <SelectInput :CustomData="horaryData" :Title="'Tipo de Horario'" v-model="filter.time_work" />
                                         <SelectInput :CustomData="workData" :Title="'Tipo de Trabajo'" v-model="filter.type_work" />
                                         <SelectInput :CustomData="contractData" :Title="'Tipo de Contrato'" v-model="filter.type_contract" />
-                                        <SelectInput :CustomData="contractData" :Title="'Tipo de Pago'" v-model="filter.payment_type" />
+                                        <SelectInput :CustomData="paymentPeriod" :Title="'Periodo de Pago'" v-model="filter.payment_type" />
 
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="button"
                                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-[#1579ac] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-[#2fa286] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="emit('setOpen', !props.open), message()">Aplicar</button>
+                                    @click="emit('setOpen', !props.open)">Aplicar</button>
                                 <button type="button"
                                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     @click="emit('setOpen', !props.open)" ref="cancelButtonRef">Cancelar</button>
@@ -105,6 +105,7 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import SelectInput from '@/CustomComponents/SelectInput.vue'
 import horaryData from '@/CustomData/TypeHorary';
 import workData from '@/CustomData/TypeWork';
+import paymentPeriod from '@/CustomData/PaymentPeriod';
 import contractData from '@/CustomData/TypeContract';
 
 const emit = defineEmits(['setOpen'])
@@ -129,10 +130,6 @@ export default {
         }
     },
     methods: {
-        message() {
-            console.log('wuau')
-            console.log(this.filter)
-        }
     }
 }
 </script>
