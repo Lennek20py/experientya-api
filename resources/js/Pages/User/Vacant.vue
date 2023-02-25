@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Dashboard">
         <template #header>
-            <SearchBar class="py-6 mt-12" @searching="search" />
+            <SearchBar class="py-6 mt-12" v-model="params" />
             <Vacants :vacants="vacancies" />
 
         </template>
@@ -33,11 +33,12 @@ export default {
             loading: false,
             params: {
                 search: '',
+                all: '',
                 type_work: '',
                 time_work: '',
                 payment_type: '',
-                moving: '',
-                all: ''
+                type_contract: '',
+                moving: ''
             }
         }
     },
@@ -49,17 +50,21 @@ export default {
                     console.log(this.vacancies)
                 })
         },
-        search(text) {
-            this.params.search = text
+        search(paramsFilter) {
+            this.params = paramsFilter
             this.getvacancies()
-        },
-        searchFilter(params) {
-            console.log('comokieser')
-            console.log(params)
         }
     },
     created() {
         this.getvacancies()
     },
+    watch: {
+        params: {
+            handler(newValue, oldValue) {
+                this.getvacancies()
+            },
+            deep: true
+        }
+    }
 }
 </script>

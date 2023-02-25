@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <p>{{ vacant }}</p> -->
         <div>
             <div>
                 <img class="h-32 w-full object-cover lg:h-48 rounded-t-lg color-white"
