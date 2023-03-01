@@ -32,7 +32,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         <div class=" text-sm text-gray-900">
             <p class=" font-extrabold ">¡Verifica tu cuenta porfavor!</p> <br>
 
-            <p> Antes de continuar, <br> ¿Podría verificar su dirección de email haciendo clic en el enlace que le acabamos de enviar a su correo electrónico?</p>
+            <p> Antes de continuar, <br> ¿Podría verificar su dirección de email haciendo click en el enlace que le acabamos de enviar a su correo electrónico?</p>
             <br>
             Si no recibiste el correo electrónico, da click en el siguiente botón y se reenviará un nuevo enlace.
         </div>
@@ -44,7 +44,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
                 <JetButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Reenviar una nueva verifiación
+                    Reenviar una nueva verificación
                 </JetButton>
 
                  <div>

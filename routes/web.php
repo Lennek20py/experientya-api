@@ -25,6 +25,7 @@ use App\Http\Controllers\UserSkillController;
 use App\Http\Controllers\VacanciesController;
 use App\Http\Controllers\WorkPreferencesController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,7 +99,7 @@ Route::put('testsoftskills/{id}', [TestSoftSkillsController::class, 'update'])->
 
 //Company
 Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
-Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
+//Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
 
 //User
 // / Candidate Basic Info
@@ -117,6 +118,7 @@ Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name
 
 // / Candidate Basic Info
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
+
 
 Route::apiResources([
     "experience" => ExperienceController::class,
@@ -149,7 +151,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+
 Route::middleware(['auth:company', 'verified'])->group(function () {
+
     // Profile
     Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/company/settings', [CompanyController::class, 'settings'])->name('company.settings');

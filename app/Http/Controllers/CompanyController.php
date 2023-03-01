@@ -208,7 +208,7 @@ class CompanyController extends Controller
     {
         $image = $request->file('profile_photo_path')->store('profile', 'public');
 
-        Company::create([
+       $company = Company::create([
             'company_name' => $request->company_name,
             'email' => $request->email,
             'password' => $request->password,
@@ -226,8 +226,9 @@ class CompanyController extends Controller
             'sector_id' => $request->sector_id,
             'profile_photo_path' => $image
         ]);
-
-        return redirect()->route('welcome');
+        $company -> sendEmailVerificationNotification();
+        //return redirect()->route('verifyEmail');
+       return redirect()->route('welcome');
         // return ['result' => 'OK'. " " . $image];
     }
 

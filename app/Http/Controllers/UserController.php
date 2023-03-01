@@ -64,7 +64,7 @@ class UserController extends Controller
             'user_phone_number' => $request->user_phone_number,
             'email_alternative' => $request->email_alternative,
             'user_date_of_birth' => $request->user_date_of_birth,
-            'is_email_verified'=> '1',
+
             // 'user_social_networks' => $request->user_social_networks,
             // 'user_country_id' => $request->user_country_id,
             // 'terms' => $request->terms
