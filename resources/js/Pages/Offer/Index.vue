@@ -1,5 +1,5 @@
 <template>
-    <admin-layout>
+    <admin-layout :viewSelect="'navVacancies'">
         <main class="flex-1 pb-8">
             <div class="absolute top-8 right-10 z-10">
                 <SuccessAlert :message="$page.props.success.message" :show="showAlert"/>

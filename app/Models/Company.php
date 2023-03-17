@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Company extends Authenticatable implements MustVerifyEmail
+class Company extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
@@ -57,15 +57,16 @@ class Company extends Authenticatable implements MustVerifyEmail
         'profile_photo_link'
     ];
 
-    public function setPasswordAttribute($valor){
-        if(!empty($valor)){
+    public function setPasswordAttribute($valor)
+    {
+        if (!empty($valor)) {
             $this->attributes['password'] = bcrypt($valor);
         }
     }
 
     public function getProfilePhotoLinkAttribute()
     {
-        return asset('storage/'.$this->attributes['profile_photo_path']);
+        return asset('storage/' . $this->attributes['profile_photo_path']);
     }
 
     public function sector()
