@@ -25,6 +25,14 @@ const switchToTeam = (team) => {
     });
 };
 
+var menu = false
+
+const menuBind = () => {
+    console.log('miau')
+    menu = true
+
+}
+
 const logout = () => {
     Inertia.post(route('logout'));
 };
@@ -57,31 +65,54 @@ const logout = () => {
                             <div class="flex">
                                 <!-- Navigation Links -->
                                 <div class="hidden items-center space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <JetNavLink :href="route('user.vacancies')" :active="route().current('user.vacancies')">
-                                        Vacantes
-                                    </JetNavLink>
+                                    <JetDropdown align="right" width="48">
+                                        <template #trigger>
+                                            <button
+                                                class="flex flex-nowrap items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-blue-700 hover:border-gray-300 focus:outline-none focus:text-blue-800 focus:border-gray-300 transition"
+                                                :class="{ 'text-base h-8 relative items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500': route().current('user.vacancies') }">
+                                                Vacantes
+                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+
+                                        </template>
+
+                                        <template #content>
+                                            <div class="block px-4 py-2 text-xs text-gray-400 select-none">
+                                                Menú de Vacantes
+                                            </div>
+
+                                            <JetDropdownLink :href="route('user.vacancies')">
+                                                Buscar Vacantes
+                                            </JetDropdownLink>
+
+                                            <div class="border-t border-gray-100" />
+                                        </template>
+                                    </JetDropdown>
                                     <JetNavLink :href="route('user.micv')" :active="route().current('user.micv')">
                                         MI CV
                                     </JetNavLink>
-                                    <JetNavLink :href="route('user.messages')"
-                                        :active="route().current('user.messages')">
+                                    <JetNavLink :href="route('user.messages')" :active="route().current('user.messages')">
                                         Mensajes
                                     </JetNavLink>
+
                                 </div>
                                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                                     <div class="ml-3 relative">
                                         <!-- Teams Dropdown -->
-                                        <JetDropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right"
-                                            width="60">
+                                        <JetDropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                             <template #trigger>
                                                 <span class="inline-flex rounded-md">
                                                     <button type="button"
                                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
                                                         {{ $page.props.user.current_team.name }}
 
-                                                        <svg class="ml-2 -mr-0.5 h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                            fill="currentColor">
+                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd"
                                                                 d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                                                 clip-rule="evenodd" />
@@ -116,16 +147,15 @@ const logout = () => {
                                                             Switch Teams
                                                         </div>
 
-                                                        <template v-for="team in $page.props.user.all_teams"
-                                                            :key="team.id">
+                                                        <template v-for="team in $page.props.user.all_teams" :key="team.id">
                                                             <form @submit.prevent="switchToTeam(team)">
                                                                 <JetDropdownLink as="button">
                                                                     <div class="flex items-center">
                                                                         <svg v-if="team.id == $page.props.user.current_team_id"
-                                                                            class="mr-2 h-5 w-5 text-green-400"
-                                                                            fill="none" stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                                            class="mr-2 h-5 w-5 text-green-400" fill="none"
+                                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                                            stroke-width="2" stroke="currentColor"
+                                                                            viewBox="0 0 24 24">
                                                                             <path
                                                                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                         </svg>
@@ -150,7 +180,7 @@ const logout = () => {
                                                     <img class="h-8 w-8 rounded-full object-cover"
                                                         :src="$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')"
                                                         :alt="$page.props.user.user_first_name">
-                                                        <!-- {{ $page.props.user.profile_photo_path.replace('profile/', 'storage/profile/') }} -->
+                                                    <!-- {{ $page.props.user.profile_photo_path.replace('profile/', 'storage/profile/') }} -->
                                                 </button>
 
                                                 <span v-else class="inline-flex rounded-md">
@@ -158,9 +188,8 @@ const logout = () => {
                                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                                                         {{ $page.props.user.user_first_name }}
 
-                                                        <svg class="ml-2 -mr-0.5 h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                            fill="currentColor">
+                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd"
                                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                                 clip-rule="evenodd" />
@@ -232,8 +261,7 @@ const logout = () => {
                                 :active="route().current('user.vacancies')">
                                 Vacantes
                             </JetResponsiveNavLink>
-                            <JetResponsiveNavLink :href="route('user.messages')"
-                                :active="route().current('user.messages')">
+                            <JetResponsiveNavLink :href="route('user.messages')" :active="route().current('user.messages')">
                                 Mensajes
                             </JetResponsiveNavLink>
                         </div>
