@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
 import AppLayout from '@/Layouts/UserLayout.vue';
 import SearchBar from '@/CustomComponents/SearchBar.vue';
 import Vacants from './Vacancies/VacanciesComponent.vue'

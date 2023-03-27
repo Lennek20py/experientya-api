@@ -68,8 +68,8 @@ const logout = () => {
                                     <JetDropdown align="right" width="48">
                                         <template #trigger>
                                             <button
-                                                class="flex flex-nowrap items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-blue-700 hover:border-gray-300 focus:outline-none focus:text-blue-800 focus:border-gray-300 transition"
-                                                :class="{ 'text-base h-8 relative items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500': route().current('user.vacancies') }">
+                                                class="flex flex-nowrap items-center px-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-100 hover:border-gray-300 focus:outline-none focus:text-gray-50 focus:border-gray-300 transition"
+                                                :class="{ 'text-base h-8 relative items-center px-4 py-2 border border-transparent font-medium rounded-full text-white bg-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500': route().current('user.vacancies', 'user.appliedvacants') }">
                                                 Vacantes
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20" fill="currentColor">
@@ -88,6 +88,9 @@ const logout = () => {
 
                                             <JetDropdownLink :href="route('user.vacancies')">
                                                 Buscar Vacantes
+                                            </JetDropdownLink>
+                                            <JetDropdownLink :href="route('user.appliedvacants')">
+                                               Vacantes Aplicadas
                                             </JetDropdownLink>
 
                                             <div class="border-t border-gray-100" />
