@@ -47,7 +47,7 @@
 
 <script>
 
-import Vacants from './Vacancies/VacanciesComponent.vue'
+import Vacants from './VacanciesComponent.vue'
 import AppLayout from '@/Layouts/UserLayout.vue';
 export default {
     components: {
