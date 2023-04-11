@@ -75,17 +75,17 @@ class UserController extends Controller
             'user_id' => $user->id,
         ]);
 
-       $nombre = $request->user_first_name;
+        $nombre = $request->user_first_name;
         $apellido = $request->user_last_name;
         $email = $request->email;
-        $user= $nombre;
+        $user = $nombre;
 
 
         //$nameVacant = $request->
 
         $mailData = [
-            'email'=> $email,
-            'user'=> $user,
+            'email' => $email,
+            'user' => $user,
             'apellido' => $apellido,
 
         ];
@@ -94,9 +94,6 @@ class UserController extends Controller
         //return Redirect::route('company.index');
 
         return redirect()->route('welcome');
-
-
-
     }
 
     /**
@@ -125,22 +122,22 @@ class UserController extends Controller
     public function sendEmail(Request $request)
     {
         $email = $request->email;
-        $user= $request->user;
-        $idVacant= $request->id;
+        $user = $request->user;
+        $idVacant = $request->id;
         //$nameVacant = $request->
 
         $mailData = [
-            'email'=> $request->email,
-            'user'=> $request->user,
-            'idVacant'=> $request->idV,
-            'nameOff'=>$request->nameOff
+            'email' => $request->email,
+            'user' => $request->user,
+            'idVacant' => $request->idV,
+            'nameOff' => $request->nameOff
             //'title' => 'Mail from Web-tuts.com',
             //'body' => 'This is for testing email using smtp.'
         ];
 
         Mail::to($email)->send(new SendEmail($mailData));
         return Redirect::route('company.index');
-   // dd($mailData);
+        // dd($mailData);
 
     }
 
@@ -151,9 +148,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update([
+            'user_first_name' => $request->user_first_name,
+            'user_last_name' => $request->user_last_name,
+            'CURP' => $request->CURP,
+            'email' => $request->email,
+            'user_country_id' => $request->user_country_id,
+            'user_state_id' => $request->user_state_id,
+            'user_city_id' => $request->user_city_id,
+            'user_address' => $request->user_address,
+            'user_postal_code' => $request->user_postal_code,
+            'user_phone_number' => $request->user_phone_number,
+            'user_second_phone_number' => $request->user_second_phone_number,
+            'email_alternative' => $request->email_alternative,
+            'useruser_date_of_birth' => $request->user_date_of_birth,
+        ]);
+
+        return redirect()->route('user.userprofile');
     }
 
     /**

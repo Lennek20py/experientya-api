@@ -134,24 +134,37 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/micv', function () {
         return Inertia::render('User/MiCV');
     })->name('user.micv');
+
     Route::get('/vacancies', function () {
         return Inertia::render('User/Vacant');
     })->name('user.vacancies');
+
     Route::get('/vacantdetail', function () {
         return Inertia::render('User/VacanciesDetail');
     })->name('user.vacanciesdetail');
+
     Route::get('/vacantdetail', function () {
         return Inertia::render('User/Vacancies/AppliedVacants');
     })->name('user.appliedvacants');
+
     Route::get('/messages', function () {
         return Inertia::render('User/Messages');
     })->name('user.messages');
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/userprofile', function () {
+        return Inertia::render('User/UserProfile');
+    })->name('user.userprofile');
+
+    // Profile
+    Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.updateData');
 });
 
 
