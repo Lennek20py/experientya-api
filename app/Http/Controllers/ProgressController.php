@@ -13,7 +13,7 @@ use App\Models\TestCompetition;
 use App\Models\TestSoftSkill;
 use App\Models\User;
 use App\Models\UserSkill;
-use App\Models\Workpreferences;
+use App\Models\WorkPreferences;
 use Illuminate\Http\Request;
 
 class ProgressController extends Controller
@@ -49,7 +49,7 @@ class ProgressController extends Controller
             $data = array(
                 "id" => $id,
                 "position" => Cv::where('user_id', $id)->get("position")->first()->position == null ? "false" : "true",
-                "work" => Workpreferences::where('user_id', $id)->first() ? "true" : "false",
+                "work" => WorkPreferences::where('user_id', $id)->first() ? "true" : "false",
                 "study" => StudyDegree::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "certification" => Certification::where('cv_id', $cv_id->id)->first() ? "true" : "false",
                 "language" => Language::where('cv_id', $cv_id->id)->first() ? "true" : "false",

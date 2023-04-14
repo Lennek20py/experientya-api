@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppliedOffer;
 use App\Models\Cv;
 use App\Models\Offer;
 use App\Models\User;
-use App\Models\Workpreferences;
+use App\Models\WorkPreferences;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,14 +21,13 @@ class VacanciesController extends Controller
     {
         $basic_info = Cv::where('user_id', $id)->first();
         $user = User::findOrFail($basic_info->user_id);
-        $work_preferences = Workpreferences::where('user_id', $id)->first();
+        $work_preferences = WorkPreferences::where('user_id', $id)->first();
         $type_work = array();
-        array_push($type_work, $work_preferences->work == "1" ? "Empleo" : "");
-        array_push($type_work, $work_preferences->practices == "1" ? "Práctica profesional" : "");
-        array_push($type_work, $work_preferences->dual_education == "1" ? "Educación Dual" : "");
+        array_push($type_work, $work_preferences->work === "1" ? "Empleo" : "");
+        array_push($type_work, $work_preferences->practices === "1" ? "Práctica profesional" : "");
+        array_push($type_work, $work_preferences->dual_education === "1" ? "Educación Dual" : "");
         $first_word = strtok($basic_info->position, " ");
-
-        // dd($user->user_state_id);
+ 
         $vacancies = Offer::select('offers.*', 'companies.company_name', 'companies.company_address', 'states.name AS state', 'towns.name AS town')
             ->join('companies', 'offers.company_id', '=', 'companies.id')
             ->join('states', 'offers.state_id', '=', 'states.id')
@@ -61,6 +61,18 @@ class VacanciesController extends Controller
         return $filter_vacancies;
     }
 
+    public function appliedVacants()
+    {
+        $user = User::findOrFail(1);
+        $cv_id = $user->cvs->first()->id;
+        $applied_info = AppliedOffer::where('cv_id', $cv_id)->get();
+        $offers_id = $applied_info->map(function ($item, $key) {
+            return $item->id;
+        });
+        $applied_offers = Offer::whereIn('id', $offers_id)->get();
+        return $applied_offers;
+    }
+
 
     /**
      * Show the render view detail with a Vacancie ID.
@@ -83,7 +95,6 @@ class VacanciesController extends Controller
             ->where('offers.id', $id)
             ->first();
 
-        // dd($vacant);
         return Inertia::render('User/VacanciesDetail', [
             'vacant' => $vacant
         ]);

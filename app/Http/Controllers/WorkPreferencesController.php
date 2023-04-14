@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Workpreferences;
+use App\Models\WorkPreferences;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,13 +15,13 @@ class WorkPreferencesController extends Controller
      */
     public function index()
     {
-        $data = Workpreferences::All();
+        $data = WorkPreferences::All();
         return $data;
     }
 
     public function search($id)
     {
-        $data = Workpreferences::where('user_id', $id)->get();
+        $data = WorkPreferences::where('user_id', $id)->get();
 
         return response()->json($data);
     }
@@ -44,7 +44,7 @@ class WorkPreferencesController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Workpreferences::create([
+        $create = WorkPreferences::create([
         'user_id' => $request->user_id,
         'desired_job' => $request->desired_job,
         'type_contract' => $request->type_contract,
@@ -63,25 +63,6 @@ class WorkPreferencesController extends Controller
         'change_city' => $request->change_city,
         ]);
 
-        // $data = new Workpreferences();
-        // $data->desired_job = $request->desired_job;
-        // $data->type_contract = $request->type_contract;
-        // $data->work = $request->work;
-        // $data->practices = $request->practices;
-        // $data->dual_education = $request->dual_education;
-        // $data->desired_salary = $request->desired_salary;
-        // $data->hours = $request->hours;
-        // $data->avaible_date = $request->avaible_date;
-        // $data->preferred_state = $request->preferred_state;
-        // $data->preferred_city = $request->preferred_city;
-        // $data->preferred_country = $request->preferred_country;
-        // $data->specific_profile = $request->specific_profile;
-        // $data->general_profile = $request->general_profile;
-        // $data->area = $request->area;
-        // $data->change_city = $request->change_city;
-
-        // $data->save();
-
         return $create;	
 
     }
@@ -94,7 +75,7 @@ class WorkPreferencesController extends Controller
      */
     public function show(WorkPreferences $WorkPreferences)
     {
-    //    $data = Workpreferences::find();
+    //    $data = WorkPreferences::find();
     }
 
     /**
@@ -117,13 +98,13 @@ class WorkPreferencesController extends Controller
      */
     public function update(Request $request, WorkPreferences $WorkPreferences, $id)
     {
-    //     // $data = Workpreferences::findOrFail($id);
+    //     // $data = WorkPreferences::findOrFail($id);
 
-    //    $data = Workpreferences::whereId($id)->update($request->all());
+    //    $data = WorkPreferences::whereId($id)->update($request->all());
 
     //    return $data;
 
-    $data = Workpreferences::updateOrCreate(
+    $data = WorkPreferences::updateOrCreate(
         [
             'user_id' => $id
         ],

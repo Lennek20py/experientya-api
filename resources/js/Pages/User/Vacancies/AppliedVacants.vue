@@ -25,7 +25,8 @@
                                 </div>
                             </div>
                             <div class="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
-                                <h1 class="truncate text-2xl font-bold text-gray-900">Titulao</h1>
+                                <h1 class="truncate text-2xl font-bold text-gray-900">{{ $page.props.user.user_first_name }}
+                                    {{ $page.props.user.user_last_name }}</h1>
                             </div>
                             <div id="content" class="mx-auto mt-10">
                                 <div class="flex flex-nowrap flex-row justify-start">
@@ -34,7 +35,8 @@
                                     </div>
                                 </div>
                                 <hr class="h-px my-3 bg-gray-200 border-0">
-                                <!-- <Vacants :vacants="vacancies" /> -->
+                                
+                                <Vacants :vacants="appliedVacants" />
 
                             </div>
                         </div>
@@ -47,8 +49,8 @@
 
 <script>
 
+import AppLayout from '@/Layouts/UserLayout.vue'
 import Vacants from './VacanciesComponent.vue'
-import AppLayout from '@/Layouts/UserLayout.vue';
 export default {
     components: {
         AppLayout,
@@ -56,20 +58,21 @@ export default {
     },
     data() {
         return {
-            vacants: []
+            appliedVacants: []
         }
     },
     methods: {
-        async getVacancts() {
+        async getVacants() {
             await axios.get(route('vacancies.index', 8), { params: this.params })
                 .then((response) => {
-                    this.vacancies = response.data
-                    console.log(this.vacancies)
+                    this.appliedVacants = response.data
+                    console.log(this.appliedVacants)
                 })
-        },
-        created() {
-            this.getVacants()
         }
+    },
+    created() {
+        this.getVacants()
+        console.log('arribas')
     }
 
 }

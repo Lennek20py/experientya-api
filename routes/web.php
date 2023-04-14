@@ -115,6 +115,7 @@ Route::get('/userSkill/{id}', [UserSkillController::class, 'index'])->name('user
 Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progress.index');
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
 Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
+Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('vacants.applied');
 
 // / Candidate Basic Info
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');

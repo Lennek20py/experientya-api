@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workpreferences extends Model
+class WorkPreferences extends Model
 {
     use HasFactory;
 
