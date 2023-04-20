@@ -63,7 +63,7 @@ class VacanciesController extends Controller
 
     public function appliedVacants()
     {
-        $user = User::findOrFail(1);
+        $user = User::findOrFail(request()->get('cv_id'));
         $cv_id = $user->cvs->first()->id;
         $applied_info = AppliedOffer::where('cv_id', $cv_id)->get();
         $offers_id = $applied_info->map(function ($item, $key) {

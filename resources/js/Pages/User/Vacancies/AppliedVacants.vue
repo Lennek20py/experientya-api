@@ -58,21 +58,20 @@ export default {
     },
     data() {
         return {
-            appliedVacants: []
+            appliedVacants: [],
+            cv_id: ''
         }
     },
     methods: {
         async getVacants() {
-            await axios.get(route('vacancies.index', 8), { params: this.params })
+            await axios.get(route('vacants.applied', {cv_id: 8}), { params: this.params })
                 .then((response) => {
                     this.appliedVacants = response.data
-                    console.log(this.appliedVacants)
                 })
         }
     },
     created() {
         this.getVacants()
-        console.log('arribas')
     }
 
 }
