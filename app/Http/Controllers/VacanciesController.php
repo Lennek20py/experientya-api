@@ -27,7 +27,7 @@ class VacanciesController extends Controller
         array_push($type_work, $work_preferences->practices === "1" ? "Práctica profesional" : "");
         array_push($type_work, $work_preferences->dual_education === "1" ? "Educación Dual" : "");
         $first_word = strtok($basic_info->position, " ");
- 
+
         $vacancies = Offer::select('offers.*', 'companies.company_name', 'companies.company_address', 'states.name AS state', 'towns.name AS town')
             ->join('companies', 'offers.company_id', '=', 'companies.id')
             ->join('states', 'offers.state_id', '=', 'states.id')
@@ -61,6 +61,11 @@ class VacanciesController extends Controller
         return $filter_vacancies;
     }
 
+    /**
+     * Show the render of applied vacants per user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function appliedVacants()
     {
         $user = User::findOrFail(request()->get('cv_id'));
@@ -73,6 +78,46 @@ class VacanciesController extends Controller
         return $applied_offers;
     }
 
+    /**
+     * Creates an instance from AppliedOffer with a validation to existing data.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apply()
+    {
+        $user = User::findOrFail(request()->get('cv_id'));
+        $cv_id = $user->cvs->first()->id;
+
+        $existingOffer = AppliedOffer::where('cv_id', $cv_id)->where('offer_id', request()->get('id'))->get();
+        if (count($existingOffer) === 0) {
+            $offer = AppliedOffer::create([
+                'cv_id' => $cv_id,
+                'offer_id' => request()->get('id'),
+                'status' => request()->get('status')
+            ]);
+        } else {
+            return response()->json(['status' => 'already applied']);
+        }
+        return response()->json(['status' => 'success', 'data' => $offer]);
+    }
+
+
+    /**
+     * Show the render view detail with a Vacancie ID.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function checkApplied()
+    {
+        $user = User::findOrFail(request()->get('cv_id'));
+        $cv_id = $user->cvs->first()->id;
+        $existingOffer = AppliedOffer::where('cv_id', $cv_id)->where('offer_id', request()->get('id'))->get();
+        if (count($existingOffer) === 0) {
+            return response()->json(['status' => 'not_applied', 'data' => $existingOffer]);
+        } else {
+            return response()->json(['status' => 'applied', 'data' => $existingOffer]);
+        }
+    }
 
     /**
      * Show the render view detail with a Vacancie ID.

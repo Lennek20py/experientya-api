@@ -116,6 +116,8 @@ Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progre
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
 Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
 Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('vacants.applied');
+Route::get('/vacants/check', [VacanciesController::class, 'checkApplied'])->name('vacants.checkApplied');
+Route::post('/vacants/apply', [VacanciesController::class, 'apply'])->name('vacants.apply');
 
 // / Candidate Basic Info
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
