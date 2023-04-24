@@ -167,7 +167,8 @@ Route::middleware([
     })->name('user.userprofile');
 
     // Profile
-    Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.updateData');
+    Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.updateData');
+    Route::put('/user/photo/{user}', [UserController::class, 'updatePhoto'])->name('user.updatePhoto');
 });
 
 
