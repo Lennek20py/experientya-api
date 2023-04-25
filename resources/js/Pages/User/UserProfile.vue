@@ -77,7 +77,7 @@
                 <template #tabFive>
                     <div>
                         <span>
-                            Elimine permanentemente su cuenta.
+                            Elimina permanentemente su cuenta.
                         </span>
                     </div>
                 </template>
@@ -86,7 +86,7 @@
             <!-- ----------Modals---------- -->
             <transition name="fade">
                 <!-- Profile -->
-                <ModalComponent v-if="modal === 1" :title="'Foto de Perfil'" :styleModal="'max-w-2xl lg:w-2/6 w-3/6'" @closeMod="closeModal(), resetImg(1)" @clickSave="sendPhoto(1)">
+                <ModalComponent v-if="modal === 1" :title="'Foto de Perfil'" :styleModal="'max-w-2xl lg:w-2/6 w-full'" @closeMod="closeModal(), resetImg(1)" @clickSave="sendPhoto(1)">
                     <template #contenido>
                         <div>
                             <div class="flex justify-center ">
@@ -99,7 +99,7 @@
                     </template>
                 </ModalComponent>
                 <!-- Banner -->
-                <ModalComponent v-else-if="modal === 2" :title="'Banner'" :styleModal="'max-w-2xl lg:w-2/6 w-3/6'" @closeMod="closeModal(), resetImg(2)" @clickSave="sendPhoto(2)">
+                <ModalComponent v-else-if="modal === 2" :title="'Banner'" :styleModal="'max-w-2xl lg:w-2/6 w-full'" @closeMod="closeModal(), resetImg(2)" @clickSave="sendPhoto(2)">
                     <template #contenido>
                         <div>
                             <div class="flex justify-center ">
@@ -157,7 +157,7 @@ const inputImgBanner = ref(null)
 let arrayButtons = ref([
     {name:'información del perfil', value: 1, class:'border-current text-teal-600', referencia: 'tabOne'},
     {name:'Actualiza contraseña', value: 2, class:'', referencia: 'tabTwo'},
-    {name:'Autenticación', value: 3, class:'', referencia: 'tabThree'},
+    // {name:'Autenticación', value: 3, class:'', referencia: 'tabThree'},
     // {name:'Sesiones del navegador', value: 4, class:'', referencia: 'tabFour'},
     {name:'Eliminar cuenta', value: 5, class:'', referencia: 'tabFive'},
 ])
