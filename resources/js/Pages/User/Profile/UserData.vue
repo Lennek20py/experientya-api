@@ -167,10 +167,14 @@
     let referenceData = ref(JSON.parse(JSON.stringify(props.userData)))
 
     const btnStatus = computed(() => {
-        console.log(referenceData.value);
+        console.log(props.userData);
         let status = true
         for(let i in props.userData){
-            if (props.userData[i] != referenceData.value[i]) status = false 
+            
+            if (i != 'banner_photo_path' && i != 'profile_photo_path' && i != 'profile_photo_link' && i != 'updated_at') {
+                if (props.userData[i] != referenceData.value[i]) status = false 
+            }
+            
         }
         return status
     })
