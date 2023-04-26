@@ -79,6 +79,9 @@
                         <span>
                             Elimina permanentemente su cuenta.
                         </span>
+                        <div class="flex justify-center mt-6">
+                            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" @click="openModal(3)">Eliminar cuenta</button>
+                        </div>
                     </div>
                 </template>
             </tabs>
@@ -107,6 +110,17 @@
                                     <img class="w-full h-full object-cover" :src="photoBanner" alt="Imagen de fondo">
                                 </div>
                             </div>
+                        </div>
+                    </template>
+                </ModalComponent>
+                <!-- Delete acount -->
+                <ModalComponent v-else-if="modal === 3" :title="'Eliminar Usuario'" :styleModal="'max-w-4xl lg:w-5/6 w-full'" @closeMod="closeModal()" >
+                    <template #contenido>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <img src="storage/imgUnDraw/imgModalOne.svg" alt="">
+                            </div>
+                            <div></div>
                         </div>
                     </template>
                 </ModalComponent>
@@ -167,13 +181,16 @@ let arrayButtons = ref([
 function closeModal(){
     modal.value = 0;
 }
+function openModal(numberModal){
+    modal.value = numberModal;
+}
 
 // Image change Profile
 function onFileSelected(e) {
     if (e.target.files[0]) {
         imgProfileData.value = e.target.files[0]
         photoProfile.value = URL.createObjectURL(e.target.files[0])
-        modal.value = 1
+        openModal(1);
     }else{
         photoProfile.value = props.user.profile_photo_path.replace('profile/', 'storage/profile/')
     }
@@ -184,7 +201,7 @@ function onFileSelectedBanner(e) {
     if (e.target.files[0]) {
         imgProfileData.value = e.target.files[0]
         photoBanner.value = URL.createObjectURL(e.target.files[0])
-        modal.value = 2
+        openModal(2);
     }else{
         photoBanner.value = props.user.banner_photo_path.replace('profile/', 'storage/profile/')
     }
@@ -208,7 +225,7 @@ async function sendPhoto(photo){
             },
             {
                 onSuccess: () => {
-                    modal.value = 0;
+                    closeModal();
                     imgProfileData.value = '';
                     Swal.fire(
                         'Actualizado!',
@@ -226,7 +243,7 @@ async function sendPhoto(photo){
             },
             {
                 onSuccess: () => {
-                    modal.value = 0;
+                    closeModal();
                     imgProfileData.value = '';
                     Swal.fire(
                         'Actualizado!',

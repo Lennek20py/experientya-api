@@ -18,7 +18,7 @@
             props.arrayButtons[oldPosition.value].class = '';
             oldPosition.value = position
         }
-
+        selecTab.value = props.arrayButtons[position].name;
         div.value = numberDiv;
     }
     

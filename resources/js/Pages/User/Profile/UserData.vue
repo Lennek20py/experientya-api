@@ -5,7 +5,49 @@
                 Actualice la información de perfil y la dirección de correo electrónico de su cuenta.
             </span>
         </div>
-        <h2 class="mt-12 text-3xl font-extrabold text-gray-900">Datos Personales</h2>
+        <div v-for="(item, index) in arrayDataUser" :key="index">
+            <h2 class="mt-9 text-3xl font-extrabold text-gray-900">{{ item.name }}</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-2 gap-4" >
+                <div class="mt-1" v-for="(twoItem, twoIndex) in item.data" :key="twoIndex">
+                    <div class="z-10 mb-[-10px]">
+                        <span
+                            class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2">{{ twoItem.nameInput }}
+                        </span>
+                    </div>
+                    <!-- Country -->
+                    <select v-if="twoItem.nameInput === 'País'" v-model="props.userData[twoItem.value]" 
+                        class=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+                        <option v-for="country in countrys" :key="country.id"
+                            :value="country.id">
+                            {{ country.name }}
+                        </option>
+                    </select>
+
+                    <!-- State -->
+                    <select v-else-if="twoItem.nameInput === 'Estado'" v-model="props.userData[twoItem.value]" 
+                        class="  block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+                        <option v-for="state in states" :key="state.id"
+                            :value="state.id">
+                            {{ state.name }}
+                        </option>
+                    </select>
+
+                    <!-- Town -->
+                    <select v-else-if="twoItem.nameInput === 'Ciudad / Municipio'" v-model="props.userData[twoItem.value]"
+                        class="  block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+                        <option v-for="town in towns" :key="town.id" :value="town.id">
+                            {{ town.name }}
+                        </option>
+                    </select>
+                    <!-- Text -->
+                    <input v-else :type="twoItem.typeInput"
+                        class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" v-model="props.userData[twoItem.value]"
+                    />
+                    <span v-if="twoItem.showMessage"  class="text-red-500 text-sm">{{ twoItem.message }}</span>
+                </div>
+            </div>
+        </div>
+        <!-- <h2 class="mt-12 text-3xl font-extrabold text-gray-900">Datos Personales</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-2 gap-4">
             <div class="mt-1">
                 <div class="z-10 mb-[-10px]">
@@ -17,6 +59,7 @@
                 <input type="text"
                     class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" v-model="props.userData.user_first_name"
                 />
+                <span class="text-red-500 text-sm">Nombre no válido</span>
             </div>
             <div class="mt-1">
                 <div class="z-10 mb-[-10px]">
@@ -98,7 +141,7 @@
                         class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2">Código Postal
                     </span>
                 </div>
-                    <input type="text"
+                    <input type="text" 
                     class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 v-model="props.userData.user_postal_code"/>
             </div>
@@ -118,7 +161,7 @@
                         class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2">Teléfono 2
                     </span>
                 </div>
-                    <input type="text"
+                    <input type="text" 
                     class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 v-model="props.userData.user_second_phone_number"/>
             </div>
@@ -142,7 +185,7 @@
                     class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 v-model="props.userData.user_date_of_birth"/>
             </div>
-        </div>
+        </div> -->
         
         <div class="flex justify-end mt-6">
             <button v-if="btnStatus" class="text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-not-allowed">
@@ -166,8 +209,27 @@
     })
     let referenceData = ref(JSON.parse(JSON.stringify(props.userData)))
 
+    const arrayDataUser = ref([
+        {name: 'Datos Personales', data: [ 
+            {nameInput:'Nombre(s)', value: 'user_first_name', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Apellidos', value: 'user_last_name', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'CURP', value: 'CURP', message:'', showMessage : false, typeInput:'text'},
+        ],},
+        {name: 'Datos de Contacto', data: [ 
+            {nameInput:'País', value: 'user_country_id', message:'', showMessage : false, typeInput:'select'},
+            {nameInput:'Estado', value: 'user_state_id', message:'', showMessage : false, typeInput:'select'},
+            {nameInput:'Ciudad / Municipio', value: 'user_city_id', message:'', showMessage : false, typeInput:'select'},
+            {nameInput:'Dirección', value: 'user_address', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Código Postal', value: 'user_postal_code', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Teléfono 1', value: 'user_phone_number', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Teléfono 2', value: 'user_second_phone_number', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Correo electrónico alternativo', value: 'email_alternative', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Fecha de nacimiento', value: 'user_date_of_birth', message:'', showMessage : false, typeInput:'date'},
+        ],},
+    ])
+
     const btnStatus = computed(() => {
-        console.log(props.userData);
+        validation();
         let status = true
         for(let i in props.userData){
             
@@ -185,6 +247,7 @@
 
     let states = ref([]);
     let towns = ref([]);
+    let ejemplo = ref('')
 
     async function getStates(){
         await axios.get("/list-states").then((response) => {
@@ -212,21 +275,115 @@
         });
     });
 
+    watch(() => props.userData.user_state_id, () => {
+        props.userData.user_city_id = ''
+    });
+
+    // Validation
+    function validation(){
+        let result = true;
+        const regex = /^[0-9]+$/;
+        arrayDataUser.value.forEach(element => {
+            element.data.forEach(item => {
+                // Name - LastName - Address - State - City
+                if (item.nameInput === 'Nombre(s)' || item.nameInput === 'Apellidos' || item.nameInput === 'Dirección' || item.nameInput === 'Estado' || item.nameInput === 'Ciudad / Municipio') {
+                    if ( !props.userData[item.value]) {
+                        item.showMessage = true;
+                        item.message = 'No se puede dejar vacío'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }else if (item.nameInput === 'CURP'){
+                // CURP
+                    if ( !props.userData[item.value]) {
+                        item.showMessage = true;
+                        item.message = 'No se puede dejar vacío'
+                        result = false
+                    }else if (props.userData[item.value].length != 18){
+                        item.showMessage = true;
+                        item.message = 'La CURD solo debe tener 18 caracteres'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }else if (item.nameInput === 'Código Postal'){
+                // Postal code
+                    if (props.userData[item.value].length != 5) {
+                        item.showMessage = true;
+                        item.message = 'El C.P. solo debe de tener 5 números'
+                        result = false
+                    }else if(isNaN(props.userData[item.value])){
+                        item.showMessage = true;
+                        item.message = 'Solo debes de incluir números'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }else if(item.nameInput === 'Teléfono 1' || item.nameInput === 'Teléfono 2'){
+                // Phone
+                    if (props.userData[item.value].length != 10) {
+                        item.showMessage = true;
+                        item.message = 'El teléfono solo debe de tener 10 números'
+                        result = false
+                    }else if(isNaN(props.userData[item.value])){
+                        item.showMessage = true;
+                        item.message = 'Solo debes de incluir números'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }else if (item.nameInput === 'Correo electrónico alternativo') {
+                // Email
+                    if (!props.userData[item.value]) {
+                        item.showMessage = true;
+                        item.message = 'No se puede dejar vacío'
+                        result = false
+                    }else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(props.userData[item.value]))){
+                        item.showMessage = true;
+                        item.message = 'Colocar un correo válido'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }else if (item.nameInput === 'Fecha de nacimiento') {
+                    if (!props.userData[item.value]) {
+                        item.showMessage = true;
+                        item.message = 'No se puede dejar vacío'
+                        result = false
+                    }else{
+                        item.showMessage = false;
+                    }
+                }
+            });
+        });
+        return result;
+    }
+
     async function submit(){
-        Inertia.post(route('user.updateData', props.userData.id), {
-            _method: 'patch',
-            'data': JSON.parse(JSON.stringify(props.userData)),
-        },
-        {
-            onSuccess: () => {
-                Swal.fire(
-                    'Actualizado!',
-                    'El registro fue actualizado exitosamente!',
-                    'success'
-                );
-                referenceData.value = JSON.parse(JSON.stringify(props.userData));
-            }
-        })
+        if (validation()) {
+            Inertia.post(route('user.updateData', props.userData.id), {
+                _method: 'patch',
+                'data': JSON.parse(JSON.stringify(props.userData)),
+            },
+            {
+                onSuccess: () => {
+                    Swal.fire(
+                        'Actualizado!',
+                        'El registro fue actualizado exitosamente!',
+                        'success'
+                    );
+                    referenceData.value = JSON.parse(JSON.stringify(props.userData));
+                }
+            })
+        }else{
+            Swal.fire(
+                'Oops...!',
+                'Algo salió mal, revise sus datos',
+                'warning'
+            );
+        }
+        
     }
 
     onMounted(async() => {
