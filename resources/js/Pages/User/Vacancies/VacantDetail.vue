@@ -318,25 +318,30 @@ export default defineComponent({
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Si, Aplicar!'
             }).then((result) => {
-                this.apply()
-                if (result.isConfirmed && this.response_status === 'success') {
-                    Swal.fire(
-                        '¡Éxito!',
-                        'Has aplicado exitosamente a la vacante de ' + this.vacant.title_job,
-                        'success'
-                    )
-                } else if (result.isConfirmed && this.response_status !== 'success') {
-                    Swal.fire(
-                        'Error',
-                        'Vacante aplicada con anterioridad, por favor revisa el panel de "Vacantes Aplicadas"',
-                        'warning'
-                    )
-                } else if (result.isConfirmed) {
-                    Swal.fire(
-                        'Error',
-                        'Hubo un error al aplicar a la vancante, por favor inténtalo nuevamente ',
-                        'warning'
-                    )
+                if (!result.isConfirmed) {
+                    return
+                } else {
+                    this.apply()
+                    if (result.isConfirmed && this.response_status === 'success') {
+                        Swal.fire(
+                            '¡Éxito!',
+                            'Has aplicado exitosamente a la vacante de ' + this.vacant.title_job,
+                            'success'
+                        )
+                    } else if (result.isConfirmed && this.response_status !== 'success') {
+                        Swal.fire(
+                            'Error',
+                            'Vacante aplicada con anterioridad, por favor revisa el panel de "Vacantes Aplicadas"',
+                            'warning'
+                        )
+                    } else if (result.isConfirmed) {
+                        Swal.fire(
+                            'Error',
+                            'Hubo un error al aplicar a la vancante, por favor inténtalo nuevamente ',
+                            'warning'
+                        )
+                    }
+
                 }
             })
         },
@@ -354,6 +359,12 @@ export default defineComponent({
                 }).catch((error) => {
                     console.log(error)
                 })
+                // await axios.post(route('vacants.send'))
+                // .then((response) => {
+                //     console.log(response)
+                // }).catch((error) => {
+                //     console.log(error)
+                // })
         },
         async checkStatusApply() {
             if (this.vacant.id) {
