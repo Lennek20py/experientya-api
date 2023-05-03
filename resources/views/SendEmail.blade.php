@@ -13,7 +13,7 @@
                         <p style="color: #555;">Si tienes alguna pregunta o inquietud sobre tu aplicación, no dudes en ponerte en contacto con nosotros.</p>
 
                         <p style="color: #555;">Atentamente,</p>
-                        <p style="color: #555;">El equipo de recursos humanos</p>
+                        <p style="color: #555;">El equipo de Experientya</p>
                     </td>
                 </tr>
             </table>
