@@ -108,7 +108,6 @@ class VacanciesController extends Controller
                 'status' => request()->get('status')
             ]);
             Mail::to($user->email)->send(new SendEmail($mailData));
-
         } else {
             return response()->json(['status' => 'already applied']);
         }
@@ -123,7 +122,7 @@ class VacanciesController extends Controller
      */
     public function checkApplied()
     {
-        $user = User::findOrFail(request()->get('cv_id'));
+        $user = User::findOrFail(request()->get('user_id'));
         $cv_id = $user->cvs->first()->id;
         $existingOffer = AppliedOffer::where('cv_id', $cv_id)->where('offer_id', request()->get('id'))->get();
         if (count($existingOffer) === 0) {
@@ -221,8 +220,26 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $user = User::findOrFail(request()->get('user_id'));
+        $cv_id = $user->cvs->first()->id;
+
+        $offer_info = Offer::findOrFail(request()->get('id'));
+        $company_info = Company::findOrFail($offer_info->company_id);
+
+        $mailData = [
+            $user,
+            $offer_info,
+            $company_info
+        ];
+
+        $existingOffer = AppliedOffer::where('cv_id', $cv_id)->where('offer_id', request()->get('id'));
+        if (count($existingOffer->get()) === 0) {
+            return response()->json(['status' => 'no_data', 'data' => $existingOffer->get()]);
+        } else {
+            $data = $existingOffer->delete();
+            return response()->json(['status' => 'deleted', 'data' => $data]);
+        }
     }
 }
