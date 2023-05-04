@@ -88,7 +88,7 @@ class VacanciesController extends Controller
      */
     public function apply()
     {
-        $user = User::findOrFail(request()->get('cv_id'));
+        $user = User::findOrFail(request()->get('user_id'));
         $cv_id = $user->cvs->first()->id;
 
         $offer_info = Offer::findOrFail(request()->get('id'));
