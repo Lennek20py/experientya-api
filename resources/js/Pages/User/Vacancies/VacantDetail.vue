@@ -43,16 +43,34 @@
                                 </svg>
                                 <span>Aplicar a Vacante</span>
                             </button>
-                            <button type="button" v-else-if="loading === false && response_status_check === true"
+                            <JetDropdown v-else-if="loading === false && response_status_check === true" width="48"
+                                class="inline-flex justify-center rounded-md border border-gray-300 bg-green-600 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-green-400 transition duration-150 hover:cursor-pointer">
+                                <template #trigger>
+                                    <div class="flex flex-nowrap align-middle">
+                                        <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="none" stroke="currentColor"
+                                            stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5">
+                                            </path>
+                                        </svg>
+                                        <span class="text-white font-bold">Aplicado</span>
+                                    </div>
+                                </template>
+
+                                <template #content>
+                                    <button type="button" @click="missapply()"
+                                        class="py-2 w-full text-base font-normal text-gray-900 hover:text-red-800 hover:font-bold transition">
+                                        Eliminar
+
+                                    </button>
+
+                                    <div class="border-t border-gray-100" />
+                                </template>
+                            </JetDropdown>
+                            <!-- <button type="button" v-else-if="loading === false && response_status_check === true"
                                 class="inline-flex justify-center rounded-md border border-gray-300 bg-green-600 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-green-400 transition duration-150">
-                                <!-- Heroicon name: mini/envelope -->
-                                <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-                                </svg>
-                                <span class="text-white font-bold">Aplicado</span>
-                            </button>
+                                
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -287,6 +305,7 @@
 import JetModal from '@/Jetstream/Modal'
 import { Link } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'
+import JetDropdown from '@/Jetstream/Dropdown.vue';
 import Swal from 'sweetalert2';
 
 
@@ -294,7 +313,8 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     components: {
-        Swal
+        Swal,
+        JetDropdown
     },
     props: {
         vacant: Object
@@ -318,32 +338,50 @@ export default defineComponent({
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Si, Aplicar!'
             }).then((result) => {
-                this.apply()
-                if (result.isConfirmed && this.response_status === 'success') {
-                    Swal.fire(
-                        '¡Éxito!',
-                        'Has aplicado exitosamente a la vacante de ' + this.vacant.title_job,
-                        'success'
-                    )
-                } else if (result.isConfirmed && this.response_status !== 'success') {
-                    Swal.fire(
-                        'Error',
-                        'Vacante aplicada con anterioridad, por favor revisa el panel de "Vacantes Aplicadas"',
-                        'warning'
-                    )
-                } else if (result.isConfirmed) {
-                    Swal.fire(
-                        'Error',
-                        'Hubo un error al aplicar a la vancante, por favor inténtalo nuevamente ',
-                        'warning'
-                    )
+                if (!result.isConfirmed) {
+                    return
+                } else {
+                    this.apply()
+                    if (result.isConfirmed && this.response_status === 'success') {
+                        Swal.fire(
+                            '¡Éxito!',
+                            'Has aplicado exitosamente a la vacante de ' + this.vacant.title_job,
+                            'success'
+                        )
+                    } else if (result.isConfirmed && this.response_status !== 'success') {
+                        Swal.fire(
+                            'Error',
+                            'Vacante aplicada con anterioridad, por favor revisa el panel de "Vacantes Aplicadas"',
+                            'warning'
+                        )
+                    } else if (result.isConfirmed) {
+                        Swal.fire(
+                            'Error',
+                            'Hubo un error al aplicar a la vancante, por favor inténtalo nuevamente ',
+                            'warning'
+                        )
+                    }
+
                 }
             })
+        },
+        async cancelVacant() {
+            let data = {
+                user_id: this.$page.props.user.id,
+                id: this.vacant.id,
+                status: 'applied'
+            }
+            await axios.delete(route('vacants.cancel', data), { params: this.params })
+                .then((response) => {
+                    return response
+                }).catch((error) => {
+                    return error
+                })
         },
 
         async apply() {
             let data = {
-                cv_id: 8,
+                user_id: this.$page.props.user.id,
                 id: this.vacant.id,
                 status: 'applied'
             }
@@ -358,12 +396,11 @@ export default defineComponent({
         async checkStatusApply() {
             if (this.vacant.id) {
                 let data = {
-                    cv_id: 8,
+                    user_id: 8,
                     id: this.vacant.id,
                 }
                 await axios.get(route('vacants.checkApplied', data), { params: this.params })
                     .then((response) => {
-                        console.log(response.data)
                         this.loading = false
                         this.response_status_check = response.data.status === 'applied' ? true : false
 
@@ -371,6 +408,32 @@ export default defineComponent({
                         console.log(error)
                     })
             }
+        },
+        missapply() {
+            Swal.fire({
+                title: '¿Desea cancelar la solicitud?',
+                text: "Se enviará un correo de confirmación, esta acción no se podrá revertir.",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#d33',
+                showLoaderOnConfirm: true,
+                confirmButtonText: 'Eliminar solicitud',
+                preConfirm: () => {
+                    return this.cancelVacant()
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.checkStatusApply()
+                    Swal.fire(
+                        '¡Éxito!',
+                        'Has cancelado tu solicitud de vacante en ' + this.vacant.title_job,
+                        'success'
+                    )
+                }
+            })
+            this.checkStatusApply()
         }
     },
     created() {

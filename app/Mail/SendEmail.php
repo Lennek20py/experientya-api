@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Mail\SendEmail;
 
 class SendEmail extends Mailable
 {
@@ -31,6 +30,6 @@ class SendEmail extends Mailable
     public function build()
     {
         return $this->subject('Invitación Vacante Experientya')
-                    ->view('SendEmailVacant');
+                    ->view('SendEmail');
     }
 }

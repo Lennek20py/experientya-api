@@ -118,6 +118,7 @@ Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name
 Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('vacants.applied');
 Route::get('/vacants/check', [VacanciesController::class, 'checkApplied'])->name('vacants.checkApplied');
 Route::post('/vacants/apply', [VacanciesController::class, 'apply'])->name('vacants.apply');
+Route::delete('/vacants/delete', [VacanciesController::class, 'destroy'])->name('vacants.cancel');
 
 // / Candidate Basic Info
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');

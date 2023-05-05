@@ -181,7 +181,7 @@ const logout = () => {
                                                 <button v-if="$page.props.jetstream.managesProfilePhotos"
                                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                                     <img class="h-8 w-8 rounded-full object-cover"
-                                                        :src="$page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')"
+                                                        :src="'/' + $page.props.user.profile_photo_path.replace('profile/', 'storage/profile/')"
                                                         :alt="$page.props.user.user_first_name">
                                                     <!-- {{ $page.props.user.profile_photo_path.replace('profile/', 'storage/profile/') }} -->
                                                 </button>
