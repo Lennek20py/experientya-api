@@ -170,6 +170,7 @@ Route::middleware([
     // Profile
     Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.updateData');
     Route::put('/user/photo/{user}', [UserController::class, 'updatePhoto'])->name('user.updatePhoto');
+    Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->name('user.deleteUser');
 });
 
 

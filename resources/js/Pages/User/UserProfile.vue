@@ -114,7 +114,7 @@
                     </template>
                 </ModalComponent>
                 <!-- Delete acount -->
-                <ModalComponent v-else-if="modal === 3" :title="'Eliminar Usuario'" :textBtnSave="'Eliminar'" :styleModal="'max-w-5xl lg:w-5/6 w-full'" @closeMod="closeModal()" >
+                <ModalComponent v-else-if="modal === 3" :title="'Eliminar Usuario'" :textBtnSave="'Eliminar'" :styleModal="'max-w-5xl lg:w-5/6 w-full'" @closeMod="closeModal()" @clickSave="deleteAcount">
                     <template #contenido>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div class="hidden sm:block">
@@ -322,7 +322,21 @@ function resetImg(modal){
         document.getElementById("banner_photo_path").value = ''
     }
 }
-    
+
+// Delete acount
+async function deleteAcount(){
+    Inertia.delete(route('user.deleteUser', props.user.id),
+    {
+        onSuccess: () => {
+            Swal.fire(
+                'Eliminado!',
+                'Tu cuenta ha sido eliminada',
+                'success'
+            );
+            referenceData.value = JSON.parse(JSON.stringify(props.userData));
+        }
+    })
+}
 
 </script>
 <style scoped>

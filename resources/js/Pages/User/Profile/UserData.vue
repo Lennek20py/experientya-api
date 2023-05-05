@@ -183,7 +183,7 @@
                     }
                 }else if(item.nameInput === 'Teléfono 1' || item.nameInput === 'Teléfono 2'){
                 // Phone
-                    if (!props.userData[item.value]) {
+                    if (!props.userData[item.value] || props.userData[item.value] === null) {
                         item.showMessage = false;
                     }else if (props.userData[item.value].length != 10) {
                         item.showMessage = true;
