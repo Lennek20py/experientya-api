@@ -210,9 +210,9 @@ const logout = () => {
                                                 <JetDropdownLink :href="route('user.userprofile')">
                                                     Perfil
                                                 </JetDropdownLink>
-                                                <JetDropdownLink :href="route('profile.show')">
+                                                <!-- <JetDropdownLink :href="route('profile.show')">
                                                     Perfil jetstream
-                                                </JetDropdownLink>
+                                                </JetDropdownLink> -->
 
                                                 <JetDropdownLink v-if="$page.props.jetstream.hasApiFeatures"
                                                     :href="route('api-tokens.index')">

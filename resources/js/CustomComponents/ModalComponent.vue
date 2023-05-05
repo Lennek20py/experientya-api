@@ -20,7 +20,7 @@
       </div>
       <div class="flex justify-end pt-4">
         <button class="px-4 py-2 bg-gray-500 text-white rounded mr-2 hover:bg-gray-600 focus:outline-non text-xs" @click="closeModal">Cancelar</button>
-        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none text-xs" @click="save">Guardar</button>
+        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none text-xs" @click="save">{{ props.textBtnSave }}</button>
       </div>
     </div>
   </div>
@@ -30,10 +30,13 @@
 <script setup>
 import { stringLiteral } from '@babel/types';
 
-
 const props = defineProps({
     title: String,
-    styleModal: String
+    styleModal: String,
+    textBtnSave:{
+      type:String,
+      default: 'Guardar'
+    }
 })
 
 const emit = defineEmits(['closeMod', 'clickSave', 'clickCancel'])

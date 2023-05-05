@@ -114,13 +114,51 @@
                     </template>
                 </ModalComponent>
                 <!-- Delete acount -->
-                <ModalComponent v-else-if="modal === 3" :title="'Eliminar Usuario'" :styleModal="'max-w-4xl lg:w-5/6 w-full'" @closeMod="closeModal()" >
+                <ModalComponent v-else-if="modal === 3" :title="'Eliminar Usuario'" :textBtnSave="'Eliminar'" :styleModal="'max-w-5xl lg:w-5/6 w-full'" @closeMod="closeModal()" >
                     <template #contenido>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="hidden sm:block">
                                 <img src="storage/imgUnDraw/imgModalOne.svg" alt="">
                             </div>
-                            <div></div>
+                            <div>
+                                <h1 class="text-3xl font-bold mb-3">Lamentamos que tengas que irte</h1>
+                                <span class="text-sm text-inherit">Ayudamos con las siguientes preguntas antes de eliminar tu cuenta</span>
+                                <div class="mt-6 ">
+                                    <div class="mt-3">
+                                        <div class="z-10 mb-[-10px]">
+                                            <span
+                                                class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2 focus:ring-blue-500">¿Cómo podemos mejorar?
+                                            </span>
+                                        </div>
+                                        <input v-model="questionOne"  type="text"
+                                            class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" 
+                                        />
+                                        
+                                    </div>
+                                    <div class="mt-3">
+                                        <div class="z-10 mb-[-10px]">
+                                            <span
+                                                class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2 focus:ring-blue-500">¿Tuviste algun problema?
+                                            </span>
+                                        </div>
+                                        <input v-model="questionOne"  type="text"
+                                            class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" 
+                                        />
+                                        
+                                    </div>
+                                    <div class="mt-3">
+                                        <div class="z-10 mb-[-10px]">
+                                            <span
+                                                class=" text-sm font-medium text-slate-700 after:ml-0.5 ml-3 bg-white pl-2 pr-2 focus:ring-blue-500">Dejanos algun comentario
+                                            </span>
+                                        </div>
+                                        <input v-model="questionOne"  type="text"
+                                            class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" 
+                                        />
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </template>
                 </ModalComponent>
@@ -141,6 +179,7 @@ import { Inertia } from '@inertiajs/inertia'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+const questionOne= ref('')
 
 const props = defineProps({
     user: Object,
@@ -169,7 +208,7 @@ const inputImgBanner = ref(null)
 // ------------Arays
 // Tabs info
 let arrayButtons = ref([
-    {name:'información del perfil', value: 1, class:'border-current text-teal-600', referencia: 'tabOne'},
+    {name:'Información del perfil', value: 1, class:'border-current text-teal-600', referencia: 'tabOne'},
     {name:'Actualiza contraseña', value: 2, class:'', referencia: 'tabTwo'},
     // {name:'Autenticación', value: 3, class:'', referencia: 'tabThree'},
     // {name:'Sesiones del navegador', value: 4, class:'', referencia: 'tabFour'},

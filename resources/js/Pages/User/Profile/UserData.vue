@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="flex justify-end mt-6">
             <button v-if="btnStatus" class="text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-not-allowed">
                 Guardar
