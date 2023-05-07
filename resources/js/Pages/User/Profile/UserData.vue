@@ -40,14 +40,13 @@
                         </option>
                     </select>
                     <!-- Text -->
-                    <input v-else :type="twoItem.typeInput"
+                    <input v-else :type="twoItem.typeInput" :maxlength="twoItem.maxlength"
                         class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" v-model="props.userData[twoItem.value]"
                     />
                     <span v-if="twoItem.showMessage"  class="text-red-500 text-sm">{{ twoItem.message }}</span>
                 </div>
             </div>
         </div>
-        
         <div class="flex justify-end mt-6">
             <button v-if="btnStatus" class="text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-not-allowed">
                 Guardar
@@ -72,20 +71,20 @@
 
     const arrayDataUser = ref([
         {name: 'Datos Personales', data: [ 
-            {nameInput:'Nombre(s)', value: 'user_first_name', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Apellidos', value: 'user_last_name', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'CURP', value: 'CURP', message:'', showMessage : false, typeInput:'text'},
+            {nameInput:'Nombre(s)', value: 'user_first_name', message:'', showMessage : false, typeInput:'text',maxlength:"false"},
+            {nameInput:'Apellidos', value: 'user_last_name', message:'', showMessage : false, typeInput:'text',maxlength:"false"},
+            {nameInput:'CURP', value: 'CURP', message:'', showMessage : false, typeInput:'text',maxlength:"18"},
         ],},
         {name: 'Datos de Contacto', data: [ 
-            {nameInput:'País', value: 'user_country_id', message:'', showMessage : false, typeInput:'select'},
-            {nameInput:'Estado', value: 'user_state_id', message:'', showMessage : false, typeInput:'select'},
-            {nameInput:'Ciudad / Municipio', value: 'user_city_id', message:'', showMessage : false, typeInput:'select'},
-            {nameInput:'Dirección', value: 'user_address', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Código Postal', value: 'user_postal_code', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Teléfono 1', value: 'user_phone_number', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Teléfono 2', value: 'user_second_phone_number', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Correo electrónico alternativo', value: 'email_alternative', message:'', showMessage : false, typeInput:'text'},
-            {nameInput:'Fecha de nacimiento', value: 'user_date_of_birth', message:'', showMessage : false, typeInput:'date'},
+            {nameInput:'País', value: 'user_country_id', message:'', showMessage : false, typeInput:'select',maxlength:"false"},
+            {nameInput:'Estado', value: 'user_state_id', message:'', showMessage : false, typeInput:'select',maxlength:"false"},
+            {nameInput:'Ciudad / Municipio', value: 'user_city_id', message:'', showMessage : false, typeInput:'select',maxlength:"false"},
+            {nameInput:'Dirección', value: 'user_address', message:'', showMessage : false, typeInput:'text',maxlength:"false"},
+            {nameInput:'Código Postal', value: 'user_postal_code', message:'', showMessage : false, typeInput:'text', maxlength:"5"},
+            {nameInput:'Teléfono 1', value: 'user_phone_number', message:'', showMessage : false, typeInput:'text',maxlength:"10"},
+            {nameInput:'Teléfono 2', value: 'user_second_phone_number', message:'', showMessage : false, typeInput:'text',maxlength:"10"},
+            {nameInput:'Correo electrónico alternativo', value: 'email_alternative', message:'', showMessage : false, typeInput:'text',maxlength:"false"},
+            {nameInput:'Fecha de nacimiento', value: 'user_date_of_birth', message:'', showMessage : false, typeInput:'date',maxlength:"false"},
         ],},
     ])
 
