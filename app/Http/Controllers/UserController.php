@@ -13,6 +13,7 @@ use App\Mail\SendEmail;
 use App\Mail\SendEmailUserRegister;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -193,6 +194,17 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.userprofile');
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+        if (!Hash::check($request[0]['password'], $user->password)) return false;
+
+        $user->password = $request[1]['password'];
+
+        $user->save();
+
+        return true;
     }
 
     /**

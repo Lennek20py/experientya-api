@@ -58,6 +58,9 @@
                         <span>
                             Asegúrese de que su cuenta esté utilizando una contraseña larga y aleatoria para mantenerse seguro.
                         </span>
+                        <div class="mt-4">
+                            <userResetPassword :userData="props.user"/>
+                        </div>
                     </div>
                 </template>
                 <template #tabThree>
@@ -175,6 +178,7 @@ import { ref, onMounted, watch, computed  } from 'vue'
 import  tabs from '@/CustomComponents/Tabs.vue'
 import  ModalComponent from '@/CustomComponents/ModalComponent.vue'
 import  userData from '@/Pages/User/Profile/UserData.vue'
+import  userResetPassword from '@/Pages/User/Profile/UserResetPassword.vue'
 import { Inertia } from '@inertiajs/inertia'
 import axios from 'axios';
 import Swal from 'sweetalert2';
