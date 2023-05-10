@@ -22,6 +22,8 @@ class VacanciesController extends Controller
      */
     public function index(Request $request, $id)
     {
+        // EL CORREO DE LA ACPLICACION DE LA VACANTE LLEGARÁ A LA EMPRESA
+        
         $basic_info = Cv::where('user_id', $id)->first();
         $user = User::findOrFail($basic_info->user_id);
         $work_preferences = WorkPreferences::where('user_id', $id)->first();
@@ -99,7 +101,6 @@ class VacanciesController extends Controller
             $offer_info,
             $company_info
         ];
-
         $existingOffer = AppliedOffer::where('cv_id', $cv_id)->where('offer_id', request()->get('id'))->get();
         if (count($existingOffer) === 0) {
             $offer = AppliedOffer::create([
@@ -107,7 +108,7 @@ class VacanciesController extends Controller
                 'offer_id' => request()->get('id'),
                 'status' => request()->get('status')
             ]);
-            Mail::to($user->email)->send(new SendEmail($mailData));
+            Mail::to($company_info->email)->send(new SendEmail($mailData));
         } else {
             return response()->json(['status' => 'already applied']);
         }

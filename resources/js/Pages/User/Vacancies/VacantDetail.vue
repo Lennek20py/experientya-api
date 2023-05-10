@@ -331,7 +331,7 @@ export default defineComponent({
         applyConfirmation() {
             Swal.fire({
                 title: '¿Aplicar a esta Vacante?',
-                text: "Se enviará un correo de confirmación al aplicar la vacante",
+                text: "Se enviará un correo a la empresa de confirmación al aplicar la vacante",
                 icon: 'info',
                 showCancelButton: true,
                 cancelButtonColor: '#d33',
