@@ -191,7 +191,7 @@
                                                             class="text-blue-600 underline underline-offset-4">aviso
                                                             legal</a>
                                                         y la
-                                                        <a href="http://" target="_blank" rel="noopener noreferrer"
+                                                        <a href="#" @click="redirectTo('/privacy-terms')" target="_blank" rel="noopener noreferrer"
                                                             class="text-blue-600 underline underline-offset-4">política de
                                                             privacidad</a>.
                                                     </span>
@@ -427,6 +427,7 @@
 <script>
 
 import { defineComponent } from "vue";
+import { Link } from '@inertiajs/inertia';
 import Header from "@/Components/Home/Header";
 import Footer from "@/Components/Home/Footer";
 import axios from "axios";
@@ -434,7 +435,7 @@ import JetInputError from "@/Jetstream/InputError";
 import JetButton from '@/Jetstream/Button'
 
 export default defineComponent({
-    components: { Header, Footer, JetInputError, JetButton },
+    components: { Header, Footer, JetInputError, JetButton, Link },
     data: function () {
         return {
             country_id: "",
@@ -553,6 +554,9 @@ export default defineComponent({
         },
         toggleVisibility(type) {
             type === 'pass' ? this.showPass = !this.showPass : this.showPassConfirm = !this.showPassConfirm
+        },
+        redirectTo(url) {
+            this.$inertia.visit(url);
         }
     },
     created() {

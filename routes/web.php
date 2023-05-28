@@ -42,6 +42,7 @@ use App\Http\Controllers\WorkPreferencesController;
 
 //Home
 Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::inertia('/privacy-terms', 'Terms');
 
 
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
