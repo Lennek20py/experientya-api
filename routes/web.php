@@ -25,6 +25,9 @@ use App\Http\Controllers\UserSkillController;
 use App\Http\Controllers\VacanciesController;
 use App\Http\Controllers\WorkPreferencesController;
 
+// Chat
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,3 +208,23 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');
     Route::get('/company/downloadCV/{id}', [CompanyController::class, 'downloadCVPDF'])->name('company.downloadCVPDF');
 });
+
+// Ejemplo Chat
+
+// RUTAS DE CHAT
+
+// index
+Route::get('/chat', function () {
+    return Inertia::render('Chat/ejemploChat');
+})->name('chat.index');
+
+// with
+Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
+
+// Show
+Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
+
+// RUTAS DE MESSAGE
+
+// Sent
+Route::post('/message/sent', [MessageController::class, 'sent'])->name('message.sent');
