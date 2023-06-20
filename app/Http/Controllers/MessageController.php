@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\MessageSent;
 
 class MessageController extends Controller
 {
@@ -17,6 +18,8 @@ class MessageController extends Controller
             'content' => $request->message,
             'chat_id' => $request->chat_id
         ])->load('user');
+
+        broadcast(new MessageSent($message))->toOthers();
 
         return $message;
     }

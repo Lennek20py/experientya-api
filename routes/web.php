@@ -29,6 +29,10 @@ use App\Http\Controllers\WorkPreferencesController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 
+// Example Broadcasting Laravel Event on a public channel
+use App\Events\Hello;
+use App\Events\PrivateTest;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -207,6 +211,9 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     //CV - Applicant
     Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');
     Route::get('/company/downloadCV/{id}', [CompanyController::class, 'downloadCVPDF'])->name('company.downloadCVPDF');
+
+    // Chat
+    Route::get('/company/chat/from/{company}/{user}', [ChatController::class, 'chat_from_company_to_user'])->name('chat.from.company.to.user');
 });
 
 // Ejemplo Chat
@@ -219,7 +226,7 @@ Route::get('/chat', function () {
 })->name('chat.index');
 
 // with
-Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
+// Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
 
 // Show
 Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
@@ -228,3 +235,17 @@ Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
 
 // Sent
 Route::post('/message/sent', [MessageController::class, 'sent'])->name('message.sent');
+
+
+// Example Broadcasting Laravel Event on a public channel
+Route::get('/broadcast', function () {
+
+    Hello::dispatch();
+    return "Event has been sent!";
+});
+
+Route::get('/broadcastPrivate', function () {
+    $user = App\Models\User::find(14);
+    PrivateTest::dispatch($user);
+    return "Event has been sent!" . $user;
+});

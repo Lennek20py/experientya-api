@@ -3,20 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\Chat;
 use App\Models\User;
 
 class ChatController extends Controller
 {
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    public function chat_from_company_to_user(Company $company, User $user)
     {
-        $this->middleware('auth');
+        $chat_result = Chat::where('name', '=', $company)
+            ->where('email', '=', $user)
+            ->first();
+        return $user;
     }
 
     public function chat_with(User $user)
     {
+        // return $user;
+
+        // Usuario que esta logueado
         $user_a = auth()->user();
 
+        // Usuario al que se desea acceder
         $user_b = $user;
 
         $chat = $user_a->chats()->wherehas('users', function ($q) use ($user_b) {
