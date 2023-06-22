@@ -381,20 +381,39 @@
                                                 <div
                                                     class="flex items-center justify-center space-y-1"
                                                 >
+                                                    <div
+                                                        class="flex justify-center container-img"
+                                                    >
+                                                        <div
+                                                            class="relative w-40 h-40 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-solid cursor-pointer"
+                                                            @click="
+                                                                changeImgProfile
+                                                            "
+                                                        >
+                                                            <img
+                                                                class="w-full h-full object-cover"
+                                                                :src="
+                                                                    pathImgProfile
+                                                                "
+                                                                alt="profile_photo"
+                                                            />
+                                                        </div>
+                                                    </div>
                                                     <input
+                                                        ref="inputImgProfile"
                                                         type="file"
                                                         id="profile_photo_path"
                                                         name="profile_photo_path"
-                                                        class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-blue-600"
+                                                        class="w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-blue-600 hidden"
                                                         @change="onFileSelected"
                                                     />
                                                 </div>
-                                                <jet-input-error
+                                                <!-- <jet-input-error
                                                     :message="
                                                         user.errors
                                                             .profile_photo_path
                                                     "
-                                                />
+                                                /> -->
                                             </div>
                                             <div
                                                 class="mb-6 md:flex md:items-center"
@@ -885,6 +904,7 @@ export default defineComponent({
             states: [],
             towns: [],
             bind: true,
+            pathImgProfile: "/storage/profile/new_user.png",
             showPass: false,
             showPassConfirm: false,
             users: [],
@@ -931,9 +951,9 @@ export default defineComponent({
                     console.log(error);
                 });
         },
-
         onFileSelected(event) {
             this.user.profile_photo_path = event.target.files[0];
+            this.pathImgProfile = URL.createObjectURL(event.target.files[0]);
             console.log(event.target.files[0]);
         },
         changeStage() {
@@ -1020,6 +1040,9 @@ export default defineComponent({
         },
         redirectTo(url) {
             this.$inertia.visit(url);
+        },
+        changeImgProfile() {
+            this.$refs.inputImgProfile.click();
         },
     },
     created() {

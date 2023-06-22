@@ -50,8 +50,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-
-        $image = null;
+        // generic image path
+        $image = 'profile/new_user.png';
 
         if ($request->file('profile_photo_path')) {
             $image = $request->file('profile_photo_path')->store('profile', 'public');
