@@ -33,7 +33,7 @@ class AddStatesTownsCountriesToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            
+
             $table->dropForeign('users_user_country_id_foreign');
             $table->dropColumn('user_country_id');
             $table->dropForeign('users_user_state_id_foreign');
