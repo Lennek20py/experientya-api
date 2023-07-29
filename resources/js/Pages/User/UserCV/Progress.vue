@@ -157,7 +157,7 @@
 </template>
 
 <script>
-export default ({
+export default {
    props: ['userProp', 'updateStatus', 'cvId'],
    data: function () {
       return {
@@ -220,7 +220,7 @@ export default ({
          this.getProgress()
       }
    }
-});
+};
 
 </script>
 
