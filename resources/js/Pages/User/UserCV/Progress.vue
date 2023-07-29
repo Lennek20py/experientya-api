@@ -1,5 +1,4 @@
 <template>
-
    <aside id="progress" class="max-w-72 min-h-screen h-full max-h-[200vh] flex flex-col flex-grow z-20 left-0"
       aria-label="Sidebar">
       <div
@@ -63,8 +62,7 @@
                      <span class="flex flex-row justify-between">Certificaciones <svg class="w-6 h-6"
                            :class="[progress['certification'] == 'true' ? 'visible' : 'invisible']" fill="none"
                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
                            </path>
                         </svg></span>
                   </a>
@@ -119,7 +117,7 @@
                   <a href="#skillsSection">
                      <span class="flex flex-row justify-between">Test Competencias
                         <svg class="w-6 h-6 text-yellow-500"
-                           :class="[((progress['testcompetition'] == 'in_course' && progress['testcompetition'] != null ) || (progress['testcompetition'] <= 26 && progress['testcompetition'] != null) ) ? 'visible' : 'invisible']"
+                           :class="[((progress['testcompetition'] == 'in_course' && progress['testcompetition'] != null) || (progress['testcompetition'] <= 26 && progress['testcompetition'] != null)) ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
@@ -141,7 +139,7 @@
                   <a href="#skillsSection">
                      <span class="flex flex-row justify-between">Test de SoftSkills
                         <svg class="w-6 h-6 text-yellow-500"
-                           :class="[((progress['testsoftskill'] == 'in_course' && progress['testsoftskill'] != null) || (progress['testsoftskill'] <= 28 && progress['testsoftskill'] != null) ) ? 'visible' : 'invisible']"
+                           :class="[((progress['testsoftskill'] == 'in_course' && progress['testsoftskill'] != null) || (progress['testsoftskill'] <= 28 && progress['testsoftskill'] != null)) ? 'visible' : 'invisible']"
                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
@@ -160,12 +158,10 @@
          </ul>
       </div>
    </aside>
-
-
 </template>
 
 <script>
-export default ({
+export default {
    props: ['userProp', 'updateStatus', 'cvId'],
    data: function () {
       return {
@@ -214,10 +210,10 @@ export default ({
       }
 
    },
-   created() {
+   created () {
       this.circulo();
    },
-   mounted() {
+   mounted () {
 
    },
    watch: {
@@ -225,10 +221,11 @@ export default ({
          this.getProgress()
       },
       cvId(newCv, oldCv) {
-            this.getProgress()
-        }
+         this.getProgress()
+      }
    }
-});
+}
+
 
 </script>
 
@@ -239,7 +236,7 @@ export default ({
 
 .circular-progress {
    border-radius: 50%;
-   background: conic-gradient(#3B82F6 v-bind((general_progress*3.6)+"deg"), #ffffff 0deg);
+   background: conic-gradient(#3B82F6 v-bind((general_progress * 3.6)+"deg"), #ffffff 0deg);
 }
 
 .circular-progress::before {
