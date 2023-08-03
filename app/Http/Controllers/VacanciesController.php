@@ -159,6 +159,12 @@ class VacanciesController extends Controller
         ]);
     }
 
+    public function getOffers($organizationID)
+    {
+        $organization = Company::find($organizationID);
+        return $organization->offers;
+    }
+
 
     /**
      * Show the form for creating a new resource.

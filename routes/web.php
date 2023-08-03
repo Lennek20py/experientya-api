@@ -120,6 +120,7 @@ Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('va
 Route::get('/vacants/check', [VacanciesController::class, 'checkApplied'])->name('vacants.checkApplied');
 Route::post('/vacants/apply', [VacanciesController::class, 'apply'])->name('vacants.apply');
 Route::delete('/vacants/delete', [VacanciesController::class, 'destroy'])->name('vacants.cancel');
+Route::get('/vacants/organization/offers/{id}', [VacanciesController::class, 'getOffers'])->name('vacants.getOffers');
 
 // / Candidate Basic Info
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
@@ -191,7 +192,7 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::post('/company/newOffer/create', [OfferController::class, 'store'])->name('offer.store');
     Route::delete('/company/offer/delete/{offer}', [OfferController::class, 'destroy'])->name('offer.destroy');
     Route::get('/company/offer/edit/{id}', [OfferController::class, 'edit'])->name('offer.edit');
-    Route::get('/company/offer/recruitment', [OfferController::class, 'recruitmentView'])->name('offer.recruitment');
+    Route::get('/company/offer/recruitment/{id}', [OfferController::class, 'recruitmentView'])->name('offer.recruitment');
     Route::put('/company/offer/update/{offer}', [OfferController::class, 'update'])->name('offer.update');
     Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
 
