@@ -22,9 +22,7 @@
                             Buscar
                         </button>
                     </form>
-                    <!-- <p class="text-sm">{{users}}</p>-->
-                    <!-- <p class="text-sm">{{form}}</p> -->
-                    <!-- Replace with your content -->
+
                     <div class="py-4 mt-2">
                         <div class="min-h-full">
                             <ul role="list" class="grid grid-cols-1 gap-6" v-for="user in users" :key="user.id">

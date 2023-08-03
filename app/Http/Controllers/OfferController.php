@@ -177,4 +177,9 @@ class OfferController extends Controller
 
         return Redirect::route('offer.index')->with('message','Se actualizó el estado de la vacante');
     }
+
+    public function recruitmentView ()
+    {
+        return Inertia::render('Offer/Recruitment');
+    }
 }
