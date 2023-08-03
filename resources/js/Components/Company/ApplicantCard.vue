@@ -108,13 +108,10 @@ export default defineComponent({
         Link,
         JetModal,
         Swal,
-
-
     },
     props: {
         user: Object,
         offer: Object
-
     },
     data() {
         return {
@@ -153,7 +150,6 @@ export default defineComponent({
     },
     created() {
         this.getVacant()
-
     },
 })
 </script>
