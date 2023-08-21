@@ -83,6 +83,17 @@ class VacanciesController extends Controller
         return $applied_offers;
     }
 
+     /**
+     * Show the render of applied Offers per Offer.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function appliedOffersPerOffer($offerID)
+    {
+        $offers = AppliedOffer::where('offer_id', $offerID)->with('offers','cvid.user')->get();
+        return $offers;
+    }
+
     /**
      * Creates an instance from AppliedOffer with a validation to existing data.
      *

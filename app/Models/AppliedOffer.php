@@ -20,6 +20,11 @@ class AppliedOffer extends Model
 
     public function offers()
     {
-        return $this->belongsTo('App\Models\Offer');
+        return $this->belongsTo(Offer::class, 'offer_id');
+    }
+
+    public function cvid()
+    {
+        return $this->belongsTo(Cv::class, 'cv_id');
     }
 }

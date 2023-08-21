@@ -18,13 +18,24 @@
                     class="flex flex-row flex-nowrap justify-center align-middle items-center content-center py-10 w-full w-4xl bg-white rounded-lg border gap-5 border-gray-200 shadow-m px-5 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75">
                     <div class="w-1/2 border">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES ENVIADAS</h3>
-                        <p>{{ user.email }}</p>
+                        <!-- <p>{{ user.email }}</p> -->
+                        <p class="mx-auto text-center">No se encontraron solicitudes</p>
                     </div>
                     <div class="w-1/2 border">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES RECIBIDAS</h3>
-                        <!-- <Applicant :user="user"/> -->
-                        <p>{{ Offer }}</p>
-
+                        <div v-for="(Candidate, index) in Candidates" :key="index"
+                            class="cursor-pointer py-4 bg-['f9fafb'] text-gray-700 rounded-lg p-4 flex items-center">
+                            <img class="w-16 h-16 rounded-full mr-4" :src="Candidate.cvid.user.profile_photo_link"
+                                alt="Imagen de Usuario">
+                            <div>
+                                <h2 class="text-xl font-semibold">{{ Candidate.cvid.user.user_first_name }} {{
+                                    Candidate.cvid.user.user_last_name }}</h2>
+                                <p class="text-sm">{{ Candidate.cvid.position }}</p>
+                            </div>
+                            <div class="ml-auto">
+                                <h2 class="text-xl font-semibold">{{ translatedStatus(Candidate.status) }}</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +63,8 @@ export default {
     data() {
         return {
             Offers: [],
-            ActualOffer: []
+            ActualOffer: [],
+            Candidates: []
         }
     },
     methods: {
@@ -61,9 +73,32 @@ export default {
                 .then((response) => {
                     this.ActualOffer.id = this.Offer.id
                     this.Offers = response.data
+                    this.getAppliedOffers()
                 }).catch((error) => {
                     console.log(error)
                 })
+        },
+        async getAppliedOffers() {
+            await axios.get(route('company.applied', this.ActualOffer.id))
+                .then((response) => {
+                    console.log(response)
+                    this.Candidates = response.data
+                }).catch((error) => {
+                    console.log(error)
+                })
+        },
+        translatedStatus(status) {
+            return this.statusTranslations[status] || status;
+        }
+    },
+    computed: {
+        statusTranslations() {
+            return {
+                pending: 'Pendiente',
+                approved: 'Aprobado',
+                rejected: 'Rechazado',
+                applied: 'Aplicado'
+            };
         }
     },
     created() {

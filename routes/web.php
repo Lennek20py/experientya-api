@@ -117,12 +117,13 @@ Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progre
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
 Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
 Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('vacants.applied');
+Route::get('company/vacants/{id}', [VacanciesController::class, 'appliedOffersPerOffer'])->name('company.applied');
 Route::get('/vacants/check', [VacanciesController::class, 'checkApplied'])->name('vacants.checkApplied');
 Route::post('/vacants/apply', [VacanciesController::class, 'apply'])->name('vacants.apply');
 Route::delete('/vacants/delete', [VacanciesController::class, 'destroy'])->name('vacants.cancel');
 Route::get('/vacants/organization/offers/{id}', [VacanciesController::class, 'getOffers'])->name('vacants.getOffers');
 
-// / Candidate Basic Info
+// / Candidate Basic Info 
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
 
 
