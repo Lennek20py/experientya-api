@@ -13,13 +13,6 @@ class ChatController extends Controller
     // {
     //     $this->middleware('auth');
     // }
-    public function chat_from_company_to_user(Company $company, User $user)
-    {
-        $chat_result = Chat::where('name', '=', $company)
-            ->where('email', '=', $user)
-            ->first();
-        return $user;
-    }
 
     public function chat_with(User $user)
     {
@@ -53,4 +46,28 @@ class ChatController extends Controller
             'chat' => $chat
         ]);
     }
+
+    // Obtener users del chat
+    public function get_users(Chat $chat)
+    {
+        $users = $chat->users;
+
+        return response()->json([
+            'users' => $users
+        ]);
+    }
+
+    // Obtener los mensajes del chat
+    public function get_messages(Chat $chat)
+    {
+        $message = $chat->messages()->with('user')->get();
+
+        return response()->json([
+            'messages' => $message
+        ]);
+    }
+
+
+    // Funciones de ejemplo
+
 }

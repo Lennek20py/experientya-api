@@ -1,7 +1,20 @@
 <template>
     <admin-layout :viewSelect="'navHome'">
         <main class="flex-1 pb-8">
-            <button @click="chat">Chat</button>
+            <button
+                class="rounded-full bg-lime-500 p-2 px-4 ml-6 mt-4"
+                @click="chatStuden"
+            >
+                Chat con user id 15
+            </button>
+
+            <button
+                class="rounded-full bg-teal-500 p-2 px-4 ml-6 mt-4"
+                @click="chats()"
+            >
+                Chats
+            </button>
+
             <div class="py-6">
                 <div class="max-w-7xl px-4 sm:px-6 md:px-8">
                     <form class="flex items-center" @submit.prevent="submit">
@@ -518,6 +531,7 @@ import AdminLayout from "@/Layouts/CompanyLayout";
 import JetModal from "@/Jetstream/Modal";
 import Applicant from "@/Components/Company/ApplicantCard";
 import axios from "axios";
+import { Inertia } from "@inertiajs/inertia";
 
 import { defineComponent } from "vue";
 
@@ -604,15 +618,24 @@ export default defineComponent({
             this.form.lenguages = null;
             this.form.experience = null;
         },
-        async chat() {
+        async chatStuden() {
+            console.log(this.props);
             await axios
-                .get("/company/chat/from/1/14")
+                .post("/company/chat/with-student", {
+                    id_company: 1,
+                    id_student: 15,
+                })
                 .then((response) => {
-                    console.log(response.data);
+                    this.$inertia.visit("/company/chat/view", {
+                        datos: response.data,
+                    });
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        chats() {
+            this.$inertia.visit("/company/chat/view");
         },
     },
     created() {

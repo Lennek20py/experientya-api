@@ -42,30 +42,38 @@
         <body>
             <section class="msger">
                 <header class="msger-header">
-                    <div class="msger-header-title">
-                        <!-- <i class="fas fa-comment-alt"></i> -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
-                            />
-                        </svg>
-
-                        <span class="chatWith"></span>
-                        <span class="typing" style="display: none"
-                            >Está escribiendo</span
-                        >
+                    <div class="msger-header-title flex">
+                        <div>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-6 h-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="ml-2 flex">
+                            <div>
+                                <span class="chatWith">{{
+                                    secondUser.user_first_name
+                                }}</span>
+                            </div>
+                            <div class="ml-3">
+                                <span class="typing" v-if="mostrarEscribiendo"
+                                    >Está escribiendo</span
+                                >
+                            </div>
+                        </div>
                     </div>
                     <div class="msger-header-options">
-                        <span class="chatStatus offline">
+                        <span :class="'chatStatus ' + userStatusClas">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -91,7 +99,7 @@
                         v-model="msgText"
                         type="text"
                         class="msger-input"
-                        oninput="sendTypingEvent()"
+                        :oninput="sendTypingEvent()"
                         placeholder="Enter your message..."
                     />
                     <button
@@ -124,6 +132,16 @@ const msgText = ref("");
 const chatId = 5;
 // get data from the URL
 const chat = ref(new URLSearchParams(window.location.search).get("chat"));
+// Constante para obtener la data del usuario autenticado
+const authUser = ref("");
+// Segundo usuario
+const secondUser = ref("");
+// Constante que dictamina si el usuario esta en linea o no
+const userStatusClas = ref("text-red-900");
+// Constante para resetear el tiempo de espera
+const typingTimer = ref(false);
+// Constante para mostrar el texto de escribiendo
+const mostrarEscribiendo = ref(false);
 
 async function buttonSumit() {
     if (!msgText.value) return;
@@ -155,7 +173,25 @@ async function buttonSumit() {
     msgText.value = "";
 }
 
+function appendMessages(messages) {
+    messages.forEach((element) => {
+        const side = element.user_id === authUser.value.id ? "right" : "left";
+
+        appendMessage(
+            element.user.user_first_name,
+            element.user.profile_photo_path.replace(
+                "profile/",
+                "storage/profile/"
+            ),
+            side,
+            element.content,
+            formatDate(new Date(element.created_at))
+        );
+    });
+}
+
 function appendMessage(name, img, side, text, date) {
+    console.log(img);
     const direction = side === "right" ? "flex-row-reverse" : "";
     const borderRadius =
         side === "right"
@@ -176,24 +212,66 @@ function appendMessage(name, img, side, text, date) {
     </div>
   </div>
   `;
-
+    console.log(msgHTML);
     msgerChat.value.insertAdjacentHTML("beforeend", msgHTML);
-    msgerChat.value.scrollTop += 500;
+    scrollToBottom();
+}
+
+function sendTypingEvent() {
+    window.Echo.join(`chat.${chat.value}`).whisper(
+        "typing",
+        msgText.value.length
+    );
 }
 
 // Websocket
-window.Echo.join(`chat.${chat.value}`).listen("MessageSent", (e) => {
-    appendMessage(
-        e.message.user.user_first_name,
-        e.message.user.profile_photo_path.replace(
-            "profile/",
-            "storage/profile/"
-        ),
-        "left",
-        e.message.content,
-        formatDate(new Date(e.message.created_at))
-    );
-});
+window.Echo.join(`chat.${chat.value}`)
+    .listen("MessageSent", (e) => {
+        appendMessage(
+            e.message.user.user_first_name,
+            e.message.user.profile_photo_path.replace(
+                "profile/",
+                "storage/profile/"
+            ),
+            "left",
+            e.message.content,
+            formatDate(new Date(e.message.created_at))
+        );
+    })
+    // Obtiene los usuarios activos
+    .here((users) => {
+        const result = users.filter((user) => user.id !== authUser.value.id);
+        console.log(result);
+        if (result.length > 0) {
+            userStatusClas.value = "text-green-700";
+        }
+    })
+    // Obtiene los usuarios que entran
+    .joining((user) => {
+        if (user.id !== authUser.value.id) {
+            userStatusClas.value = "text-green-700";
+        }
+    })
+    // Obtienen los usuarios que salen
+    .leaving((user) => {
+        if (user.id !== authUser.value.id) {
+            userStatusClas.value = "text-red-900";
+        }
+    })
+    .listenForWhisper("typing", (e) => {
+        console.log(e);
+        if (e > 0) {
+            mostrarEscribiendo.value = true;
+        }
+        if (typingTimer.value) {
+            clearTimeout(typingTimer.value);
+        }
+
+        typingTimer.value = setTimeout(() => {
+            mostrarEscribiendo.value = false;
+            typingTimer.value = false;
+        }, 3000);
+    });
 
 // Utils
 function get(selector, root = document) {
@@ -210,6 +288,61 @@ function formatDate(date) {
 
     return `${d}/${mo}/${y} ${h.slice(-2)}:${m.slice(-2)}`;
 }
+// Función para hacer scroll bottom en la conversarion
+function scrollToBottom() {
+    typingTimer.value = true;
+    msgerChat.value.scrollTop = msgerChat.value.scrollHeight;
+}
+
+// Función onMounted
+onMounted(async () => {
+    // Obtener el usuario logueado
+    await axios
+        .get(route("user.Auth"))
+        .then((res) => {
+            console.log(res.data.authUser);
+            authUser.value = res.data.authUser;
+        })
+        .catch((error) => {
+            console.log(
+                "Ha ocurrido un error con la petición a la ruta con nombre  user.Auth"
+            );
+            console.log(error);
+        });
+
+    // Obtener el segundo usuario (Usuario con el que se chatea)
+    await axios
+        // .get(`/chat/${chat.value}/get_users`)
+        .get(route("chat.get_users", chat.value))
+        .then((res) => {
+            // console.log(res.data.users);
+            const getSecondUser = res.data.users.filter(
+                (user) => user.id !== authUser.value.id
+            );
+            console.log(getSecondUser[0]);
+            secondUser.value = getSecondUser[0];
+        })
+        .catch((error) => {
+            console.log(
+                "Ha ocurrido un error con la petición a la ruta con nombre  chat.get_users"
+            );
+            console.log(error);
+        });
+    // Se obtienen los mensajes pertenecientes al chat
+    await axios
+        // .get(`/chat/${chat.value}/get_users`)
+        .get(route("chat.get_messages", chat.value))
+        .then((res) => {
+            console.log(res.data);
+            appendMessages(res.data.messages);
+        })
+        .catch((error) => {
+            console.log(
+                "Ha ocurrido un error con la petición a la ruta con nombre  chat.get_messages"
+            );
+            console.log(error);
+        });
+});
 </script>
 
 <style scoped>
@@ -223,14 +356,6 @@ function formatDate(date) {
 
 html {
     box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
 }
 
 body {

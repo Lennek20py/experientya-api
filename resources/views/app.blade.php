@@ -22,6 +22,7 @@
 
         @env ('local')
             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
         @endenv
     </body>
 </html>

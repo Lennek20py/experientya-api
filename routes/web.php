@@ -24,6 +24,7 @@ use App\Http\Controllers\TestSoftSkillsController;
 use App\Http\Controllers\UserSkillController;
 use App\Http\Controllers\VacanciesController;
 use App\Http\Controllers\WorkPreferencesController;
+use App\Http\Controllers\ChatCompanyStudentController;
 
 // Chat
 use App\Http\Controllers\ChatController;
@@ -179,6 +180,15 @@ Route::middleware([
     Route::patch('/user/resetPassword/{user}', [UserController::class, 'updatePassword'])->name('user.updatePassword');
     Route::put('/user/photo/{user}', [UserController::class, 'updatePhoto'])->name('user.updatePhoto');
     Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->name('user.deleteUser');
+
+    //Chat
+    Route::get('/chat/user/view', function () {
+        return Inertia::render('Chat/chatMainView');
+    })->name('chatUser.index');
+
+    // ++++++++++++++++++Rutas de chat Oficical+++++++++++++++++++
+    // Obtener todos los chats
+    // Obtener los mensajes de un chat
 });
 
 
@@ -213,23 +223,54 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/downloadCV/{id}', [CompanyController::class, 'downloadCVPDF'])->name('company.downloadCVPDF');
 
     // Chat
-    Route::get('/company/chat/from/{company}/{user}', [ChatController::class, 'chat_from_company_to_user'])->name('chat.from.company.to.user');
+    // Route::get('/company/chat/from/{company}/{user}', [ChatController::class, 'chat_from_company_to_user'])->name('chat.from.company.to.user');
+
+    // ++++++++++++++++++Rutas de chat Oficical+++++++++++++++++++
+    // Crear un nuevo chat
+    Route::post('/company/chat/with-student', [ChatCompanyStudentController::class, 'chat_with_student'])->name('chatcompanystudent.chat.with.student');
+    // Obtener todos los chats
+    Route::post('/company/chat/list-student', [ChatCompanyStudentController::class, 'chats_company'])->name('chatcompanystudent.list.chat.with.student');
+    // Redireccionar a la vista
+    Route::get('/company/chat/view', function () {
+        return Inertia::render('Chat/chatMainView', [
+            'tipoUser' => 'company'
+        ]);
+    })->name('chatCompany.index');
+    // Obtener los mensajes de un chat
+
 });
 
 // Ejemplo Chat
 
 // RUTAS DE CHAT
 
+// Ruta de autenticación
+Route::get('auth/user', function () {
+    if (auth()->check()) {
+        return response()->json([
+            'authUser' => auth()->user()
+        ]);
+
+        return null;
+    }
+})->name('user.Auth');
+
 // index
 Route::get('/chat', function () {
     return Inertia::render('Chat/ejemploChat');
 })->name('chat.index');
 
-// with
-// Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
-
 // Show
 Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
+
+// with
+Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
+
+// Obtener los usuarios en el chat
+Route::get('/chat/{chat}/get_users', [ChatController::class, 'get_users'])->name('chat.get_users');
+
+// Ruta para obtener los mensajes
+Route::get('/chat/{chat}/get_messages', [ChatController::class, 'get_messages'])->name('chat.get_messages');
 
 // RUTAS DE MESSAGE
 
