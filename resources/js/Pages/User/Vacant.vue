@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Dashboard">
         <template #header>
-            <SearchBar class="py-6 mt-12" v-model="params" />
+            <SearchBar class="py-6 mt-12" v-model="params" :candidates="true" />
             <Vacants :vacants="vacancies" />
 
         </template>
