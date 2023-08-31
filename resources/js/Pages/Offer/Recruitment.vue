@@ -20,7 +20,8 @@
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES ENVIADAS</h3>
                         <!-- <p>{{ user.email }}</p> -->
                         <search-bar class="px-5" :candidates="false"></search-bar>
-                        <p class="mx-auto text-center">No se encontraron solicitudes</p>
+                        <!-- <applicant-card></applicant-card> -->
+                        <p class="mx-auto text-center">No se encontraron usuarios</p>
                     </div>
                     <div class="w-1/2 border rounded-md">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES RECIBIDAS</h3>
@@ -54,13 +55,15 @@ import { Link } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'
 import Applicant from '@/Components/Company/ApplicantCard'
 import SearchBar from '../../CustomComponents/SearchBar.vue'
+import ApplicantCard from '../../Components/Company/ApplicantCard.vue'
 import axios from 'axios'
 
 export default {
     components: {
         AdminLayout,
         Applicant,
-        SearchBar
+        SearchBar,
+        ApplicantCard
     },
     props: {
         Offer: Object,
