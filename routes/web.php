@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnuiesController;
+use App\Http\Controllers\CandidatesInvitesController;
 use App\Http\Controllers\CertificationsController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -125,6 +126,7 @@ Route::get('/vacants/organization/offers/{id}', [VacanciesController::class, 'ge
 
 // / Candidate Basic Info 
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
+Route::post('/candidatesInvites/invite', [CandidatesInvitesController::class, 'store']);
 
 
 Route::apiResources([
@@ -132,7 +134,8 @@ Route::apiResources([
     "language" => LanguageController::class,
     "certifications" => CertificationsController::class,
     "testsoftskillsAsw" => TestSoftSkillsController::class,
-    "userSkill" => UserSkillController::class
+    "userSkill" => UserSkillController::class,
+    "candidatesInvites" => CandidatesInvitesController::class
 ]);
 
 

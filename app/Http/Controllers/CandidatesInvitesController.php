@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmail;
 use App\Models\CandidatesInvite;
+use App\Models\Company;
+use App\Models\Cv;
+use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class CandidatesInvitesController extends Controller
 {
@@ -36,7 +43,40 @@ class CandidatesInvitesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This function applies if it's a brand new invitation
+        $previousInvitations = CandidatesInvite::where('cv_id', $request->cv_id)
+            ->where('offer_id', $request->offer_id)
+            ->where('status', 'invited')
+            ->get();
+        // if (count($previousInvitations) > 0) {
+        //     return response()->json(['status' => 'Already invited']);
+        // }
+
+        $companyInfo = Company::find($request->company_id);
+        $cvInfo = Cv::find($request->cv_id);
+        $offerInfo = Offer::find($request->offer_id);
+
+        if (isset($companyInfo) && isset($cvInfo) && isset($offerInfo)) {
+            $invite = CandidatesInvite::create([
+                'cv_id' => $cvInfo->id,
+                'offer_id' => $offerInfo->id,
+                'company_id' => $companyInfo->id,
+                'status' => 'invited'
+            ]);
+
+            $mailData = [
+                'email' => $cvInfo->user->email,
+                'user' => $cvInfo->user,
+                'idVacant' => $offerInfo->id,
+                'nameOff' => $offerInfo->name
+            ];
+
+            Mail::to($cvInfo->user->email)->send(new SendEmail($mailData));
+            // return Redirect::route('company.index');
+            return response()->json(['status' => 'Invited succesfully', 'data' => $invite]);
+        }
+
+        
     }
 
     /**
