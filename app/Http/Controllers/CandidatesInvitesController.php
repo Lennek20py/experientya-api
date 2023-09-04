@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendEmail;
+use App\Mail\SendInviteCandidate;
 use App\Models\CandidatesInvite;
 use App\Models\Company;
 use App\Models\Cv;
@@ -67,11 +67,13 @@ class CandidatesInvitesController extends Controller
             $mailData = [
                 'email' => $cvInfo->user->email,
                 'user' => $cvInfo->user,
+                'company' => $companyInfo,
                 'idVacant' => $offerInfo->id,
-                'nameOff' => $offerInfo->name
+                'offer' => $offerInfo,
+                'nameOff' => $offerInfo->title
             ];
-
-            Mail::to($cvInfo->user->email)->send(new SendEmail($mailData));
+            // dd($mailData);
+            Mail::to($cvInfo->user->email)->send(new SendInviteCandidate($mailData));
             // return Redirect::route('company.index');
             return response()->json(['status' => 'Invited succesfully', 'data' => $invite]);
         }

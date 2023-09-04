@@ -181,6 +181,10 @@ Route::middleware([
 });
 
 
+Route::get('/token', function () {
+    return csrf_token();
+})->name('workPreferences.search');
+
 
 Route::middleware(['auth:company', 'verified'])->group(function () {
 
