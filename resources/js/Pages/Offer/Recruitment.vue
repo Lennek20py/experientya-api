@@ -18,9 +18,7 @@
                     class="flex flex-row flex-nowrap justify-center align-middle items-center content-center py-10 w-full w-4xl bg-white rounded-lg border gap-5 border-gray-200 shadow-m px-5 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75">
                     <div class="w-1/2 border rounded-md">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES ENVIADAS</h3>
-                        <!-- <p>{{ user.email }}</p> -->
                         <search-bar class="px-5" :candidates="false"></search-bar>
-                        <!-- <applicant-card></applicant-card> -->
                         <p class="mx-auto text-center">No se encontraron usuarios</p>
                     </div>
                     <div class="w-1/2 border rounded-md">
@@ -73,7 +71,8 @@ export default {
         return {
             Offers: [],
             ActualOffer: [],
-            Candidates: []
+            Candidates: [],
+            Cvs: []
         }
     },
     methods: {

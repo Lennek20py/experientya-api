@@ -135,8 +135,7 @@ export default defineComponent({
                 });
         },
         submit(idV, titleV, titleV2) {
-            console.log(idV),
-                this.emailData.get(route('user.sendEmail', {
+                this.emailData.post(route('user.inviteCandidate', {
                     idV: idV,
                 }))
             Swal.fire({

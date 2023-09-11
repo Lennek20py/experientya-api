@@ -126,7 +126,8 @@ Route::get('/vacants/organization/offers/{id}', [VacanciesController::class, 'ge
 
 // / Candidate Basic Info 
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
-Route::post('/candidatesInvites/invite', [CandidatesInvitesController::class, 'store']);
+Route::post('/candidatesInvites/invite', [CandidatesInvitesController::class, 'store'])->name('user.inviteCandidate');
+Route::get('/candidatesInvites/all', [CandidatesInvitesController::class, 'allInvites'])->name('invites.all');
 
 
 Route::apiResources([

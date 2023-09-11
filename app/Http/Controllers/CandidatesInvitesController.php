@@ -19,9 +19,32 @@ class CandidatesInvitesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = CandidatesInvite::all();
+        $query = $request->query('vacant');
+        $firstWord = explode(" ", $query);
+        if (!empty($query)) {
+            $results = cv::where(function ($q) use ($query, $firstWord) {
+                $q->where('position', 'like', "%$firstWord[0]%");
+                $q->orWhere('position', 'like', "%$query%");
+            })->get();
+        } else {
+            $results = cv::with('user')->get();
+        }
+        return $results;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allInvites()
+    {
+        $data = CandidatesInvite::with('offers')
+            ->with('company')
+            ->with('cvid')
+            ->get();
         return $data;
     }
 
@@ -48,9 +71,9 @@ class CandidatesInvitesController extends Controller
             ->where('offer_id', $request->offer_id)
             ->where('status', 'invited')
             ->get();
-        // if (count($previousInvitations) > 0) {
-        //     return response()->json(['status' => 'Already invited']);
-        // }
+        if (count($previousInvitations) > 0) {
+            return response()->json(['status' => 'Already invited']);
+        }
 
         $companyInfo = Company::find($request->company_id);
         $cvInfo = Cv::find($request->cv_id);
@@ -72,13 +95,10 @@ class CandidatesInvitesController extends Controller
                 'offer' => $offerInfo,
                 'nameOff' => $offerInfo->title
             ];
-            // dd($mailData);
             Mail::to($cvInfo->user->email)->send(new SendInviteCandidate($mailData));
-            // return Redirect::route('company.index');
-            return response()->json(['status' => 'Invited succesfully', 'data' => $invite]);
+            return Redirect::route('company.index');
+            // return response()->json(['status' => 'Invited succesfully', 'data' => $invite]);
         }
-
-        
     }
 
     /**
