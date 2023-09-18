@@ -14,7 +14,12 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Broadcast::routes();
+        // Acepta que se conecte un usuario logueado con company
+        // Broadcast::routes(['middleware' => ['web','auth:company']]);
+        // Acepta que se conecte un usuario logueado con user
+        // Broadcast::routes(['middleware' => ['web','auth:web']]);
+
+        Broadcast::routes(['middleware' => ['web','auth:company,web']]);
 
         require base_path('routes/channels.php');
     }

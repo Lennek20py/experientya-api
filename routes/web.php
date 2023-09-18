@@ -186,9 +186,19 @@ Route::middleware([
         return Inertia::render('Chat/chatMainView');
     })->name('chatUser.index');
 
-    // ++++++++++++++++++Rutas de chat Oficical+++++++++++++++++++
+    // ++++++++++++++++++Rutas de chat Oficical student+++++++++++++++++++
+    // Redireccionar a la vista
+    Route::get('/user/chat/view', function () {
+        return Inertia::render('Chat/chatMainView', [
+            'tipoUser' => 'student'
+        ]);
+    })->name('chatStudent.index');
     // Obtener todos los chats
-    // Obtener los mensajes de un chat
+    Route::post('/user/chat/list-company', [ChatCompanyStudentController::class, 'chats_student'])->name('user.get.chats');
+    // Get messages
+    Route::post('/user/getMessage', [MessageController::class, 'getMessagesStudent'])->name('user.getMessage');
+    // Sent Message company
+    Route::post('/user/sentMessage', [MessageController::class, 'sentMessageUser'])->name('user.sentMessage');
 });
 
 
@@ -225,7 +235,7 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     // Chat
     // Route::get('/company/chat/from/{company}/{user}', [ChatController::class, 'chat_from_company_to_user'])->name('chat.from.company.to.user');
 
-    // ++++++++++++++++++Rutas de chat Oficical+++++++++++++++++++
+    // ++++++++++++++++++Rutas de chat Oficical Company+++++++++++++++++++
     // Crear un nuevo chat
     Route::post('/company/chat/with-student', [ChatCompanyStudentController::class, 'chat_with_student'])->name('chatcompanystudent.chat.with.student');
     // Obtener todos los chats
@@ -236,57 +246,61 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
             'tipoUser' => 'company'
         ]);
     })->name('chatCompany.index');
-    // Obtener los mensajes de un chat
 
+    // Get messages
+    Route::post('/company/getMessage', [MessageController::class, 'getMessagesCompany'])->name('company.getMessage');
+
+    // Sent Message company
+    Route::post('/company/sentMessage', [MessageController::class, 'sentMessageCompany'])->name('company.sentMessage');
 });
 
-// Ejemplo Chat
+// // Ejemplo Chat
 
-// RUTAS DE CHAT
+// // RUTAS DE CHAT
 
-// Ruta de autenticación
-Route::get('auth/user', function () {
-    if (auth()->check()) {
-        return response()->json([
-            'authUser' => auth()->user()
-        ]);
+// // Ruta de autenticación
+// Route::get('auth/user', function () {
+//     if (auth()->check()) {
+//         return response()->json([
+//             'authUser' => auth()->user()
+//         ]);
 
-        return null;
-    }
-})->name('user.Auth');
+//         return null;
+//     }
+// })->name('user.Auth');
 
-// index
-Route::get('/chat', function () {
-    return Inertia::render('Chat/ejemploChat');
-})->name('chat.index');
+// // index
+// Route::get('/chat', function () {
+//     return Inertia::render('Chat/ejemploChat');
+// })->name('chat.index');
 
-// Show
-Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
+// // Show
+// Route::get('/chat/{chat}', [ChatController::class, 'show'])->name('chat.show');
 
-// with
-Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
+// // with
+// Route::get('/chat/with/{user}', [ChatController::class, 'chat_with'])->name('chat.with');
 
-// Obtener los usuarios en el chat
-Route::get('/chat/{chat}/get_users', [ChatController::class, 'get_users'])->name('chat.get_users');
+// // Obtener los usuarios en el chat
+// Route::get('/chat/{chat}/get_users', [ChatController::class, 'get_users'])->name('chat.get_users');
 
-// Ruta para obtener los mensajes
-Route::get('/chat/{chat}/get_messages', [ChatController::class, 'get_messages'])->name('chat.get_messages');
+// // Ruta para obtener los mensajes
+// Route::get('/chat/{chat}/get_messages', [ChatController::class, 'get_messages'])->name('chat.get_messages');
 
-// RUTAS DE MESSAGE
+// // RUTAS DE MESSAGE
 
-// Sent
-Route::post('/message/sent', [MessageController::class, 'sent'])->name('message.sent');
+// // Sent
+// Route::post('/message/sent', [MessageController::class, 'sent'])->name('message.sent');
 
 
-// Example Broadcasting Laravel Event on a public channel
-Route::get('/broadcast', function () {
+// // Example Broadcasting Laravel Event on a public channel
+// Route::get('/broadcast', function () {
 
-    Hello::dispatch();
-    return "Event has been sent!";
-});
+//     Hello::dispatch();
+//     return "Event has been sent!";
+// });
 
-Route::get('/broadcastPrivate', function () {
-    $user = App\Models\User::find(14);
-    PrivateTest::dispatch($user);
-    return "Event has been sent!" . $user;
-});
+// Route::get('/broadcastPrivate', function () {
+//     $user = App\Models\User::find(14);
+//     PrivateTest::dispatch($user);
+//     return "Event has been sent!" . $user;
+// });

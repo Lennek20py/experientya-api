@@ -2876,6 +2876,9 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
+.pr-3 {
+  padding-right: 0.75rem;
+}
 .pr-4 {
   padding-right: 1rem;
 }

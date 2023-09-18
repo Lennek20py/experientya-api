@@ -7,8 +7,10 @@ use App\Models\Chat;
 use App\Models\Company;
 use App\Models\User;
 use App\Models\ChatCompanyStudent;
+use App\Models\Message;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 
 class ChatCompanyStudentController extends Controller
@@ -47,10 +49,33 @@ class ChatCompanyStudentController extends Controller
     // Obtener todos los chats de la compañia
     public function chats_company(Request $request)
     {
+        // query a pasar
+
+        // SELECT DISTINCT chat.id as chatId, users.id as userId, users.user_first_name, users.profile_photo_path, messages.content, messages.typeuser
+        // FROM `chat_company_students` as chat
+        // left JOIN `users` ON chat.student_id = users.id
+        // LEFT JOIN `messages` ON messages.id = (
+        //     SELECT messages.id
+        //     FROM `messages`
+        //     WHERE messages.chat_id = chat.id
+        //     ORDER BY messages.created_at DESC LIMIT 1
+        // )
+        // WHERE chat.company_id = 1;
+
         $chats = ChatCompanyStudent::where('company_id', $request->id_company)->get();
 
-        $chats = ChatCompanyStudent::select('chat_company_students.id AS chatId', 'users.id AS id', 'users.user_first_name AS name', 'users.profile_photo_path AS photo')
+        $chats = ChatCompanyStudent::select('chat_company_students.id AS chatId', 'users.id AS id', 'users.user_first_name AS name', 'users.profile_photo_path AS photo','messages.content AS message','messages.typeuser AS tipeUserMessage','messages.created_at AS messageDate', 'chat_company_students.created_at AS chatDate')
             ->leftjoin('users', 'chat_company_students.student_id', '=', 'users.id')
+            ->leftJoin('messages', function ($join) {
+                $join->on('messages.id', '=', DB::raw('(
+                    SELECT id
+                    FROM messages
+                    WHERE chat_id = chat_company_students.id
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                )'));
+            })
+            ->where('company_id', $request->id_company)
             ->get();
 
         return $chats;
@@ -60,7 +85,19 @@ class ChatCompanyStudentController extends Controller
 
     public function chats_student(Request $request)
     {
-        $chats = ChatCompanyStudent::where('student_id', $request->id_student)->get();
+        $chats = ChatCompanyStudent::select('chat_company_students.id AS chatId', 'companies.id AS id', 'companies.company_name AS name', 'companies.profile_photo_path AS photo', 'messages.content AS message','messages.typeuser AS tipeUserMessage','messages.created_at AS messageDate', 'chat_company_students.created_at AS chatDate')
+            ->leftjoin('companies', 'chat_company_students.company_id', '=', 'companies.id')
+            ->leftJoin('messages', function ($join) {
+                $join->on('messages.id', '=', DB::raw('(
+                    SELECT id
+                    FROM messages
+                    WHERE chat_id = chat_company_students.id
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                )'));
+            })
+            ->where('student_id', $request->id_student)
+            ->get();
 
         return $chats;
     }
