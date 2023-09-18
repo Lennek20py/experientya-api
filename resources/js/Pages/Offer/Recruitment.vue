@@ -18,8 +18,23 @@
                     class="flex flex-row flex-nowrap justify-center align-middle items-center content-center py-10 w-full w-4xl bg-white rounded-lg border gap-5 border-gray-200 shadow-m px-5 2xl:px-8 2xl:min-h-[204px] transition ease-in-out delasy-75">
                     <div class="w-1/2 border rounded-md">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES ENVIADAS</h3>
-                        <search-bar class="px-5" :candidates="false"></search-bar>
-                        <p class="mx-auto text-center">No se encontraron usuarios</p>
+                        <!-- <p>{{ Invites }}</p> -->
+                        <div v-if="Invites.length > 0">
+                            <div v-for="(Invite, index) in Invites" :key="index"
+                                class="cursor-pointer py-4 bg-['f9fafb'] text-gray-700 rounded-lg p-4 flex items-center">
+                                <img class="w-16 h-16 rounded-full mr-4" :src="Invite.cvid.user.profile_photo_link"
+                                    alt="Imagen de Usuario">
+                                <div>
+                                    <h2 class="text-xl font-semibold capitalize">{{ Invite.cvid.user.user_first_name }} {{
+                                        Invite.cvid.user.user_last_name }}</h2>
+                                    <p class="text-sm capitalize">{{ Invite.cvid.position }}</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <h2 class="text-xl font-semibold">{{ translatedStatus(Invite.status) }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <p v-else class="mx-auto text-center">No se encontraron usuarios</p>
                     </div>
                     <div class="w-1/2 border rounded-md">
                         <h3 class="text-center uppercase text-4xl font-bold text-gray-900">SOLICITUDES RECIBIDAS</h3>
@@ -29,9 +44,9 @@
                                 <img class="w-16 h-16 rounded-full mr-4" :src="Candidate.cvid.user.profile_photo_link"
                                     alt="Imagen de Usuario">
                                 <div>
-                                    <h2 class="text-xl font-semibold">{{ Candidate.cvid.user.user_first_name }} {{
+                                    <h2 class="text-xl font-semibold capitalize">{{ Candidate.cvid.user.user_first_name }} {{
                                         Candidate.cvid.user.user_last_name }}</h2>
-                                    <p class="text-sm">{{ Candidate.cvid.position }}</p>
+                                    <p class="text-sm capitalize">{{ Candidate.cvid.position }}</p>
                                 </div>
                                 <div class="ml-auto">
                                     <h2 class="text-xl font-semibold">{{ translatedStatus(Candidate.status) }}</h2>
@@ -52,7 +67,6 @@ import AdminLayout from '@/Layouts/CompanyLayout'
 import { Link } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'
 import Applicant from '@/Components/Company/ApplicantCard'
-import SearchBar from '../../CustomComponents/SearchBar.vue'
 import ApplicantCard from '../../Components/Company/ApplicantCard.vue'
 import axios from 'axios'
 
@@ -60,7 +74,6 @@ export default {
     components: {
         AdminLayout,
         Applicant,
-        SearchBar,
         ApplicantCard
     },
     props: {
@@ -72,6 +85,7 @@ export default {
             Offers: [],
             ActualOffer: [],
             Candidates: [],
+            Invites: [],
             Cvs: []
         }
     },
@@ -89,8 +103,21 @@ export default {
         async getAppliedOffers() {
             await axios.get(route('company.applied', this.ActualOffer.id))
                 .then((response) => {
-                    console.log(response)
                     this.Candidates = response.data
+                }).catch((error) => {
+                    console.log(error)
+                })
+        },
+        async getCandidateInvites() {
+            const params = {
+                company: this.user.id,
+                offer: this.Offer.id
+            }
+            await axios.get(route('candidatesInvites.index'), { params })
+                .then((response) => {
+                    console.log('aqui')
+                    console.log(response.data.data)
+                    this.Invites = response.data.data
                 }).catch((error) => {
                     console.log(error)
                 })
@@ -105,12 +132,14 @@ export default {
                 pending: 'Pendiente',
                 approved: 'Aprobado',
                 rejected: 'Rechazado',
-                applied: 'Aplicado'
+                applied: 'Aplicado',
+                invited: 'Invitado'
             };
         }
     },
     created() {
         this.getOrganizationOffers()
+        this.getCandidateInvites()
     }
 
 }

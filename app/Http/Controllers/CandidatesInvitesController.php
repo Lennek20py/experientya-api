@@ -9,6 +9,7 @@ use App\Models\Cv;
 use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
@@ -20,6 +21,21 @@ class CandidatesInvitesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
+    {
+        $data = CandidatesInvite::where('company_id', $request->query('company'))
+            ->where('offer_id', $request->query('offer'))
+            ->with(['offers', 'cvid.user', 'company']);
+        if ($data->count() === 0) {
+            return response()->json(['status' => 'error', 'data' => 'Not found Candidates invites']);
+        }
+        return response()->json(['status' => 'success', 'data' => $data->get()]);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchCandidates(Request $request)
     {
         $query = $request->query('vacant');
         $firstWord = explode(" ", $query);
