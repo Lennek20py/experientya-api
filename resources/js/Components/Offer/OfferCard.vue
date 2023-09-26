@@ -55,15 +55,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-5 flex xl:mt-0 xl:ml-4">
-                <span class="hidden sm:block ml-3">
+            <div class="flex-wrap mt-5 flex lg:flex-nowrap xl:mt-0 xl:ml-4 justify-end">
+                <span class="sm:block ml-3 my-2 lg:my-0">
                     <div class="relative inline-block text-left">
                         <div>
                             <button @click="menuRecluting = !menuRecluting" type="button"
                                 class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-teal-600 hover:bg-teal-700 text-sm font-medium text-gray-50  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
                                 id="menu-button" aria-expanded="true" aria-haspopup="true">
                                 Gestionar Candidatos
-                                <!-- Heroicon name: solid/chevron-down -->
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                     fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -77,7 +76,6 @@
                             class="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                             <div class="py-1" role="none">
-                                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                                 <Link
                                     class="cursor-not-allowed text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 hover:text-black hover:font-semibold"
                                     role="menuitem" tabindex="-1" id="menu-item-0">Gestion de candidatos</Link>
