@@ -30,26 +30,7 @@
               class="order first items-center shadow-lg shadow-gray-300 lg:order-first">
             </BasicInfo>
           </div>
-          <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Study id="educationSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Study>
-          </div>
-          <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Certifications id="certificationsSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300">
-            </Certifications>
-          </div>
-          <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Languages id="languagesSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Languages>
-          </div>
-          <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Experience id="workExperienceSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Experience>
-          </div>
-          <div class="gap-4 mx-3 lg:mx-0 lg:mr-4">
-            <Skills id="skillsSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Skills>
-          </div>
-          <div class="gap-4 mx-3 flex flex-col md:flex-row lg:mx-0 lg:mr-4">
-            <Testdisc id="testDiscSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></Testdisc>
-            <TestSoft id="testSoftSkillsSection" :userProp="user" :cvId="mi_cv" @sending-event="ReceivedEvent" class="shadow-lg shadow-gray-300"></TestSoft>
-          </div>
+          <BlockedInfo />
         </div>
       </div>
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -76,6 +57,7 @@ import Testdisc from '@/Pages/User/UserCV/TestDisc.vue';
 import TestSoft from '@/Pages/User/UserCV/TestSoftskills.vue';
 import BaseModal from '@/CustomComponents/Modal.vue';
 import Skills from '@/Pages/User/UserCV/Skills.vue';
+import BlockedInfo from '@/Pages/User/UserCV/BlockedInfo.vue';
 import axios from 'axios'
 
 import { defineComponent } from "vue";
@@ -95,7 +77,8 @@ export default defineComponent({
     TestSoft,
     Testdisc,
     BaseModal,
-    Skills
+    Skills,
+    BlockedInfo
   },
   props: {
     user: Object,

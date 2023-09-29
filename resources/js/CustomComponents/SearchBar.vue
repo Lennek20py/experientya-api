@@ -15,7 +15,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                     placeholder="Buscar" required>
             </div>
-            <SearchFilter v-model="params" />
+            <SearchFilter v-model="params" v-if="candidates" />
             <button type="submit"
                 class="p-2.5 ml-2 text-sm font-medium text-white bg-[#1579ac] rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -39,6 +39,9 @@ const emit = defineEmits(['update:modelValue'])
 <script>
 
 export default {
+    props: {
+        candidates: Boolean
+    },
     data() {
         return {
             searchText: '',

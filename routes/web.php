@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnuiesController;
+use App\Http\Controllers\CandidatesInvitesController;
 use App\Http\Controllers\CertificationsController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,7 @@ use App\Events\PrivateTest;
 
 //Home
 Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::inertia('/privacy-terms', 'Terms');
 
 
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
@@ -124,12 +126,16 @@ Route::get('/progress/{id}', [ProgressController::class, 'index'])->name('progre
 Route::get('/vacancies/{id}', [VacanciesController::class, 'index'])->name('vacancies.index');
 Route::get('/vacancies/detail/{id}', [VacanciesController::class, 'view'])->name('vacancies.detail');
 Route::get('/vacants', [VacanciesController::class, 'appliedVacants'])->name('vacants.applied');
+Route::get('company/vacants/{id}', [VacanciesController::class, 'appliedOffersPerOffer'])->name('company.applied');
 Route::get('/vacants/check', [VacanciesController::class, 'checkApplied'])->name('vacants.checkApplied');
 Route::post('/vacants/apply', [VacanciesController::class, 'apply'])->name('vacants.apply');
 Route::delete('/vacants/delete', [VacanciesController::class, 'destroy'])->name('vacants.cancel');
+Route::get('/vacants/organization/offers/{id}', [VacanciesController::class, 'getOffers'])->name('vacants.getOffers');
 
-// / Candidate Basic Info
+// / Candidate Basic Info 
 Route::get('/user/create', [UserController::class, 'sendEmail'])->name('user.sendEmail');
+Route::post('/candidatesInvites/invite', [CandidatesInvitesController::class, 'store'])->name('user.inviteCandidate');
+Route::get('/candidatesInvites/all', [CandidatesInvitesController::class, 'allInvites'])->name('invites.all');
 
 
 Route::apiResources([
@@ -137,7 +143,8 @@ Route::apiResources([
     "language" => LanguageController::class,
     "certifications" => CertificationsController::class,
     "testsoftskillsAsw" => TestSoftSkillsController::class,
-    "userSkill" => UserSkillController::class
+    "userSkill" => UserSkillController::class,
+    "candidatesInvites" => CandidatesInvitesController::class
 ]);
 
 
@@ -202,6 +209,10 @@ Route::middleware([
 });
 
 
+Route::get('/token', function () {
+    return csrf_token();
+})->name('workPreferences.search');
+
 
 Route::middleware(['auth:company', 'verified'])->group(function () {
 
@@ -217,6 +228,7 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::post('/company/newOffer/create', [OfferController::class, 'store'])->name('offer.store');
     Route::delete('/company/offer/delete/{offer}', [OfferController::class, 'destroy'])->name('offer.destroy');
     Route::get('/company/offer/edit/{id}', [OfferController::class, 'edit'])->name('offer.edit');
+    Route::get('/company/offer/recruitment/{id}', [OfferController::class, 'recruitmentView'])->name('offer.recruitment');
     Route::put('/company/offer/update/{offer}', [OfferController::class, 'update'])->name('offer.update');
     Route::put('/company/offer/changeStatus/{offer}', [OfferController::class, 'changeStatus'])->name('offer.changeStatus');
 
