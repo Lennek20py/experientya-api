@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
 use App\Events\ChatMessageSent;
+use App\Events\UnreadMessages;
 use App\Models\Message;
 
 class MessageController extends Controller
@@ -42,11 +43,33 @@ class MessageController extends Controller
         $message->user_id = $request->idStudent;
         $message->typeuser = $request->typeUser;
         $message->chat_id = $request->idchat;
+        if ($request->statusUser) {
+            $message->readDate = date('Y-m-d H:i:s');
+        }
         $message->save();
 
-        broadcast(new ChatMessageSent($message))->toOthers();
+        if ($request->statusUser) {
+            broadcast(new ChatMessageSent($message))->toOthers();
+        }else{
+            broadcast(new UnreadMessages($message,$request->idChanelUser))->toOthers();
+        }
+        
 
         return $message;
+    }
+
+    public function readAllMessagesUser(Request $request){
+        $registros = Message::where('chat_id', $request->chatId)
+                    ->whereNull('readDate')
+                    ->where('typeuser', '!=', $request->typeUser)
+                    ->get();
+        // Actualizar la fecha en los registros encontrados
+        foreach ($registros as $registro) {
+            $registro->readDate = now(); // Utiliza la función now() para obtener la fecha y hora actual
+            $registro->save();
+        }
+
+        return true;
     }
     
     // Company
@@ -66,8 +89,26 @@ class MessageController extends Controller
         $message->chat_id = $request->idchat;
         $message->save();
 
-        broadcast(new ChatMessageSent($message))->toOthers();
+        if ($request->statusUser) {
+            broadcast(new ChatMessageSent($message))->toOthers();
+        }else{
+            broadcast(new UnreadMessages($message,$request->idChanelUser))->toOthers();
+        }
 
         return $message;
+    }
+
+    public function readAllMessagesCompany(Request $request){
+        $registros = Message::where('chat_id', $request->chatId)
+                    ->whereNull('readDate')
+                    ->where('typeuser', '!=', $request->typeUser)
+                    ->get();
+        // Actualizar la fecha en los registros encontrados
+        foreach ($registros as $registro) {
+            $registro->readDate = now(); // Utiliza la función now() para obtener la fecha y hora actual
+            $registro->save();
+        }
+
+        return $registros;
     }
 }

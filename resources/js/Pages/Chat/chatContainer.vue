@@ -11,13 +11,19 @@
                 </div>
                 <div class="ml-4">
                     <b>{{ props.chatData.name }}</b>
+
+                    <lord-icon v-show="mostrarEscribiendo" class="ml-2" src="https://cdn.lordicon.com/hpivxauj.json"
+                        trigger="loop" delay="500" colors="primary:#ffffff" style="width:20px;height:20px">
+                    </lord-icon>
                 </div>
             </div>
             <div>
-                <div class="w-6 h-6 bg-green-800 rounded-full mr-6"></div>
+                <div :class="'w-6 h-6 rounded-full mr-6 ' + statusChat"></div>
+                <!-- bg-green-800 -->
+                <!-- bg-red-800 -->
             </div>
         </div>
-        <div ref="containerMenssages" class="overflow-y-auto overflow-x-hidden flex-grow"
+        <div ref="containerMenssages" class="contenedorScroll overflow-y-auto overflow-x-hidden flex-grow"
             style="background-image: url('/storage/imageResouces/others/fondoChat100px.png');">
             <div v-for="(item, index) in contentMessages" :key="index">
                 <!-- Mensaje del la persona con la se chatea -->
@@ -58,7 +64,7 @@
                         props.tipoUser,
                         props.user,
                         props.chatData
-                    )" />
+                    )" :change="sendTypingEvent()" />
             </div>
             <div class="flex-none p-2 border-[#2563EB] border-2 rounded-full mr-8 cursor-pointer hover:bg-[#2563EB]" @click="
                 sentMessage(
@@ -79,7 +85,7 @@
 </template>
 
 <script setup >
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, watch, computed, onBeforeUnmount } from "vue";
 
 const props = defineProps({
     chatData: Object,
@@ -87,42 +93,41 @@ const props = defineProps({
     tipoUser: String,
 });
 
-const emit = defineEmits(['removeChat'])
-
-console.log('---------- props.chatData ----------');
-console.log(props.chatData);
-console.log(props.user);
-// watch(props.chatData, () => {
-//     console.log('---------- props.chatData ----------');
-//     console.log(props.chatData.value);
-// })
+const emit = defineEmits(['removeChat', 'updateChatList'])
 
 // -----------------Const-----------------
 const containerMenssages = ref(null);
 const contentMessages = ref([]);
 const messageContainer = ref("");
+const statusChat = ref('bg-red-800')
+// Constante para resetear el tiempo de espera
+const typingTimer = ref(false);
+// Constante para mostrar el texto de escribiendo
+const mostrarEscribiendo = ref(false);
+// Bandera para el watch de los mensajes
+const banderaContentMessages = ref(false);
+
+const leaveChannel = () => {
+    window.Echo.leave(`chat-message.${props.chatData ? props.chatData.chatId : '0'}`);
+};
 
 // -----------------Watch-----------------
 watch(() => props.chatData, async () => {
-    console.log('Cambio de chatData');
-    console.log(props.chatData);
 
     await getMessages(props.tipoUser, props.user, props.chatData.chatId)
 }, { immediate: true })
 
 watch(contentMessages, () => {
-    console.log('Se agregó mensaje');
     scrollBottom()
 })
 
 // -----------------Functions-----------------
 async function getMessages(typeUser, dataUser, idchat) {
-    console.log("**************** FUNCIÓN GET MENSAJES (Component) ******************");
-
     // contentMessages.value = []
 
     // Obteniendo mensaje
     if (typeUser === "company") {
+        // Obtener mensajes
         await axios.post(route("company.getMessage"), {
             chatId: idchat
         })
@@ -133,7 +138,20 @@ async function getMessages(typeUser, dataUser, idchat) {
                 console.log("Ha ocurrido un error");
                 console.log(error);
             });
+        // Marcar como leido los mensajes no leidos
+        await axios.post(route("company.readAllMessages"), {
+            chatId: idchat,
+            typeUser: typeUser
+        })
+            .then((res) => {
+
+            })
+            .catch((error) => {
+                console.log("Ha ocurrido un error");
+                console.log(error);
+            });
     } else {
+        // Obtener mensajes
         await axios.post(route("user.getMessage"), {
             chatId: idchat
         })
@@ -144,17 +162,32 @@ async function getMessages(typeUser, dataUser, idchat) {
                 console.log("Ha ocurrido un error");
                 console.log(error);
             });
-    }
+        // Marcar como leido los mensajes no leidos
+        await axios.post(route("user.readAllMessages"), {
+            chatId: idchat,
+            typeUser: typeUser
+        })
+            .then((res) => {
 
-    console.log(contentMessages.value);
+            })
+            .catch((error) => {
+                console.log("Ha ocurrido un error");
+                console.log(error);
+            });
+    }
 
     scrollBottom()
 }
 
 // Función para mandar mensajes
 async function sentMessage(message, typeUser, dataUser, idchat) {
-    console.log("**************** FUNCIÓN SENT MENSAJES ******************");
     if (!message) return;
+
+    let userActivo = false
+    let idChanelUser = props.tipoUser === 'company' ? '2' : '1'
+    if (statusChat.value === 'bg-green-800') {
+        userActivo = true
+    }
 
     if (typeUser === "company") {
         await axios
@@ -162,11 +195,11 @@ async function sentMessage(message, typeUser, dataUser, idchat) {
                 message: message,
                 idCompany: dataUser["id"],
                 idchat: idchat["chatId"],
-                typeUser: typeUser
+                typeUser: typeUser,
+                idChanelUser: parseInt(idChanelUser + props.chatData.id, 10),
+                statusUser: statusChat.value === 'bg-green-800' ? true : false
             })
             .then((res) => {
-                // console.log(res.data);
-                // contentMessages.value.push(res.data);
                 addMessage(res.data)
             })
             .catch((error) => {
@@ -179,11 +212,11 @@ async function sentMessage(message, typeUser, dataUser, idchat) {
                 message: message,
                 idStudent: dataUser["id"],
                 idchat: idchat["chatId"],
-                typeUser: typeUser
+                typeUser: typeUser,
+                idChanelUser: parseInt(idChanelUser + props.chatData.id, 10),
+                statusUser: statusChat.value === 'bg-green-800' ? true : false
             })
             .then((res) => {
-                // console.log(res.data);
-                // contentMessages.value.push(res.data);
                 addMessage(res.data)
             })
             .catch((error) => {
@@ -202,7 +235,6 @@ function removeChat() {
 }
 
 function scrollBottom() {
-    console.log(' ----- function scrollBottom -----');
     // Scroll button
     containerMenssages.value.scrollTop = containerMenssages.value.scrollHeight;
 }
@@ -237,13 +269,20 @@ function pad(number) {
 // Función para agregar un nuevo mensaje
 async function addMessage(message) {
     await contentMessages.value.push(message);
+    emit('updateChatList', message.chat_id, message.content, message.created_at, message.typeuser, message.readDate)
     scrollBottom()
+}
+
+function sendTypingEvent() {
+    window.Echo.join(`chat-message.${props.chatData ? props.chatData.chatId : '0'}`).whisper(
+        "typing",
+        messageContainer.value.length
+    );
 }
 
 // Laravel Echo
 window.Echo.join(`chat-message.${props.chatData ? props.chatData.chatId : '0'}`)
     .listen(".MessageEvent", (e) => {
-        console.log('Esuchando chat-message ' + props.chatData.chatId);
 
         addMessage(e.message)
 
@@ -251,7 +290,42 @@ window.Echo.join(`chat-message.${props.chatData ? props.chatData.chatId : '0'}`)
     })
     .listen('.pusher:subscription_error', (error) => {
         console.log('Error de suscripción al canal:', error);
+    })// Obtiene los usuarios activos
+    .here((users) => {
+        const result = users.filter((user) => user.email !== props.user.email);
+
+        if (result.length > 0) {
+            statusChat.value = "bg-green-800";
+        }
+    })
+    // Obtiene los usuarios que entran
+    .joining((user) => {
+        if (user.email !== props.user.email) {
+            statusChat.value = "bg-green-800";
+        }
+    })
+    // Obtienen los usuarios que salen
+    .leaving((user) => {
+        if (user.email !== props.user.email) {
+            statusChat.value = "bg-red-800";
+        }
+    }).listenForWhisper("typing", (e) => {
+        if (e > 0) {
+            mostrarEscribiendo.value = true;
+        }
+        if (typingTimer.value) {
+            clearTimeout(typingTimer.value);
+        }
+
+        typingTimer.value = setTimeout(() => {
+            mostrarEscribiendo.value = false;
+            typingTimer.value = false;
+        }, 2000);
     });
+
+onBeforeUnmount(() => {
+    leaveChannel();
+});
 </script>
 
 <style></style>

@@ -224,7 +224,7 @@ function sendTypingEvent() {
     );
 }
 
-// Websocket
+// Websocket para recibir mensajes del chat en tiempo real
 window.Echo.join(`chat.${chat.value}`)
     .listen("MessageSent", (e) => {
         appendMessage(
@@ -395,23 +395,29 @@ body {
     overflow-y: auto;
     padding: 10px;
 }
+
 .msger-chat::-webkit-scrollbar {
     width: 6px;
 }
+
 .msger-chat::-webkit-scrollbar-track {
     background: #ddd;
 }
+
 .msger-chat::-webkit-scrollbar-thumb {
     background: #bdbdbd;
 }
+
 .msg {
     display: flex;
     align-items: flex-end;
     margin-bottom: 10px;
 }
+
 .msg:last-of-type {
     margin: 0;
 }
+
 .msg-img {
     width: 50px;
     height: 50px;
@@ -422,22 +428,26 @@ body {
     background-size: cover;
     border-radius: 50%;
 }
+
 .msg-bubble {
     max-width: 450px;
     padding: 15px;
     border-radius: 15px;
     background: var(--left-msg-bg);
 }
+
 .msg-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .msg-info-name {
     margin-right: 10px;
     font-weight: bold;
 }
+
 .msg-info-time {
     font-size: 0.85em;
 }
@@ -449,11 +459,13 @@ body {
 .right-msg {
     flex-direction: row-reverse;
 }
+
 .right-msg .msg-bubble {
     background: var(--right-msg-bg);
     color: #fff;
     border-bottom-right-radius: 0;
 }
+
 .right-msg .msg-img {
     margin: 0 0 0 10px;
 }
@@ -464,16 +476,19 @@ body {
     border-top: var(--border);
     background: #eee;
 }
+
 .msger-inputarea * {
     padding: 10px;
     border: none;
     border-radius: 3px;
     font-size: 1em;
 }
+
 .msger-input {
     flex: 1;
     background: #ddd;
 }
+
 .msger-send-btn {
     margin-left: 10px;
     background: rgb(0, 196, 65);
@@ -482,6 +497,7 @@ body {
     cursor: pointer;
     transition: background 0.23s;
 }
+
 .msger-send-btn:hover {
     background: rgb(0, 180, 50);
 }
@@ -502,5 +518,4 @@ span.chatStatus.offline {
 .typing {
     font-size: 12px;
     font-style: italic;
-}
-</style>
+}</style>

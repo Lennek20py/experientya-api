@@ -36,7 +36,6 @@ class ChatMessageSent implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PresenceChannel('chat-message.'. $this->message->chat_id);
-        // return new PresenceChannel('chat-message');
     }
 
     // Nombre del evento

@@ -186,19 +186,24 @@ Route::middleware([
         return Inertia::render('Chat/chatMainView');
     })->name('chatUser.index');
 
-    // ++++++++++++++++++Rutas de chat Oficical student+++++++++++++++++++
     // Redireccionar a la vista
     Route::get('/user/chat/view', function () {
         return Inertia::render('Chat/chatMainView', [
             'tipoUser' => 'student'
         ]);
     })->name('chatStudent.index');
+
     // Obtener todos los chats
     Route::post('/user/chat/list-company', [ChatCompanyStudentController::class, 'chats_student'])->name('user.get.chats');
+
     // Get messages
     Route::post('/user/getMessage', [MessageController::class, 'getMessagesStudent'])->name('user.getMessage');
+
     // Sent Message company
     Route::post('/user/sentMessage', [MessageController::class, 'sentMessageUser'])->name('user.sentMessage');
+
+    // read all messages
+    Route::post('/user/readAllMessages', [MessageController::class, 'readAllMessagesUser'])->name('user.readAllMessages');
 });
 
 
@@ -232,14 +237,12 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
     Route::get('/company/cv/{id}', [CompanyController::class, 'cv'])->name('company.cv');
     Route::get('/company/downloadCV/{id}', [CompanyController::class, 'downloadCVPDF'])->name('company.downloadCVPDF');
 
-    // Chat
-    // Route::get('/company/chat/from/{company}/{user}', [ChatController::class, 'chat_from_company_to_user'])->name('chat.from.company.to.user');
-
-    // ++++++++++++++++++Rutas de chat Oficical Company+++++++++++++++++++
     // Crear un nuevo chat
     Route::post('/company/chat/with-student', [ChatCompanyStudentController::class, 'chat_with_student'])->name('chatcompanystudent.chat.with.student');
+
     // Obtener todos los chats
     Route::post('/company/chat/list-student', [ChatCompanyStudentController::class, 'chats_company'])->name('chatcompanystudent.list.chat.with.student');
+
     // Redireccionar a la vista
     Route::get('/company/chat/view', function () {
         return Inertia::render('Chat/chatMainView', [
@@ -252,6 +255,9 @@ Route::middleware(['auth:company', 'verified'])->group(function () {
 
     // Sent Message company
     Route::post('/company/sentMessage', [MessageController::class, 'sentMessageCompany'])->name('company.sentMessage');
+
+    // read all messages
+    Route::post('/company/readAllMessages', [MessageController::class, 'readAllMessagesCompany'])->name('company.readAllMessages');
 });
 
 // // Ejemplo Chat

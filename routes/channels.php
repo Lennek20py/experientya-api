@@ -35,13 +35,33 @@ Broadcast::channel('chat-message.{chat_id}', function ($userOrCompany) {
         // Puedes aplicar cualquier lógica personalizada aquí
 
         // Verifica si el ID coincide con el ID del usuario
-        return true;
+        return $userOrCompany;
     } elseif ($userOrCompany instanceof \App\Models\Company) {
         // Lógica para verificar el acceso de la compañía
         // Puedes aplicar cualquier lógica personalizada aquí
 
         // Verifica si el ID coincide con el ID de la compañía
-        return true;
+        return $userOrCompany;
+    }
+
+    return null;
+}, ['guard' => 'company']);
+
+// Canal para recibir todos los mensajes cuando no se está en el chat
+Broadcast::channel('user-messages.{userChannel}', function ($userOrCompany) {
+
+    if ($userOrCompany instanceof \App\Models\User) {
+        // Lógica para verificar el acceso del usuario
+        // Puedes aplicar cualquier lógica personalizada aquí
+
+        // Verifica si el ID coincide con el ID del usuario
+        return $userOrCompany;
+    } elseif ($userOrCompany instanceof \App\Models\Company) {
+        // Lógica para verificar el acceso de la compañía
+        // Puedes aplicar cualquier lógica personalizada aquí
+
+        // Verifica si el ID coincide con el ID de la compañía
+        return $userOrCompany;
     }
 
     return null;
