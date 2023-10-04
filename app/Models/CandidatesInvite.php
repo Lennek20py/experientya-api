@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use function PHPSTORM_META\map;
-
-class AppliedOffer extends Model
+class CandidatesInvite extends Model
 {
     use HasFactory;
-    protected $table = 'applied_offers';
+    protected $table = 'candidates_invites';
     protected $primaryKey = 'id';
     protected $fillable = [
         'cv_id',
         'offer_id',
+        'company_id',
         'status'
     ];
 
@@ -27,4 +26,10 @@ class AppliedOffer extends Model
     {
         return $this->belongsTo(Cv::class, 'cv_id');
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
 }

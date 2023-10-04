@@ -50,22 +50,27 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $image = $request->file('profile_photo_path')->store('profile', 'public');
+        // generic image path
+        $image = 'profile/new_user.png';
+
+        if ($request->file('profile_photo_path')) {
+            $image = $request->file('profile_photo_path')->store('profile', 'public');
+        }
 
         $user = User::create([
             'user_first_name' => $request->user_first_name,
             'user_last_name' => $request->user_last_name,
-            'CURP' => $request->CURP,
+            // 'CURP' => $request->CURP,
             'email' => $request->email,
             'password' => $request->password,
             'profile_photo_path' => $image,
-            'user_state_id' => $request->user_state_id,
-            'user_city_id' => $request->user_city_id,
-            'user_address' => $request->user_address,
-            'user_postal_code' => $request->user_postal_code,
-            'user_phone_number' => $request->user_phone_number,
-            'email_alternative' => $request->email_alternative,
-            'user_date_of_birth' => $request->user_date_of_birth,
+            // 'user_state_id' => $request->user_state_id,
+            // 'user_city_id' => $request->user_city_id,
+            // 'user_address' => $request->user_address,
+            // 'user_postal_code' => $request->user_postal_code,
+            // 'user_phone_number' => $request->user_phone_number,
+            // 'email_alternative' => $request->email_alternative,
+            // 'user_date_of_birth' => $request->user_date_of_birth,
 
             // 'user_social_networks' => $request->user_social_networks,
             // 'user_country_id' => $request->user_country_id,
