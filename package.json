@@ -27,9 +27,12 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.10",
-        "laravel-echo": "^1.15.1",
-        "pusher-js": "^4.0.0",
+        "laravel-echo": "^1.15.3",
+        "pusher-js": "^4.4.0",
         "sweetalert2": "^11.4.8",
         "vue-select": "^4.0.0-beta.5"
-    }
+    },
+    "engines": {
+        "node": "14.18.1"
+      }
 }
