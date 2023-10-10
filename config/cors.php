@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://shark-app-io3ov.ondigitalocean.app', 'http://localhost:8080'],
 
     'allowed_origins_patterns' => [],
 
